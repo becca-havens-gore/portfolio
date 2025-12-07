@@ -1,0 +1,250 @@
+{
+  "$schema": "https://tr.designtokens.org/format/2.0",
+  "metadata": {
+    "name": "Rebecca Gore Portfolio Design Tokens - Enhanced",
+    "version": "2.0.0",
+    "description": "Enhanced design system tokens with animations and gradients",
+    "author": "Rebecca Gore",
+    "date": "2025-11-26"
+  },
+  "animations": {
+    "gradients": {
+      "gradientShift": {
+        "value": "gradientShift 20s ease infinite",
+        "type": "other",
+        "description": "Animated gradient background shift"
+      },
+      "gradientText": {
+        "value": "gradientText 8s ease infinite",
+        "type": "other",
+        "description": "Text gradient animation"
+      },
+      "rotateBorder": {
+        "value": "rotateBorder 6s linear infinite",
+        "type": "other",
+        "description": "Rotating gradient border"
+      },
+      "shimmer": {
+        "value": "shimmer 3s infinite",
+        "type": "other",
+        "description": "Shimmer effect animation"
+      },
+      "gradientWave": {
+        "value": "gradientWave 3s ease infinite",
+        "type": "other",
+        "description": "Wave gradient animation for skill bars"
+      },
+      "rainbowShift": {
+        "value": "rainbowShift 3s linear infinite",
+        "type": "other",
+        "description": "Rainbow gradient shift"
+      },
+      "gradientFlow": {
+        "value": "gradientFlow 4s linear infinite",
+        "type": "other",
+        "description": "Flowing gradient animation"
+      },
+      "borderGlow": {
+        "value": "borderGlow 8s ease infinite",
+        "type": "other",
+        "description": "Glowing border animation"
+      },
+      "gradientSlide": {
+        "value": "gradientSlide 10s linear infinite",
+        "type": "other",
+        "description": "Sliding gradient animation"
+      }
+    },
+    "motion": {
+      "float": {
+        "value": "float 25s ease-in-out infinite",
+        "type": "other",
+        "description": "Floating orb animation"
+      },
+      "floatCard": {
+        "value": "floatCard 6s ease-in-out infinite",
+        "type": "other",
+        "description": "Floating card animation"
+      },
+      "bounceIcon": {
+        "value": "bounceIcon 2s ease-in-out infinite",
+        "type": "other",
+        "description": "Bouncing icon animation"
+      },
+      "pulse": {
+        "value": "pulse 2s ease infinite",
+        "type": "other",
+        "description": "Pulsing glow effect"
+      },
+      "floatParticle": {
+        "value": "floatParticle variable ease-in-out infinite",
+        "type": "other",
+        "description": "Floating particle animation"
+      },
+      "meshRotate": {
+        "value": "meshRotate 20s ease infinite",
+        "type": "other",
+        "description": "Rotating mesh gradient"
+      },
+      "expandLine": {
+        "value": "expandLine 1s ease forwards",
+        "type": "other",
+        "description": "Expanding line animation"
+      },
+      "highlightExpand": {
+        "value": "highlightExpand 0.8s ease 0.3s forwards",
+        "type": "other",
+        "description": "Text highlight expansion"
+      }
+    }
+  },
+  "gradients": {
+    "hero": {
+      "background": {
+        "value": "linear-gradient(135deg, rgba(255, 107, 43, 0.15) 0%, rgba(107, 70, 255, 0.1) 25%, rgba(43, 191, 255, 0.12) 50%, rgba(255, 43, 158, 0.1) 75%, rgba(255, 184, 43, 0.15) 100%)",
+        "type": "color",
+        "description": "Multi-color gradient for hero background"
+      }
+    },
+    "text": {
+      "animated": {
+        "value": "linear-gradient(135deg, var(--color-text-primary) 0%, var(--color-accent) 50%, var(--color-text-primary) 100%)",
+        "type": "color",
+        "description": "Animated text gradient"
+      }
+    },
+    "borders": {
+      "rotating": {
+        "value": "linear-gradient(45deg, #FF6B2B, #FF8C5C, #6B46FF, #2BBFFF, #FF6B2B)",
+        "type": "color",
+        "description": "Rotating rainbow border gradient"
+      },
+      "glowing": {
+        "value": "linear-gradient(45deg, #FF6B2B, #FF8C5C, #6B46FF, #2BBFFF, #FF2B9E, #FF6B2B)",
+        "type": "color",
+        "description": "Glowing border gradient"
+      }
+    },
+    "buttons": {
+      "primary": {
+        "value": "linear-gradient(135deg, #FF6B2B, #FF8C5C)",
+        "type": "color",
+        "description": "Primary button gradient"
+      },
+      "primaryHover": {
+        "value": "linear-gradient(135deg, #FF8C5C, #FF6B2B)",
+        "type": "color",
+        "description": "Primary button hover gradient (reversed)"
+      },
+      "shine": {
+        "value": "linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.4) 50%, transparent 100%)",
+        "type": "color",
+        "description": "Button shine effect"
+      }
+    },
+    "skillBars": {
+      "fill": {
+        "value": "linear-gradient(90deg, #FF6B2B 0%, #FF8C5C 25%, #FF6B2B 50%, #FF8C5C 75%, #FF6B2B 100%)",
+        "type": "color",
+        "description": "Animated skill bar gradient"
+      }
+    },
+    "tags": {
+      "rainbow": {
+        "value": "linear-gradient(90deg, #FF6B2B, #FF8C5C, #6B46FF, #2BBFFF, #FF2B9E, #FFB82B, #FF6B2B)",
+        "type": "color",
+        "description": "Rainbow gradient for skill tags"
+      }
+    },
+    "sections": {
+      "highlight": {
+        "value": "linear-gradient(135deg, rgba(255, 107, 43, 0.15), rgba(255, 140, 92, 0.15))",
+        "type": "color",
+        "description": "Section title highlight gradient"
+      },
+      "mesh": {
+        "value": "radial-gradient(circle at 20% 50%, rgba(255, 107, 43, 0.08) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(107, 70, 255, 0.08) 0%, transparent 50%), radial-gradient(circle at 40% 20%, rgba(43, 191, 255, 0.08) 0%, transparent 50%)",
+        "type": "color",
+        "description": "Animated mesh gradient background"
+      }
+    },
+    "footer": {
+      "topBorder": {
+        "value": "linear-gradient(90deg, #FF6B2B, #FF8C5C, #6B46FF, #2BBFFF, #FF2B9E, #FFB82B, #FF6B2B)",
+        "type": "color",
+        "description": "Footer top border gradient"
+      }
+    },
+    "cards": {
+      "shimmer": {
+        "value": "linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%)",
+        "type": "color",
+        "description": "Card shimmer effect gradient"
+      }
+    },
+    "particles": {
+      "colors": [
+        {
+          "value": "#FF6B2B",
+          "type": "color",
+          "description": "Primary particle color"
+        },
+        {
+          "value": "#6B46FF",
+          "type": "color",
+          "description": "Purple particle color"
+        },
+        {
+          "value": "#2BBFFF",
+          "type": "color",
+          "description": "Blue particle color"
+        },
+        {
+          "value": "#FF2B9E",
+          "type": "color",
+          "description": "Pink particle color"
+        }
+      ]
+    }
+  },
+  "effects": {
+    "blur": {
+      "backdrop": {
+        "value": "blur(10px)",
+        "type": "other",
+        "description": "Backdrop blur for header"
+      },
+      "glow": {
+        "value": "blur(8px)",
+        "type": "other",
+        "description": "Blur for glowing effects"
+      }
+    },
+    "particles": {
+      "count": {
+        "value": 8,
+        "type": "number",
+        "description": "Number of floating particles"
+      },
+      "sizes": {
+        "small": {
+          "value": "3px",
+          "type": "dimension"
+        },
+        "medium": {
+          "value": "4px",
+          "type": "dimension"
+        },
+        "large": {
+          "value": "6px",
+          "type": "dimension"
+        }
+      },
+      "opacity": {
+        "value": 0.4,
+        "type": "number",
+        "description": "Base particle opacity"
+      }
+    }
+  }
+}

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Forum & UX Standards â€” Rebecca Gore</title>
+    <meta name="description" content="Case study: Operationalizing quality, alignment, and governance across Rapid7's design organization">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        :root{--grid-columns:12;--grid-gutter:80px;--grid-margin:120px;--baseline:8px;--font-display:'Playfair Display',serif;--font-body:'IBM Plex Sans',sans-serif;--type-h1:56px;--type-h2:36px;--type-h3:28px;--type-body:18px;--type-small:14px;--color-bg-primary:#FAFAFA;--color-bg-secondary:#FFFFFF;--color-bg-tertiary:#F0F0F0;--color-text-primary:#1A1A1A;--color-text-secondary:#4A4A4A;--color-text-tertiary:#6A6A6A;--color-accent:#2BBFFF;--color-accent-hover:#1AAFEF;--color-border:rgba(0,0,0,0.08);--color-shadow:rgba(0,0,0,0.06);--transition-fast:200ms cubic-bezier(0.4,0,0.2,1);--transition-base:400ms cubic-bezier(0.4,0,0.2,1);--space-xs:8px;--space-sm:16px;--space-md:24px;--space-lg:48px;--space-xl:80px;--space-2xl:120px;--shadow-sm:0 2px 8px var(--color-shadow);--shadow-md:0 4px 16px var(--color-shadow);--focus-width:3px;--focus-offset:2px}[data-theme="dark"]{--color-bg-primary:#0F0F0F;--color-bg-secondary:#1A1A1A;--color-bg-tertiary:#252525;--color-text-primary:#F5F5F5;--color-text-secondary:#B8B8B8;--color-text-tertiary:#888888;--color-border:rgba(255,255,255,0.12);--color-shadow:rgba(0,0,0,0.3)}*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{font-family:var(--font-body);font-size:var(--type-body);line-height:1.7;color:var(--color-text-primary);background:var(--color-bg-primary);-webkit-font-smoothing:antialiased}:focus-visible{outline:var(--focus-width) solid var(--color-accent);outline-offset:var(--focus-offset);border-radius:2px}.header{position:fixed;top:0;left:0;right:0;background:var(--color-bg-secondary);border-bottom:1px solid var(--color-border);z-index:1000;padding:var(--space-md) var(--grid-margin);backdrop-filter:blur(10px)}.header.scrolled{background:rgba(250,250,250,0.8);box-shadow:0 4px 24px rgba(43,191,255,0.1)}.header::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#2BBFFF 0%,#5CCCFF 50%,#2BBFFF 100%);background-size:200% 100%;opacity:0;animation:gradientFlow 4s linear infinite}.header.scrolled::before{opacity:1}@keyframes gradientFlow{0%{background-position:0% center}100%{background-position:200% center}}.header__container{max-width:1440px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}.header__logo{font-family:var(--font-display);font-size:24px;font-weight:700;color:var(--color-text-primary);text-decoration:none;letter-spacing:-0.02em}.back-link{display:inline-flex;align-items:center;gap:8px;color:var(--color-text-secondary);text-decoration:none;font-weight:500;transition:color var(--transition-fast)}.back-link:hover{color:var(--color-accent)}.back-link::before{content:'â†';font-size:20px}.case-hero{min-height:70vh;background:linear-gradient(135deg,#2BBFFF 0%,#5CCCFF 100%);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding-top:100px}.case-hero::before{content:'';position:absolute;inset:0;background:url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');opacity:0.3}.case-hero__content{max-width:900px;text-align:center;padding:var(--space-2xl) var(--space-lg);position:relative;z-index:1}.case-hero__eyebrow{font-size:var(--type-small);text-transform:uppercase;letter-spacing:0.15em;color:rgba(255,255,255,0.9);font-weight:600;margin-bottom:var(--space-md)}.case-hero__title{font-family:var(--font-display);font-size:clamp(36px,6vw,52px);font-weight:900;color:white;margin-bottom:var(--space-md);line-height:1.1;letter-spacing:-0.02em}.case-hero__subtitle{font-size:22px;color:rgba(255,255,255,0.95);max-width:700px;margin:0 auto;line-height:1.5}.case-hero__tags{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:var(--space-lg)}.case-hero__tag{padding:10px 20px;background:rgba(255,255,255,0.2);backdrop-filter:blur(10px);border-radius:24px;color:white;font-size:14px;font-weight:600;border:1px solid rgba(255,255,255,0.3)}.case-meta{background:var(--color-bg-secondary);padding:var(--space-xl) var(--grid-margin);border-bottom:1px solid var(--color-border)}.case-meta__container{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:var(--space-lg)}.meta-item{padding:var(--space-md);background:var(--color-bg-primary);border-radius:12px;border:1px solid var(--color-border)}.meta-item__label{font-size:var(--type-small);color:var(--color-text-tertiary);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px;font-weight:600}.meta-item__value{font-size:18px;font-weight:600;color:var(--color-text-primary)}.case-content{max-width:900px;margin:0 auto;padding:var(--space-2xl) var(--space-lg)}.case-section{margin-bottom:var(--space-2xl)}.case-section__title{font-family:var(--font-display);font-size:var(--type-h2);font-weight:700;margin-bottom:var(--space-md);color:var(--color-text-primary);position:relative;display:inline-block}.case-section__title::after{content:'';position:absolute;bottom:-8px;left:0;width:60px;height:4px;background:linear-gradient(90deg,var(--color-accent),#5CCCFF);border-radius:2px}.case-section p{margin-bottom:var(--space-md);line-height:1.8;color:var(--color-text-secondary)}.case-section ul{list-style:none;padding-left:0;margin-bottom:var(--space-md)}.case-section ul li{margin-bottom:var(--space-sm);padding-left:28px;position:relative;line-height:1.7;color:var(--color-text-secondary)}.case-section ul li::before{content:'â–¸';position:absolute;left:0;color:var(--color-accent);font-weight:bold}.case-section h3{font-family:var(--font-display);font-size:24px;font-weight:700;margin-top:var(--space-lg);margin-bottom:var(--space-md);color:var(--color-text-primary)}.impact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:var(--space-lg);margin-top:var(--space-xl)}.impact-card{padding:var(--space-lg);background:var(--color-bg-secondary);border:1px solid var(--color-border);border-radius:16px;position:relative;overflow:hidden}.impact-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:4px;background:linear-gradient(90deg,var(--color-accent),#5CCCFF)}.impact-card__icon{font-size:32px;margin-bottom:var(--space-sm)}.impact-card__title{font-weight:700;font-size:18px;margin-bottom:var(--space-sm);color:var(--color-text-primary)}.impact-card__value{font-family:var(--font-display);font-size:36px;font-weight:900;color:var(--color-accent);margin-bottom:8px;line-height:1}.impact-card__description{font-size:16px;color:var(--color-text-secondary);line-height:1.6}.case-nav{background:var(--color-bg-secondary);border-top:1px solid var(--color-border);padding:var(--space-xl) var(--grid-margin);margin-top:var(--space-2xl)}.case-nav__container{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:var(--space-lg)}.case-nav__link{display:inline-flex;align-items:center;gap:12px;padding:16px 32px;background:var(--color-accent);color:white;text-decoration:none;border-radius:8px;font-weight:600;transition:all var(--transition-fast)}.case-nav__link:hover{background:var(--color-accent-hover);transform:translateY(-2px);box-shadow:var(--shadow-md)}@media (max-width:768px){:root{--grid-margin:32px;--type-h1:42px;--type-h2:28px}.case-meta__container,.impact-grid{grid-template-columns:1fr}.case-nav__container{flex-direction:column}}
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header__container">
+            <a href="rebecca-gore-portfolio.html" class="header__logo">Rebecca Gore</a>
+            <a href="rebecca-gore-portfolio.html#work" class="back-link">Back to Portfolio</a>
+        </div>
+    </header>
+    
+    <main>
+        <section class="case-hero">
+            <div class="case-hero__content">
+                <p class="case-hero__eyebrow">Case Study 03</p>
+                <h1 class="case-hero__title">Design Forum & UX Standards Framework</h1>
+                <p class="case-hero__subtitle">Operationalizing quality, alignment, and governance across Rapid7's design organization</p>
+                <div class="case-hero__tags">
+                    <span class="case-hero__tag">Design Ops</span>
+                    <span class="case-hero__tag">UX Governance</span>
+                    <span class="case-hero__tag">Accessibility</span>
+                    <span class="case-hero__tag">Leadership</span>
+                </div>
+            </div>
+        </section>
+        
+        <section class="case-meta">
+            <div class="case-meta__container">
+                <div class="meta-item">
+                    <div class="meta-item__label">Role</div>
+                    <div class="meta-item__value">Principal Designer, Enablement</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-item__label">Timeline</div>
+                    <div class="meta-item__value">Ongoing Initiative</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-item__label">Team Size</div>
+                    <div class="meta-item__value">30+ Designers</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-item__label">Impact</div>
+                    <div class="meta-item__value">35% Faster Approvals</div>
+                </div>
+            </div>
+        </section>
+        
+        <article class="case-content">
+            <section class="case-section">
+                <h2 class="case-section__title">Executive Summary</h2>
+                <p>As Rapid7 scaled across multiple product lines, design quality diverged due to fragmented processes, inconsistent decision-making, and lack of shared governance. Designers were making major UX decisions in Slack threads, design drift increased release risk, and teams lacked visibility into standards or precedent.</p>
+                <p>I led the design and rollout of the Design Forum and the Rapid7 UX Standards Framework, establishing scalable governance, structured decision processes, and transparent alignment mechanisms. Together with UX leadership, engineering partners, and design system contributors, we created an operational foundation that improved accessibility, consistency, and cross-team cohesion across the entire design org.</p>
+            </section>
+            
+            <section class="case-section">
+                <h2 class="case-section__title">The Problem</h2>
+                <p>Rapid7's UX organization was growing rapidly across 6+ product teams, Platform UX, Design System team, Visual design, Documentation, and UX research. Yet the org lacked shared structures for evaluating patterns, approving new UI paradigms, logging decisions, ensuring cross-product consistency, and maintaining accessibility baselines.</p>
+                
+                <h3>Key Operational Gaps</h3>
+                <ul>
+                    <li><strong>No centralized review process:</strong> Important UX decisions were scattered across DMs and Slack threads</li>
+                    <li><strong>No governance model:</strong> Patterns were approved based on who reviewed them, not on a shared framework</li>
+                    <li><strong>No transparency:</strong> Designers lacked visibility into precedent or rationale for design decisions</li>
+                    <li><strong>No standards baseline:</strong> Accessibility, responsiveness, and usability varied widely</li>
+                    <li><strong>No systemic process for multi-team alignment:</strong> Cross-product flows suffered from inconsistent logic</li>
+                </ul>
+                
+                <p>The result: Rapid7's platform experience was becoming inconsistent, costly to maintain, and increasingly difficult to scale.</p>
+            </section>
+            
+            <section class="case-section">
+                <h2 class="case-section__title">Research & Discovery</h2>
+                <p>I conducted stakeholder interviews across design, engineering, product, and research. Clear patterns emerged:</p>
+                
+                <h3>Designer Feedback</h3>
+                <ul>
+                    <li>"I'm not sure who approves this pattern."</li>
+                    <li>"We reinvent the same components over and over."</li>
+                    <li>"I want feedback earlier, not after something ships."</li>
+                </ul>
+                
+                <h3>Engineering Partner Feedback</h3>
+                <ul>
+                    <li>"UX asks for patterns we can't implement consistently."</li>
+                    <li>"We need a single source of truth."</li>
+                </ul>
+                
+                <h3>Leadership Feedback</h3>
+                <ul>
+                    <li>"We need to reduce UX inconsistency risks."</li>
+                    <li>"Standards need to be scalable, measurable, and enforceable."</li>
+                </ul>
+            </section>
+            
+            <section class="case-section">
+                <h2 class="case-section__title">Strategy & Architecture</h2>
+                <p>The strategy centered around three pillars:</p>
+                
+                <h3>A. Structured Governance â€” Design Forum</h3>
+                <p>I created the Design Forum, a recurring, formalized decision-making body for platform-level UX patterns.</p>
+                
+                <p><strong>Design Forum Components:</strong></p>
+                <ul>
+                    <li>Recurring 30-minute sessions</li>
+                    <li>Cross-disciplinary attendance</li>
+                    <li>Standard submission template</li>
+                    <li>Review process tied to the RDS lifecycle</li>
+                    <li>Decision log stored in Confluence</li>
+                    <li>#ux-all transparency updates</li>
+                    <li>FOG model for evidence-based evaluation</li>
+                </ul>
+                
+                <p><strong>FOG Model:</strong></p>
+                <ul>
+                    <li><strong>Facts:</strong> Research, data, accessibility requirements</li>
+                    <li><strong>Opinions:</strong> Design expertise, cross-team preferences</li>
+                    <li><strong>Guesses:</strong> Hypotheses needing testing</li>
+                </ul>
+                
+                <h3>B. UX Standards Framework</h3>
+                <p>I led creation of a four-pillar standard ensuring consistency across the platform:</p>
+                <ul>
+                    <li><strong>Accessibility</strong> â€” WCAG 2.2 AA compliance</li>
+                    <li><strong>Responsiveness</strong> â€” Grid & breakpoint rules</li>
+                    <li><strong>Usability</strong> â€” Predictable interaction patterns</li>
+                    <li><strong>Governance & Continuous Improvement</strong> â€” Audits and lifecycle management</li>
+                </ul>
+                
+                <p>Each pillar included principles, requirements, success criteria, and measurement plans.</p>
+                
+                <h3>C. Operational Documentation</h3>
+                <ul>
+                    <li>Decision logs</li>
+                    <li>Pattern approvals</li>
+                    <li>Exceptions tracking</li>
+                    <li>Pattern lifecycle documentation</li>
+                    <li>Rollout guidance</li>
+                </ul>
+            </section>
+            
+            <section class="case-section">
+                <h2 class="case-section__title">Implementation</h2>
+                
+                <h3>Design Forum Launch</h3>
+                <p>I facilitated cross-functional workshop sessions to align expectations, refine workflows, and practice using the FOG model on real design proposals.</p>
+                
+                <h3>Proposal Pipeline</h3>
+                <p>I created templates used by all designers:</p>
+                <ul>
+                    <li>Problem statement</li>
+                    <li>Goals</li>
+                    <li>Supporting research</li>
+                    <li>Alternatives considered</li>
+                    <li>Accessibility considerations</li>
+                    <li>Technical feasibility notes</li>
+                    <li>Decision needed</li>
+                </ul>
+                
+                <h3>Standards Integration with RDS</h3>
+                <p>I partnered with the design system team to ensure:</p>
+                <ul>
+                    <li>Every RDS component adhered to the UX Standards</li>
+                    <li>Every pattern proposal was reviewed through Design Forum</li>
+                    <li>Every decision updated system documentation</li>
+                </ul>
+                
+                <h3>Communication & Enablement</h3>
+                <ul>
+                    <li>Weekly async summaries</li>
+                    <li>Monthly highlights in #ux-all</li>
+                    <li>Training for new designers</li>
+                    <li>Accessibility onboarding</li>
+                </ul>
+            </section>
+            
+            <section class="case-section">
+                <h2 class="case-section__title">Impact</h2>
+                
+                <div class="impact-grid">
+                    <div class="impact-card">
+                        <div class="impact-card__icon">âš¡</div>
+                        <div class="impact-card__title">Approval Speed</div>
+                        <div class="impact-card__value">35%</div>
+                        <div class="impact-card__description">Faster pattern approvals</div>
+                    </div>
+                    
+                    <div class="impact-card">
+                        <div class="impact-card__icon">â™¿</div>
+                        <div class="impact-card__title">Accessibility</div>
+                        <div class="impact-card__value">40%</div>
+                        <div class="impact-card__description">Improvement in compliance scores</div>
+                    </div>
+                    
+                    <div class="impact-card">
+                        <div class="impact-card__icon">ðŸ”„</div>
+                        <div class="impact-card__title">Efficiency</div>
+                        <div class="impact-card__value">60%</div>
+                        <div class="impact-card__description">Reduction in duplicate patterns</div>
+                    </div>
+                    
+                    <div class="impact-card">
+                        <div class="impact-card__icon">ðŸŽ¯</div>
+                        <div class="impact-card__title">Consistency</div>
+                        <div class="impact-card__value">Higher</div>
+                        <div class="impact-card__description">Design consistency across 6+ teams</div>
+                    </div>
+                </div>
+                
+                <h3>Qualitative Impact</h3>
+                <ul>
+                    <li>Designers reported increased clarity and psychological safety</li>
+                    <li>Engineering gained confidence in pattern stability</li>
+                    <li>PMs reported fewer conflicts about UX decisions</li>
+                    <li>Leadership had clearer visibility into UX maturity</li>
+                </ul>
+                
+                <h3>Organizational Maturity Impact</h3>
+                <ul>
+                    <li>Decisions became scalable, predictable, and measurable</li>
+                    <li>Governance became a system, not just meetings</li>
+                    <li>Rapid7 gained a unified UX operating model</li>
+                    <li>Foundation for continuous design improvement</li>
+                </ul>
+            </section>
+            
+            <section class="case-section">
+                <h2 class="case-section__title">What I'd Do Next</h2>
+                <ul>
+                    <li>Introduce automated governance audits using AI + MCP</li>
+                    <li>Add design health scorecards per product</li>
+                    <li>Integrate accessibility automated checks directly into Design Forum</li>
+                    <li>Expand into content standards + voice & tone</li>
+                    <li>Create pattern usage analytics dashboards</li>
+                </ul>
+            </section>
+        </article>
+        
+        <nav class="case-nav">
+            <div class="case-nav__container">
+                <a href="case-study-dvs.html" class="case-nav__link">â† Previous: Data Visualization</a>
+                <a href="case-study-unified-platform.html" class="case-nav__link">Next: Unified Platform â†’</a>
+            </div>
+        </nav>
+    </main>
+    
+    <script>
+        const header=document.querySelector('.header');
+        window.addEventListener('scroll',()=>{
+            header.classList.toggle('scrolled',window.pageYOffset>0);
+        });
+    </script>
+</body>
+</html>

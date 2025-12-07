@@ -1,0 +1,1530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rebecca Gore — Design Systems Lead & Principal Product Designer</title>
+    <meta name="description" content="Design Systems Lead with 10+ years creating scalable, accessible design systems and enterprise UX frameworks">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --font-display: 'Playfair Display', serif;
+            --font-body: 'IBM Plex Sans', sans-serif;
+            --color-bg-primary: #FAFAFA;
+            --color-bg-secondary: #FFFFFF;
+            --color-bg-tertiary: #F0F0F0;
+            --color-text-primary: #1A1A1A;
+            --color-text-secondary: #4A4A4A;
+            --color-text-tertiary: #6A6A6A;
+            --color-accent: #FF6B2B;
+            --color-accent-hover: #E85A1F;
+            --color-border: rgba(0, 0, 0, 0.08);
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 48px;
+            --space-xl: 80px;
+            --space-2xl: 120px;
+            --transition-fast: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-base: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        [data-theme="dark"] {
+            --color-bg-primary: #0F0F0F;
+            --color-bg-secondary: #1A1A1A;
+            --color-bg-tertiary: #252525;
+            --color-text-primary: #F5F5F5;
+            --color-text-secondary: #B8B8B8;
+            --color-text-tertiary: #888888;
+            --color-border: rgba(255, 255, 255, 0.12);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            font-size: 18px;
+            line-height: 1.7;
+            color: var(--color-text-primary);
+            background: var(--color-bg-primary);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Animations & Keyframes */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -1000px 0;
+            }
+            100% {
+                background-position: 1000px 0;
+            }
+        }
+
+        @keyframes gradientShift {
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Header & Navigation */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(250, 250, 250, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--color-border);
+            z-index: 1000;
+            padding: var(--space-md) var(--space-lg);
+            transition: all var(--transition-base);
+        }
+
+        [data-theme="dark"] .header {
+            background: rgba(15, 15, 15, 0.8);
+        }
+
+        .header__container {
+            max-width: 1440px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header__logo {
+            font-family: var(--font-display);
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--color-text-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .header__nav {
+            display: flex;
+            align-items: center;
+            gap: var(--space-lg);
+        }
+
+        .nav__links {
+            display: flex;
+            gap: var(--space-lg);
+            list-style: none;
+        }
+
+        .nav__link {
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: color var(--transition-fast);
+        }
+
+        .nav__link:hover {
+            color: var(--color-accent);
+        }
+
+        .nav__link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--color-accent);
+            transition: width var(--transition-fast);
+        }
+
+        .nav__link:hover::after {
+            width: 100%;
+        }
+
+        .theme-controls {
+            display: flex;
+            gap: var(--space-sm);
+            align-items: center;
+        }
+
+        .theme-btn {
+            background: none;
+            border: 1px solid var(--color-border);
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            color: var(--color-text-secondary);
+            font-size: 14px;
+            transition: all var(--transition-fast);
+        }
+
+        .theme-btn:hover {
+            background: var(--color-bg-tertiary);
+            border-color: var(--color-accent);
+            transform: translateY(-2px);
+        }
+
+        .theme-btn.active {
+            background: var(--color-accent);
+            color: white;
+            border-color: var(--color-accent);
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--color-text-primary);
+            border-radius: 2px;
+            transition: all var(--transition-fast);
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(7px, 7px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* Mobile Nav Overlay */
+        .nav-overlay {
+            display: none;
+            position: fixed;
+            top: 73px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 998;
+            opacity: 0;
+            transition: opacity var(--transition-base);
+        }
+
+        .nav-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .nav-menu {
+            position: fixed;
+            top: 73px;
+            right: -100%;
+            width: 280px;
+            height: calc(100vh - 73px);
+            background: var(--color-bg-secondary);
+            padding: var(--space-lg);
+            transition: right var(--transition-base);
+            z-index: 999;
+            overflow-y: auto;
+            box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-menu.active {
+            right: 0;
+        }
+
+        .nav-menu .nav__links {
+            flex-direction: column;
+            gap: var(--space-md);
+        }
+
+        .nav-menu .nav__link {
+            font-size: 20px;
+        }
+
+        .nav-menu .theme-controls {
+            margin-top: var(--space-lg);
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        .nav-menu .theme-btn {
+            width: 100%;
+        }
+
+        /* Responsive Navigation */
+        @media (max-width: 900px) {
+            .header__nav {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 140px var(--space-lg) var(--space-2xl);
+            background: linear-gradient(135deg, rgba(255, 107, 43, 0.08) 0%, rgba(107, 70, 255, 0.08) 100%);
+            background-size: 200% 200%;
+            animation: gradientShift 15s ease infinite;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255, 107, 43, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(107, 70, 255, 0.1) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        .hero__container {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero__eyebrow {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--color-accent);
+            font-weight: 600;
+            margin-bottom: var(--space-sm);
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .hero__title {
+            font-family: var(--font-display);
+            font-size: clamp(36px, 6vw, 56px);
+            font-weight: 900;
+            margin-bottom: var(--space-md);
+            line-height: 1.1;
+            background: linear-gradient(135deg, var(--color-text-primary) 0%, var(--color-accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 0.8s ease-out 0.1s backwards;
+        }
+
+        .hero__subtitle {
+            font-size: 22px;
+            color: var(--color-text-secondary);
+            max-width: 700px;
+            margin: 0 auto var(--space-lg);
+            animation: fadeInUp 1s ease-out 0.2s backwards;
+        }
+
+        .hero__cta {
+            display: inline-flex;
+            gap: var(--space-md);
+            animation: fadeInUp 1.2s ease-out 0.3s backwards;
+        }
+
+        .btn {
+            padding: 16px 32px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all var(--transition-fast);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: var(--color-accent);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--color-accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(255, 107, 43, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--color-text-primary);
+            border-color: var(--color-border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--color-accent);
+            color: var(--color-accent);
+            transform: translateY(-2px);
+        }
+
+        /* Sections */
+        .section {
+            padding: var(--space-2xl) var(--space-lg);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-eyebrow {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--color-accent);
+            font-weight: 600;
+            margin-bottom: var(--space-sm);
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: 900;
+            margin-bottom: var(--space-md);
+        }
+
+        .section-subtitle {
+            font-size: 20px;
+            color: var(--color-text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Work Grid - Responsive 4→2→1 */
+        .work-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-md);
+        }
+
+        @media (max-width: 1200px) {
+            .work-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .work-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Case Study Cards with Glassmorphic Effect */
+        .case-card {
+            background: var(--color-bg-secondary);
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            overflow: hidden;
+            text-decoration: none;
+            transition: all var(--transition-fast);
+            display: block;
+            position: relative;
+        }
+
+        .case-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 107, 43, 0.05) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity var(--transition-fast);
+        }
+
+        .case-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border-color: var(--color-accent);
+        }
+
+        .case-card:hover::before {
+            opacity: 1;
+        }
+
+        .case-header {
+            height: 180px;
+            background: linear-gradient(135deg, #FF6B2B 0%, #FF8F59 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+            font-size: 48px;
+            font-weight: 700;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .case-header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+            background-size: 200% 200%;
+            animation: shimmer 3s infinite;
+        }
+
+        .case-header[data-color="purple"] {
+            background: linear-gradient(135deg, #6B46FF 0%, #8B68FF 100%);
+        }
+
+        .case-header[data-color="cyan"] {
+            background: linear-gradient(135deg, #00D4FF 0%, #33DFFF 100%);
+        }
+
+        .case-header[data-color="magenta"] {
+            background: linear-gradient(135deg, #FF006B 0%, #FF3389 100%);
+        }
+
+        .case-content {
+            padding: var(--space-md);
+        }
+
+        .case-tag {
+            display: inline-block;
+            padding: 6px 12px;
+            background: rgba(255, 107, 43, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 107, 43, 0.2);
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--color-accent);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: var(--space-sm);
+        }
+
+        .case-title {
+            font-family: var(--font-display);
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: var(--space-sm);
+            color: var(--color-text-primary);
+        }
+
+        .case-description {
+            font-size: 16px;
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+            margin-bottom: var(--space-md);
+        }
+
+        .case-stats {
+            display: flex;
+            gap: var(--space-md);
+            padding-top: var(--space-md);
+            border-top: 1px solid var(--color-border);
+        }
+
+        .stat {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .stat strong {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--color-accent);
+        }
+
+        .stat span {
+            font-size: 12px;
+            color: var(--color-text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Playing Around Section */
+        .playing-section {
+            margin-top: var(--space-xl);
+        }
+
+        .playing-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-md);
+        }
+
+        @media (max-width: 1200px) {
+            .playing-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .playing-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .playing-card {
+            background: var(--color-bg-secondary);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: var(--space-md);
+            transition: all var(--transition-fast);
+        }
+
+        .playing-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        .playing-card__icon {
+            font-size: 32px;
+            margin-bottom: var(--space-sm);
+        }
+
+        .playing-card__title {
+            font-weight: 700;
+            margin-bottom: var(--space-xs);
+            font-size: 16px;
+        }
+
+        .playing-card__description {
+            font-size: 14px;
+            color: var(--color-text-secondary);
+            line-height: 1.5;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-lg);
+        }
+
+        @media (max-width: 900px) {
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .skill-category {
+            background: var(--color-bg-secondary);
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            padding: var(--space-lg);
+            transition: all var(--transition-fast);
+        }
+
+        .skill-category:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            border-color: var(--color-accent);
+        }
+
+        .skill-category__icon {
+            font-size: 40px;
+            margin-bottom: var(--space-md);
+        }
+
+        .skill-category__title {
+            font-family: var(--font-display);
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: var(--space-sm);
+        }
+
+        .skill-category__description {
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-md);
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .skill-category__list {
+            list-style: none;
+            font-size: 14px;
+        }
+
+        .skill-category__list li {
+            padding: 8px 0;
+            color: var(--color-text-secondary);
+            display: flex;
+            align-items: start;
+            gap: 8px;
+        }
+
+        .skill-category__list li::before {
+            content: '→';
+            color: var(--color-accent);
+            font-weight: 700;
+        }
+
+        /* Tools Section */
+        .tools-section {
+            margin-top: var(--space-xl);
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-sm);
+        }
+
+        @media (max-width: 900px) {
+            .tools-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .tool-item {
+            padding: var(--space-md);
+            background: var(--color-bg-secondary);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-sm);
+            font-weight: 500;
+            transition: all var(--transition-fast);
+            min-height: 60px;
+        }
+
+        .tool-item:hover {
+            border-color: var(--color-accent);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .tool-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--color-accent) 0%, #FF8F59 100%);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        /* Tags */
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: var(--space-md);
+        }
+
+        .tag {
+            padding: 6px 12px;
+            background: rgba(255, 107, 43, 0.08);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 107, 43, 0.15);
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--color-accent);
+            transition: all var(--transition-fast);
+        }
+
+        .tag:hover {
+            background: rgba(255, 107, 43, 0.15);
+            border-color: var(--color-accent);
+            transform: translateY(-2px);
+        }
+
+        /* Resume Section */
+        .resume {
+            background: var(--color-bg-secondary);
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            padding: var(--space-xl);
+        }
+
+        .experience-item {
+            margin-bottom: var(--space-lg);
+            padding-bottom: var(--space-lg);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .experience-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .experience-header {
+            margin-bottom: var(--space-sm);
+        }
+
+        .experience-title {
+            font-weight: 700;
+            font-size: 20px;
+            margin-bottom: 4px;
+        }
+
+        .experience-company {
+            color: var(--color-text-secondary);
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .experience-achievements {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .experience-achievements li {
+            padding: 8px 0;
+            color: var(--color-text-secondary);
+            display: flex;
+            align-items: start;
+            gap: 12px;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .experience-achievements li::before {
+            content: '—';
+            color: var(--color-accent);
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-md);
+            margin-top: var(--space-md);
+        }
+
+        @media (max-width: 768px) {
+            .education-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .education-item {
+            background: var(--color-bg-primary);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: var(--space-md);
+        }
+
+        .education-degree {
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .education-school {
+            color: var(--color-text-secondary);
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        .education-year {
+            color: var(--color-text-tertiary);
+            font-size: 12px;
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, rgba(255, 107, 43, 0.08) 0%, rgba(107, 70, 255, 0.08) 100%);
+            padding: var(--space-2xl) var(--space-lg);
+            text-align: center;
+        }
+
+        .footer__content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .footer__title {
+            font-family: var(--font-display);
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: 900;
+            margin-bottom: var(--space-md);
+        }
+
+        .footer__subtitle {
+            font-size: 20px;
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-lg);
+        }
+
+        .footer__links {
+            display: flex;
+            gap: var(--space-md);
+            justify-content: center;
+            margin-bottom: var(--space-lg);
+        }
+
+        .footer__copyright {
+            font-size: 14px;
+            color: var(--color-text-tertiary);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--color-border);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 600px) {
+            .hero {
+                padding: 100px var(--space-md) var(--space-xl);
+            }
+
+            .section {
+                padding: var(--space-xl) var(--space-md);
+            }
+
+            .hero__cta {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            .footer__links {
+                flex-direction: column;
+            }
+
+            .case-stats {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header__container">
+            <a href="#" class="header__logo">âœ¦ Rebecca Havens Gore</a>
+            
+            <!-- Desktop Navigation -->
+            <nav class="header__nav">
+                <ul class="nav__links">
+                    <li><a href="#work" class="nav__link">Work</a></li>
+                    <li><a href="#about" class="nav__link">About</a></li>
+                    <li><a href="#skills" class="nav__link">Skills</a></li>
+                    <li><a href="#resume" class="nav__link">Resume</a></li>
+                    <li><a href="#contact" class="nav__link">Contact</a></li>
+                </ul>
+                <div class="theme-controls">
+                    <button class="theme-btn active" data-theme="light">Light</button>
+                    <button class="theme-btn" data-theme="dark">Dark</button>
+                </div>
+            </nav>
+
+            <!-- Mobile Hamburger -->
+            <button class="hamburger" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation Overlay -->
+    <div class="nav-overlay"></div>
+    <div class="nav-menu">
+        <ul class="nav__links">
+            <li><a href="#work" class="nav__link">Work</a></li>
+            <li><a href="#about" class="nav__link">About</a></li>
+            <li><a href="#skills" class="nav__link">Skills</a></li>
+            <li><a href="#resume" class="nav__link">Resume</a></li>
+            <li><a href="#contact" class="nav__link">Contact</a></li>
+        </ul>
+        <div class="theme-controls">
+            <button class="theme-btn active" data-theme="light">Light Mode</button>
+            <button class="theme-btn" data-theme="dark">Dark Mode</button>
+        </div>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero__container">
+            <p class="hero__eyebrow">Design Systems Lead & Principal Product Designer</p>
+            <h1 class="hero__title">Creating systems that scale teams and empower products</h1>
+            <p class="hero__subtitle">10+ years designing scalable design systems, platform UX frameworks, AI experience standards, and enterprise products that unite design and engineering.</p>
+            <div class="hero__cta">
+                <a href="#work" class="btn btn-primary">View My Work</a>
+                <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work Section -->
+    <section id="work" class="section">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-eyebrow">Selected Work</p>
+                <h2 class="section-title">Deep dives into the systems, frameworks, and products I've designed</h2>
+            </div>
+
+            <div class="work-grid">
+                <!-- Case Study 1 -->
+                <div class="case-card" onclick="window.location.href='case-study-rds.html'">
+                    <div class="case-header" data-color="orange">âš¡</div>
+                    <div class="case-content">
+                        <span class="case-tag">Design Systems</span>
+                        <h3 class="case-title">R7 Design System & MUI Migration</h3>
+                        <p class="case-description">Scaling a unified, accessible UI foundation for a multi-product security platform</p>
+                        <div class="case-stats">
+                            <div class="stat">
+                                <strong>40%</strong>
+                                <span>Faster Builds</span>
+                            </div>
+                            <div class="stat">
+                                <strong>80%</strong>
+                                <span>Adoption</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Case Study 2 -->
+                <div class="case-card" onclick="window.location.href='case-study-dvs.html'">
+                    <div class="case-header" data-color="purple">ðŸ"Š</div>
+                    <div class="case-content">
+                        <span class="case-tag">Data Visualization</span>
+                        <h3 class="case-title">Data Visualization System</h3>
+                        <p class="case-description">A scalable visualization framework powering insights across the platform</p>
+                        <div class="case-stats">
+                            <div class="stat">
+                                <strong>60%</strong>
+                                <span>Faster Design</span>
+                            </div>
+                            <div class="stat">
+                                <strong>30%</strong>
+                                <span>More Engagement</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Case Study 3 -->
+                <div class="case-card" onclick="window.location.href='case-study-design-forum.html'">
+                    <div class="case-header" data-color="cyan">ðŸ›¡ï¸</div>
+                    <div class="case-content">
+                        <span class="case-tag">Design Ops</span>
+                        <h3 class="case-title">Design Forum & UX Standards</h3>
+                        <p class="case-description">Governance framework for design organization excellence</p>
+                        <div class="case-stats">
+                            <div class="stat">
+                                <strong>35%</strong>
+                                <span>Faster Approvals</span>
+                            </div>
+                            <div class="stat">
+                                <strong>40%</strong>
+                                <span>Better A11y</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Case Study 4 -->
+                <div class="case-card" onclick="window.location.href='case-study-unified-platform.html'">
+                    <div class="case-header" data-color="magenta">âœ¨</div>
+                    <div class="case-content">
+                        <span class="case-tag">Platform UX</span>
+                        <h3 class="case-title">Unified Platform Experience</h3>
+                        <p class="case-description">Standardizing tables, filters, batch actions across products</p>
+                        <div class="case-stats">
+                            <div class="stat">
+                                <strong>50%</strong>
+                                <span>UX Consistency</span>
+                            </div>
+                            <div class="stat">
+                                <strong>28%</strong>
+                                <span>Task Success</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Case Study 5 -->
+                <div class="case-card" onclick="window.location.href='case-study-ai-experience.html'">
+                    <div class="case-header" data-color="orange">ðŸ¤–</div>
+                    <div class="case-content">
+                        <span class="case-tag">AI/UX</span>
+                        <h3 class="case-title">AI Experience Standard</h3>
+                        <p class="case-description">Responsible AI principles, UX patterns, trust models</p>
+                        <div class="case-stats">
+                            <div class="stat">
+                                <strong>12</strong>
+                                <span>Patterns</span>
+                            </div>
+                            <div class="stat">
+                                <strong>6</strong>
+                                <span>Principles</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Case Study 6 -->
+                <div class="case-card" onclick="window.location.href='case-study-enablement.html'">
+                    <div class="case-header" data-color="purple">ðŸš€</div>
+                    <div class="case-content">
+                        <span class="case-tag">Enablement</span>
+                        <h3 class="case-title">Designer Enablement</h3>
+                        <p class="case-description">Mentorship, curriculum, education, AI-powered learning tools</p>
+                        <div class="case-stats">
+                            <div class="stat">
+                                <strong>30+</strong>
+                                <span>Designers</span>
+                            </div>
+                            <div class="stat">
+                                <strong>100+</strong>
+                                <span>Sessions</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Placeholder for Case Study 7 -->
+                <div class="case-card" style="opacity: 0.6; pointer-events: none;">
+                    <div class="case-header" data-color="cyan">ðŸ"®</div>
+                    <div class="case-content">
+                        <span class="case-tag">Coming Soon</span>
+                        <h3 class="case-title">Future Projects</h3>
+                        <p class="case-description">More detailed case studies coming soon</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Playing Around Section -->
+            <div class="playing-section">
+                <h3 style="font-family: var(--font-display); font-size: 28px; margin-bottom: var(--space-md); text-align: center;">What I'm Playing With</h3>
+                <p style="text-align: center; color: var(--color-text-secondary); margin-bottom: var(--space-lg);">Side projects and experiments that spark joy</p>
+                
+                <div class="playing-grid">
+                    <div class="playing-card">
+                        <div class="playing-card__icon">âš™ï¸</div>
+                        <h4 class="playing-card__title">Figma Plugin Creation</h4>
+                        <p class="playing-card__description">I'm creating a Figma plugin to automatically generate dev-ready tables based on provided styles and data.</p>
+                    </div>
+
+                    <div class="playing-card">
+                        <div class="playing-card__icon">ðŸŽ¨</div>
+                        <h4 class="playing-card__title">Motion Design</h4>
+                        <p class="playing-card__description">I'm experimenting with animation and motion design in Framer.</p>
+                    </div>
+
+                    <div class="playing-card">
+                        <div class="playing-card__icon">ðŸ°</div>
+                        <h4 class="playing-card__title">Playground Design</h4>
+                        <p class="playing-card__description">I've got big dreams of designing and building a backyard castle fort for my kids (and maybe myself).</p>
+                    </div>
+
+                    <div class="playing-card">
+                        <div class="playing-card__icon">ðŸ§™</div>
+                        <h4 class="playing-card__title">AI Magic</h4>
+                        <p class="playing-card__description">I love to investigate how AI or other tools can help make my ideas come to life faster.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section" style="background: var(--color-bg-secondary);">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-eyebrow">About Me</p>
+                <h2 class="section-title">Designing systems that empower people</h2>
+            </div>
+            <div style="max-width: 800px; margin: 0 auto; font-size: 18px; line-height: 1.8; color: var(--color-text-secondary);">
+                <p style="margin-bottom: var(--space-md);">
+                    I'm a Design Systems Lead and Principal Product Designer with over 10 years of experience creating scalable, accessible design systems and enterprise UX frameworks. I specialize in unifying multi-product experiences, accelerating engineering velocity, and mentoring teams into design maturity.
+                </p>
+                <p style="margin-bottom: var(--space-md);">
+                    My work spans four design systems across Rapid7, AlphaWave, and Kronologic, where I've led MUI migrations, built visualization frameworks, established governance models, and pioneered AI experience standards. I believe great design systems are more than component libraries — they're shared languages that unite design and engineering around a common vision.
+                </p>
+                <p>
+                    When I'm not architecting systems, you'll find me mentoring designers, experimenting with AI-powered tools, or dreaming up backyard castle forts for my kids. I bring systems thinking, accessibility-first mindsets, and a deep commitment to craft into everything I do.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-eyebrow">Expertise</p>
+                <h2 class="section-title">Skills & Capabilities</h2>
+                <p class="section-subtitle">The systems, practices, and tools I use to scale product quality</p>
+            </div>
+
+            <div class="skills-grid">
+                <!-- Design Systems -->
+                <div class="skill-category">
+                    <div class="skill-category__icon">âš¡</div>
+                    <h3 class="skill-category__title">Design Systems & Governance</h3>
+                    <p class="skill-category__description">I design and steward systems that give teams shared language, reusable patterns, and clear decision rails.</p>
+                    <ul class="skill-category__list">
+                        <li>System architecture for multi-product platforms (MUI, AntD, custom)</li>
+                        <li>Token systems, theming, and layout foundations</li>
+                        <li>Component libraries with Figma ↔ code parity</li>
+                        <li>Governance models (Design Forum, UX Standards, pattern approval)</li>
+                    </ul>
+                </div>
+
+                <!-- Design Strategy -->
+                <div class="skill-category">
+                    <div class="skill-category__icon">ðŸ§­</div>
+                    <h3 class="skill-category__title">Design Strategy & Leadership</h3>
+                    <p class="skill-category__description">I connect product vision, system architecture, and team execution so we're solving the right problems, at the right level.</p>
+                    <ul class="skill-category__list">
+                        <li>Defining platform, system, and AI UX visions (RDS, DVS, AI Experience Standard)</li>
+                        <li>Aligning design, product, engineering, and AI/ML stakeholders</li>
+                        <li>Translating research and metrics into strategy and roadmaps</li>
+                        <li>Facilitating cross-functional workshops and alignment</li>
+                    </ul>
+                </div>
+
+                <!-- Platform & Product Design -->
+                <div class="skill-category">
+                    <div class="skill-category__icon">ðŸ› ï¸</div>
+                    <h3 class="skill-category__title">Platform & Product Design</h3>
+                    <p class="skill-category__description">I specialize in complex, data-heavy workflows where clarity, speed, and trust really matter.</p>
+                    <ul class="skill-category__list">
+                        <li>Platform interaction frameworks (tables, filters, batch actions, navigation)</li>
+                        <li>Data visualization systems for dashboards and reporting (DVS)</li>
+                        <li>End-to-end product flows for security, risk, point of sale, inventory, and operational tools</li>
+                        <li>Information architecture across multi-product ecosystems</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="tools-section">
+                <h3 style="font-family: var(--font-display); font-size: 28px; margin-bottom: var(--space-lg); text-align: center;">Tools I Reach For</h3>
+                <div class="tools-grid">
+                    <div class="tool-item">
+                        <div class="tool-icon">F</div>
+                        <span>Figma</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon">F</div>
+                        <span>Framer</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon">S</div>
+                        <span>Supernova</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon">A</div>
+                        <span>Arc Browser</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon">N</div>
+                        <span>Notion</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon">A</div>
+                        <span>Atlassian</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon">S</div>
+                        <span>Slack</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon">B</div>
+                        <span>Builder.io</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon">G</div>
+                        <span>GitHub</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon">V</div>
+                        <span>VS Code</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon">C</div>
+                        <span>ChatGPT</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon">C</div>
+                        <span>Claude</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resume Section -->
+    <section id="resume" class="section" style="background: var(--color-bg-secondary);">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-eyebrow">Experience</p>
+                <h2 class="section-title">Rebecca Havens Gore</h2>
+                <p class="section-subtitle" style="margin-bottom: var(--space-md);">Design Systems Lead • Principal Product Designer • UX & AI Experience Architect</p>
+            </div>
+
+            <div class="resume">
+                <h4 style="font-weight: 700; margin-bottom: var(--space-md);">Summary</h4>
+                <p style="color: var(--color-text-secondary); margin-bottom: var(--space-lg); line-height: 1.7;">Design Systems Lead • Principal Product Designer • UX & AI Experience Architect with 10+ years of experience designing scalable design systems, platform UX frameworks, AI experience standards, and high-impact enterprise products. Proven success unifying multi-product experiences, accelerating engineering velocity, and mentoring teams into design maturity at Rapid7, AlphaWave, and Kronologic. I design and scale the systems that make enterprise products coherent, usable, and trustworthy. My work unifies design and engineering, shapes platform-wide experiences, and brings responsibility and clarity to AI UX.</p>
+
+                <h4 style="font-weight: 700; margin: var(--space-lg) 0 var(--space-md);">Professional Experience</h4>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div class="experience-title">Staff User Experience Designer - Portfolio Experience Enablement</div>
+                        <div class="experience-company">Rapid7 | January 2021 — Present</div>
+                    </div>
+                    <ul class="experience-achievements">
+                        <li>Architected RDS and led MUI migration: +40% implementation speed, 80% platform adoption, 100% WCAG 2.2 AA</li>
+                        <li>Designed Unified Platform Experience standardizing tables, filters, batch actions: +50% UX consistency, +28% task success</li>
+                        <li>Re-designed DVS powering dashboards and reporting: 60% faster design time, +30% engagement</li>
+                        <li>Led AI Experience Standard: responsible AI principles, UX patterns, trust models, permissions framework</li>
+                        <li>Created Design Forum + UX Standards: +40% accessibility compliance, reduced design drift</li>
+                        <li>Designer Enablement: mentorship, curriculum, education, AI-powered learning tools</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div class="experience-title">Lead UX Designer & Design System Architect (Contract)</div>
+                        <div class="experience-company">AlphaWave | 2020 — 2021</div>
+                    </div>
+                    <ul class="experience-achievements">
+                        <li>Established AlphaWave's UX strategy and visual foundation from ground up</li>
+                        <li>Created AlphaWave Design System: component architecture, styling, documentation</li>
+                        <li>Designed dashboards, asset intelligence, risk scoring, scanning workflows, reporting</li>
+                        <li>Recognition: Contributed to highly positive SC Labs review praised for design clarity and modern UX</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div class="experience-title">Senior Product Designer / Design System Architect (Contract)</div>
+                        <div class="experience-company">Kronologic | 2019 — 2020</div>
+                    </div>
+                    <ul class="experience-achievements">
+                        <li>Introduced Ant Design (AntD) and rebuilt UI foundation on a scalable system</li>
+                        <li>Led complete redesign of product navigation, IA, dashboard structure, and interaction design</li>
+                        <li>Improved workflow clarity, reduced engineering rework, raised product credibility for enterprise customers</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div class="experience-title">Senior UX Designer / UX Designer II</div>
+                        <div class="experience-company">Rapid7 | April 2016 — December 2020</div>
+                    </div>
+                    <ul class="experience-achievements">
+                        <li>Led UX for DVS MVP and early platform dashboards, establishing foundational patterns for charting and insights</li>
+                        <li>Designed earliest unified dashboard experiences across InsightIDR, InsightVM, InsightOps</li>
+                        <li>Defined cross-product filtering, querying, drill-in patterns that informed later Unified Platform Experience work</li>
+                        <li>Contributed foundational work to Rapid7's Platform UX Vision, Experience One, and unified navigation</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div class="experience-title">UX Designer</div>
+                        <div class="experience-company">Bypass Mobile | July 2013 — 2016</div>
+                    </div>
+                    <ul class="experience-achievements">
+                        <li>Designed mobile/tablet POS, ordering, and concessions experiences for major stadiums and event venues</li>
+                        <li>Led UX for high-speed transaction flows, inventory management, staff operations, dashboard analytics</li>
+                        <li>Developed reusable components and early design system elements that reduced visual inconsistency</li>
+                    </ul>
+                </div>
+
+                <h4 style="font-weight: 700; margin: var(--space-lg) 0 var(--space-md);">Education</h4>
+                <div class="education-grid">
+                    <div class="education-item">
+                        <div class="education-degree">MS in Information Studies (MSIS)</div>
+                        <div class="education-school">University of Texas at Austin</div>
+                        <div class="education-year">2011—2013</div>
+                        <div style="font-size: 14px; color: var(--color-text-tertiary); margin-top: 8px;">Information Architecture, Retrieval, Visualization</div>
+                    </div>
+                    <div class="education-item">
+                        <div class="education-degree">MA in History</div>
+                        <div class="education-school">University of Texas at Austin</div>
+                        <div class="education-year">2007—2011</div>
+                    </div>
+                    <div class="education-item">
+                        <div class="education-degree">BA in Medieval & Renaissance Studies</div>
+                        <div class="education-school">Vassar College</div>
+                        <div class="education-year">2004—2007</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer/Contact -->
+    <footer id="contact" class="footer">
+        <div class="footer__content">
+            <h2 class="footer__title">Let's Connect</h2>
+            <p class="footer__subtitle">I'm always interested in hearing about new opportunities, collaborations, or just talking design systems and product strategy.</p>
+            <div class="footer__links">
+                <a href="mailto:becca.h.gore@gmail.com" class="btn btn-primary">Email Me</a>
+                <a href="https://linkedin.com/in/rebecca-havens-gore" class="btn btn-secondary" target="_blank">LinkedIn</a>
+            </div>
+            <p class="footer__copyright">© 2025 Rebecca Gore. All rights reserved. | Designed with accessibility and systems thinking.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Theme Toggle
+        const html = document.documentElement;
+        const themeButtons = document.querySelectorAll('.theme-btn');
+        
+        themeButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const theme = btn.dataset.theme;
+                html.setAttribute('data-theme', theme);
+                
+                // Update all theme buttons (desktop + mobile)
+                document.querySelectorAll('.theme-btn').forEach(b => {
+                    b.classList.toggle('active', b.dataset.theme === theme);
+                });
+                
+                // Save preference
+                localStorage.setItem('theme', theme);
+            });
+        });
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        html.setAttribute('data-theme', savedTheme);
+        document.querySelectorAll('.theme-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.theme === savedTheme);
+        });
+
+        // Mobile Navigation Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        const navOverlay = document.querySelector('.nav-overlay');
+        const navLinks = document.querySelectorAll('.nav-menu .nav__link');
+
+        if (hamburger && navMenu && navOverlay) {
+            function toggleNav() {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+                navOverlay.classList.toggle('active');
+                document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+            }
+
+            hamburger.addEventListener('click', toggleNav);
+            navOverlay.addEventListener('click', toggleNav);
+            
+            // Close menu when clicking a link
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth <= 900) {
+                        toggleNav();
+                    }
+                });
+            });
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerOffset = 80;
+                    const elementPosition = target.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

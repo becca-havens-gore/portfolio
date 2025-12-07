@@ -1,0 +1,711 @@
+{
+  "$schema": "https://tr.designtokens.org/format/2.0",
+  "metadata": {
+    "name": "Rebecca Gore Portfolio Design Tokens",
+    "version": "1.0.0",
+    "description": "Design system tokens for Rebecca Gore's portfolio website",
+    "author": "Rebecca Gore",
+    "date": "2025-11-26"
+  },
+  "grid": {
+    "columns": {
+      "value": 12,
+      "type": "number",
+      "description": "Number of columns in the grid system"
+    },
+    "gutter": {
+      "value": "80px",
+      "type": "dimension",
+      "description": "Spacing between grid columns"
+    },
+    "margin": {
+      "value": "120px",
+      "type": "dimension",
+      "description": "Outer margins of the grid"
+    },
+    "baseline": {
+      "value": "8px",
+      "type": "dimension",
+      "description": "Vertical rhythm baseline unit"
+    }
+  },
+  "breakpoints": {
+    "mobile": {
+      "value": "480px",
+      "type": "dimension"
+    },
+    "tablet": {
+      "value": "768px",
+      "type": "dimension"
+    },
+    "desktop-small": {
+      "value": "1024px",
+      "type": "dimension"
+    },
+    "desktop": {
+      "value": "1440px",
+      "type": "dimension"
+    }
+  },
+  "typography": {
+    "fontFamilies": {
+      "display": {
+        "value": "'Playfair Display', serif",
+        "type": "fontFamily",
+        "description": "Display font for headings and emphasis"
+      },
+      "body": {
+        "value": "'IBM Plex Sans', sans-serif",
+        "type": "fontFamily",
+        "description": "Body text and UI elements"
+      }
+    },
+    "fontSizes": {
+      "h1": {
+        "value": "56px",
+        "type": "dimension",
+        "description": "Main page headings"
+      },
+      "h2": {
+        "value": "36px",
+        "type": "dimension",
+        "description": "Section headings"
+      },
+      "h3": {
+        "value": "28px",
+        "type": "dimension",
+        "description": "Subsection headings"
+      },
+      "h4": {
+        "value": "24px",
+        "type": "dimension",
+        "description": "Card titles"
+      },
+      "body": {
+        "value": "18px",
+        "type": "dimension",
+        "description": "Primary body text"
+      },
+      "body-small": {
+        "value": "16px",
+        "type": "dimension",
+        "description": "Secondary body text"
+      },
+      "small": {
+        "value": "14px",
+        "type": "dimension",
+        "description": "Captions and labels"
+      },
+      "tiny": {
+        "value": "12px",
+        "type": "dimension",
+        "description": "Tags and metadata"
+      }
+    },
+    "fontWeights": {
+      "light": {
+        "value": 300,
+        "type": "number"
+      },
+      "regular": {
+        "value": 400,
+        "type": "number"
+      },
+      "medium": {
+        "value": 500,
+        "type": "number"
+      },
+      "semibold": {
+        "value": 600,
+        "type": "number"
+      },
+      "bold": {
+        "value": 700,
+        "type": "number"
+      },
+      "black": {
+        "value": 900,
+        "type": "number"
+      }
+    },
+    "lineHeights": {
+      "tight": {
+        "value": 1.1,
+        "type": "number",
+        "description": "For large headings"
+      },
+      "normal": {
+        "value": 1.6,
+        "type": "number",
+        "description": "For most text"
+      },
+      "relaxed": {
+        "value": 1.7,
+        "type": "number",
+        "description": "For body text"
+      },
+      "loose": {
+        "value": 1.8,
+        "type": "number",
+        "description": "For long-form content"
+      }
+    },
+    "letterSpacing": {
+      "tight": {
+        "value": "-0.02em",
+        "type": "dimension",
+        "description": "For display headings"
+      },
+      "normal": {
+        "value": "0",
+        "type": "dimension"
+      },
+      "wide": {
+        "value": "0.15em",
+        "type": "dimension",
+        "description": "For uppercase text"
+      }
+    }
+  },
+  "colors": {
+    "light": {
+      "background": {
+        "primary": {
+          "value": "#FAFAFA",
+          "type": "color",
+          "description": "Main page background"
+        },
+        "secondary": {
+          "value": "#FFFFFF",
+          "type": "color",
+          "description": "Cards and elevated surfaces"
+        },
+        "tertiary": {
+          "value": "#F0F0F0",
+          "type": "color",
+          "description": "Subtle backgrounds and dividers"
+        }
+      },
+      "text": {
+        "primary": {
+          "value": "#1A1A1A",
+          "type": "color",
+          "description": "Primary text color"
+        },
+        "secondary": {
+          "value": "#4A4A4A",
+          "type": "color",
+          "description": "Secondary text, descriptions"
+        },
+        "tertiary": {
+          "value": "#6A6A6A",
+          "type": "color",
+          "description": "Disabled or de-emphasized text"
+        }
+      },
+      "accent": {
+        "primary": {
+          "value": "#FF6B2B",
+          "type": "color",
+          "description": "Primary accent color"
+        },
+        "hover": {
+          "value": "#E85A1F",
+          "type": "color",
+          "description": "Accent hover state"
+        }
+      },
+      "border": {
+        "value": "rgba(0, 0, 0, 0.08)",
+        "type": "color",
+        "description": "Subtle borders and dividers"
+      },
+      "shadow": {
+        "value": "rgba(0, 0, 0, 0.06)",
+        "type": "color",
+        "description": "Shadow color for elevation"
+      },
+      "overlay": {
+        "value": "rgba(0, 0, 0, 0.7)",
+        "type": "color",
+        "description": "Overlay backgrounds"
+      }
+    },
+    "dark": {
+      "background": {
+        "primary": {
+          "value": "#0F0F0F",
+          "type": "color",
+          "description": "Main page background"
+        },
+        "secondary": {
+          "value": "#1A1A1A",
+          "type": "color",
+          "description": "Cards and elevated surfaces"
+        },
+        "tertiary": {
+          "value": "#252525",
+          "type": "color",
+          "description": "Subtle backgrounds and dividers"
+        }
+      },
+      "text": {
+        "primary": {
+          "value": "#F5F5F5",
+          "type": "color",
+          "description": "Primary text color"
+        },
+        "secondary": {
+          "value": "#B8B8B8",
+          "type": "color",
+          "description": "Secondary text, descriptions"
+        },
+        "tertiary": {
+          "value": "#888888",
+          "type": "color",
+          "description": "Disabled or de-emphasized text"
+        }
+      },
+      "accent": {
+        "primary": {
+          "value": "#FF6B2B",
+          "type": "color",
+          "description": "Primary accent color"
+        },
+        "hover": {
+          "value": "#E85A1F",
+          "type": "color",
+          "description": "Accent hover state"
+        }
+      },
+      "border": {
+        "value": "rgba(255, 255, 255, 0.12)",
+        "type": "color",
+        "description": "Subtle borders and dividers"
+      },
+      "shadow": {
+        "value": "rgba(0, 0, 0, 0.3)",
+        "type": "color",
+        "description": "Shadow color for elevation"
+      },
+      "overlay": {
+        "value": "rgba(0, 0, 0, 0.85)",
+        "type": "color",
+        "description": "Overlay backgrounds"
+      }
+    },
+    "highContrast": {
+      "light": {
+        "background": {
+          "primary": {
+            "value": "#FFFFFF",
+            "type": "color"
+          },
+          "secondary": {
+            "value": "#FFFFFF",
+            "type": "color"
+          },
+          "tertiary": {
+            "value": "#F0F0F0",
+            "type": "color"
+          }
+        },
+        "text": {
+          "primary": {
+            "value": "#000000",
+            "type": "color"
+          },
+          "secondary": {
+            "value": "#000000",
+            "type": "color"
+          },
+          "tertiary": {
+            "value": "#333333",
+            "type": "color"
+          }
+        },
+        "accent": {
+          "primary": {
+            "value": "#D94000",
+            "type": "color"
+          },
+          "hover": {
+            "value": "#B33500",
+            "type": "color"
+          }
+        },
+        "border": {
+          "value": "rgba(0, 0, 0, 0.3)",
+          "type": "color"
+        }
+      },
+      "dark": {
+        "background": {
+          "primary": {
+            "value": "#000000",
+            "type": "color"
+          },
+          "secondary": {
+            "value": "#000000",
+            "type": "color"
+          },
+          "tertiary": {
+            "value": "#1A1A1A",
+            "type": "color"
+          }
+        },
+        "text": {
+          "primary": {
+            "value": "#FFFFFF",
+            "type": "color"
+          },
+          "secondary": {
+            "value": "#FFFFFF",
+            "type": "color"
+          },
+          "tertiary": {
+            "value": "#CCCCCC",
+            "type": "color"
+          }
+        },
+        "accent": {
+          "primary": {
+            "value": "#FF8C5C",
+            "type": "color"
+          },
+          "hover": {
+            "value": "#FFA070",
+            "type": "color"
+          }
+        },
+        "border": {
+          "value": "rgba(255, 255, 255, 0.4)",
+          "type": "color"
+        }
+      }
+    },
+    "semantic": {
+      "gradients": {
+        "r7-design-system": {
+          "value": "linear-gradient(135deg, #FF6B2B 0%, #FF8C5C 100%)",
+          "type": "color",
+          "description": "Gradient for R7 Design System card"
+        },
+        "dvs": {
+          "value": "linear-gradient(135deg, #6B46FF 0%, #8C6BFF 100%)",
+          "type": "color",
+          "description": "Gradient for Data Visualization System card"
+        },
+        "design-forum": {
+          "value": "linear-gradient(135deg, #2BBFFF 0%, #5CCCFF 100%)",
+          "type": "color",
+          "description": "Gradient for Design Forum card"
+        },
+        "unified-platform": {
+          "value": "linear-gradient(135deg, #FF2B9E 0%, #FF5CB4 100%)",
+          "type": "color",
+          "description": "Gradient for Unified Platform card"
+        },
+        "ai-experience": {
+          "value": "linear-gradient(135deg, #FFB82B 0%, #FFC85C 100%)",
+          "type": "color",
+          "description": "Gradient for AI Experience card"
+        },
+        "skill-bar": {
+          "value": "linear-gradient(90deg, #FF6B2B, #FF8C5C)",
+          "type": "color",
+          "description": "Gradient for skill progress bars"
+        }
+      }
+    }
+  },
+  "spacing": {
+    "xs": {
+      "value": "8px",
+      "type": "dimension",
+      "description": "Extra small spacing"
+    },
+    "sm": {
+      "value": "16px",
+      "type": "dimension",
+      "description": "Small spacing"
+    },
+    "md": {
+      "value": "24px",
+      "type": "dimension",
+      "description": "Medium spacing"
+    },
+    "lg": {
+      "value": "48px",
+      "type": "dimension",
+      "description": "Large spacing"
+    },
+    "xl": {
+      "value": "80px",
+      "type": "dimension",
+      "description": "Extra large spacing"
+    },
+    "2xl": {
+      "value": "120px",
+      "type": "dimension",
+      "description": "2X large spacing"
+    }
+  },
+  "borderRadius": {
+    "small": {
+      "value": "6px",
+      "type": "dimension",
+      "description": "Small border radius for buttons"
+    },
+    "medium": {
+      "value": "8px",
+      "type": "dimension",
+      "description": "Medium border radius"
+    },
+    "large": {
+      "value": "12px",
+      "type": "dimension",
+      "description": "Large border radius for cards"
+    },
+    "xlarge": {
+      "value": "16px",
+      "type": "dimension",
+      "description": "Extra large border radius"
+    },
+    "pill": {
+      "value": "20px",
+      "type": "dimension",
+      "description": "Pill-shaped elements (tags)"
+    },
+    "circle": {
+      "value": "50%",
+      "type": "dimension",
+      "description": "Circular elements"
+    }
+  },
+  "shadows": {
+    "small": {
+      "value": "0 2px 8px rgba(0, 0, 0, 0.06)",
+      "type": "shadow",
+      "description": "Subtle elevation"
+    },
+    "medium": {
+      "value": "0 4px 16px rgba(0, 0, 0, 0.06)",
+      "type": "shadow",
+      "description": "Card elevation"
+    },
+    "large": {
+      "value": "0 8px 24px rgba(0, 0, 0, 0.06)",
+      "type": "shadow",
+      "description": "Hover state elevation"
+    },
+    "focus": {
+      "value": "0 0 0 3px rgba(255, 107, 43, 0.3)",
+      "type": "shadow",
+      "description": "Focus ring shadow"
+    }
+  },
+  "motion": {
+    "duration": {
+      "fast": {
+        "value": "200ms",
+        "type": "duration",
+        "description": "Quick transitions"
+      },
+      "base": {
+        "value": "400ms",
+        "type": "duration",
+        "description": "Standard transitions"
+      },
+      "slow": {
+        "value": "600ms",
+        "type": "duration",
+        "description": "Slow transitions and animations"
+      }
+    },
+    "easing": {
+      "standard": {
+        "value": "cubic-bezier(0.4, 0, 0.2, 1)",
+        "type": "cubicBezier",
+        "description": "Standard easing function"
+      },
+      "accelerate": {
+        "value": "cubic-bezier(0.4, 0, 1, 1)",
+        "type": "cubicBezier",
+        "description": "Accelerating easing"
+      },
+      "decelerate": {
+        "value": "cubic-bezier(0, 0, 0.2, 1)",
+        "type": "cubicBezier",
+        "description": "Decelerating easing"
+      }
+    },
+    "transforms": {
+      "hover-lift": {
+        "value": "translateY(-4px)",
+        "type": "other",
+        "description": "Lift effect on hover"
+      },
+      "hover-scale": {
+        "value": "scale(1.02)",
+        "type": "other",
+        "description": "Subtle scale on hover"
+      }
+    }
+  },
+  "accessibility": {
+    "focus": {
+      "color": {
+        "value": "#FF6B2B",
+        "type": "color",
+        "description": "Focus indicator color"
+      },
+      "width": {
+        "value": "3px",
+        "type": "dimension",
+        "description": "Focus ring width"
+      },
+      "offset": {
+        "value": "2px",
+        "type": "dimension",
+        "description": "Focus ring offset"
+      }
+    },
+    "standards": {
+      "wcag": {
+        "value": "WCAG 2.2 AA",
+        "type": "other",
+        "description": "Accessibility compliance standard"
+      }
+    }
+  },
+  "components": {
+    "buttons": {
+      "primary": {
+        "padding": {
+          "value": "16px 32px",
+          "type": "dimension"
+        },
+        "borderRadius": {
+          "value": "8px",
+          "type": "dimension"
+        },
+        "fontSize": {
+          "value": "16px",
+          "type": "dimension"
+        },
+        "fontWeight": {
+          "value": 600,
+          "type": "number"
+        }
+      },
+      "secondary": {
+        "padding": {
+          "value": "16px 32px",
+          "type": "dimension"
+        },
+        "borderRadius": {
+          "value": "8px",
+          "type": "dimension"
+        },
+        "borderWidth": {
+          "value": "2px",
+          "type": "dimension"
+        }
+      }
+    },
+    "cards": {
+      "caseStudy": {
+        "width": {
+          "value": "380px",
+          "type": "dimension",
+          "description": "Minimum card width"
+        },
+        "height": {
+          "value": "420px",
+          "type": "dimension"
+        },
+        "borderRadius": {
+          "value": "16px",
+          "type": "dimension"
+        },
+        "borderWidth": {
+          "value": "1px",
+          "type": "dimension"
+        },
+        "imageHeight": {
+          "value": "240px",
+          "type": "dimension"
+        }
+      },
+      "skill": {
+        "padding": {
+          "value": "48px",
+          "type": "dimension"
+        },
+        "borderRadius": {
+          "value": "12px",
+          "type": "dimension"
+        },
+        "borderWidth": {
+          "value": "1px",
+          "type": "dimension"
+        }
+      },
+      "capability": {
+        "padding": {
+          "value": "24px",
+          "type": "dimension"
+        },
+        "borderRadius": {
+          "value": "12px",
+          "type": "dimension"
+        },
+        "borderWidth": {
+          "value": "1px",
+          "type": "dimension"
+        }
+      }
+    },
+    "tags": {
+      "small": {
+        "padding": {
+          "value": "6px 12px",
+          "type": "dimension"
+        },
+        "fontSize": {
+          "value": "12px",
+          "type": "dimension"
+        },
+        "borderRadius": {
+          "value": "20px",
+          "type": "dimension"
+        }
+      },
+      "medium": {
+        "padding": {
+          "value": "10px 18px",
+          "type": "dimension"
+        },
+        "fontSize": {
+          "value": "14px",
+          "type": "dimension"
+        },
+        "borderRadius": {
+          "value": "24px",
+          "type": "dimension"
+        }
+      }
+    },
+    "skillBars": {
+      "height": {
+        "value": "6px",
+        "type": "dimension"
+      },
+      "borderRadius": {
+        "value": "3px",
+        "type": "dimension"
+      }
+    }
+  }
+}
