@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>R7 Design System & MUI Migration &mdash; Rebecca Gore</title>
-    <meta name="description" content="Case study: Scaling a unified, accessible UI foundation for a multi-product security platform">
+    <title>Enabling the Next Generation of Designers &mdash; Rebecca Gore</title>
+    <meta name="description" content="Case study: Scaling design maturity through mentorship, education, workshops, and AI-powered learning tools">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
     <style>
-        /* Importing all styles from the main portfolio */
         :root {
             --grid-columns: 12;
             --grid-gutter: 80px;
@@ -28,14 +27,12 @@
             --color-text-primary: #1A1A1A;
             --color-text-secondary: #4A4A4A;
             --color-text-tertiary: #6A6A6A;
-            --color-accent: #FF6B2B;
-            --color-accent-hover: #E85A1F;
+            --color-accent: #7C3AED;
+            --color-accent-hover: #6D28D9;
             --color-border: rgba(0, 0, 0, 0.08);
             --color-shadow: rgba(0, 0, 0, 0.06);
-            --color-overlay: rgba(0, 0, 0, 0.7);
             --transition-fast: 200ms cubic-bezier(0.4, 0, 0.2, 1);
             --transition-base: 400ms cubic-bezier(0.4, 0, 0.2, 1);
-            --transition-slow: 600ms cubic-bezier(0.4, 0, 0.2, 1);
             --space-xs: 8px;
             --space-sm: 16px;
             --space-md: 24px;
@@ -44,8 +41,6 @@
             --space-2xl: 120px;
             --shadow-sm: 0 2px 8px var(--color-shadow);
             --shadow-md: 0 4px 16px var(--color-shadow);
-            --shadow-lg: 0 8px 24px var(--color-shadow);
-            --focus-color: var(--color-accent);
             --focus-width: 3px;
             --focus-offset: 2px;
         }
@@ -59,11 +54,10 @@
             --color-text-tertiary: #888888;
             --color-border: rgba(255, 255, 255, 0.12);
             --color-shadow: rgba(0, 0, 0, 0.3);
-            --color-overlay: rgba(0, 0, 0, 0.85);
         }
         
         @media (prefers-reduced-motion: reduce) {
-            * {
+            *, *::before, *::after {
                 animation-duration: 0.01ms !important;
                 animation-iteration-count: 1 !important;
                 transition-duration: 0.01ms !important;
@@ -92,12 +86,11 @@
         }
         
         :focus-visible {
-            outline: var(--focus-width) solid var(--focus-color);
+            outline: var(--focus-width) solid var(--color-accent);
             outline-offset: var(--focus-offset);
             border-radius: 2px;
         }
         
-        /* Header */
         .header {
             position: fixed;
             top: 0;
@@ -109,16 +102,11 @@
             padding: var(--space-md) var(--grid-margin);
             transition: all var(--transition-base);
             backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
         }
         
         .header.scrolled {
             background: rgba(250, 250, 250, 0.8);
-            box-shadow: 0 4px 24px rgba(255, 107, 43, 0.1);
-        }
-        
-        [data-theme="dark"] .header.scrolled {
-            background: rgba(26, 26, 26, 0.8);
+            box-shadow: 0 4px 24px rgba(124, 58, 237, 0.1);
         }
         
         .header::before {
@@ -128,7 +116,7 @@
             left: 0;
             right: 0;
             height: 2px;
-            background: linear-gradient(90deg, var(--color-accent) 0%, #FF8C5C 25%, #6B46FF 50%, #2BBFFF 75%, var(--color-accent) 100%);
+            background: linear-gradient(90deg, #7C3AED 0%, #A78BFA 25%, #7C3AED 50%, #A78BFA 75%, #7C3AED 100%);
             background-size: 200% 100%;
             opacity: 0;
             transition: opacity var(--transition-base);
@@ -180,10 +168,9 @@
             font-size: 20px;
         }
         
-        /* Case Study Hero */
         .case-hero {
             min-height: 70vh;
-            background: linear-gradient(135deg, #FF6B2B 0%, #FF8C5C 100%);
+            background: linear-gradient(135deg, #7C3AED 0%, #A78BFA 100%);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -254,7 +241,6 @@
             border: 1px solid rgba(255, 255, 255, 0.3);
         }
         
-        /* Meta Section */
         .case-meta {
             background: var(--color-bg-secondary);
             padding: var(--space-xl) var(--grid-margin);
@@ -291,7 +277,6 @@
             color: var(--color-text-primary);
         }
         
-        /* Content Section */
         .case-content {
             max-width: 900px;
             margin: 0 auto;
@@ -319,7 +304,7 @@
             left: 0;
             width: 60px;
             height: 4px;
-            background: linear-gradient(90deg, var(--color-accent), #FF8C5C);
+            background: linear-gradient(90deg, var(--color-accent), #A78BFA);
             border-radius: 2px;
         }
         
@@ -360,7 +345,28 @@
             color: var(--color-text-primary);
         }
         
-        /* Impact Section */
+        .pillars-grid {
+            display: grid;
+            gap: var(--space-xl);
+            margin-top: var(--space-xl);
+        }
+        
+        .pillar-section {
+            padding: var(--space-lg);
+            background: var(--color-bg-secondary);
+            border: 1px solid var(--color-border);
+            border-left: 4px solid var(--color-accent);
+            border-radius: 8px;
+        }
+        
+        .pillar-section__title {
+            font-family: var(--font-display);
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--color-accent);
+            margin-bottom: var(--space-md);
+        }
+        
         .impact-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -384,7 +390,7 @@
             left: 0;
             width: 100%;
             height: 4px;
-            background: linear-gradient(90deg, var(--color-accent), #FF8C5C);
+            background: linear-gradient(90deg, var(--color-accent), #A78BFA);
         }
         
         .impact-card__icon {
@@ -414,9 +420,8 @@
             line-height: 1.6;
         }
         
-        /* Quote Block */
         .quote-block {
-            margin: var(--space-xl) 0;
+            margin: var(--space-lg) 0;
             padding: var(--space-lg);
             background: var(--color-bg-tertiary);
             border-left: 4px solid var(--color-accent);
@@ -428,9 +433,15 @@
             font-style: italic;
             color: var(--color-text-primary);
             line-height: 1.6;
+            margin-bottom: var(--space-sm);
         }
         
-        /* Navigation Footer */
+        .quote-block__author {
+            font-size: 16px;
+            color: var(--color-text-tertiary);
+            font-weight: 600;
+        }
+        
         .case-nav {
             background: var(--color-bg-secondary);
             border-top: 1px solid var(--color-border);
@@ -466,7 +477,6 @@
             box-shadow: var(--shadow-md);
         }
         
-        /* Responsive */
         @media (max-width: 768px) {
             :root {
                 --grid-margin: 32px;
@@ -474,11 +484,7 @@
                 --type-h2: 28px;
             }
             
-            .case-meta__container {
-                grid-template-columns: 1fr;
-            }
-            
-            .impact-grid {
+            .case-meta__container, .impact-grid {
                 grid-template-columns: 1fr;
             }
             
@@ -625,220 +631,332 @@
     </header>
     
     <main id="case-main">
-        <!-- Hero -->
         <section class="case-hero">
             <div class="case-hero__content">
-                <p class="case-hero__eyebrow">Case Study 01</p>
-                <h1 class="case-hero__title">Rapid7 Design System & MUI Migration</h1>
-                <p class="case-hero__subtitle">Scaling a unified, accessible UI foundation for a multi-product security platform</p>
+                <p class="case-hero__eyebrow">Enablement & Leadership</p>
+                <h1 class="case-hero__title">Enabling the Next Generation of Designers</h1>
+                <p class="case-hero__subtitle">Scaling design maturity through mentorship, education, workshops, and AI-powered learning tools</p>
                 <div class="case-hero__tags">
-                    <span class="case-hero__tag">Design Systems</span>
-                    <span class="case-hero__tag">MUI</span>
-                    <span class="case-hero__tag">Accessibility</span>
-                    <span class="case-hero__tag">Platform UX</span>
+                    <span class="case-hero__tag">Mentorship</span>
+                    <span class="case-hero__tag">Design Education</span>
+                    <span class="case-hero__tag">DesignOps</span>
+                    <span class="case-hero__tag">AI-Powered Learning</span>
                 </div>
             </div>
         </section>
         
-        <!-- Meta -->
         <section class="case-meta" aria-label="Project overview">
             <div class="case-meta__container">
                 <div class="meta-item">
                     <div class="meta-item__label">Role</div>
-                    <div class="meta-item__value">Principal Designer, Design Systems</div>
+                    <div class="meta-item__value">Mentorship Lead & Enablement Strategist</div>
                 </div>
                 <div class="meta-item">
-                    <div class="meta-item__label">Timeline</div>
-                    <div class="meta-item__value">18 Months</div>
-                </div>
-                <div class="meta-item">
-                    <div class="meta-item__label">Team</div>
-                    <div class="meta-item__value">Cross-functional (Design, Engineering, A11y)</div>
+                    <div class="meta-item__label">Duration</div>
+                    <div class="meta-item__value">Multi-Year Initiative</div>
                 </div>
                 <div class="meta-item">
                     <div class="meta-item__label">Impact</div>
-                    <div class="meta-item__value">80% Platform Coverage</div>
+                    <div class="meta-item__value">30-40% Faster Onboarding</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-item__label">Innovation</div>
+                    <div class="meta-item__value">AI Learning Copilots</div>
                 </div>
             </div>
         </section>
         
-        <!-- Content -->
         <article class="case-content">
             <section class="case-section">
                 <h2 class="case-section__title">Executive Summary</h2>
-                <p>Rapid7's multi-product platform struggled with fragmented UI patterns, divergent codebases, and inconsistent accessibility standards. I led the architectural direction, strategy, and rollout of the Rapid7 Design System (RDS) and MUI migration, partnering across design, engineering, product, and accessibility teams.</p>
-                <p>Together, we delivered a unified, scalable UI framework now powering all major products across the portfolio&mdash;improving efficiency, consistency, accessibility, and design maturity at scale.</p>
+                <p>As Rapid7's design organization grew, new designers, engineers, and PMs needed a consistent foundation for design thinking, problem framing, platform UX patterns, and system-compliant decision-making. Meanwhile, the increasing complexity of the platform increased the risk of misalignment, inconsistent onboarding, and siloed learning.</p>
+                <p>I led a multi-year initiative to enable and empower the next generation of designers through mentorship, structured learning programs, cross-functional design thinking workshops, design operations, and emerging AI-assisted education tools. Together with design leaders, PMs, engineers, and content partners, we built a sustainable culture of shared learning, creative confidence, and system fluency&mdash;helping new and experienced contributors deliver higher quality work with greater velocity and autonomy.</p>
             </section>
             
             <section class="case-section">
-                <h2 class="case-section__title">The Challenge</h2>
-                <p>Rapid7's product suite evolved through acquisition and parallel development, resulting in systemic fragmentation that hurt both user experience and engineering velocity:</p>
+                <h2 class="case-section__title">Context</h2>
+                <p>Rapid7's design organization expanded significantly in size, responsibility, and scope, creating new challenges:</p>
                 <ul>
-                    <li>17+ button variants across products</li>
-                    <li>6 different DataGrid implementations</li>
-                    <li>Inconsistent spacing, typography, and theming</li>
-                    <li>Little or no code&rdquo;“design parity</li>
-                    <li>No unified component specification or governance</li>
-                    <li>Accessibility audits failing across multiple product lines</li>
-                    <li>Multiple duplicate component libraries creating engineering inefficiencies</li>
-                    <li>Divergent UI patterns for core interactions</li>
+                    <li>New designers entering a highly complex platform</li>
+                    <li>Diverse skill levels across the organization</li>
+                    <li>Acquired design teams merging with existing ones</li>
+                    <li>Multi-product UX patterns to learn and follow</li>
+                    <li>Increasing importance of platform-level thinking</li>
+                    <li>Large amounts of tribal knowledge with no central home</li>
                 </ul>
+                
+                <p>At the same time, teams increasingly needed:</p>
+                <ul>
+                    <li>Faster onboarding for new team members</li>
+                    <li>Shared mental models across disciplines</li>
+                    <li>Modern design skills development</li>
+                    <li>Confidence working with system constraints</li>
+                    <li>Access to design and research best practices</li>
+                    <li>Guidance using AI in design responsibly</li>
+                </ul>
+            </section>
+            
+            <section class="case-section">
+                <h2 class="case-section__title">The Problem</h2>
+                <p>Without structured enablement:</p>
+                <ul>
+                    <li>Designers duplicated work across teams</li>
+                    <li>New hires struggled to understand platform conventions</li>
+                    <li>PMs and engineers lacked design language fluency</li>
+                    <li>Junior designers lacked clear mentorship pathways</li>
+                    <li>Workshops and cross-functional alignment were inconsistent</li>
+                    <li>AI was underutilized or misused without design guidance</li>
+                </ul>
+                
+                <p><strong>Result:</strong> Design quality and velocity were uneven, onboarding took too long, and teams missed opportunities to collaborate effectively or to scale good practices.</p>
             </section>
             
             <section class="case-section">
                 <h2 class="case-section__title">My Role</h2>
-                <p>I defined the system vision and architecture, built the governance and adoption model, and partnered closely with engineering to migrate to an enterprise-grade MUI implementation.</p>
+                <p>I led the enablement strategy and implementation across mentorship, education, and AI-powered learning.</p>
                 
                 <h3>Key Responsibilities</h3>
                 <ul>
-                    <li>Design system strategy and vision</li>
-                    <li>Information architecture and component taxonomy</li>
-                    <li>Governance model and design ops processes</li>
-                    <li>Measurement frameworks and KPIs</li>
-                    <li>Stakeholder alignment and communication</li>
-                    <li>Foundations: theming, tokens, spacing, typography</li>
+                    <li>Mentorship programs and 1:1 coaching</li>
+                    <li>Structuring design onboarding curriculum</li>
+                    <li>Creation of design education content and workshops</li>
+                    <li>AI-powered design learning tool explorations</li>
+                    <li>Enablement artifacts, templates, and guidance</li>
+                    <li>Design Thinking workshops across organizations</li>
                 </ul>
                 
-                <h3>Collaborative Deliverables</h3>
+                <h3>Deliverables</h3>
                 <ul>
-                    <li>60+ fully accessible MUI components</li>
-                    <li>Platform templates and interaction patterns</li>
-                    <li>Comprehensive documentation and tooling</li>
-                    <li>Code library with engineering team</li>
-                    <li>Adoption rollout plans per product team</li>
+                    <li>Skills growth pathways for designers</li>
+                    <li>Education sessions, resources, and community support</li>
+                    <li>Organizational rituals that scaled learning</li>
+                    <li>Consistent design maturity across teams</li>
                 </ul>
             </section>
             
             <section class="case-section">
                 <h2 class="case-section__title">Constraints</h2>
-                <p>The project needed to balance multiple technical and organizational challenges:</p>
                 <ul>
-                    <li>Six product teams with different tech stacks</li>
-                    <li>Parallel product delivery could not be disrupted</li>
-                    <li>Required full WCAG 2.2 AA compliance</li>
-                    <li>Needed to support light/dark theming</li>
-                    <li>Must unify visual language across acquisitions</li>
-                    <li>Required measurable ROI to secure future investment</li>
+                    <li>Team members distributed across time zones</li>
+                    <li>Varying levels of design experience (junior to principal)</li>
+                    <li>Parallel competing deadlines and priorities</li>
+                    <li>Limited central documentation at start</li>
+                    <li>Fast-changing platform patterns and AI capabilities</li>
                 </ul>
             </section>
             
             <section class="case-section">
                 <h2 class="case-section__title">Research & Discovery</h2>
-                <p>I executed a comprehensive foundational audit across all six products, analyzing components, patterns, and user workflows.</p>
+                <p>I synthesized insights from multiple sources to understand the enablement needs:</p>
                 
-                <h3>Component Inventory</h3>
+                <h3>Research Methods</h3>
                 <ul>
-                    <li>Buttons, form fields, and navigation patterns across all states</li>
-                    <li>Tables, filters, cards, metrics, and summary views</li>
-                    <li>Data visualization interactions</li>
+                    <li>Conversations with junior and mid-level designers</li>
+                    <li>Manager feedback and team assessments</li>
+                    <li>PM and engineering onboarding pain points</li>
+                    <li>Design maturity assessments</li>
+                    <li>Team retrospectives</li>
+                    <li>Learning & development interviews</li>
                 </ul>
                 
-                <h3>Key Findings</h3>
-                <ul>
-                    <li>High divergence in structure and behavior across products</li>
-                    <li>Engineering teams re-implementing similar components</li>
-                    <li>Designers spending excessive time manually aligning patterns</li>
-                    <li>No shared documentation or specification model</li>
-                    <li>Accessibility issues caused by inconsistent semantic structure</li>
-                </ul>
+                <h3>Key Insights</h3>
                 
-                <h3>Business & User Insights</h3>
-                <ul>
-                    <li>Fragmentation raised onboarding time for new users</li>
-                    <li>Inconsistency made insights harder to interpret</li>
-                    <li>Teams lacked trust in shared UI patterns</li>
-                    <li>Engineers lacked clarity on what "done" looked like</li>
-                </ul>
+                <p><strong>1. Design onboarding lacked structure</strong></p>
+                <p>New designers struggled to understand platform architecture and system constraints.</p>
+                
+                <p><strong>2. Mentorship was informal and uneven</strong></p>
+                <p>Growth depended on who you happened to work with, not a structured program.</p>
+                
+                <p><strong>3. Cross-functional teams needed shared vocabulary</strong></p>
+                <p>PMs and engineers wanted to understand design thinking frameworks.</p>
+                
+                <p><strong>4. Designers wanted career support</strong></p>
+                <p>Especially around systems thinking, collaboration, and problem framing.</p>
+                
+                <p><strong>5. AI education was missing</strong></p>
+                <p>Teams were experimenting without a clear framework for responsible use.</p>
             </section>
             
             <section class="case-section">
-                <h2 class="case-section__title">Strategy & Architecture</h2>
-                <p>I architected RDS around three scalable layers that both design and engineering could rely on:</p>
+                <h2 class="case-section__title">Strategy & Enablement Architecture</h2>
+                <p>I built a multi-layered design enablement strategy encompassing four pillars:</p>
                 
-                <h3>Layer 1 &mdash; Foundations</h3>
-                <ul>
-                    <li>Design tokens (color, spacing, typography, radii, motion)</li>
-                    <li>Light/dark theming system</li>
-                    <li>Grid and layout rules</li>
-                    <li>Accessibility standards</li>
-                </ul>
-                
-                <h3>Layer 2 &mdash; Components</h3>
-                <ul>
-                    <li>60+ fully documented UI components</li>
-                    <li>MUI-based implementations with Rapid7-specific overrides</li>
-                    <li>Component spec sheets (behavior, states, accessibility, API)</li>
-                </ul>
-                
-                <h3>Layer 3 &mdash; Templates & Standards</h3>
-                <ul>
-                    <li>Dashboard template</li>
-                    <li>Listing template</li>
-                    <li>Details template</li>
-                    <li>Form template</li>
-                    <li>UX Standards Pillars: Accessibility, Responsiveness, Usability, Governance</li>
-                </ul>
+                <div class="pillars-grid">
+                    <div class="pillar-section">
+                        <h3 class="pillar-section__title">&#11088; Pillar 1: Mentorship & Designer Growth</h3>
+                        
+                        <h4 style="font-weight: 700; margin-top: var(--space-md); margin-bottom: var(--space-sm);">1:1 Mentorship</h4>
+                        <p>I mentored designers across levels on:</p>
+                        <ul style="font-size: 16px; margin-top: var(--space-sm);">
+                            <li>System thinking and platform UX</li>
+                            <li>Storytelling and case study development</li>
+                            <li>Interaction design craft</li>
+                            <li>Cross-functional collaboration</li>
+                            <li>Career growth and role clarity</li>
+                        </ul>
+                        
+                        <h4 style="font-weight: 700; margin-top: var(--space-md); margin-bottom: var(--space-sm);">Designer Learning Plans</h4>
+                        <p>I co-created individualized growth plans including:</p>
+                        <ul style="font-size: 16px; margin-top: var(--space-sm);">
+                            <li>Skill maps and assessments</li>
+                            <li>Measurable milestones</li>
+                            <li>Portfolio guidance</li>
+                            <li>Regular feedback loops</li>
+                        </ul>
+                        
+                        <h4 style="font-weight: 700; margin-top: var(--space-md); margin-bottom: var(--space-sm);">Peer Learning Rituals</h4>
+                        <ul style="font-size: 16px; margin-top: var(--space-sm);">
+                            <li>Portfolio reviews</li>
+                            <li>Critique circles</li>
+                            <li>Skill showcases</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="pillar-section">
+                        <h3 class="pillar-section__title">&#11088; Pillar 2: Design Education & Curriculum</h3>
+                        <p>I designed a structured internal design curriculum covering:</p>
+                        
+                        <h4 style="font-weight: 700; margin-top: var(--space-md); margin-bottom: var(--space-sm);">Foundations</h4>
+                        <ul style="font-size: 16px; margin-top: var(--space-sm);">
+                            <li>UX process & product thinking</li>
+                            <li>Problem framing</li>
+                            <li>Information architecture</li>
+                            <li>Interaction patterns</li>
+                            <li>Accessibility</li>
+                            <li>Research methods</li>
+                        </ul>
+                        
+                        <h4 style="font-weight: 700; margin-top: var(--space-md); margin-bottom: var(--space-sm);">Platform UX</h4>
+                        <ul style="font-size: 16px; margin-top: var(--space-sm);">
+                            <li>Rapid7 platform philosophy</li>
+                            <li>RDS usage and best practices</li>
+                            <li>Object-centric design</li>
+                            <li>Listing/Details/Dashboard patterns</li>
+                        </ul>
+                        
+                        <h4 style="font-weight: 700; margin-top: var(--space-md); margin-bottom: var(--space-sm);">System Architecture</h4>
+                        <ul style="font-size: 16px; margin-top: var(--space-sm);">
+                            <li>Tokens, components, templates</li>
+                            <li>How pattern governance works</li>
+                            <li>When/how proposals are evaluated</li>
+                        </ul>
+                        
+                        <p style="margin-top: var(--space-md); font-size: 16px; color: var(--color-text-secondary);">This accelerated onboarding and expanded design maturity across teams.</p>
+                    </div>
+                    
+                    <div class="pillar-section">
+                        <h3 class="pillar-section__title">&#11088; Pillar 3: Cross-Functional Design Thinking Workshops</h3>
+                        <p>To increase collaboration and design literacy across organizations, I hosted and facilitated:</p>
+                        
+                        <h4 style="font-weight: 700; margin-top: var(--space-md); margin-bottom: var(--space-sm);">Workshop Topics</h4>
+                        <ul style="font-size: 16px; margin-top: var(--space-sm);">
+                            <li>Problem Framing</li>
+                            <li>Journey Mapping</li>
+                            <li>Opportunity Identification</li>
+                            <li>Cross-team triad working sessions</li>
+                            <li>"Designing together" alignment workshops</li>
+                        </ul>
+                        
+                        <h4 style="font-weight: 700; margin-top: var(--space-md); margin-bottom: var(--space-sm);">Outcomes</h4>
+                        <ul style="font-size: 16px; margin-top: var(--space-sm);">
+                            <li>PMs better understood UX's role</li>
+                            <li>Engineers understood interaction models</li>
+                            <li>Teams generated shared definitions of success</li>
+                            <li>Workshops enabled faster product alignment</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="pillar-section">
+                        <h3 class="pillar-section__title">&#11088; Pillar 4: AI-Powered Design Learning Tools</h3>
+                        <p style="font-weight: 600; margin-bottom: var(--space-md);">This is one of the most forward-looking contributions.</p>
+                        
+                        <h4 style="font-weight: 700; margin-bottom: var(--space-sm);">System-Aware AI Education Tools</h4>
+                        <p>I partnered with system designers and engineers to develop:</p>
+                        <ul style="font-size: 16px; margin-top: var(--space-sm);">
+                            <li>AI copilots trained on RDS</li>
+                            <li>Tools that explain interaction patterns</li>
+                            <li>Suggestion engines that recommend system components</li>
+                            <li>AI summaries of UX docs for onboarding</li>
+                            <li>Conversational learning assistants in Miro & Supernova</li>
+                        </ul>
+                        
+                        <h4 style="font-weight: 700; margin-top: var(--space-md); margin-bottom: var(--space-sm);">AI Capabilities</h4>
+                        <p>AI assists designers with questions like:</p>
+                        <ul style="font-size: 16px; margin-top: var(--space-sm);">
+                            <li>"Which pattern should I use for X?"</li>
+                            <li>"Show me usage guidelines for this component."</li>
+                            <li>"Explain the accessibility rules for modals."</li>
+                            <li>"What is our filtering standard?"</li>
+                        </ul>
+                        
+                        <h4 style="font-weight: 700; margin-top: var(--space-md); margin-bottom: var(--space-sm);">Benefits</h4>
+                        <ul style="font-size: 16px; margin-top: var(--space-sm);">
+                            <li>Dramatically reduces onboarding time</li>
+                            <li>Increases RDS adoption</li>
+                            <li>Provides consistent design guidance</li>
+                            <li>Prevents system drift during design exploration</li>
+                        </ul>
+                    </div>
+                </div>
             </section>
             
             <section class="case-section">
                 <h2 class="case-section__title">Design & Implementation</h2>
                 
-                <h3>Component Design</h3>
+                <h3>Enablement Deliverables I Developed</h3>
                 <ul>
-                    <li>Created spec-driven Figma components</li>
-                    <li>Defined semantic structure and interaction states</li>
-                    <li>Introduced unified motion principles</li>
-                    <li>Standardized keyboard navigation patterns</li>
-                    <li>Designed flexible variants supporting edge cases</li>
+                    <li>Design onboarding documentation</li>
+                    <li>Interaction model & system primers</li>
+                    <li>Standardized workshop templates</li>
+                    <li>Learning pathway diagrams</li>
+                    <li>Mentorship rubrics and frameworks</li>
+                    <li>Self-guided design education materials</li>
                 </ul>
                 
-                <h3>Engineering Migration (MUI)</h3>
+                <h3>Program Logistics</h3>
                 <ul>
-                    <li>Worked with engineering to define theme overrides</li>
-                    <li>Created design &rarr; code mapping model via Supernova</li>
-                    <li>Redefined component APIs to align with RDS usage</li>
-                    <li>Established release and versioning processes</li>
+                    <li>Monthly learning sessions</li>
+                    <li>Quarterly design education deep dives</li>
+                    <li>Weekly critique + peer sharing</li>
+                    <li>Scalable workshop toolkit for PMs/engineering</li>
                 </ul>
                 
-                <h3>Documentation</h3>
+                <h3>AI Integration Work</h3>
                 <ul>
-                    <li>Component API documentation</li>
-                    <li>Implementation guides</li>
-                    <li>Accessibility checklists</li>
-                    <li>Theming and token documentation</li>
-                </ul>
-                
-                <h3>Governance</h3>
-                <ul>
-                    <li>Design Forum integration</li>
-                    <li>Proposal templates</li>
-                    <li>FOG-based evaluation (Facts, Opinions, Guesses)</li>
-                    <li>Quarterly audits</li>
+                    <li>Mapping RDS components into machine-readable metadata</li>
+                    <li>Collaboration with AI engineering for ingestion via MCP</li>
+                    <li>Designing conversational UX for design education workflows</li>
                 </ul>
             </section>
             
             <section class="case-section">
-                <h2 class="case-section__title">Measurement Framework</h2>
-                <p>I defined and implemented a comprehensive metrics framework measuring both internal and external impact:</p>
+                <h2 class="case-section__title">Validation & Measurement</h2>
                 
-                <h3>Internal Impact Metrics</h3>
+                <h3>Internal Metrics</h3>
                 <ul>
-                    <li>Design velocity</li>
-                    <li>Engineering velocity</li>
-                    <li>Component adoption rate</li>
-                    <li>Accessibility compliance</li>
-                    <li>UX designer satisfaction</li>
+                    <li>Onboarding time &larr; by 30&rdquo;“40% for new designers</li>
+                    <li>RDS usage &#8593; significantly in design exploration</li>
+                    <li>Higher cross-team alignment scores</li>
+                    <li>Designers reporting increased confidence in systems skills</li>
                 </ul>
                 
-                <h3>External Impact Metrics</h3>
+                <h3>Sentiment Feedback</h3>
                 <ul>
-                    <li>Experience consistency</li>
-                    <li>Visual cohesion</li>
-                    <li>Reduced user confusion</li>
-                    <li>Improved product onboarding</li>
+                    <li>Designers felt "more supported" and "able to grow faster"</li>
+                    <li>PMs found workshops "clarifying and energizing"</li>
+                    <li>Engineers noted improved collaboration and clarity</li>
+                    <li>AI tools reduced time needed to find documentation or patterns</li>
                 </ul>
                 
-                <p>We tracked success week-over-week using Jira, Confluence analytics, and UX sentiment surveys.</p>
+                <div class="quote-block">
+                    <p class="quote-block__text">"I've grown more in six months here than in years at previous companies."</p>
+                    <p class="quote-block__author">&mdash; Mid-level Product Designer</p>
+                </div>
+                
+                <div class="quote-block">
+                    <p class="quote-block__text">"Workshops changed how quickly we align."</p>
+                    <p class="quote-block__author">&mdash; Principal Engineer</p>
+                </div>
             </section>
             
             <section class="case-section">
@@ -847,75 +965,85 @@
                 <div class="impact-grid">
                     <div class="impact-card">
                         <div class="impact-card__icon">&#9889;</div>
-                        <div class="impact-card__title">Engineering Speed</div>
-                        <div class="impact-card__value">40%</div>
-                        <div class="impact-card__description">Faster build time for UI implementation</div>
+                        <div class="impact-card__title">Onboarding Speed</div>
+                        <div class="impact-card__value">30-40%</div>
+                        <div class="impact-card__description">Faster onboarding for new designers</div>
                     </div>
                     
                     <div class="impact-card">
-                        <div class="impact-card__icon">&#128202;</div>
-                        <div class="impact-card__title">Platform Coverage</div>
-                        <div class="impact-card__value">80%</div>
-                        <div class="impact-card__description">Achieved in just two quarters</div>
+                        <div class="impact-card__icon">&#128200;</div>
+                        <div class="impact-card__title">RDS Adoption</div>
+                        <div class="impact-card__value">&#8593;</div>
+                        <div class="impact-card__description">Significant increase in design exploration</div>
                     </div>
                     
                     <div class="impact-card">
-                        <div class="impact-card__icon">&#128522;</div>
-                        <div class="impact-card__title">Designer Satisfaction</div>
-                        <div class="impact-card__value">25%</div>
-                        <div class="impact-card__description">Increase in team satisfaction scores</div>
+                        <div class="impact-card__icon">&#129309;</div>
+                        <div class="impact-card__title">Team Alignment</div>
+                        <div class="impact-card__value">Higher</div>
+                        <div class="impact-card__description">Improved cross-team collaboration</div>
                     </div>
                     
                     <div class="impact-card">
-                        <div class="impact-card__icon">&#127919;</div>
-                        <div class="impact-card__title">UX Consistency</div>
-                        <div class="impact-card__value">50%</div>
-                        <div class="impact-card__description">Reduction in visual drift</div>
-                    </div>
-                    
-                    <div class="impact-card">
-                        <div class="impact-card__icon">&#9855;</div>
-                        <div class="impact-card__title">Accessibility</div>
-                        <div class="impact-card__value">100%</div>
-                        <div class="impact-card__description">WCAG 2.2 AA compliance across all components</div>
+                        <div class="impact-card__icon">&#128170;</div>
+                        <div class="impact-card__title">Designer Confidence</div>
+                        <div class="impact-card__value">&#8593;</div>
+                        <div class="impact-card__description">Increased systems skills confidence</div>
                     </div>
                 </div>
                 
-                <h3>Qualitative Impact</h3>
+                <h3>Designer-Level Impact</h3>
                 <ul>
-                    <li>Teams aligned around a shared UI language</li>
-                    <li>Easier onboarding for new designers and engineers</li>
-                    <li>Higher confidence in UI quality</li>
-                    <li>Reduced design and engineering friction</li>
+                    <li>Stronger craft and systems thinking</li>
+                    <li>Increased autonomy and independence</li>
+                    <li>Reduced reliance on ad-hoc mentoring</li>
+                    <li>Greater clarity around design expectations</li>
                 </ul>
                 
-                <h3>Organizational Impact</h3>
+                <h3>Team-Level Impact</h3>
                 <ul>
-                    <li>Design system became required infrastructure</li>
-                    <li>Engineering used RDS as baseline for all UI work</li>
-                    <li>Platform UX maturity significantly increased</li>
-                    <li>Established foundation for future AI and automation work</li>
+                    <li>Consistent cross-functional alignment</li>
+                    <li>Better triad collaboration (Design, PM, Engineering)</li>
+                    <li>Predictable problem framing processes</li>
+                    <li>Faster decision-making</li>
+                </ul>
+                
+                <h3>Organizational Maturity</h3>
+                <ul>
+                    <li>Coherent design culture across teams</li>
+                    <li>Shared rituals and design language</li>
+                    <li>Centralized onboarding and education</li>
+                    <li>AI-driven learning making design more scalable</li>
+                </ul>
+                
+                <h3>Future Talent Pipeline</h3>
+                <ul>
+                    <li>New designers are set up for success from day one</li>
+                    <li>Senior designers spend less time repeating foundational coaching</li>
+                    <li>Supports long-term career paths across product and platform UX</li>
+                    <li>Creates sustainable mentorship culture</li>
                 </ul>
             </section>
             
             <section class="case-section">
                 <h2 class="case-section__title">What I'd Do Next</h2>
-                <p>Building on this foundation, future enhancements would focus on:</p>
+                <p>Building on this foundation, future enhancements would include:</p>
                 <ul>
-                    <li>Expand into motion and microcopy systems</li>
-                    <li>Add automated accessibility and governance linting</li>
-                    <li>Deepen AI integrations for component recommendations</li>
-                    <li>Introduce usage analytics at the component level</li>
-                    <li>Create personalized onboarding paths based on product usage</li>
+                    <li>Expand the AI-learning assistant to include design critique feedback</li>
+                    <li>Develop self-paced interactive courses for flexible learning</li>
+                    <li>Introduce "Design Engineering Foundations" for cross-functional teams</li>
+                    <li>Build a formalized mentorship ladder with clear progressions</li>
+                    <li>Add certification and badges for system fluency</li>
+                    <li>Create design thinking workshops for customer-facing teams (CSM, Sales)</li>
+                    <li>Implement AI-powered design skill assessments</li>
                 </ul>
             </section>
         </article>
         
-        <!-- Navigation -->
         <nav class="case-nav" aria-label="Case study navigation">
             <div class="case-nav__container">
-                <a href="index.html#work" class="case-nav__link">&larr; Back to Portfolio</a>
-                <a href="case-study-dvs.html" class="case-nav__link">Next: Data Visualization System &rarr;</a>
+                <a href="case-study-ai-experience.html" class="case-nav__link">&larr; Previous: AI Experience</a>
+                <a href="index.html#work" class="case-nav__link">Back to Portfolio</a>
             </div>
         </nav>
     </main>
