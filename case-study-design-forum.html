@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Forum & UX Standards &mdash; Rebecca Gore</title>
+    <meta name="description" content="Case study: Operationalizing quality, alignment, and governance across Rapid7's design organization">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        :root{--grid-columns:12;--grid-gutter:80px;--grid-margin:120px;--baseline:8px;--font-display:'Playfair Display',serif;--font-body:'IBM Plex Sans',sans-serif;--type-h1:56px;--type-h2:36px;--type-h3:28px;--type-body:18px;--type-small:14px;--color-bg-primary:#FAFAFA;--color-bg-secondary:#FFFFFF;--color-bg-tertiary:#F0F0F0;--color-text-primary:#1A1A1A;--color-text-secondary:#4A4A4A;--color-text-tertiary:#6A6A6A;--color-accent:#2BBFFF;--color-accent-hover:#1AAFEF;--color-border:rgba(0,0,0,0.08);--color-shadow:rgba(0,0,0,0.06);--transition-fast:200ms cubic-bezier(0.4,0,0.2,1);--transition-base:400ms cubic-bezier(0.4,0,0.2,1);--space-xs:8px;--space-sm:16px;--space-md:24px;--space-lg:48px;--space-xl:80px;--space-2xl:120px;--shadow-sm:0 2px 8px var(--color-shadow);--shadow-md:0 4px 16px var(--color-shadow);--focus-width:3px;--focus-offset:2px}[data-theme="dark"]{--color-bg-primary:#0F0F0F;--color-bg-secondary:#1A1A1A;--color-bg-tertiary:#252525;--color-text-primary:#F5F5F5;--color-text-secondary:#B8B8B8;--color-text-tertiary:#888888;--color-border:rgba(255,255,255,0.12);--color-shadow:rgba(0,0,0,0.3)}*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{font-family:var(--font-body);font-size:var(--type-body);line-height:1.7;color:var(--color-text-primary);background:var(--color-bg-primary);-webkit-font-smoothing:antialiased}:focus-visible{outline:var(--focus-width) solid var(--color-accent);outline-offset:var(--focus-offset);border-radius:2px}.header{position:fixed;top:0;left:0;right:0;background:var(--color-bg-secondary);border-bottom:1px solid var(--color-border);z-index:1000;padding:var(--space-md) var(--grid-margin);backdrop-filter:blur(10px)}.header.scrolled{background:rgba(250,250,250,0.8);box-shadow:0 4px 24px rgba(43,191,255,0.1)}.header::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#2BBFFF 0%,#5CCCFF 50%,#2BBFFF 100%);background-size:200% 100%;opacity:0;animation:gradientFlow 4s linear infinite}.header.scrolled::before{opacity:1}@keyframes gradientFlow{0%{background-position:0% center}100%{background-position:200% center}}.header__container{max-width:1440px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}.header__logo{font-family:var(--font-display);font-size:24px;font-weight:700;color:var(--color-text-primary);text-decoration:none;letter-spacing:-0.02em}.back-link{display:inline-flex;align-items:center;gap:8px;color:var(--color-text-secondary);text-decoration:none;font-weight:500;transition:color var(--transition-fast)}.back-link:hover{color:var(--color-accent)}.back-link::before{content:'\2190';font-size:20px}.case-hero{min-height:70vh;background:linear-gradient(135deg,#2BBFFF 0%,#5CCCFF 100%);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding-top:100px}.case-hero::before{content:'';position:absolute;inset:0;background:url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');opacity:0.3}.case-hero__content{max-width:900px;text-align:center;padding:var(--space-2xl) var(--space-lg);position:relative;z-index:1}.case-hero__eyebrow{font-size:var(--type-small);text-transform:uppercase;letter-spacing:0.15em;color:rgba(255,255,255,0.9);font-weight:600;margin-bottom:var(--space-md)}.case-hero__title{font-family:var(--font-display);font-size:clamp(36px,6vw,52px);font-weight:900;color:white;margin-bottom:var(--space-md);line-height:1.1;letter-spacing:-0.02em}.case-hero__subtitle{font-size:22px;color:rgba(255,255,255,0.95);max-width:700px;margin:0 auto;line-height:1.5}.case-hero__tags{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:var(--space-lg)}.case-hero__tag{padding:10px 20px;background:rgba(255,255,255,0.2);backdrop-filter:blur(10px);border-radius:24px;color:white;font-size:14px;font-weight:600;border:1px solid rgba(255,255,255,0.3)}.case-meta{background:var(--color-bg-secondary);padding:var(--space-xl) var(--grid-margin);border-bottom:1px solid var(--color-border)}.case-meta__container{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:var(--space-lg)}.meta-item{padding:var(--space-md);background:var(--color-bg-primary);border-radius:12px;border:1px solid var(--color-border)}.meta-item__label{font-size:var(--type-small);color:var(--color-text-tertiary);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px;font-weight:600}.meta-item__value{font-size:18px;font-weight:600;color:var(--color-text-primary)}.case-content{max-width:900px;margin:0 auto;padding:var(--space-2xl) var(--space-lg)}.case-section{margin-bottom:var(--space-2xl)}.case-section__title{font-family:var(--font-display);font-size:var(--type-h2);font-weight:700;margin-bottom:var(--space-md);color:var(--color-text-primary);position:relative;display:inline-block}.case-section__title::after{content:'';position:absolute;bottom:-8px;left:0;width:60px;height:4px;background:linear-gradient(90deg,var(--color-accent),#5CCCFF);border-radius:2px}.case-section p{margin-bottom:var(--space-md);line-height:1.8;color:var(--color-text-secondary)}.case-section ul{list-style:none;padding-left:0;margin-bottom:var(--space-md)}.case-section ul li{margin-bottom:var(--space-sm);padding-left:28px;position:relative;line-height:1.7;color:var(--color-text-secondary)}.case-section ul li::before{content:'\25B8';position:absolute;left:0;color:var(--color-accent);font-weight:bold}.case-section h3{font-family:var(--font-display);font-size:24px;font-weight:700;margin-top:var(--space-lg);margin-bottom:var(--space-md);color:var(--color-text-primary)}.impact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:var(--space-lg);margin-top:var(--space-xl)}.impact-card{padding:var(--space-lg);background:var(--color-bg-secondary);border:1px solid var(--color-border);border-radius:16px;position:relative;overflow:hidden}.impact-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:4px;background:linear-gradient(90deg,var(--color-accent),#5CCCFF)}.impact-card__icon{font-size:32px;margin-bottom:var(--space-sm)}.impact-card__title{font-weight:700;font-size:18px;margin-bottom:var(--space-sm);color:var(--color-text-primary)}.impact-card__value{font-family:var(--font-display);font-size:36px;font-weight:900;color:var(--color-accent);margin-bottom:8px;line-height:1}.impact-card__description{font-size:16px;color:var(--color-text-secondary);line-height:1.6}.case-nav{background:var(--color-bg-secondary);border-top:1px solid var(--color-border);padding:var(--space-xl) var(--grid-margin);margin-top:var(--space-2xl)}.case-nav__container{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:var(--space-lg)}.case-nav__link{display:inline-flex;align-items:center;gap:12px;padding:16px 32px;background:var(--color-accent);color:white;text-decoration:none;border-radius:8px;font-weight:600;transition:all var(--transition-fast)}.case-nav__link:hover{background:var(--color-accent-hover);transform:translateY(-2px);box-shadow:var(--shadow-md)}@media (max-width:768px){:root{--grid-margin:32px;--type-h1:42px;--type-h2:28px}.case-meta__container,.impact-grid{grid-template-columns:1fr}.case-nav__container{flex-direction:column}}
+    
+        /* == High-contrast theme == */
+        [data-theme="high-contrast"] {
+            --color-bg-primary: #000;
+            --color-bg-secondary: #000;
+            --color-bg-tertiary: #1A1A1A;
+            --color-text-primary: #FFF;
+            --color-text-secondary: #EEE;
+            --color-text-tertiary: #CCC;
+            --color-accent: #FFD700;
+            --color-accent-hover: #FFC700;
+            --color-border: rgba(255,255,255,0.5);
+            --color-shadow: rgba(0,0,0,0.5);
+        }
+        /* == scroll-behavior reduced-motion == */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { scroll-behavior: auto !important; }
+        }
+        /* == Skip link == */
+        .skip-link {
+            position: absolute; top: -40px; left: 16px;
+            background: var(--color-bg-secondary); color: var(--color-text-primary);
+            padding: 8px 16px; border-radius: 6px; text-decoration: none;
+            font-weight: 600; border: 2px solid var(--color-accent); z-index: 9999;
+            transition: top 200ms;
+        }
+        .skip-link:focus { top: 16px; outline: 3px solid var(--color-accent); outline-offset: 3px; }
+        #case-main { scroll-margin-top: 100px; }
+        /* == Theme switcher == */
+        .header__nav { display: flex; align-items: center; gap: 16px; }
+        .header__container { display: flex; justify-content: space-between; align-items: center; max-width: 1440px; margin: 0 auto; }
+        .theme-controls {
+            display: flex; align-items: center;
+            background: rgba(255,255,255,0.12);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.2); border-radius: 12px; padding: 4px;
+        }
+        .theme-btn {
+            background: transparent; border: none; padding: 7px 11px; border-radius: 8px;
+            cursor: pointer; color: var(--color-text-secondary); font-size: 12px; font-weight: 600;
+            transition: all 200ms ease; display: flex; align-items: center; gap: 5px;
+            white-space: nowrap; font-family: inherit;
+        }
+        .theme-btn svg { width: 15px; height: 15px; fill: currentColor; }
+        .theme-btn:hover { color: var(--color-accent); }
+        .theme-btn:focus-visible { outline: 3px solid var(--color-accent); outline-offset: 2px; border-radius: 6px; }
+        .theme-btn.active { background: rgba(255,255,255,0.22); color: var(--color-accent); box-shadow: 0 2px 8px rgba(255,107,43,0.2); }
+        [data-theme="dark"] .theme-controls { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.1); }
+        [data-theme="dark"] .theme-btn { color: #bbb; }
+        [data-theme="dark"] .theme-btn.active { background: rgba(255,255,255,0.1); color: var(--color-accent); }
+        [data-theme="high-contrast"] .header { background: #000 !important; backdrop-filter: none !important; border-bottom: 2px solid #FFF !important; }
+        [data-theme="high-contrast"] .header__logo { color: #FFF !important; }
+        [data-theme="high-contrast"] .back-link { color: #FFD700 !important; }
+        [data-theme="high-contrast"] .theme-controls { background: #111; border: 2px solid #FFF; box-shadow: none; backdrop-filter: none; }
+        [data-theme="high-contrast"] .theme-btn { color: #EEE; border: 1px solid #555; border-radius: 6px; }
+        [data-theme="high-contrast"] .theme-btn:hover { border-color: #FFD700; color: #FFD700; }
+        [data-theme="high-contrast"] .theme-btn.active { background: #FFD700; color: #000; border-color: #FFD700; }
+        /* Theme dropdown (medium screens) */
+        .theme-dropdown { display: none; position: relative; }
+        .theme-dropdown-button {
+            background: rgba(255,255,255,0.12); backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.2); border-radius: 10px;
+            padding: 7px 12px; cursor: pointer; color: var(--color-text-secondary);
+            font-size: 12px; font-weight: 600; display: flex; align-items: center;
+            gap: 6px; font-family: inherit; transition: all 200ms ease;
+        }
+        .theme-dropdown-button svg { width: 15px; height: 15px; fill: currentColor; }
+        .theme-dropdown-button:focus-visible { outline: 3px solid var(--color-accent); outline-offset: 2px; }
+        .theme-dropdown-menu {
+            display: none; position: absolute; top: calc(100% + 8px); right: 0;
+            background: var(--color-bg-secondary); border: 1px solid var(--color-border);
+            border-radius: 12px; padding: 6px; min-width: 160px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15); z-index: 1001;
+        }
+        .theme-dropdown-menu.open { display: block; }
+        .theme-dropdown-item {
+            display: flex; align-items: center; gap: 8px; padding: 8px 10px;
+            border-radius: 8px; cursor: pointer; color: var(--color-text-secondary);
+            font-size: 13px; font-weight: 600; border: none; background: transparent;
+            width: 100%; text-align: left; font-family: inherit; transition: all 150ms ease;
+        }
+        .theme-dropdown-item svg { width: 15px; height: 15px; fill: currentColor; }
+        .theme-dropdown-item:hover { background: rgba(255,107,43,0.1); color: var(--color-accent); }
+        .theme-dropdown-item.active { color: var(--color-accent); background: rgba(255,107,43,0.08); }
+        .theme-dropdown-item:focus-visible { outline: 3px solid var(--color-accent); outline-offset: 2px; }
+        [data-theme="high-contrast"] .theme-dropdown-button { background: #111; border: 2px solid #FFF; color: #EEE; backdrop-filter: none; }
+        [data-theme="high-contrast"] .theme-dropdown-menu { background: #000; border: 2px solid #FFF; }
+        [data-theme="high-contrast"] .theme-dropdown-item { color: #EEE; }
+        [data-theme="high-contrast"] .theme-dropdown-item:hover { color: #FFD700; background: #1a1a1a; }
+        [data-theme="high-contrast"] .theme-dropdown-item.active { color: #FFD700; background: #2a1a00; }
+        @media (max-width: 860px) { .theme-controls { display: none; } .theme-dropdown { display: block; } }
+        /* High-contrast content overrides */
+        [data-theme="high-contrast"] .case-section__title::after { background: #FFD700 !important; }
+        [data-theme="high-contrast"] .impact-card__value { color: #FFD700; }
+        [data-theme="high-contrast"] .quote-block { border-left-color: #FFD700; }
+        [data-theme="high-contrast"] .case-nav__link { background: #FFD700; color: #000; }
+        [data-theme="high-contrast"] .case-nav__link:hover { background: #FFC700; }
+    
+        /* == FIX: dark/HC header backgrounds == */
+        [data-theme="dark"] .header {
+            background: rgba(15, 15, 15, 0.88) !important;
+            border-bottom-color: rgba(255,255,255,0.1) !important;
+        }
+        [data-theme="dark"] .header.scrolled {
+            background: rgba(10, 10, 10, 0.95) !important;
+        }
+        [data-theme="dark"] .header__logo { color: #F5F5F5 !important; }
+        [data-theme="dark"] .back-link { color: #B8B8B8 !important; }
+        [data-theme="dark"] .back-link:hover { color: var(--color-accent) !important; }
+        </style>
+</head>
+<body>
+    <header class="header" role="banner">
+        <div class="header__container">
+            <a href="index.html" class="header__logo">Rebecca Gore</a>
+            <nav class="header__nav" aria-label="Site navigation">
+                <div class="theme-controls" role="group" aria-label="Color theme">
+                    <button class="theme-btn" data-theme="auto" aria-label="Use system theme" aria-pressed="false"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4C12.82 3.04 12.42 3 12 3zm0-2c6.08 0 11 4.92 11 11s-4.92 11-11 11S1 18.08 1 12 5.92 1 12 1z"/></svg> Auto</button>
+                    <button class="theme-btn" data-theme="light" aria-label="Light theme" aria-pressed="false"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1z"/></svg> Light</button>
+                    <button class="theme-btn" data-theme="dark" aria-label="Dark theme" aria-pressed="false"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 2c-1.05 0-2.05.16-3 .46 4.06 1.27 7 5.06 7 9.54 0 4.48-2.94 8.27-7 9.54.95.3 1.95.46 3 .46 5.52 0 10-4.48 10-10S14.52 2 9 2z"/></svg> Dark</button>
+                    <button class="theme-btn" data-theme="high-contrast" aria-label="High contrast theme" aria-pressed="false"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93s3.05-7.44 7-7.93v15.86zm2-15.86c1.03.13 2 .45 2.87.93H13v-.93zM13 7h5.24c.25.31.48.65.68 1H13V7zm0 3h6.74c.08.33.15.66.19 1H13v-1zm0 9.93V19h2.87c-.87.48-1.84.8-2.87.93zM18.24 17H13v-1h5.92c-.2.35-.43.69-.68 1zm1.5-3H13v-1h6.93c-.04.34-.11.67-.19 1z"/></svg> Contrast</button>
+                </div>
+                <div class="theme-dropdown">
+                    <button class="theme-dropdown-button" aria-label="Theme selector" aria-expanded="false" aria-haspopup="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4C12.82 3.04 12.42 3 12 3zm0-2c6.08 0 11 4.92 11 11s-4.92 11-11 11S1 18.08 1 12 5.92 1 12 1z"/></svg><span class="theme-dropdown-label">Auto</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" style="width:14px;height:14px;margin-left:auto"><path d="M7 10l5 5 5-5z"/></svg>
+                    </button>
+                    <div class="theme-dropdown-menu" role="menu">
+                        <button class="theme-dropdown-item" data-theme="auto" role="menuitem"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4C12.82 3.04 12.42 3 12 3zm0-2c6.08 0 11 4.92 11 11s-4.92 11-11 11S1 18.08 1 12 5.92 1 12 1z"/></svg> Auto</button>
+                        <button class="theme-dropdown-item" data-theme="light" role="menuitem"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1z"/></svg> Light</button>
+                        <button class="theme-dropdown-item" data-theme="dark" role="menuitem"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 2c-1.05 0-2.05.16-3 .46 4.06 1.27 7 5.06 7 9.54 0 4.48-2.94 8.27-7 9.54.95.3 1.95.46 3 .46 5.52 0 10-4.48 10-10S14.52 2 9 2z"/></svg> Dark</button>
+                        <button class="theme-dropdown-item" data-theme="high-contrast" role="menuitem"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93s3.05-7.44 7-7.93v15.86zm2-15.86c1.03.13 2 .45 2.87.93H13v-.93zM13 7h5.24c.25.31.48.65.68 1H13V7zm0 3h6.74c.08.33.15.66.19 1H13v-1zm0 9.93V19h2.87c-.87.48-1.84.8-2.87.93zM18.24 17H13v-1h5.92c-.2.35-.43.69-.68 1zm1.5-3H13v-1h6.93c-.04.34-.11.67-.19 1z"/></svg> Contrast</button>
+                    </div>
+                </div>
+                <a href="index.html#work" class="back-link">Back to Portfolio</a>
+            </nav>
+        </div>
+    </header>
+    
+    <main id="case-main">
+        <section class="case-hero">
+            <div class="case-hero__content">
+                <p class="case-hero__eyebrow">Case Study 03</p>
+                <h1 class="case-hero__title">Design Forum & UX Standards Framework</h1>
+                <p class="case-hero__subtitle">Operationalizing quality, alignment, and governance across Rapid7's design organization</p>
+                <div class="case-hero__tags">
+                    <span class="case-hero__tag">Design Ops</span>
+                    <span class="case-hero__tag">UX Governance</span>
+                    <span class="case-hero__tag">Accessibility</span>
+                    <span class="case-hero__tag">Leadership</span>
+                </div>
+            </div>
+        </section>
+        
+        <section class="case-meta" aria-label="Project overview">
+            <div class="case-meta__container">
+                <div class="meta-item">
+                    <div class="meta-item__label">Role</div>
+                    <div class="meta-item__value">Principal Designer, Enablement</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-item__label">Timeline</div>
+                    <div class="meta-item__value">Ongoing Initiative</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-item__label">Team Size</div>
+                    <div class="meta-item__value">30+ Designers</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-item__label">Impact</div>
+                    <div class="meta-item__value">35% Faster Approvals</div>
+                </div>
+            </div>
+        </section>
+        
+        <article class="case-content">
+            <section class="case-section">
+                <h2 class="case-section__title">Executive Summary</h2>
+                <p>As Rapid7 scaled across multiple product lines, design quality diverged due to fragmented processes, inconsistent decision-making, and lack of shared governance. Designers were making major UX decisions in Slack threads, design drift increased release risk, and teams lacked visibility into standards or precedent.</p>
+                <p>I led the design and rollout of the Design Forum and the Rapid7 UX Standards Framework, establishing scalable governance, structured decision processes, and transparent alignment mechanisms. Together with UX leadership, engineering partners, and design system contributors, we created an operational foundation that improved accessibility, consistency, and cross-team cohesion across the entire design org.</p>
+            </section>
+            
+            <section class="case-section">
+                <h2 class="case-section__title">The Problem</h2>
+                <p>Rapid7's UX organization was growing rapidly across 6+ product teams, Platform UX, Design System team, Visual design, Documentation, and UX research. Yet the org lacked shared structures for evaluating patterns, approving new UI paradigms, logging decisions, ensuring cross-product consistency, and maintaining accessibility baselines.</p>
+                
+                <h3>Key Operational Gaps</h3>
+                <ul>
+                    <li><strong>No centralized review process:</strong> Important UX decisions were scattered across DMs and Slack threads</li>
+                    <li><strong>No governance model:</strong> Patterns were approved based on who reviewed them, not on a shared framework</li>
+                    <li><strong>No transparency:</strong> Designers lacked visibility into precedent or rationale for design decisions</li>
+                    <li><strong>No standards baseline:</strong> Accessibility, responsiveness, and usability varied widely</li>
+                    <li><strong>No systemic process for multi-team alignment:</strong> Cross-product flows suffered from inconsistent logic</li>
+                </ul>
+                
+                <p>The result: Rapid7's platform experience was becoming inconsistent, costly to maintain, and increasingly difficult to scale.</p>
+            </section>
+            
+            <section class="case-section">
+                <h2 class="case-section__title">Research & Discovery</h2>
+                <p>I conducted stakeholder interviews across design, engineering, product, and research. Clear patterns emerged:</p>
+                
+                <h3>Designer Feedback</h3>
+                <ul>
+                    <li>"I'm not sure who approves this pattern."</li>
+                    <li>"We reinvent the same components over and over."</li>
+                    <li>"I want feedback earlier, not after something ships."</li>
+                </ul>
+                
+                <h3>Engineering Partner Feedback</h3>
+                <ul>
+                    <li>"UX asks for patterns we can't implement consistently."</li>
+                    <li>"We need a single source of truth."</li>
+                </ul>
+                
+                <h3>Leadership Feedback</h3>
+                <ul>
+                    <li>"We need to reduce UX inconsistency risks."</li>
+                    <li>"Standards need to be scalable, measurable, and enforceable."</li>
+                </ul>
+            </section>
+            
+            <section class="case-section">
+                <h2 class="case-section__title">Strategy & Architecture</h2>
+                <p>The strategy centered around three pillars:</p>
+                
+                <h3>A. Structured Governance &mdash; Design Forum</h3>
+                <p>I created the Design Forum, a recurring, formalized decision-making body for platform-level UX patterns.</p>
+                
+                <p><strong>Design Forum Components:</strong></p>
+                <ul>
+                    <li>Recurring 30-minute sessions</li>
+                    <li>Cross-disciplinary attendance</li>
+                    <li>Standard submission template</li>
+                    <li>Review process tied to the RDS lifecycle</li>
+                    <li>Decision log stored in Confluence</li>
+                    <li>#ux-all transparency updates</li>
+                    <li>FOG model for evidence-based evaluation</li>
+                </ul>
+                
+                <p><strong>FOG Model:</strong></p>
+                <ul>
+                    <li><strong>Facts:</strong> Research, data, accessibility requirements</li>
+                    <li><strong>Opinions:</strong> Design expertise, cross-team preferences</li>
+                    <li><strong>Guesses:</strong> Hypotheses needing testing</li>
+                </ul>
+                
+                <h3>B. UX Standards Framework</h3>
+                <p>I led creation of a four-pillar standard ensuring consistency across the platform:</p>
+                <ul>
+                    <li><strong>Accessibility</strong> &mdash; WCAG 2.2 AA compliance</li>
+                    <li><strong>Responsiveness</strong> &mdash; Grid & breakpoint rules</li>
+                    <li><strong>Usability</strong> &mdash; Predictable interaction patterns</li>
+                    <li><strong>Governance & Continuous Improvement</strong> &mdash; Audits and lifecycle management</li>
+                </ul>
+                
+                <p>Each pillar included principles, requirements, success criteria, and measurement plans.</p>
+                
+                <h3>C. Operational Documentation</h3>
+                <ul>
+                    <li>Decision logs</li>
+                    <li>Pattern approvals</li>
+                    <li>Exceptions tracking</li>
+                    <li>Pattern lifecycle documentation</li>
+                    <li>Rollout guidance</li>
+                </ul>
+            </section>
+            
+            <section class="case-section">
+                <h2 class="case-section__title">Implementation</h2>
+                
+                <h3>Design Forum Launch</h3>
+                <p>I facilitated cross-functional workshop sessions to align expectations, refine workflows, and practice using the FOG model on real design proposals.</p>
+                
+                <h3>Proposal Pipeline</h3>
+                <p>I created templates used by all designers:</p>
+                <ul>
+                    <li>Problem statement</li>
+                    <li>Goals</li>
+                    <li>Supporting research</li>
+                    <li>Alternatives considered</li>
+                    <li>Accessibility considerations</li>
+                    <li>Technical feasibility notes</li>
+                    <li>Decision needed</li>
+                </ul>
+                
+                <h3>Standards Integration with RDS</h3>
+                <p>I partnered with the design system team to ensure:</p>
+                <ul>
+                    <li>Every RDS component adhered to the UX Standards</li>
+                    <li>Every pattern proposal was reviewed through Design Forum</li>
+                    <li>Every decision updated system documentation</li>
+                </ul>
+                
+                <h3>Communication & Enablement</h3>
+                <ul>
+                    <li>Weekly async summaries</li>
+                    <li>Monthly highlights in #ux-all</li>
+                    <li>Training for new designers</li>
+                    <li>Accessibility onboarding</li>
+                </ul>
+            </section>
+            
+            <section class="case-section">
+                <h2 class="case-section__title">Impact</h2>
+                
+                <div class="impact-grid">
+                    <div class="impact-card">
+                        <div class="impact-card__icon">&#9889;</div>
+                        <div class="impact-card__title">Approval Speed</div>
+                        <div class="impact-card__value">35%</div>
+                        <div class="impact-card__description">Faster pattern approvals</div>
+                    </div>
+                    
+                    <div class="impact-card">
+                        <div class="impact-card__icon">&#9855;</div>
+                        <div class="impact-card__title">Accessibility</div>
+                        <div class="impact-card__value">40%</div>
+                        <div class="impact-card__description">Improvement in compliance scores</div>
+                    </div>
+                    
+                    <div class="impact-card">
+                        <div class="impact-card__icon">&#128260;</div>
+                        <div class="impact-card__title">Efficiency</div>
+                        <div class="impact-card__value">60%</div>
+                        <div class="impact-card__description">Reduction in duplicate patterns</div>
+                    </div>
+                    
+                    <div class="impact-card">
+                        <div class="impact-card__icon">&#127919;</div>
+                        <div class="impact-card__title">Consistency</div>
+                        <div class="impact-card__value">Higher</div>
+                        <div class="impact-card__description">Design consistency across 6+ teams</div>
+                    </div>
+                </div>
+                
+                <h3>Qualitative Impact</h3>
+                <ul>
+                    <li>Designers reported increased clarity and psychological safety</li>
+                    <li>Engineering gained confidence in pattern stability</li>
+                    <li>PMs reported fewer conflicts about UX decisions</li>
+                    <li>Leadership had clearer visibility into UX maturity</li>
+                </ul>
+                
+                <h3>Organizational Maturity Impact</h3>
+                <ul>
+                    <li>Decisions became scalable, predictable, and measurable</li>
+                    <li>Governance became a system, not just meetings</li>
+                    <li>Rapid7 gained a unified UX operating model</li>
+                    <li>Foundation for continuous design improvement</li>
+                </ul>
+            </section>
+            
+            <section class="case-section">
+                <h2 class="case-section__title">What I'd Do Next</h2>
+                <ul>
+                    <li>Introduce automated governance audits using AI + MCP</li>
+                    <li>Add design health scorecards per product</li>
+                    <li>Integrate accessibility automated checks directly into Design Forum</li>
+                    <li>Expand into content standards + voice & tone</li>
+                    <li>Create pattern usage analytics dashboards</li>
+                </ul>
+            </section>
+        </article>
+        
+        <nav class="case-nav" aria-label="Case study navigation">
+            <div class="case-nav__container">
+                <a href="case-study-dvs.html" class="case-nav__link">&larr; Previous: Data Visualization</a>
+                <a href="case-study-unified-platform.html" class="case-nav__link">Next: Unified Platform &rarr;</a>
+            </div>
+        </nav>
+    </main>
+    
+    <script>
+        (function() {
+            var html = document.documentElement;
+            var lbls = { auto:"Auto", light:"Light", dark:"Dark", "high-contrast":"Contrast" };
+            function sys() { return (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) ? "dark" : "light"; }
+            function apply(pref) {
+                html.setAttribute("data-theme", pref === "auto" ? sys() : pref);
+                document.querySelectorAll(".theme-btn").forEach(function(b) {
+                    var on = b.dataset.theme === pref;
+                    b.classList.toggle("active", on);
+                    b.setAttribute("aria-pressed", on ? "true" : "false");
+                });
+                document.querySelectorAll(".theme-dropdown-item").forEach(function(i) { i.classList.toggle("active", i.dataset.theme === pref); });
+                var l = document.querySelector(".theme-dropdown-label");
+                if (l) l.textContent = lbls[pref] || "Auto";
+            }
+            document.querySelectorAll(".theme-btn").forEach(function(b) {
+                b.addEventListener("click", function() { apply(b.dataset.theme); try { localStorage.setItem("rg-theme", b.dataset.theme); } catch(e){} });
+            });
+            var db = document.querySelector(".theme-dropdown-button");
+            var dm = document.querySelector(".theme-dropdown-menu");
+            if (db && dm) {
+                db.addEventListener("click", function(e) { e.stopPropagation(); var open = dm.classList.toggle("open"); db.setAttribute("aria-expanded", open ? "true" : "false"); });
+                document.addEventListener("click", function() { dm.classList.remove("open"); if(db) db.setAttribute("aria-expanded","false"); });
+            }
+            document.querySelectorAll(".theme-dropdown-item").forEach(function(i) {
+                i.addEventListener("click", function() {
+                    apply(i.dataset.theme);
+                    try { localStorage.setItem("rg-theme", i.dataset.theme); } catch(e){}
+                    if (dm) dm.classList.remove("open"); if (db) db.setAttribute("aria-expanded","false");
+                });
+            });
+            if (window.matchMedia) window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function() {
+                try { if ((localStorage.getItem("rg-theme") || "auto") === "auto") apply("auto"); } catch(e){} });
+            try { apply(localStorage.getItem("rg-theme") || "auto"); } catch(e) { apply("auto"); }
+        })();
+        var hdr = document.querySelector(".header");
+        if (hdr) window.addEventListener("scroll", function() { hdr.classList.toggle("scrolled", window.pageYOffset > 0); });
+    </script>
+</body>
+</html>

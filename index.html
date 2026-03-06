@@ -1,0 +1,1479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rebecca Gore &mdash; Design Systems Lead &amp; Principal Product Designer</title>
+    <meta name="description" content="Design Systems Lead with 10+ years creating scalable, accessible design systems and enterprise UX frameworks">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --font-display: 'Playfair Display', serif;
+            --font-body: 'IBM Plex Sans', sans-serif;
+            --color-bg-primary: #FAFAFA;
+            --color-bg-secondary: #FFFFFF;
+            --color-bg-tertiary: #F0F0F0;
+            --color-text-primary: #1A1A1A;
+            --color-text-secondary: #4A4A4A;
+            --color-text-tertiary: #6A6A6A;
+            --color-accent: #FF6B2B;
+            --color-accent-hover: #E85A1F;
+            --color-border: rgba(0, 0, 0, 0.08);
+            --color-border-subtle: rgba(0, 0, 0, 0.06);
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 48px;
+            --space-xl: 80px;
+            --space-2xl: 120px;
+            --motion-fast: 120ms cubic-bezier(0.4, 0, 0.2, 1);
+            --motion-medium: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+            --motion-slow: 320ms cubic-bezier(0.4, 0, 0.2, 1);
+            --motion-emphasized: 260ms cubic-bezier(0.16, 1, 0.3, 1);
+            --transition-fast: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-base: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* FIX #9: Dark theme */
+        [data-theme="dark"] {
+            --color-bg-primary: #0F0F0F;
+            --color-bg-secondary: #1A1A1A;
+            --color-bg-tertiary: #252525;
+            --color-text-primary: #F5F5F5;
+            --color-text-secondary: #B8B8B8;
+            --color-text-tertiary: #888888;
+            --color-border: rgba(255, 255, 255, 0.12);
+            --color-border-subtle: rgba(255, 255, 255, 0.08);
+        }
+
+        /* High Contrast Mode */
+        [data-theme="high-contrast"] {
+            --color-bg-primary: #000000;
+            --color-bg-secondary: #000000;
+            --color-bg-tertiary: #1A1A1A;
+            --color-text-primary: #FFFFFF;
+            --color-text-secondary: #FFFFFF;
+            --color-text-tertiary: #E0E0E0;
+            --color-accent: #FFD700;
+            --color-accent-hover: #FFC700;
+            --color-border: #FFFFFF;
+            --color-border-subtle: rgba(255, 255, 255, 0.3);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        /* FIX #14: scroll-behavior in reduced-motion */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: var(--font-body);
+            font-size: 18px;
+            line-height: 1.7;
+            color: var(--color-text-primary);
+            background: var(--color-bg-primary);
+            -webkit-font-smoothing: antialiased;
+            transition: background-color var(--transition-base), color var(--transition-base);
+        }
+
+        /* FIX #5: Skip link */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 16px;
+            background: var(--color-bg-secondary);
+            color: var(--color-text-primary);
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            border: 2px solid var(--color-accent);
+            z-index: 9999;
+            transition: top var(--motion-medium);
+        }
+        .skip-link:focus { top: 16px; outline: 3px solid var(--color-accent); outline-offset: 3px; }
+
+        /* FIX #4: main landmark scroll margin */
+        #main-content { scroll-margin-top: 120px; }
+
+        :focus-visible {
+            outline: 3px solid var(--color-accent);
+            outline-offset: 3px;
+            border-radius: 6px;
+        }
+        button:focus-visible, a:focus-visible {
+            outline: 3px solid var(--color-accent);
+            outline-offset: 3px;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        @keyframes caseCardBorderRotate {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        @keyframes cardShimmer {
+            0% { transform: translateX(0) skewX(-20deg); }
+            50% { transform: translateX(250%) skewX(-20deg); }
+            100% { transform: translateX(250%) skewX(-20deg); }
+        }
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes systemPulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+
+        /* ─── Header ─── */
+        .header {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            background: rgba(250, 250, 250, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--color-border);
+            z-index: 1000;
+            padding: var(--space-md) var(--space-lg);
+            transition: all var(--transition-base);
+        }
+        [data-theme="dark"] .header { background: rgba(15, 15, 15, 0.8); }
+        [data-theme="high-contrast"] .header { background: #000; border-bottom-color: #FFF; backdrop-filter: none; -webkit-backdrop-filter: none; }
+
+        .header__container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 var(--space-lg);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header__logo {
+            font-family: var(--font-display);
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--color-text-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+        .header__nav {
+            display: flex;
+            align-items: center;
+            gap: var(--space-lg);
+        }
+        .nav__links {
+            display: flex;
+            gap: var(--space-lg);
+            list-style: none;
+        }
+        .nav__link {
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: color var(--transition-fast);
+        }
+        .nav__link:hover { color: var(--color-accent); }
+        .nav__link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px; left: 0;
+            width: 0; height: 2px;
+            background: var(--color-accent);
+            transition: width var(--transition-fast);
+        }
+        .nav__link:hover::after { width: 100%; }
+
+        /* ─── Theme Controls ─── */
+        .theme-controls {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 12px;
+            padding: 4px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+        }
+        .theme-btn {
+            background: transparent;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            color: rgba(26, 26, 26, 0.85);
+            font-size: 14px;
+            font-weight: 600;
+            transition: all var(--motion-medium);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+        .theme-btn svg { width: 18px; height: 18px; fill: currentColor; opacity: 0.85; transition: all var(--motion-medium); }
+        .theme-btn:hover { color: var(--color-accent); transform: translateY(-1px); }
+        .theme-btn.active {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(10px);
+            color: var(--color-accent);
+            box-shadow: 0 4px 12px rgba(255, 107, 43, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+            font-weight: 600;
+        }
+        [data-theme="dark"] .theme-controls { background: rgba(26, 26, 26, 0.4); border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 8px 32px 0 rgba(0,0,0,0.4); }
+        [data-theme="dark"] .theme-btn { color: #e5e5e5; }
+        [data-theme="dark"] .theme-btn svg { opacity: 1; }
+        [data-theme="dark"] .theme-btn.active { background: rgba(255, 255, 255, 0.12); box-shadow: 0 4px 12px rgba(255,107,43,0.35), inset 0 1px 0 rgba(255,255,255,0.1); }
+        [data-theme="high-contrast"] .theme-controls { background: #000; border: 3px solid #FFF; box-shadow: none; backdrop-filter: none; }
+        [data-theme="high-contrast"] .theme-btn { color: #FFF; border: 2px solid #666; background: #1a1a1a; font-weight: 700; }
+        [data-theme="high-contrast"] .theme-btn:hover { border-color: #FFD700; background: #2a2a2a; }
+        [data-theme="high-contrast"] .theme-btn.active { background: #FFD700; color: #000; border-color: #FFD700; box-shadow: none; }
+
+        /* Theme Dropdown (tablet) */
+        .theme-dropdown { display: none; position: relative; }
+        .theme-dropdown-button {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 12px;
+            padding: 10px 16px;
+            cursor: pointer;
+            color: rgba(26, 26, 26, 0.85);
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all var(--motion-medium);
+        }
+        .theme-dropdown-button svg { width: 18px; height: 18px; fill: currentColor; opacity: 0.85; }
+        .theme-dropdown-menu {
+            display: none;
+            position: absolute;
+            top: calc(100% + 8px);
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 12px;
+            padding: 8px;
+            min-width: 180px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+            z-index: 1000;
+            animation: slideDown 0.2s ease-out;
+        }
+        .theme-dropdown-menu.active { display: block; }
+        .theme-dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            color: rgba(26, 26, 26, 0.85);
+            font-size: 14px;
+            font-weight: 600;
+            border: none;
+            background: transparent;
+            width: 100%;
+            text-align: left;
+            transition: all var(--motion-fast);
+        }
+        .theme-dropdown-item svg { width: 18px; height: 18px; fill: currentColor; }
+        .theme-dropdown-item:hover { background: rgba(255,107,43,0.1); color: var(--color-accent); }
+        .theme-dropdown-item.active { background: rgba(255,107,43,0.15); color: var(--color-accent); font-weight: 600; }
+        [data-theme="dark"] .theme-dropdown-button { color: #e5e5e5; }
+        [data-theme="dark"] .theme-dropdown-menu { background: rgba(26,26,26,0.95); border: 1px solid rgba(255,255,255,0.1); }
+        [data-theme="dark"] .theme-dropdown-item { color: #e5e5e5; }
+        [data-theme="dark"] .theme-dropdown-item:hover { background: rgba(255,107,43,0.15); }
+        [data-theme="high-contrast"] .theme-dropdown-button { background: #000; border: 3px solid #FFF; color: #FFF; backdrop-filter: none; }
+        [data-theme="high-contrast"] .theme-dropdown-menu { background: #000; border: 3px solid #FFF; backdrop-filter: none; }
+        [data-theme="high-contrast"] .theme-dropdown-item { color: #FFF; border: 2px solid #666; background: #1a1a1a; margin-bottom: 4px; }
+        [data-theme="high-contrast"] .theme-dropdown-item:hover { border-color: #FFD700; background: #2a2a2a; }
+        [data-theme="high-contrast"] .theme-dropdown-item.active { background: #FFD700; color: #000; border-color: #FFD700; }
+
+        @media (max-width: 1200px) {
+            .theme-controls { display: none; }
+            .theme-dropdown { display: block; }
+        }
+
+        /* Hamburger */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            z-index: 1001;
+        }
+        .hamburger span {
+            width: 25px; height: 3px;
+            background: var(--color-text-primary);
+            border-radius: 2px;
+            transition: all var(--transition-fast);
+        }
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(7px, 7px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
+
+        .nav-overlay {
+            display: none;
+            position: fixed;
+            top: 73px; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 998;
+            opacity: 0;
+            transition: opacity var(--transition-base);
+        }
+        .nav-overlay.active { display: block; opacity: 1; }
+
+        .nav-menu {
+            position: fixed;
+            top: 73px; right: -100%;
+            width: 280px;
+            height: calc(100vh - 73px);
+            background: var(--color-bg-secondary);
+            padding: var(--space-lg);
+            transition: right var(--transition-base);
+            z-index: 999;
+            overflow-y: auto;
+            box-shadow: -4px 0 20px rgba(0,0,0,0.1);
+        }
+        .nav-menu.active { right: 0; }
+        .nav-menu .nav__links { flex-direction: column; gap: var(--space-md); }
+        .nav-menu .nav__link { font-size: 20px; }
+        .nav-menu .theme-controls {
+            margin-top: var(--space-lg);
+            flex-direction: column;
+            align-items: stretch;
+            background: transparent;
+            border: none; padding: 0;
+            box-shadow: none; backdrop-filter: none;
+        }
+        .nav-menu .theme-btn {
+            width: 100%;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: var(--color-text-primary);
+            justify-content: flex-start;
+            padding: 16px 20px;
+            margin-bottom: 8px;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        .nav-menu .theme-btn:hover { background: rgba(255,107,43,0.1); border-color: var(--color-accent); }
+        .nav-menu .theme-btn.active { background: var(--color-accent); color: white; border-color: var(--color-accent); }
+        [data-theme="dark"] .nav-menu .theme-btn { background: rgba(255,255,255,0.08); color: #e5e5e5; }
+        [data-theme="dark"] .nav-menu .theme-btn.active { background: var(--color-accent); color: white; }
+        [data-theme="high-contrast"] .nav-menu .theme-btn { background: #1a1a1a; border: 2px solid #666; color: #FFF; }
+        [data-theme="high-contrast"] .nav-menu .theme-btn.active { background: #FFD700; color: #000; border-color: #FFD700; }
+
+        @media (max-width: 1050px) {
+            .header__nav { display: none; }
+            .hamburger { display: flex; }
+        }
+        @media (max-width: 768px) { .header__container { padding: 0 var(--space-md); } }
+
+        /* ─── Hero ─── */
+        .hero {
+            padding: 140px var(--space-lg) var(--space-2xl);
+            background: linear-gradient(135deg, rgba(255,107,43,0.08) 0%, rgba(107,70,255,0.08) 100%);
+            background-size: 200% 200%;
+            animation: gradientShift 15s ease infinite;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(255,107,43,0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(107,70,255,0.1) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+            pointer-events: none;
+        }
+        .hero__container { max-width: 900px; margin: 0 auto; position: relative; z-index: 1; }
+        .hero__eyebrow {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--color-accent);
+            font-weight: 600;
+            margin-bottom: var(--space-sm);
+            animation: fadeInUp 0.6s ease-out;
+        }
+        .hero__title {
+            font-family: var(--font-display);
+            font-size: clamp(36px, 6vw, 56px);
+            font-weight: 900;
+            margin-bottom: var(--space-md);
+            line-height: 1.1;
+            background: linear-gradient(135deg, var(--color-text-primary) 0%, var(--color-accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 0.8s ease-out 0.1s backwards;
+        }
+        [data-theme="high-contrast"] .hero__title {
+            background: none;
+            -webkit-background-clip: unset;
+            -webkit-text-fill-color: #FFD700;
+            background-clip: unset;
+        }
+        .hero__subtitle {
+            font-size: 22px;
+            color: var(--color-text-secondary);
+            max-width: 700px;
+            margin: 0 auto var(--space-lg);
+            animation: fadeInUp 1s ease-out 0.2s backwards;
+        }
+        .micro-credentials {
+            display: flex;
+            gap: var(--space-sm);
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: var(--space-lg);
+            animation: fadeInUp 1.1s ease-out 0.25s backwards;
+        }
+        .credential-badge {
+            padding: 8px 16px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 600;
+            background: rgba(255,255,255,0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,107,43,0.2);
+            color: var(--color-text-primary);
+            transition: all var(--motion-medium);
+        }
+        [data-theme="dark"] .credential-badge { background: rgba(26,26,26,0.8); border-color: rgba(255,107,43,0.3); }
+        [data-theme="high-contrast"] .credential-badge { background: #000; border-color: var(--color-accent); color: #FFF; }
+        .credential-badge:hover { background: rgba(255,107,43,0.15); border-color: var(--color-accent); transform: translateY(-2px); }
+        .hero__cta {
+            display: inline-flex;
+            gap: var(--space-md);
+            animation: fadeInUp 1.2s ease-out 0.3s backwards;
+        }
+
+        /* ─── Buttons ─── */
+        .btn {
+            padding: 16px 32px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all var(--transition-fast);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+        .btn:hover::before { left: 100%; }
+        .btn-primary { background: var(--color-accent); color: white; }
+        .btn-primary:hover { background: var(--color-accent-hover); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(255,107,43,0.3); }
+        .btn-secondary { background: transparent; color: var(--color-text-primary); border-color: var(--color-border); }
+        .btn-secondary:hover { border-color: var(--color-accent); color: var(--color-accent); transform: translateY(-2px); }
+        [data-theme="high-contrast"] .btn-primary { background: #FFD700; color: #000; border-color: #FFD700; }
+        [data-theme="high-contrast"] .btn-secondary { border-color: #FFF; color: #FFF; }
+        [data-theme="high-contrast"] .btn-secondary:hover { border-color: #FFD700; color: #FFD700; }
+
+        /* ─── Sections ─── */
+        .section { padding: var(--space-2xl) var(--space-lg); }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: var(--space-xl); }
+        .section-eyebrow {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--color-accent);
+            font-weight: 600;
+            margin-bottom: var(--space-sm);
+        }
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: 900;
+            margin-bottom: var(--space-md);
+        }
+        .section-subtitle {
+            font-size: 20px;
+            color: var(--color-text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* ─── Philosophy ─── */
+        .philosophy-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-lg);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .philosophy-principle {
+            position: relative;
+            padding: var(--space-lg);
+            background: var(--color-bg-primary);
+            border-left: 4px solid var(--color-accent);
+            border-radius: 8px;
+            transition: all var(--motion-medium);
+        }
+        .philosophy-principle:hover { transform: translateX(8px); box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+        .principle-number {
+            font-family: var(--font-display);
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--color-accent);
+            opacity: 0.6;
+            margin-bottom: var(--space-xs);
+            letter-spacing: 0.1em;
+        }
+        .principle-title { font-family: var(--font-display); font-size: 24px; font-weight: 700; margin-bottom: var(--space-sm); }
+        .principle-description { font-size: 16px; line-height: 1.7; color: var(--color-text-secondary); }
+
+        /* ─── Work Grid ─── */
+        .work-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            column-gap: var(--space-md);
+            row-gap: var(--space-lg);
+        }
+        @media (max-width: 1100px) { .work-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+        @media (max-width: 640px) { .work-grid { grid-template-columns: 1fr; } }
+
+        .case-card {
+            position: relative;
+            background: var(--color-bg-secondary);
+            border-radius: 16px;
+            border: 1px solid var(--color-border);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            transition: transform var(--motion-medium), box-shadow var(--motion-emphasized), border-color var(--motion-medium), background var(--motion-medium);
+        }
+        .case-card::before {
+            content: "";
+            position: absolute; inset: -1px;
+            background: conic-gradient(from 180deg, #FF6B2B, #FF2E93, #6B46FF, #2BBFFF, #FF6B2B);
+            background-size: 300% 300%;
+            border-radius: inherit;
+            opacity: 0;
+            transition: opacity var(--motion-emphasized);
+            z-index: -1;
+            animation: caseCardBorderRotate 6s linear infinite;
+        }
+        .case-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 18px 50px rgba(15,23,42,0.2);
+            border-color: transparent;
+        }
+        .case-card:hover::before { opacity: 1; }
+        .case-header {
+            height: 220px;
+            background: linear-gradient(135deg, var(--color-accent), #FF8C5C);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+            font-size: 48px;
+            font-weight: 700;
+            color: white;
+        }
+        .case-header::before {
+            content: "";
+            position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
+            background: linear-gradient(120deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
+            transform: skewX(-20deg);
+            animation: cardShimmer 4s ease-in-out infinite;
+        }
+        .case-header[data-color="purple"] { background: linear-gradient(135deg, #6B46FF 0%, #8B68FF 100%); }
+        .case-header[data-color="cyan"] { background: linear-gradient(135deg, #00D4FF 0%, #33DFFF 100%); }
+        .case-header[data-color="magenta"] { background: linear-gradient(135deg, #FF006B 0%, #FF3389 100%); }
+        .case-content { padding: var(--space-md); }
+        .case-tag {
+            display: inline-block;
+            padding: 6px 12px;
+            background: rgba(26,26,26,0.85);
+            color: #FFF;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: var(--space-sm);
+        }
+        [data-theme="dark"] .case-tag { background: rgba(255,255,255,0.12); color: #F5F5F5; }
+        .case-title { font-family: var(--font-display); font-size: 24px; font-weight: 700; margin-bottom: var(--space-sm); color: var(--color-text-primary); }
+        .case-description { font-size: 16px; color: var(--color-text-secondary); line-height: 1.6; margin-bottom: var(--space-md); }
+        .case-meta-block {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            margin-bottom: var(--space-md);
+            font-size: 13px;
+            color: var(--color-text-tertiary);
+            line-height: 1.4;
+        }
+        .case-meta-block strong { color: var(--color-text-secondary); font-weight: 600; }
+        .case-stats {
+            display: flex;
+            gap: var(--space-md);
+            padding-top: var(--space-md);
+            border-top: 1px solid var(--color-border);
+        }
+        .stat { flex: 1; display: flex; flex-direction: column; gap: 4px; }
+        .stat strong { font-size: 20px; font-weight: 700; color: var(--color-accent); }
+        .stat span { font-size: 12px; color: var(--color-text-tertiary); text-transform: uppercase; letter-spacing: 0.05em; }
+
+        /* Playing Around */
+        .playing-section { margin-top: var(--space-xl); }
+        .playing-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            column-gap: var(--space-md);
+            row-gap: var(--space-lg);
+        }
+        @media (max-width: 1100px) { .playing-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+        @media (max-width: 640px) { .playing-grid { grid-template-columns: 1fr; } }
+        .playing-card {
+            background: var(--color-bg-secondary);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: var(--space-md);
+            transition: all var(--transition-fast);
+        }
+        .playing-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+        .playing-card__icon { font-size: 32px; margin-bottom: var(--space-sm); }
+        .playing-card__title { font-weight: 700; margin-bottom: var(--space-xs); font-size: 16px; }
+        .playing-card__description { font-size: 14px; color: var(--color-text-secondary); line-height: 1.5; }
+        .playing-card--highlight { border-color: var(--color-accent); box-shadow: 0 12px 32px rgba(255,107,43,0.15); transform: translateY(-2px); }
+        .playing-card--highlight:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(255,107,43,0.25); }
+
+        /* ─── About ─── */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-xl);
+            align-items: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        @media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; } }
+        .about-text p {
+            font-size: 18px;
+            line-height: 1.8;
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-md);
+        }
+        /* FIX #12: Decorative about image */
+        .about-image {
+            background: linear-gradient(135deg, rgba(255,107,43,0.08) 0%, rgba(107,70,255,0.08) 100%);
+            border: 1px solid var(--color-border);
+            border-radius: 20px;
+            padding: var(--space-lg);
+            min-height: 360px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(4, 1fr);
+            gap: 10px;
+        }
+        .ds-node {
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            opacity: 0.8;
+            transition: opacity var(--motion-medium), transform var(--motion-medium);
+        }
+        .ds-node:hover { opacity: 1; transform: scale(1.05); }
+        .ds-node--token { background: rgba(255,107,43,0.15); color: var(--color-accent); border: 1px solid rgba(255,107,43,0.25); animation: systemPulse 4s ease-in-out infinite; }
+        .ds-node--component { background: rgba(107,70,255,0.12); color: #6B46FF; border: 1px solid rgba(107,70,255,0.2); animation: systemPulse 4s ease-in-out 0.8s infinite; }
+        .ds-node--pattern { background: rgba(43,191,255,0.12); color: #2BBFFF; border: 1px solid rgba(43,191,255,0.2); animation: systemPulse 4s ease-in-out 1.6s infinite; }
+        .ds-node--guide { background: rgba(34,197,94,0.12); color: #22C55E; border: 1px solid rgba(34,197,94,0.2); animation: systemPulse 4s ease-in-out 2.4s infinite; }
+        .ds-node--span2 { grid-column: span 2; }
+        .ds-node--span3 { grid-column: span 3; background: rgba(255,107,43,0.06); border: 1px dashed rgba(255,107,43,0.2); color: var(--color-text-tertiary); letter-spacing: 0.08em; }
+        [data-theme="dark"] .ds-node--token { background: rgba(255,107,43,0.2); }
+        [data-theme="dark"] .ds-node--component { background: rgba(107,70,255,0.18); color: #9B78FF; }
+        [data-theme="dark"] .ds-node--pattern { background: rgba(43,191,255,0.18); color: #5CD0FF; }
+        [data-theme="dark"] .ds-node--guide { background: rgba(34,197,94,0.18); color: #4ADE80; }
+        [data-theme="high-contrast"] .ds-node { border-color: #FFF; color: #FFF; background: #1a1a1a; }
+        [data-theme="high-contrast"] .ds-node--span3 { border-color: rgba(255,255,255,0.3); }
+
+        /* ─── Skills ─── */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            column-gap: var(--space-md);
+            row-gap: var(--space-lg);
+        }
+        @media (max-width: 900px) { .skills-grid { grid-template-columns: 1fr; } }
+        .skill-category {
+            background: var(--color-bg-secondary);
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            padding: var(--space-lg);
+            transition: all var(--transition-fast);
+        }
+        .skill-category:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); border-color: var(--color-accent); }
+        .skill-category__icon { font-size: 40px; margin-bottom: var(--space-md); }
+        .skill-category__title { font-family: var(--font-display); font-size: 24px; font-weight: 700; margin-bottom: var(--space-sm); }
+        .skill-category__description { color: var(--color-text-secondary); margin-bottom: var(--space-md); font-size: 16px; line-height: 1.6; }
+        .skill-category__list { list-style: none; font-size: 14px; }
+        .skill-category__list li { padding: 8px 0; color: var(--color-text-secondary); display: flex; align-items: start; gap: 8px; }
+        .skill-category__list li::before { content: '&#8594;'; color: var(--color-accent); font-weight: 700; }
+
+        /* Tools */
+        .tools-section { margin-top: var(--space-2xl); }
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: var(--space-md);
+        }
+        @media (max-width: 1100px) { .tools-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-sm); } }
+        @media (max-width: 640px) { .tools-grid { grid-template-columns: 1fr; } }
+        .tool-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            border-radius: 999px;
+            background: rgba(255,255,255,0.7);
+            border: 1px solid var(--color-border);
+            box-shadow: 0 10px 30px rgba(15,23,42,0.06);
+            font-size: 14px;
+            font-weight: 500;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            transition: transform var(--transition-base), box-shadow var(--transition-base), background var(--transition-base), border-color var(--transition-base);
+        }
+        [data-theme="dark"] .tool-item { background: rgba(15,23,42,0.8); border-color: rgba(148,163,184,0.4); }
+        [data-theme="high-contrast"] .tool-item { background: #1a1a1a; border: 2px solid #666; color: #FFF; }
+        .tool-item:hover { transform: translateY(-2px); box-shadow: 0 16px 40px rgba(15,23,42,0.18); border-color: var(--color-accent); }
+        .tool-icon {
+            flex: 0 0 28px; height: 28px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, #FF6B2B, #6B46FF);
+            display: inline-flex; align-items: center; justify-content: center;
+            font-size: 11px; font-weight: 700;
+            color: #FFF;
+            box-shadow: 0 6px 14px rgba(15,23,42,0.25);
+        }
+
+        /* ─── Resume ─── */
+        .resume-card {
+            background: var(--color-bg-secondary);
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            padding: var(--space-xl);
+        }
+        .resume-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-lg);
+            flex-wrap: wrap;
+            gap: var(--space-md);
+        }
+        .experience-item {
+            margin-bottom: var(--space-lg);
+            padding-bottom: var(--space-lg);
+            border-bottom: 1px solid var(--color-border);
+        }
+        .experience-item:last-of-type { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .experience-title { font-weight: 700; font-size: 20px; margin-bottom: 4px; }
+        .experience-company { color: var(--color-text-secondary); font-size: 16px; font-weight: 500; margin-bottom: var(--space-sm); }
+        .experience-achievements { list-style: none; margin-left: 0; }
+        .experience-achievements li { padding: 8px 0; color: var(--color-text-secondary); display: flex; align-items: start; gap: 12px; font-size: 16px; line-height: 1.6; }
+        .experience-achievements li::before { content: '&#8212;'; color: var(--color-accent); font-weight: 700; flex-shrink: 0; }
+        .education-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-md); margin-top: var(--space-md); }
+        @media (max-width: 768px) { .education-grid { grid-template-columns: 1fr; } }
+        .education-item { background: var(--color-bg-primary); border: 1px solid var(--color-border); border-radius: 8px; padding: var(--space-md); }
+        .education-degree { font-weight: 700; margin-bottom: 4px; }
+        .education-school { color: var(--color-text-secondary); font-size: 14px; margin-bottom: 4px; }
+        .education-year { color: var(--color-text-tertiary); font-size: 12px; }
+
+        /* ─── Footer ─── */
+        .footer {
+            background: linear-gradient(135deg, rgba(255,107,43,0.08) 0%, rgba(107,70,255,0.08) 100%);
+            padding: var(--space-2xl) var(--space-lg);
+            text-align: center;
+        }
+        .footer__content { max-width: 700px; margin: 0 auto; }
+        .footer__title { font-family: var(--font-display); font-size: clamp(32px, 5vw, 48px); font-weight: 900; margin-bottom: var(--space-md); }
+        .footer__subtitle { font-size: 20px; color: var(--color-text-secondary); margin-bottom: var(--space-lg); }
+        .footer__links { display: flex; gap: var(--space-md); justify-content: center; margin-bottom: var(--space-lg); }
+        .footer__copyright { font-size: 14px; color: var(--color-text-tertiary); padding-top: var(--space-lg); border-top: 1px solid var(--color-border); }
+
+        /* Accessibility Badge */
+        .accessibility-badge { position: relative; display: inline-block; margin: var(--space-lg) 0 var(--space-md); }
+        .badge-content { display: flex; align-items: center; gap: var(--space-xs); padding: 10px 20px; background: rgba(255,255,255,0.9); border: 2px solid var(--color-accent); border-radius: 999px; cursor: help; transition: all var(--motion-medium); }
+        [data-theme="dark"] .badge-content { background: rgba(26,26,26,0.9); }
+        [data-theme="high-contrast"] .badge-content { background: #000; }
+        .badge-content:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(255,107,43,0.3); }
+        .badge-icon { font-size: 20px; line-height: 1; }
+        .badge-label { font-size: 14px; font-weight: 600; }
+        .badge-tooltip {
+            position: absolute;
+            bottom: calc(100% + 12px); left: 50%;
+            transform: translateX(-50%);
+            width: 320px;
+            padding: var(--space-sm) var(--space-md);
+            background: var(--color-bg-secondary);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            font-size: 13px; line-height: 1.6;
+            color: var(--color-text-secondary);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            opacity: 0; visibility: hidden;
+            transition: all var(--motion-medium);
+            pointer-events: none; z-index: 100;
+        }
+        .badge-tooltip::after { content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 8px solid transparent; border-right: 8px solid transparent; border-top: 8px solid var(--color-bg-secondary); }
+        .accessibility-badge:hover .badge-tooltip, .badge-content:focus + .badge-tooltip { opacity: 1; visibility: visible; }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .hero { padding: 100px var(--space-md) var(--space-xl); }
+            .section { padding: var(--space-xl) var(--space-md); }
+            .hero__cta { flex-direction: column; width: 100%; }
+            .btn { width: 100%; text-align: center; }
+            .footer__links { flex-direction: column; }
+            .case-stats { flex-direction: column; }
+            .resume-header { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+    <!-- FIX #5: Skip link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header class="header" role="banner">
+        <div class="header__container">
+            <a href="#" class="header__logo">&#10022; Rebecca Havens Gore</a>
+            <!-- Desktop Navigation -->
+            <nav class="header__nav" aria-label="Site navigation">
+                <ul class="nav__links">
+                    <li><a href="#work" class="nav__link">Work</a></li>
+                    <li><a href="#about" class="nav__link">About</a></li>
+                    <li><a href="#skills" class="nav__link">Skills</a></li>
+                    <li><a href="#resume" class="nav__link">Resume</a></li>
+                    <li><a href="#contact" class="nav__link">Contact</a></li>
+                </ul>
+                <!-- FIX #7: Theme controls with aria-label and aria-pressed -->
+                <div class="theme-controls" role="group" aria-label="Color theme">
+                    <button class="theme-btn" data-theme="auto" aria-label="Use system theme" aria-pressed="false">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1zm0-2c6.08 0 11 4.92 11 11s-4.92 11-11 11S1 18.08 1 12 5.92 1 12 1z"/></svg>
+                        Auto
+                    </button>
+                    <button class="theme-btn" data-theme="light" aria-label="Switch to light theme" aria-pressed="false">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0 .39-.39.39-1.03 0-1.41l-1.06-1.06zm1.06-10.96c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z"/></svg>
+                        Light
+                    </button>
+                    <button class="theme-btn" data-theme="dark" aria-label="Switch to dark theme" aria-pressed="false">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 2c-1.05 0-2.05.16-3 .46 4.06 1.27 7 5.06 7 9.54 0 4.48-2.94 8.27-7 9.54.95.3 1.95.46 3 .46 5.52 0 10-4.48 10-10S14.52 2 9 2z"/></svg>
+                        Dark
+                    </button>
+                    <button class="theme-btn" data-theme="high-contrast" aria-label="Switch to high contrast theme" aria-pressed="false">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93s3.05-7.44 7-7.93v15.86zm2-15.86c1.03.13 2 .45 2.87.93H13v-.93zM13 7h5.24c.25.31.48.65.68 1H13V7zm0 3h6.74c.08.33.15.66.19 1H13v-1zm0 9.93V19h2.87c-.87.48-1.84.8-2.87.93zM18.24 17H13v-1h5.92c-.2.35-.43.69-.68 1zm1.5-3H13v-1h6.93c-.04.34-.11.67-.19 1z"/></svg>
+                        Contrast
+                    </button>
+                </div>
+                <!-- Mobile Theme Dropdown -->
+                <div class="theme-dropdown">
+                    <button class="theme-dropdown-button" aria-label="Theme selector" aria-expanded="false">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1zm0-2c6.08 0 11 4.92 11 11s-4.92 11-11 11S1 18.08 1 12 5.92 1 12 1z"/></svg>
+                        <span class="theme-dropdown-label">Auto</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="width:14px;height:14px;margin-left:auto"><path d="M7 10l5 5 5-5z"/></svg>
+                    </button>
+                    <div class="theme-dropdown-menu" role="menu">
+                        <button class="theme-dropdown-item" data-theme="auto" role="menuitem">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1zm0-2c6.08 0 11 4.92 11 11s-4.92 11-11 11S1 18.08 1 12 5.92 1 12 1z"/></svg>
+                            Auto
+                        </button>
+                        <button class="theme-dropdown-item" data-theme="light" role="menuitem">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0 .39-.39.39-1.03 0-1.41l-1.06-1.06zm1.06-10.96c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z"/></svg>
+                            Light
+                        </button>
+                        <button class="theme-dropdown-item" data-theme="dark" role="menuitem">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 2c-1.05 0-2.05.16-3 .46 4.06 1.27 7 5.06 7 9.54 0 4.48-2.94 8.27-7 9.54.95.3 1.95.46 3 .46 5.52 0 10-4.48 10-10S14.52 2 9 2z"/></svg>
+                            Dark
+                        </button>
+                        <button class="theme-dropdown-item" data-theme="high-contrast" role="menuitem">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93s3.05-7.44 7-7.93v15.86zm2-15.86c1.03.13 2 .45 2.87.93H13v-.93zM13 7h5.24c.25.31.48.65.68 1H13V7zm0 3h6.74c.08.33.15.66.19 1H13v-1zm0 9.93V19h2.87c-.87.48-1.84.8-2.87.93zM18.24 17H13v-1h5.92c-.2.35-.43.69-.68 1zm1.5-3H13v-1h6.93c-.04.34-.11.67-.19 1z"/></svg>
+                            Contrast
+                        </button>
+                    </div>
+                </div>
+            </nav>
+            <!-- FIX #6: Hamburger with aria-expanded and aria-controls -->
+            <button class="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-nav">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Nav -->
+    <div class="nav-overlay" aria-hidden="true"></div>
+    <div class="nav-menu" id="mobile-nav" role="dialog" aria-label="Navigation menu">
+        <ul class="nav__links">
+            <li><a href="#work" class="nav__link">Work</a></li>
+            <li><a href="#about" class="nav__link">About</a></li>
+            <li><a href="#skills" class="nav__link">Skills</a></li>
+            <li><a href="#resume" class="nav__link">Resume</a></li>
+            <li><a href="#contact" class="nav__link">Contact</a></li>
+        </ul>
+        <div class="theme-controls" role="group" aria-label="Color theme">
+            <button class="theme-btn" data-theme="auto" aria-label="Use system theme" aria-pressed="false"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1zm0-2c6.08 0 11 4.92 11 11s-4.92 11-11 11S1 18.08 1 12 5.92 1 12 1z"/></svg> Auto</button>
+            <button class="theme-btn" data-theme="light" aria-label="Switch to light theme" aria-pressed="false"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1z"/></svg> Light</button>
+            <button class="theme-btn" data-theme="dark" aria-label="Switch to dark theme" aria-pressed="false"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 2c-1.05 0-2.05.16-3 .46 4.06 1.27 7 5.06 7 9.54 0 4.48-2.94 8.27-7 9.54.95.3 1.95.46 3 .46 5.52 0 10-4.48 10-10S14.52 2 9 2z"/></svg> Dark</button>
+            <button class="theme-btn" data-theme="high-contrast" aria-label="Switch to high contrast theme" aria-pressed="false"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93s3.05-7.44 7-7.93v15.86zm2-15.86c1.03.13 2 .45 2.87.93H13v-.93zM13 7h5.24c.25.31.48.65.68 1H13V7zm0 3h6.74c.08.33.15.66.19 1H13v-1zm0 9.93V19h2.87c-.87.48-1.84.8-2.87.93zM18.24 17H13v-1h5.92c-.2.35-.43.69-.68 1zm1.5-3H13v-1h6.93c-.04.34-.11.67-.19 1z"/></svg> Contrast</button>
+        </div>
+    </div>
+
+    <!-- FIX #4: main landmark -->
+    <main id="main-content">
+        <!-- Hero -->
+        <section class="hero" aria-labelledby="hero-title">
+            <div class="hero__container">
+                <p class="hero__eyebrow">Design Systems Lead &amp; Principal Product Designer</p>
+                <h1 class="hero__title" id="hero-title">I architect product ecosystems where accessibility, clarity, and velocity all move in the same direction.</h1>
+                <p class="hero__subtitle">10+ years designing scalable design systems, platform UX frameworks, AI experience standards, and enterprise products that unite design and engineering.</p>
+                <div class="micro-credentials">
+                    <span class="credential-badge">Design Systems Architecture</span>
+                    <span class="credential-badge">Accessible Product Design</span>
+                    <span class="credential-badge">UX Strategy &amp; Research</span>
+                </div>
+                <div class="hero__cta">
+                    <a href="#work" class="btn btn-primary">View My Work</a>
+                    <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Design Systems Philosophy -->
+        <section class="section" style="background: var(--color-bg-secondary);" aria-labelledby="philosophy-title">
+            <div class="container" style="max-width: 1000px;">
+                <div class="section-header">
+                    <p class="section-eyebrow">Philosophy</p>
+                    <h2 class="section-title" id="philosophy-title">How I Build Cohesive Product Systems</h2>
+                </div>
+                <div class="philosophy-grid">
+                    <div class="philosophy-principle">
+                        <div class="principle-number">01</div>
+                        <h3 class="principle-title">Predictability over novelty</h3>
+                        <p class="principle-description">Interfaces should reward user intuition&mdash;not require memorization. Consistent patterns reduce cognitive load and build trust.</p>
+                    </div>
+                    <div class="philosophy-principle">
+                        <div class="principle-number">02</div>
+                        <h3 class="principle-title">Accessibility as a constraint, not a compromise</h3>
+                        <p class="principle-description">If a component behaves beautifully with a keyboard, screen reader, and high-contrast themes&mdash;it behaves better for everyone.</p>
+                    </div>
+                    <div class="philosophy-principle">
+                        <div class="principle-number">03</div>
+                        <h3 class="principle-title">Tokens before components</h3>
+                        <p class="principle-description">Good systems emerge from consistent primitives: spacing, radii, type scale, color, and motion. Components inherit clarity from their foundations.</p>
+                    </div>
+                    <div class="philosophy-principle">
+                        <div class="principle-number">04</div>
+                        <h3 class="principle-title">Variants are earned, not accumulated</h3>
+                        <p class="principle-description">A new component variant must justify its existence through a true interaction need or semantic distinction&mdash;not designer preference.</p>
+                    </div>
+                    <div class="philosophy-principle">
+                        <div class="principle-number">05</div>
+                        <h3 class="principle-title">Design debt prevented by automation</h3>
+                        <p class="principle-description">Linting, Figma tokens, automated audits, and version control keep systems healthy at scale&mdash;not heroics.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FIX #11: Work BEFORE About -->
+        <section id="work" class="section" aria-labelledby="work-title">
+            <div class="container">
+                <div class="section-header">
+                    <p class="section-eyebrow">Selected Work</p>
+                    <h2 class="section-title" id="work-title">Deep dives into the systems, frameworks, and products I&rsquo;ve designed</h2>
+                </div>
+                <div class="work-grid">
+                    <!-- FIX #3: Relative paths -->
+                    <a href="case-study-rds.html" class="case-card">
+                        <div class="case-header" data-color="orange">&#9889;</div>
+                        <div class="case-content">
+                            <span class="case-tag">Design Systems</span>
+                            <h3 class="case-title">R7 Design System &amp; MUI Migration</h3>
+                            <p class="case-description">Scaling a unified, accessible UI foundation for a multi-product security platform</p>
+                            <div class="case-meta-block">
+                                <span><strong>Role:</strong> Principal Designer &amp; System Architect</span>
+                                <span><strong>Impact:</strong> Velocity, Component Parity, A11y Compliance</span>
+                                <span><strong>Scope:</strong> 80% Platform Adoption</span>
+                            </div>
+                            <div class="case-stats">
+                                <div class="stat"><strong>40%</strong><span>Faster Builds</span></div>
+                                <div class="stat"><strong>80%</strong><span>Adoption</span></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="case-study-dvs.html" class="case-card">
+                        <div class="case-header" data-color="purple">&#128202;</div>
+                        <div class="case-content">
+                            <span class="case-tag">Data Visualization</span>
+                            <h3 class="case-title">Data Visualization System</h3>
+                            <p class="case-description">A scalable visualization framework powering insights across the platform</p>
+                            <div class="case-meta-block">
+                                <span><strong>Role:</strong> Visualization System Architect</span>
+                                <span><strong>Impact:</strong> Design Speed, Insight Clarity</span>
+                                <span><strong>Scope:</strong> Dashboards, Reporting, Alerts</span>
+                            </div>
+                            <div class="case-stats">
+                                <div class="stat"><strong>60%</strong><span>Faster Design</span></div>
+                                <div class="stat"><strong>30%</strong><span>More Engagement</span></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="case-study-design-forum.html" class="case-card">
+                        <div class="case-header" data-color="cyan">&#128737;</div>
+                        <div class="case-content">
+                            <span class="case-tag">Design Ops</span>
+                            <h3 class="case-title">Design Forum &amp; UX Standards</h3>
+                            <p class="case-description">Governance framework for design organization excellence</p>
+                            <div class="case-meta-block">
+                                <span><strong>Role:</strong> Governance Architect &amp; Facilitator</span>
+                                <span><strong>Impact:</strong> A11y Quality, Review Velocity</span>
+                                <span><strong>Scope:</strong> Company-wide UX Practices</span>
+                            </div>
+                            <div class="case-stats">
+                                <div class="stat"><strong>35%</strong><span>Faster Approvals</span></div>
+                                <div class="stat"><strong>40%</strong><span>Better A11y</span></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="case-study-unified-platform.html" class="case-card">
+                        <div class="case-header" data-color="magenta">&#10024;</div>
+                        <div class="case-content">
+                            <span class="case-tag">Platform UX</span>
+                            <h3 class="case-title">Unified Platform Experience</h3>
+                            <p class="case-description">Standardizing tables, filters, batch actions across products</p>
+                            <div class="case-meta-block">
+                                <span><strong>Role:</strong> Platform UX Architect</span>
+                                <span><strong>Impact:</strong> Consistency, Task Success</span>
+                                <span><strong>Scope:</strong> Tables, Filters, Batch Actions</span>
+                            </div>
+                            <div class="case-stats">
+                                <div class="stat"><strong>50%</strong><span>UX Consistency</span></div>
+                                <div class="stat"><strong>28%</strong><span>Task Success</span></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="case-study-ai-experience.html" class="case-card">
+                        <div class="case-header" data-color="orange">&#129302;</div>
+                        <div class="case-content">
+                            <span class="case-tag">AI/UX</span>
+                            <h3 class="case-title">AI Experience Standard</h3>
+                            <p class="case-description">Responsible AI principles, UX patterns, trust models</p>
+                            <div class="case-meta-block">
+                                <span><strong>Role:</strong> AI/UX Architect</span>
+                                <span><strong>Impact:</strong> Trust, Permissions, Predictability</span>
+                                <span><strong>Scope:</strong> Principles, Patterns, Risk Models</span>
+                            </div>
+                            <div class="case-stats">
+                                <div class="stat"><strong>12</strong><span>Patterns</span></div>
+                                <div class="stat"><strong>6</strong><span>Principles</span></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="case-study-enablement.html" class="case-card">
+                        <div class="case-header" data-color="purple">&#128640;</div>
+                        <div class="case-content">
+                            <span class="case-tag">Enablement</span>
+                            <h3 class="case-title">Designer Enablement</h3>
+                            <p class="case-description">Mentorship, curriculum, education, AI-powered learning tools</p>
+                            <div class="case-meta-block">
+                                <span><strong>Role:</strong> Program Architect &amp; Mentor</span>
+                                <span><strong>Impact:</strong> Team Growth, System Literacy</span>
+                                <span><strong>Scope:</strong> 100+ Sessions, 30 Designers</span>
+                            </div>
+                            <div class="case-stats">
+                                <div class="stat"><strong>30+</strong><span>Designers</span></div>
+                                <div class="stat"><strong>100+</strong><span>Sessions</span></div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Playing Around -->
+                <div class="playing-section">
+                    <h3 style="font-family:var(--font-display);font-size:28px;margin-bottom:var(--space-md);text-align:center;">What I&rsquo;m Playing With</h3>
+                    <p style="text-align:center;color:var(--color-text-secondary);margin-bottom:var(--space-lg);">Side projects and experiments that spark joy</p>
+                    <div class="playing-grid">
+                        <div class="playing-card playing-card--highlight">
+                            <div class="playing-card__icon">&#9881;&#65039;</div>
+                            <h4 class="playing-card__title">Figma Plugin Creation</h4>
+                            <p class="playing-card__description">Building a plugin to automatically generate dev-ready tables based on provided styles and data.</p>
+                        </div>
+                        <div class="playing-card playing-card--highlight">
+                            <div class="playing-card__icon">&#127912;</div>
+                            <h4 class="playing-card__title">Motion Design</h4>
+                            <p class="playing-card__description">Experimenting with animation and motion design in Framer.</p>
+                        </div>
+                        <div class="playing-card">
+                            <div class="playing-card__icon">&#127984;</div>
+                            <h4 class="playing-card__title">Playground Design</h4>
+                            <p class="playing-card__description">I&rsquo;ve got big dreams of designing and building a backyard castle fort for my kids (and maybe myself).</p>
+                        </div>
+                        <div class="playing-card">
+                            <div class="playing-card__icon">&#129502;</div>
+                            <h4 class="playing-card__title">AI Magic</h4>
+                            <p class="playing-card__description">Investigating how AI or other tools can help make my ideas come to life faster.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About -->
+        <section id="about" class="section" style="background: var(--color-bg-secondary);" aria-labelledby="about-title">
+            <div class="container">
+                <div class="section-header">
+                    <p class="section-eyebrow">About Me</p>
+                    <h2 class="section-title" id="about-title">Designing systems that empower people</h2>
+                </div>
+                <!-- FIX #12: Two-column with decorative image -->
+                <div class="about-grid">
+                    <div class="about-text">
+                        <p>I&rsquo;m a Design Systems Lead and Principal Product Designer with over 10 years of experience creating scalable, accessible design systems and enterprise UX frameworks. I specialize in unifying multi-product experiences, accelerating engineering velocity, and mentoring teams into design maturity.</p>
+                        <p>My work spans four design systems across Rapid7, AlphaWave, and Kronologic, where I&rsquo;ve led MUI migrations, built visualization frameworks, established governance models, and pioneered AI experience standards. I believe great design systems are more than component libraries&mdash;they&rsquo;re shared languages that unite design and engineering around a common vision.</p>
+                        <p>When I&rsquo;m not architecting systems, you&rsquo;ll find me mentoring designers, experimenting with AI-powered tools, or dreaming up backyard castle forts for my kids.</p>
+                    </div>
+                    <!-- FIX #12: Decorative design-system visualization, aria-hidden -->
+                    <div class="about-image" aria-hidden="true" role="presentation">
+                        <div class="ds-node ds-node--span3 ds-node--token">Foundation Tokens</div>
+                        <div class="ds-node ds-node--token">Color</div>
+                        <div class="ds-node ds-node--token">Spacing</div>
+                        <div class="ds-node ds-node--token">Motion</div>
+                        <div class="ds-node ds-node--span3" style="background:var(--color-border-subtle);border:1px dashed var(--color-border);color:var(--color-text-tertiary);font-size:10px;display:flex;align-items:center;justify-content:center;">&#11015; Component Layer</div>
+                        <div class="ds-node ds-node--component ds-node--span2">Button</div>
+                        <div class="ds-node ds-node--component">Icon</div>
+                        <div class="ds-node ds-node--component">Input</div>
+                        <div class="ds-node ds-node--component">Table</div>
+                        <div class="ds-node ds-node--component">Badge</div>
+                        <div class="ds-node ds-node--pattern ds-node--span2">Dashboard Template</div>
+                        <div class="ds-node ds-node--pattern">Filter</div>
+                        <div class="ds-node ds-node--guide ds-node--span3">&#9679; WCAG AA/AAA &#183; Dark &#183; High Contrast &#183; Motion-Safe</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills -->
+        <section id="skills" class="section" aria-labelledby="skills-title">
+            <div class="container">
+                <div class="section-header">
+                    <p class="section-eyebrow">Expertise</p>
+                    <h2 class="section-title" id="skills-title">Skills &amp; Capabilities</h2>
+                    <p class="section-subtitle">The systems, practices, and tools I use to scale product quality</p>
+                </div>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <div class="skill-category__icon">&#9889;</div>
+                        <h3 class="skill-category__title">Design Systems &amp; Governance</h3>
+                        <p class="skill-category__description">I design and steward systems that give teams shared language, reusable patterns, and clear decision rails.</p>
+                        <ul class="skill-category__list">
+                            <li>System architecture for multi-product platforms (MUI, AntD, custom)</li>
+                            <li>Token systems, theming, and layout foundations</li>
+                            <li>Component libraries with Figma &#8596; code parity</li>
+                            <li>Governance models (Design Forum, UX Standards, pattern approval)</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <div class="skill-category__icon">&#129517;</div>
+                        <h3 class="skill-category__title">Design Strategy &amp; Leadership</h3>
+                        <p class="skill-category__description">I connect product vision, system architecture, and team execution so we&rsquo;re solving the right problems, at the right level.</p>
+                        <ul class="skill-category__list">
+                            <li>Defining platform, system, and AI UX visions</li>
+                            <li>Aligning design, product, engineering, and AI/ML stakeholders</li>
+                            <li>Translating research and metrics into strategy and roadmaps</li>
+                            <li>Facilitating cross-functional workshops and alignment</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <div class="skill-category__icon">&#128736;&#65039;</div>
+                        <h3 class="skill-category__title">Platform &amp; Product Design</h3>
+                        <p class="skill-category__description">I specialize in complex, data-heavy workflows where clarity, speed, and trust really matter.</p>
+                        <ul class="skill-category__list">
+                            <li>Platform interaction frameworks (tables, filters, batch actions)</li>
+                            <li>Data visualization systems for dashboards and reporting</li>
+                            <li>End-to-end product flows for security and operational tools</li>
+                            <li>Information architecture across multi-product ecosystems</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="tools-section">
+                    <h3 style="font-family:var(--font-display);font-size:28px;margin-bottom:var(--space-lg);text-align:center;">Tools I Reach For</h3>
+                    <div class="tools-grid">
+                        <div class="tool-item"><div class="tool-icon">F</div> Figma</div>
+                        <div class="tool-item"><div class="tool-icon">Fr</div> Framer</div>
+                        <div class="tool-item"><div class="tool-icon">S</div> Supernova</div>
+                        <div class="tool-item"><div class="tool-icon">N</div> Notion</div>
+                        <div class="tool-item"><div class="tool-icon">M</div> Miro</div>
+                        <div class="tool-item"><div class="tool-icon">GH</div> GitHub</div>
+                        <div class="tool-item"><div class="tool-icon">J</div> Jira</div>
+                        <div class="tool-item"><div class="tool-icon">FJ</div> FigJam</div>
+                        <div class="tool-item"><div class="tool-icon">&#9999;</div> Notability</div>
+                        <div class="tool-item"><div class="tool-icon">AI</div> ChatGPT</div>
+                        <div class="tool-item"><div class="tool-icon">C</div> Claude</div>
+                        <div class="tool-item"><div class="tool-icon">A</div> Atlassian</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resume -->
+        <section id="resume" class="section" style="background: var(--color-bg-secondary);" aria-labelledby="resume-title">
+            <div class="container">
+                <div class="section-header">
+                    <p class="section-eyebrow">Experience</p>
+                    <h2 class="section-title" id="resume-title">Rebecca Havens Gore</h2>
+                    <p class="section-subtitle" style="margin-bottom:var(--space-md);">Design Systems Lead &bull; Principal Product Designer &bull; UX &amp; AI Experience Architect</p>
+                </div>
+                <div class="resume-card">
+                    <!-- FIX #15: Download Resume button -->
+                    <div class="resume-header">
+                        <h3 style="font-weight:700;font-size:20px;">Professional Experience</h3>
+                        <a href="Rebecca_Gore_Resume.docx" download class="btn btn-secondary" style="font-size:14px;padding:10px 20px;">&#8681; Download Resume</a>
+                    </div>
+                    <p style="color:var(--color-text-secondary);margin-bottom:var(--space-lg);line-height:1.7;">Design Systems Lead &bull; Principal Product Designer &bull; UX &amp; AI Experience Architect with 10+ years designing scalable design systems, platform UX frameworks, AI experience standards, and high-impact enterprise products. Proven success unifying multi-product experiences, accelerating engineering velocity, and mentoring teams into design maturity at Rapid7, AlphaWave, and Kronologic.</p>
+
+                    <div class="experience-item">
+                        <div class="experience-title">Staff User Experience Designer &mdash; Portfolio Experience Enablement</div>
+                        <div class="experience-company">Rapid7 | January 2021 &mdash; Present</div>
+                        <ul class="experience-achievements">
+                            <li>Architected RDS and led the MUI migration, improving implementation speed by 40%, driving 80% platform adoption, and achieving WCAG 2.2 AA compliance</li>
+                            <li>Established the Unified Platform Experience, standardizing tables, filters, and batch actions across products (+50% UX consistency, +28% task success)</li>
+                            <li>Redesigned DVS, enabling a flexible visualization layer that cut design time by 60% and increased dashboard engagement by 30%</li>
+                            <li>Authored the AI Experience Standard: responsible AI principles, UX patterns, trust models, and permissions framework</li>
+                            <li>Built UX governance (Design Forum + Standards), improving accessibility compliance by 40% and significantly reducing design drift</li>
+                            <li>Led Designer Enablement programs: 100+ sessions, structured curriculum, and AI-driven learning tools</li>
+                        </ul>
+                    </div>
+                    <div class="experience-item">
+                        <div class="experience-title">Lead UX Designer &amp; Design System Architect (Contract)</div>
+                        <div class="experience-company">AlphaWave | 2020 &mdash; 2021</div>
+                        <ul class="experience-achievements">
+                            <li>Established AlphaWave&rsquo;s UX strategy and visual foundation from ground up</li>
+                            <li>Created AlphaWave Design System: component architecture, styling, documentation</li>
+                            <li>Designed dashboards, asset intelligence, risk scoring, scanning workflows, reporting</li>
+                            <li>Contributed to highly positive SC Labs review praised for design clarity and modern UX</li>
+                        </ul>
+                    </div>
+                    <div class="experience-item">
+                        <div class="experience-title">Senior Product Designer / Design System Architect (Contract)</div>
+                        <div class="experience-company">Kronologic | 2019 &mdash; 2020</div>
+                        <ul class="experience-achievements">
+                            <li>Introduced Ant Design (AntD) and rebuilt UI foundation on a scalable system</li>
+                            <li>Led complete redesign of product navigation, IA, dashboard structure, and interaction design</li>
+                            <li>Improved workflow clarity, reduced engineering rework, raised product credibility for enterprise customers</li>
+                        </ul>
+                    </div>
+                    <div class="experience-item">
+                        <div class="experience-title">Senior UX Designer / UX Designer II</div>
+                        <div class="experience-company">Rapid7 | April 2016 &mdash; December 2020</div>
+                        <ul class="experience-achievements">
+                            <li>Led UX for DVS MVP and early platform dashboards, establishing foundational patterns for charting and insights</li>
+                            <li>Designed earliest unified dashboard experiences across InsightIDR, InsightVM, InsightOps</li>
+                            <li>Defined cross-product filtering, querying, drill-in patterns that informed later Unified Platform Experience work</li>
+                            <li>Contributed foundational work to Rapid7&rsquo;s Platform UX Vision, Experience One, and unified navigation</li>
+                        </ul>
+                    </div>
+                    <div class="experience-item">
+                        <div class="experience-title">UX Designer</div>
+                        <div class="experience-company">Bypass Mobile | July 2013 &mdash; 2016</div>
+                        <ul class="experience-achievements">
+                            <li>Designed mobile/tablet POS, ordering, and concessions experiences for major stadiums and event venues</li>
+                            <li>Led UX for high-speed transaction flows, inventory management, staff operations, dashboard analytics</li>
+                            <li>Developed reusable components and early design system elements that reduced visual inconsistency</li>
+                        </ul>
+                    </div>
+
+                    <h4 style="font-weight:700;margin:var(--space-lg) 0 var(--space-md);">Education</h4>
+                    <div class="education-grid">
+                        <div class="education-item">
+                            <div class="education-degree">MS in Information Studies (MSIS)</div>
+                            <div class="education-school">University of Texas at Austin</div>
+                            <div class="education-year">2011&ndash;2013</div>
+                            <div style="font-size:14px;color:var(--color-text-tertiary);margin-top:8px;">Information Architecture, Retrieval, Visualization</div>
+                        </div>
+                        <div class="education-item">
+                            <div class="education-degree">MA in History</div>
+                            <div class="education-school">University of Texas at Austin</div>
+                            <div class="education-year">2007&ndash;2011</div>
+                        </div>
+                        <div class="education-item">
+                            <div class="education-degree">BA in Medieval &amp; Renaissance Studies</div>
+                            <div class="education-school">Vassar College</div>
+                            <div class="education-year">2004&ndash;2007</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FIX #13: External links with rel="noopener noreferrer" -->
+    <footer id="contact" class="footer">
+        <div class="footer__content">
+            <h2 class="footer__title">Let&rsquo;s Connect</h2>
+            <p class="footer__subtitle">I&rsquo;m always interested in hearing about new opportunities, collaborations, or just talking design systems and product strategy.</p>
+            <div class="footer__links">
+                <a href="mailto:becca.h.gore@gmail.com" class="btn btn-primary">Email Me</a>
+                <a href="https://linkedin.com/in/rebecca-havens-gore" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            </div>
+            <div class="accessibility-badge" role="status">
+                <div class="badge-content" tabindex="0">
+                    <span class="badge-icon" aria-hidden="true">&#9855;</span>
+                    <span class="badge-label">Designed Accessibly</span>
+                </div>
+                <div class="badge-tooltip" role="tooltip">This site uses semantic HTML, WCAG-compliant color contrast, keyboard-safe interactions, screen reader support, skip links, motion preferences, and high-contrast themes.</div>
+            </div>
+            <p class="footer__copyright">&copy; 2025 Rebecca Gore. All rights reserved. | Designed with accessibility and systems thinking.</p>
+        </div>
+    </footer>
+
+    <script>
+        // ── Theme System ──
+        const html = document.documentElement;
+        const themeNames = { auto: 'Auto', light: 'Light', dark: 'Dark', 'high-contrast': 'Contrast' };
+
+        function getSystemTheme() {
+            return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+
+        function applyTheme(pref) {
+            const actual = pref === 'auto' ? getSystemTheme() : pref;
+            html.setAttribute('data-theme', actual);
+
+            document.querySelectorAll('.theme-btn').forEach(btn => {
+                const active = btn.dataset.theme === pref;
+                btn.classList.toggle('active', active);
+                btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+            });
+            document.querySelectorAll('.theme-dropdown-item').forEach(item => {
+                item.classList.toggle('active', item.dataset.theme === pref);
+            });
+            const label = document.querySelector('.theme-dropdown-label');
+            if (label) label.textContent = themeNames[pref] || 'Auto';
+        }
+
+        document.querySelectorAll('.theme-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                applyTheme(btn.dataset.theme);
+                try { localStorage.setItem('theme', btn.dataset.theme); } catch(e) {}
+            });
+        });
+
+        const dropBtn = document.querySelector('.theme-dropdown-button');
+        const dropMenu = document.querySelector('.theme-dropdown-menu');
+        if (dropBtn && dropMenu) {
+            dropBtn.addEventListener('click', e => {
+                e.stopPropagation();
+                const open = dropMenu.classList.toggle('active');
+                dropBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+            });
+            document.addEventListener('click', () => {
+                dropMenu.classList.remove('active');
+                dropBtn.setAttribute('aria-expanded', 'false');
+            });
+        }
+
+        document.querySelectorAll('.theme-dropdown-item').forEach(item => {
+            item.addEventListener('click', () => {
+                applyTheme(item.dataset.theme);
+                if (dropMenu) { dropMenu.classList.remove('active'); dropBtn.setAttribute('aria-expanded','false'); }
+                try { localStorage.setItem('theme', item.dataset.theme); } catch(e) {}
+            });
+        });
+
+        if (window.matchMedia) {
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+                try { if ((localStorage.getItem('theme') || 'auto') === 'auto') applyTheme('auto'); } catch(e) {}
+            });
+        }
+
+        try { applyTheme(localStorage.getItem('theme') || 'auto'); } catch(e) { applyTheme('auto'); }
+
+        // ── Mobile Navigation (FIX #6: aria-expanded) ──
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu   = document.querySelector('.nav-menu');
+        const navOverlay = document.querySelector('.nav-overlay');
+
+        function toggleNav() {
+            const open = navMenu.classList.toggle('active');
+            hamburger.classList.toggle('active', open);
+            navOverlay.classList.toggle('active', open);
+            hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            document.body.style.overflow = open ? 'hidden' : '';
+        }
+
+        if (hamburger) {
+            hamburger.addEventListener('click', toggleNav);
+            navOverlay.addEventListener('click', toggleNav);
+            document.querySelectorAll('.nav-menu .nav__link').forEach(l => l.addEventListener('click', toggleNav));
+        }
+
+        // ── Smooth Scroll ──
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', function(e) {
+                const target = document.querySelector(this.getAttribute('href'));
+                if (!target) return;
+                e.preventDefault();
+                const y = target.getBoundingClientRect().top + window.pageYOffset - 80;
+                window.scrollTo({ top: y, behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>

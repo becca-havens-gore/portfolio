@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>R7 Design System & MUI Migration &mdash; Rebecca Gore</title>
-    <meta name="description" content="Case study: Scaling a unified, accessible UI foundation for a multi-product security platform">
+    <title>AI Experience Standard &mdash; Rebecca Gore</title>
+    <meta name="description" content="Case study: Designing a responsible, explainable, and scalable AI framework for an enterprise cybersecurity platform">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
     <style>
-        /* Importing all styles from the main portfolio */
         :root {
             --grid-columns: 12;
             --grid-gutter: 80px;
@@ -28,14 +27,12 @@
             --color-text-primary: #1A1A1A;
             --color-text-secondary: #4A4A4A;
             --color-text-tertiary: #6A6A6A;
-            --color-accent: #FF6B2B;
-            --color-accent-hover: #E85A1F;
+            --color-accent: #FFB82B;
+            --color-accent-hover: #E5A420;
             --color-border: rgba(0, 0, 0, 0.08);
             --color-shadow: rgba(0, 0, 0, 0.06);
-            --color-overlay: rgba(0, 0, 0, 0.7);
             --transition-fast: 200ms cubic-bezier(0.4, 0, 0.2, 1);
             --transition-base: 400ms cubic-bezier(0.4, 0, 0.2, 1);
-            --transition-slow: 600ms cubic-bezier(0.4, 0, 0.2, 1);
             --space-xs: 8px;
             --space-sm: 16px;
             --space-md: 24px;
@@ -44,8 +41,6 @@
             --space-2xl: 120px;
             --shadow-sm: 0 2px 8px var(--color-shadow);
             --shadow-md: 0 4px 16px var(--color-shadow);
-            --shadow-lg: 0 8px 24px var(--color-shadow);
-            --focus-color: var(--color-accent);
             --focus-width: 3px;
             --focus-offset: 2px;
         }
@@ -59,11 +54,10 @@
             --color-text-tertiary: #888888;
             --color-border: rgba(255, 255, 255, 0.12);
             --color-shadow: rgba(0, 0, 0, 0.3);
-            --color-overlay: rgba(0, 0, 0, 0.85);
         }
         
         @media (prefers-reduced-motion: reduce) {
-            * {
+            *, *::before, *::after {
                 animation-duration: 0.01ms !important;
                 animation-iteration-count: 1 !important;
                 transition-duration: 0.01ms !important;
@@ -92,12 +86,11 @@
         }
         
         :focus-visible {
-            outline: var(--focus-width) solid var(--focus-color);
+            outline: var(--focus-width) solid var(--color-accent);
             outline-offset: var(--focus-offset);
             border-radius: 2px;
         }
         
-        /* Header */
         .header {
             position: fixed;
             top: 0;
@@ -109,16 +102,11 @@
             padding: var(--space-md) var(--grid-margin);
             transition: all var(--transition-base);
             backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
         }
         
         .header.scrolled {
             background: rgba(250, 250, 250, 0.8);
-            box-shadow: 0 4px 24px rgba(255, 107, 43, 0.1);
-        }
-        
-        [data-theme="dark"] .header.scrolled {
-            background: rgba(26, 26, 26, 0.8);
+            box-shadow: 0 4px 24px rgba(255, 184, 43, 0.1);
         }
         
         .header::before {
@@ -128,7 +116,7 @@
             left: 0;
             right: 0;
             height: 2px;
-            background: linear-gradient(90deg, var(--color-accent) 0%, #FF8C5C 25%, #6B46FF 50%, #2BBFFF 75%, var(--color-accent) 100%);
+            background: linear-gradient(90deg, #FFB82B 0%, #FFC85C 25%, #FFB82B 50%, #FFC85C 75%, #FFB82B 100%);
             background-size: 200% 100%;
             opacity: 0;
             transition: opacity var(--transition-base);
@@ -180,10 +168,9 @@
             font-size: 20px;
         }
         
-        /* Case Study Hero */
         .case-hero {
             min-height: 70vh;
-            background: linear-gradient(135deg, #FF6B2B 0%, #FF8C5C 100%);
+            background: linear-gradient(135deg, #FFB82B 0%, #FFC85C 100%);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -254,7 +241,6 @@
             border: 1px solid rgba(255, 255, 255, 0.3);
         }
         
-        /* Meta Section */
         .case-meta {
             background: var(--color-bg-secondary);
             padding: var(--space-xl) var(--grid-margin);
@@ -291,7 +277,6 @@
             color: var(--color-text-primary);
         }
         
-        /* Content Section */
         .case-content {
             max-width: 900px;
             margin: 0 auto;
@@ -319,7 +304,7 @@
             left: 0;
             width: 60px;
             height: 4px;
-            background: linear-gradient(90deg, var(--color-accent), #FF8C5C);
+            background: linear-gradient(90deg, var(--color-accent), #FFC85C);
             border-radius: 2px;
         }
         
@@ -360,7 +345,76 @@
             color: var(--color-text-primary);
         }
         
-        /* Impact Section */
+        .principles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: var(--space-md);
+            margin-top: var(--space-lg);
+        }
+        
+        .principle-card {
+            padding: var(--space-md);
+            background: var(--color-bg-secondary);
+            border: 2px solid var(--color-accent);
+            border-radius: 12px;
+            transition: all var(--transition-fast);
+        }
+        
+        .principle-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .principle-card__title {
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--color-accent);
+            margin-bottom: 8px;
+        }
+        
+        .principle-card__description {
+            font-size: 15px;
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+        }
+        
+        .pillars-grid {
+            display: grid;
+            gap: var(--space-xl);
+            margin-top: var(--space-xl);
+        }
+        
+        .pillar-section {
+            padding: var(--space-lg);
+            background: var(--color-bg-secondary);
+            border: 1px solid var(--color-border);
+            border-left: 4px solid var(--color-accent);
+            border-radius: 8px;
+        }
+        
+        .pillar-section__title {
+            font-family: var(--font-display);
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--color-accent);
+            margin-bottom: var(--space-md);
+        }
+        
+        .pattern-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-sm);
+            margin-top: var(--space-md);
+        }
+        
+        .pattern-item {
+            padding: var(--space-sm);
+            background: var(--color-bg-tertiary);
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
         .impact-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -384,7 +438,7 @@
             left: 0;
             width: 100%;
             height: 4px;
-            background: linear-gradient(90deg, var(--color-accent), #FF8C5C);
+            background: linear-gradient(90deg, var(--color-accent), #FFC85C);
         }
         
         .impact-card__icon {
@@ -414,9 +468,8 @@
             line-height: 1.6;
         }
         
-        /* Quote Block */
         .quote-block {
-            margin: var(--space-xl) 0;
+            margin: var(--space-lg) 0;
             padding: var(--space-lg);
             background: var(--color-bg-tertiary);
             border-left: 4px solid var(--color-accent);
@@ -428,9 +481,15 @@
             font-style: italic;
             color: var(--color-text-primary);
             line-height: 1.6;
+            margin-bottom: var(--space-sm);
         }
         
-        /* Navigation Footer */
+        .quote-block__author {
+            font-size: 16px;
+            color: var(--color-text-tertiary);
+            font-weight: 600;
+        }
+        
         .case-nav {
             background: var(--color-bg-secondary);
             border-top: 1px solid var(--color-border);
@@ -466,7 +525,6 @@
             box-shadow: var(--shadow-md);
         }
         
-        /* Responsive */
         @media (max-width: 768px) {
             :root {
                 --grid-margin: 32px;
@@ -474,11 +532,7 @@
                 --type-h2: 28px;
             }
             
-            .case-meta__container {
-                grid-template-columns: 1fr;
-            }
-            
-            .impact-grid {
+            .case-meta__container, .impact-grid, .principles-grid, .pattern-grid {
                 grid-template-columns: 1fr;
             }
             
@@ -625,220 +679,334 @@
     </header>
     
     <main id="case-main">
-        <!-- Hero -->
         <section class="case-hero">
             <div class="case-hero__content">
-                <p class="case-hero__eyebrow">Case Study 01</p>
-                <h1 class="case-hero__title">Rapid7 Design System & MUI Migration</h1>
-                <p class="case-hero__subtitle">Scaling a unified, accessible UI foundation for a multi-product security platform</p>
+                <p class="case-hero__eyebrow">Case Study 05</p>
+                <h1 class="case-hero__title">AI Experience Standard</h1>
+                <p class="case-hero__subtitle">Designing a responsible, explainable, and scalable AI framework for an enterprise cybersecurity platform</p>
                 <div class="case-hero__tags">
+                    <span class="case-hero__tag">AI Design</span>
+                    <span class="case-hero__tag">UX Patterns</span>
+                    <span class="case-hero__tag">Explainability</span>
                     <span class="case-hero__tag">Design Systems</span>
-                    <span class="case-hero__tag">MUI</span>
-                    <span class="case-hero__tag">Accessibility</span>
-                    <span class="case-hero__tag">Platform UX</span>
                 </div>
             </div>
         </section>
         
-        <!-- Meta -->
         <section class="case-meta" aria-label="Project overview">
             <div class="case-meta__container">
                 <div class="meta-item">
                     <div class="meta-item__label">Role</div>
-                    <div class="meta-item__value">Principal Designer, Design Systems</div>
+                    <div class="meta-item__value">AI UX Lead & Standards Architect</div>
                 </div>
                 <div class="meta-item">
-                    <div class="meta-item__label">Timeline</div>
-                    <div class="meta-item__value">18 Months</div>
+                    <div class="meta-item__label">Principles</div>
+                    <div class="meta-item__value">6 Validated AI Principles</div>
                 </div>
                 <div class="meta-item">
-                    <div class="meta-item__label">Team</div>
-                    <div class="meta-item__value">Cross-functional (Design, Engineering, A11y)</div>
+                    <div class="meta-item__label">Patterns</div>
+                    <div class="meta-item__value">12 Reusable AI UX Patterns</div>
                 </div>
                 <div class="meta-item">
-                    <div class="meta-item__label">Impact</div>
-                    <div class="meta-item__value">80% Platform Coverage</div>
+                    <div class="meta-item__label">Innovation</div>
+                    <div class="meta-item__value">AI-Aware Design System</div>
                 </div>
             </div>
         </section>
         
-        <!-- Content -->
         <article class="case-content">
             <section class="case-section">
                 <h2 class="case-section__title">Executive Summary</h2>
-                <p>Rapid7's multi-product platform struggled with fragmented UI patterns, divergent codebases, and inconsistent accessibility standards. I led the architectural direction, strategy, and rollout of the Rapid7 Design System (RDS) and MUI migration, partnering across design, engineering, product, and accessibility teams.</p>
-                <p>Together, we delivered a unified, scalable UI framework now powering all major products across the portfolio&mdash;improving efficiency, consistency, accessibility, and design maturity at scale.</p>
+                <p>As AI-powered features matured across Rapid7's platform, teams began delivering summaries, recommendations, predictions, and auto-generated content&mdash;but without unified attribution, explainability, trust models, or user control. In a cybersecurity context where accuracy, provenance, and reliability are paramount, inconsistent AI UX posed significant risk.</p>
+                <p>I led the strategy, architecture, and delivery of the AI Experience Standard, Rapid7's first cross-product framework for responsible enterprise AI. Together with the AI Center of Excellence, Design System team, Platform UX, and product designers, we created principles, patterns, permissions, and explainability models that made AI interactions consistent, trustworthy, and scalable across six product lines.</p>
+                <p>We also operationalized the standard into the design system&mdash;making it consumable by AI tools like Supernova and MCP&mdash;enabling system-aware AI copilots that keep product teams aligned, compliant, and efficient.</p>
             </section>
             
             <section class="case-section">
-                <h2 class="case-section__title">The Challenge</h2>
-                <p>Rapid7's product suite evolved through acquisition and parallel development, resulting in systemic fragmentation that hurt both user experience and engineering velocity:</p>
+                <h2 class="case-section__title">Context</h2>
+                <p>Rapid7's platform was shipping multiple AI-driven features:</p>
                 <ul>
-                    <li>17+ button variants across products</li>
-                    <li>6 different DataGrid implementations</li>
-                    <li>Inconsistent spacing, typography, and theming</li>
-                    <li>Little or no code&rdquo;“design parity</li>
-                    <li>No unified component specification or governance</li>
-                    <li>Accessibility audits failing across multiple product lines</li>
-                    <li>Multiple duplicate component libraries creating engineering inefficiencies</li>
-                    <li>Divergent UI patterns for core interactions</li>
+                    <li>Generative summaries of alerts, detections, and investigations</li>
+                    <li>Predictive recommendations</li>
+                    <li>Automated report generation</li>
+                    <li>AI-assisted queries</li>
+                    <li>In-context triage suggestions</li>
                 </ul>
+                
+                <p>However, each team implemented AI features differently, leading to:</p>
+                <ul>
+                    <li>Dramatic variation in explainability</li>
+                    <li>No standard for confidence indicators or provenance</li>
+                    <li>No consistent AI attribution</li>
+                    <li>No user controls or permissions framework</li>
+                    <li>No shared "AI design system" for designers or engineers</li>
+                </ul>
+                
+                <p>In cybersecurity, unclear AI behavior can undermine user trust&mdash;and trust is non-negotiable.</p>
+            </section>
+            
+            <section class="case-section">
+                <h2 class="case-section__title">The Problem</h2>
+                <p>Without a unified standard:</p>
+                
+                <h3>User Impact</h3>
+                <ul>
+                    <li>Users couldn't tell what was human-generated vs. AI-generated</li>
+                    <li>Analysts lacked insight into why an AI recommendation was made</li>
+                    <li>AI outputs lacked consistent disclaimers or confidence levels</li>
+                    <li>Accessibility and clarity varied from team to team</li>
+                    <li>Capabilities were shipped without adequate permission controls</li>
+                    <li>AI features risked harming trust in high-stakes environments</li>
+                </ul>
+                
+                <h3>Internal Team Impact</h3>
+                <ul>
+                    <li>Designers recreated AI UI patterns independently</li>
+                    <li>Engineers implemented inconsistent logic</li>
+                    <li>No shared documentation or governance existed</li>
+                    <li>AI models had no structured design system metadata to draw from</li>
+                </ul>
+                
+                <p>We needed a design system for AI itself&mdash;and a governance model to ensure safe, transparent, and responsible AI across the platform.</p>
             </section>
             
             <section class="case-section">
                 <h2 class="case-section__title">My Role</h2>
-                <p>I defined the system vision and architecture, built the governance and adoption model, and partnered closely with engineering to migrate to an enterprise-grade MUI implementation.</p>
+                <p>I led the AI UX strategy and standards architecture, working across multiple teams to establish a comprehensive framework.</p>
                 
                 <h3>Key Responsibilities</h3>
                 <ul>
-                    <li>Design system strategy and vision</li>
-                    <li>Information architecture and component taxonomy</li>
-                    <li>Governance model and design ops processes</li>
-                    <li>Measurement frameworks and KPIs</li>
-                    <li>Stakeholder alignment and communication</li>
-                    <li>Foundations: theming, tokens, spacing, typography</li>
+                    <li>AI UX principles and responsible AI model</li>
+                    <li>Pattern architecture (attribution, explainability, trust, permissions)</li>
+                    <li>Design system integration and component specification</li>
+                    <li>System ingestion models enabling AI to consume DS metadata</li>
+                    <li>Cross-team workshops and alignment</li>
+                    <li>Documentation and governance</li>
                 </ul>
                 
-                <h3>Collaborative Deliverables</h3>
+                <h3>Deliverables</h3>
                 <ul>
-                    <li>60+ fully accessible MUI components</li>
-                    <li>Platform templates and interaction patterns</li>
-                    <li>Comprehensive documentation and tooling</li>
-                    <li>Code library with engineering team</li>
-                    <li>Adoption rollout plans per product team</li>
+                    <li>12 reusable AI UX patterns</li>
+                    <li>6 responsible AI principles</li>
+                    <li>Unified explainability system</li>
+                    <li>Permission controls at global, product, and workspace level</li>
+                    <li>AI-to-design-system integrations (Supernova, MCP)</li>
+                    <li>Platform-wide AI Experience Standard</li>
                 </ul>
             </section>
             
             <section class="case-section">
                 <h2 class="case-section__title">Constraints</h2>
-                <p>The project needed to balance multiple technical and organizational challenges:</p>
                 <ul>
-                    <li>Six product teams with different tech stacks</li>
-                    <li>Parallel product delivery could not be disrupted</li>
-                    <li>Required full WCAG 2.2 AA compliance</li>
-                    <li>Needed to support light/dark theming</li>
-                    <li>Must unify visual language across acquisitions</li>
-                    <li>Required measurable ROI to secure future investment</li>
+                    <li>High-stakes cybersecurity context (zero tolerance for misleading UX)</li>
+                    <li>Multiple existing AI features requiring alignment retroactively</li>
+                    <li>Must integrate with legal, compliance, privacy expectations</li>
+                    <li>Needed to support both generative and predictive AI</li>
+                    <li>Multiple product teams with different maturity levels</li>
+                    <li>Required to be "future-proof" for new AI features</li>
                 </ul>
             </section>
             
             <section class="case-section">
-                <h2 class="case-section__title">Research & Discovery</h2>
-                <p>I executed a comprehensive foundational audit across all six products, analyzing components, patterns, and user workflows.</p>
+                <h2 class="case-section__title">Research & User Insights</h2>
+                <p>I collaborated with UX Research to analyze 9 customer interviews with Security Analysts, Managers, and Directors, examining SOC workflows and AI touchpoints.</p>
                 
-                <h3>Component Inventory</h3>
-                <ul>
-                    <li>Buttons, form fields, and navigation patterns across all states</li>
-                    <li>Tables, filters, cards, metrics, and summary views</li>
-                    <li>Data visualization interactions</li>
-                </ul>
+                <h3>Key Research Insights</h3>
                 
-                <h3>Key Findings</h3>
-                <ul>
-                    <li>High divergence in structure and behavior across products</li>
-                    <li>Engineering teams re-implementing similar components</li>
-                    <li>Designers spending excessive time manually aligning patterns</li>
-                    <li>No shared documentation or specification model</li>
-                    <li>Accessibility issues caused by inconsistent semantic structure</li>
-                </ul>
+                <p><strong>1. Trust must be earned, not assumed</strong></p>
+                <p>Users expect AI output from Rapid7 to be correct by default.</p>
                 
-                <h3>Business & User Insights</h3>
-                <ul>
-                    <li>Fragmentation raised onboarding time for new users</li>
-                    <li>Inconsistency made insights harder to interpret</li>
-                    <li>Teams lacked trust in shared UI patterns</li>
-                    <li>Engineers lacked clarity on what "done" looked like</li>
-                </ul>
+                <p><strong>2. Transparency reduces cognitive load</strong></p>
+                <p>Users want to understand why, how, and based on what data an output was generated.</p>
+                
+                <p><strong>3. Analysts need provenance</strong></p>
+                <p>They want drill-downs into the underlying data&mdash;especially in incident investigations.</p>
+                
+                <p><strong>4. Control matters</strong></p>
+                <p>Users want AI to assist, not automate decisions without oversight.</p>
+                
+                <p><strong>5. AI must reduce workload, not increase it</strong></p>
+                <p>Users want fewer steps&mdash;not more complex workflows.</p>
+                
+                <p><strong>6. Privacy and data handling transparency are non-negotiable</strong></p>
+                <p>Clear communication about data usage and storage is essential.</p>
             </section>
             
             <section class="case-section">
-                <h2 class="case-section__title">Strategy & Architecture</h2>
-                <p>I architected RDS around three scalable layers that both design and engineering could rely on:</p>
+                <h2 class="case-section__title">Strategy & Framework Architecture</h2>
+                <p>The AI Experience Standard includes four foundational pillars:</p>
                 
-                <h3>Layer 1 &mdash; Foundations</h3>
-                <ul>
-                    <li>Design tokens (color, spacing, typography, radii, motion)</li>
-                    <li>Light/dark theming system</li>
-                    <li>Grid and layout rules</li>
-                    <li>Accessibility standards</li>
-                </ul>
-                
-                <h3>Layer 2 &mdash; Components</h3>
-                <ul>
-                    <li>60+ fully documented UI components</li>
-                    <li>MUI-based implementations with Rapid7-specific overrides</li>
-                    <li>Component spec sheets (behavior, states, accessibility, API)</li>
-                </ul>
-                
-                <h3>Layer 3 &mdash; Templates & Standards</h3>
-                <ul>
-                    <li>Dashboard template</li>
-                    <li>Listing template</li>
-                    <li>Details template</li>
-                    <li>Form template</li>
-                    <li>UX Standards Pillars: Accessibility, Responsiveness, Usability, Governance</li>
-                </ul>
+                <div class="pillars-grid">
+                    <div class="pillar-section">
+                        <h3 class="pillar-section__title">&#11088; Pillar 1: Responsible AI Principles</h3>
+                        <p>We established six principles validated with customers and internal stakeholders:</p>
+                        
+                        <div class="principles-grid">
+                            <div class="principle-card">
+                                <div class="principle-card__title">Transparency</div>
+                                <div class="principle-card__description">Make it clear when AI is used</div>
+                            </div>
+                            
+                            <div class="principle-card">
+                                <div class="principle-card__title">Trust</div>
+                                <div class="principle-card__description">Accuracy and provenance matter</div>
+                            </div>
+                            
+                            <div class="principle-card">
+                                <div class="principle-card__title">Control</div>
+                                <div class="principle-card__description">Users decide how/when AI is applied</div>
+                            </div>
+                            
+                            <div class="principle-card">
+                                <div class="principle-card__title">Value</div>
+                                <div class="principle-card__description">AI must meaningfully reduce work</div>
+                            </div>
+                            
+                            <div class="principle-card">
+                                <div class="principle-card__title">Simplicity</div>
+                                <div class="principle-card__description">Avoid cognitive overload</div>
+                            </div>
+                            
+                            <div class="principle-card">
+                                <div class="principle-card__title">Data Safety</div>
+                                <div class="principle-card__description">Clear boundaries around usage + storage</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="pillar-section">
+                        <h3 class="pillar-section__title">&#11088; Pillar 2: AI UX Pattern Library</h3>
+                        <p>I led design of 12 reusable patterns organized into four categories:</p>
+                        
+                        <h4 style="font-weight: 700; margin-top: var(--space-md); margin-bottom: var(--space-sm);">AI Attribution Patterns</h4>
+                        <div class="pattern-grid">
+                            <div class="pattern-item">AI chips</div>
+                            <div class="pattern-item">AI icons next to content</div>
+                            <div class="pattern-item">AI-labeled navigation</div>
+                            <div class="pattern-item">Page-level AI banners</div>
+                        </div>
+                        
+                        <h4 style="font-weight: 700; margin-top: var(--space-md); margin-bottom: var(--space-sm);">Explainability Patterns</h4>
+                        <div class="pattern-grid">
+                            <div class="pattern-item">Short-form tooltips</div>
+                            <div class="pattern-item">Long-form drawers</div>
+                            <div class="pattern-item">Model rationale</div>
+                            <div class="pattern-item">Confidence indicators</div>
+                        </div>
+                        
+                        <h4 style="font-weight: 700; margin-top: var(--space-md); margin-bottom: var(--space-sm);">Feedback & Correction</h4>
+                        <div class="pattern-grid">
+                            <div class="pattern-item">Thumbs up/down</div>
+                            <div class="pattern-item">Usefulness rating</div>
+                            <div class="pattern-item">Correct output flows</div>
+                            <div class="pattern-item">Inline feedback</div>
+                        </div>
+                        
+                        <h4 style="font-weight: 700; margin-top: var(--space-md); margin-bottom: var(--space-sm);">Permissions Patterns</h4>
+                        <div class="pattern-grid">
+                            <div class="pattern-item">Global AI toggle</div>
+                            <div class="pattern-item">Product-level controls</div>
+                            <div class="pattern-item">Workspace controls</div>
+                            <div class="pattern-item">Consent indicators</div>
+                        </div>
+                        
+                        <p style="margin-top: var(--space-md); font-size: 16px; color: var(--color-text-secondary);">Each pattern included usage guidelines, behavioral specs, accessibility requirements, responsive rules, and interaction logic.</p>
+                    </div>
+                    
+                    <div class="pillar-section">
+                        <h3 class="pillar-section__title">&#11088; Pillar 3: Permission & Safety Architecture</h3>
+                        <p>We defined a multi-layer permissions model:</p>
+                        <ul style="font-size: 16px; margin-top: var(--space-md);">
+                            <li><strong>Global-level controls:</strong> Admins can disable/enable all AI across all products</li>
+                            <li><strong>Product-level controls:</strong> Each product can expose its own AI capabilities toggle</li>
+                            <li><strong>Workspace-level controls:</strong> Fine-grained control for teams with different risk profiles</li>
+                            <li><strong>Feature-level controls:</strong> Every new AI feature must ship as opt-in, not opt-out</li>
+                        </ul>
+                        <p style="margin-top: var(--space-md); font-size: 16px; color: var(--color-text-secondary);">This model was aligned with Legal, Privacy, and the AI Center of Excellence.</p>
+                    </div>
+                    
+                    <div class="pillar-section">
+                        <h3 class="pillar-section__title">&#11088; Pillar 4: Design System Integration & AI System Ingestion</h3>
+                        <p>I partnered with the RDS team to make AI patterns first-class citizens in the design system, including component specs, token taxonomy, MUI variants, accessibility requirements, and Figma component sets.</p>
+                        
+                        <p style="margin-top: var(--space-md);"><strong>Innovation: AI-Aware Design System</strong></p>
+                        <p>We made RDS machine-readable, enabling AI tools to query component metadata using:</p>
+                        <ul style="font-size: 16px; margin-top: var(--space-sm);">
+                            <li>Supernova design system ingestion</li>
+                            <li>MCP (Model Context Protocol) connectors</li>
+                            <li>Structured schema for pattern logic</li>
+                            <li>Documentation mapping</li>
+                        </ul>
+                        
+                        <p style="margin-top: var(--space-md); font-size: 16px; color: var(--color-text-secondary);">This allows internal AI assistants to answer questions like "What pattern should I use for an AI recommendation?" or "Show me the explainability drawer spec." This is AI-assisted governance, and it's forward-looking.</p>
+                    </div>
+                </div>
             </section>
             
             <section class="case-section">
                 <h2 class="case-section__title">Design & Implementation</h2>
                 
-                <h3>Component Design</h3>
+                <h3>Core Deliverables</h3>
                 <ul>
-                    <li>Created spec-driven Figma components</li>
-                    <li>Defined semantic structure and interaction states</li>
-                    <li>Introduced unified motion principles</li>
-                    <li>Standardized keyboard navigation patterns</li>
-                    <li>Designed flexible variants supporting edge cases</li>
+                    <li>AI UX Principles Framework</li>
+                    <li>AI Pattern Library with 12 patterns</li>
+                    <li>Explainability system</li>
+                    <li>AI permissions model</li>
+                    <li>Design system componentization</li>
+                    <li>Figma libraries & templates</li>
+                    <li>Documentation hub</li>
+                    <li>AI ingestion schema (Supernova + MCP)</li>
                 </ul>
                 
-                <h3>Engineering Migration (MUI)</h3>
+                <h3>Example Interaction Flows</h3>
                 <ul>
-                    <li>Worked with engineering to define theme overrides</li>
-                    <li>Created design &rarr; code mapping model via Supernova</li>
-                    <li>Redefined component APIs to align with RDS usage</li>
-                    <li>Established release and versioning processes</li>
+                    <li>"Generate summary" &rarr; produce &rarr; show explanation &rarr; allow correction &rarr; log feedback</li>
+                    <li>Recommendation drawer with confidence indicator + rationale</li>
+                    <li>Global AI toggle onboarding flow</li>
+                    <li>Workspace-level AI permissions setup</li>
                 </ul>
                 
-                <h3>Documentation</h3>
+                <h3>Accessibility-First Design</h3>
+                <p>We ensured AI &#8800; accessibility exception:</p>
                 <ul>
-                    <li>Component API documentation</li>
-                    <li>Implementation guides</li>
-                    <li>Accessibility checklists</li>
-                    <li>Theming and token documentation</li>
-                </ul>
-                
-                <h3>Governance</h3>
-                <ul>
-                    <li>Design Forum integration</li>
-                    <li>Proposal templates</li>
-                    <li>FOG-based evaluation (Facts, Opinions, Guesses)</li>
-                    <li>Quarterly audits</li>
+                    <li>Descriptive labels for AI-generated content</li>
+                    <li>Screen-reader safe AI attribution</li>
+                    <li>Full keyboard operability</li>
+                    <li>Clear ARIA roles for panels, drawers, tooltips</li>
                 </ul>
             </section>
             
             <section class="case-section">
-                <h2 class="case-section__title">Measurement Framework</h2>
-                <p>I defined and implemented a comprehensive metrics framework measuring both internal and external impact:</p>
+                <h2 class="case-section__title">Validation & Measurement</h2>
                 
-                <h3>Internal Impact Metrics</h3>
+                <h3>User Validation</h3>
+                <p>Customers consistently appreciated:</p>
                 <ul>
-                    <li>Design velocity</li>
-                    <li>Engineering velocity</li>
-                    <li>Component adoption rate</li>
-                    <li>Accessibility compliance</li>
-                    <li>UX designer satisfaction</li>
+                    <li>Clear attribution of AI-generated content</li>
+                    <li>Transparent model rationale</li>
+                    <li>Ability to drill into source data</li>
+                    <li>Confidence scoring</li>
+                    <li>Ability to disable AI features</li>
+                    <li>Control over consent & data sharing</li>
                 </ul>
                 
-                <h3>External Impact Metrics</h3>
+                <h3>Internal Metrics</h3>
                 <ul>
-                    <li>Experience consistency</li>
-                    <li>Visual cohesion</li>
-                    <li>Reduced user confusion</li>
-                    <li>Improved product onboarding</li>
+                    <li>Reduced ambiguity in AI UX reviews</li>
+                    <li>Faster adoption of AI features with consistent patterns</li>
+                    <li>Improved designer confidence designing AI experiences</li>
+                    <li>Higher engineering alignment with predictable APIs</li>
                 </ul>
                 
-                <p>We tracked success week-over-week using Jira, Confluence analytics, and UX sentiment surveys.</p>
+                <div class="quote-block">
+                    <p class="quote-block__text">"This is the first time we've had guardrails for AI features."</p>
+                    <p class="quote-block__author">&mdash; Engineering Lead</p>
+                </div>
+                
+                <div class="quote-block">
+                    <p class="quote-block__text">"Explainability changed how much I trust the summaries."</p>
+                    <p class="quote-block__author">&mdash; Senior Security Analyst</p>
+                </div>
             </section>
             
             <section class="case-section">
@@ -846,76 +1014,70 @@
                 
                 <div class="impact-grid">
                     <div class="impact-card">
-                        <div class="impact-card__icon">&#9889;</div>
-                        <div class="impact-card__title">Engineering Speed</div>
-                        <div class="impact-card__value">40%</div>
-                        <div class="impact-card__description">Faster build time for UI implementation</div>
+                        <div class="impact-card__icon">&#127912;</div>
+                        <div class="impact-card__title">AI Patterns</div>
+                        <div class="impact-card__value">12</div>
+                        <div class="impact-card__description">Reusable patterns adopted across 6 products</div>
                     </div>
                     
                     <div class="impact-card">
-                        <div class="impact-card__icon">&#128202;</div>
-                        <div class="impact-card__title">Platform Coverage</div>
-                        <div class="impact-card__value">80%</div>
-                        <div class="impact-card__description">Achieved in just two quarters</div>
+                        <div class="impact-card__icon">&#11088;</div>
+                        <div class="impact-card__title">AI Principles</div>
+                        <div class="impact-card__value">6</div>
+                        <div class="impact-card__description">Validated responsible AI principles</div>
                     </div>
                     
                     <div class="impact-card">
-                        <div class="impact-card__icon">&#128522;</div>
-                        <div class="impact-card__title">Designer Satisfaction</div>
-                        <div class="impact-card__value">25%</div>
-                        <div class="impact-card__description">Increase in team satisfaction scores</div>
+                        <div class="impact-card__icon">&#129302;</div>
+                        <div class="impact-card__title">Innovation</div>
+                        <div class="impact-card__value">AI-Aware</div>
+                        <div class="impact-card__description">Design system accessible via Supernova/MCP</div>
                     </div>
                     
                     <div class="impact-card">
                         <div class="impact-card__icon">&#127919;</div>
-                        <div class="impact-card__title">UX Consistency</div>
-                        <div class="impact-card__value">50%</div>
-                        <div class="impact-card__description">Reduction in visual drift</div>
-                    </div>
-                    
-                    <div class="impact-card">
-                        <div class="impact-card__icon">&#9855;</div>
-                        <div class="impact-card__title">Accessibility</div>
-                        <div class="impact-card__value">100%</div>
-                        <div class="impact-card__description">WCAG 2.2 AA compliance across all components</div>
+                        <div class="impact-card__title">Consistency</div>
+                        <div class="impact-card__value">First Time</div>
+                        <div class="impact-card__description">AI-coherent UX across all products</div>
                     </div>
                 </div>
                 
                 <h3>Qualitative Impact</h3>
                 <ul>
-                    <li>Teams aligned around a shared UI language</li>
-                    <li>Easier onboarding for new designers and engineers</li>
-                    <li>Higher confidence in UI quality</li>
-                    <li>Reduced design and engineering friction</li>
+                    <li>Improved trust in product experience</li>
+                    <li>Better PM and engineering understanding of AI UX boundaries</li>
+                    <li>Clearer communication of AI intent</li>
+                    <li>Faster implementation cycles with standardized templates</li>
+                    <li>Reduced risk of misleading or inconsistent AI UI</li>
                 </ul>
                 
-                <h3>Organizational Impact</h3>
+                <h3>Organizational Maturity</h3>
                 <ul>
-                    <li>Design system became required infrastructure</li>
-                    <li>Engineering used RDS as baseline for all UI work</li>
-                    <li>Platform UX maturity significantly increased</li>
-                    <li>Established foundation for future AI and automation work</li>
+                    <li>Rapid7 now has a sustainable governance model for AI UX</li>
+                    <li>AI patterns integrated into RDS allow scaling as capabilities grow</li>
+                    <li>AI supporting the design system (Supernova + MCP) is a foundational innovation</li>
+                    <li>Framework positions Rapid7 as a leader in responsible enterprise AI</li>
                 </ul>
             </section>
             
             <section class="case-section">
                 <h2 class="case-section__title">What I'd Do Next</h2>
-                <p>Building on this foundation, future enhancements would focus on:</p>
+                <p>Building on this foundation, future enhancements would include:</p>
                 <ul>
-                    <li>Expand into motion and microcopy systems</li>
-                    <li>Add automated accessibility and governance linting</li>
-                    <li>Deepen AI integrations for component recommendations</li>
-                    <li>Introduce usage analytics at the component level</li>
-                    <li>Create personalized onboarding paths based on product usage</li>
+                    <li>Introduce automated pattern linting for AI UX</li>
+                    <li>Add AI-driven recommendations for UX designers choosing patterns</li>
+                    <li>Publish an AI Design Assurance Checklist for all teams</li>
+                    <li>Create AI transparency dashboards for live model behavior</li>
+                    <li>Expand pattern coverage for multimodal and conversational AI</li>
+                    <li>Develop real-time AI performance metrics visible to users</li>
                 </ul>
             </section>
         </article>
         
-        <!-- Navigation -->
         <nav class="case-nav" aria-label="Case study navigation">
             <div class="case-nav__container">
-                <a href="index.html#work" class="case-nav__link">&larr; Back to Portfolio</a>
-                <a href="case-study-dvs.html" class="case-nav__link">Next: Data Visualization System &rarr;</a>
+                <a href="case-study-unified-platform.html" class="case-nav__link">&larr; Previous: Unified Platform</a>
+                <a href="case-study-enablement.html" class="case-nav__link">Next: Designer Enablement &rarr;</a>
             </div>
         </nav>
     </main>

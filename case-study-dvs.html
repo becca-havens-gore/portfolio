@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>R7 Design System & MUI Migration &mdash; Rebecca Gore</title>
-    <meta name="description" content="Case study: Scaling a unified, accessible UI foundation for a multi-product security platform">
+    <title>Data Visualization System &mdash; Rebecca Gore</title>
+    <meta name="description" content="Case study: A scalable visualization framework powering insights across Rapid7's multi-product platform">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
     <style>
-        /* Importing all styles from the main portfolio */
         :root {
             --grid-columns: 12;
             --grid-gutter: 80px;
@@ -28,8 +27,8 @@
             --color-text-primary: #1A1A1A;
             --color-text-secondary: #4A4A4A;
             --color-text-tertiary: #6A6A6A;
-            --color-accent: #FF6B2B;
-            --color-accent-hover: #E85A1F;
+            --color-accent: #6B46FF;
+            --color-accent-hover: #5A35EE;
             --color-border: rgba(0, 0, 0, 0.08);
             --color-shadow: rgba(0, 0, 0, 0.06);
             --color-overlay: rgba(0, 0, 0, 0.7);
@@ -63,7 +62,7 @@
         }
         
         @media (prefers-reduced-motion: reduce) {
-            * {
+            *, *::before, *::after {
                 animation-duration: 0.01ms !important;
                 animation-iteration-count: 1 !important;
                 transition-duration: 0.01ms !important;
@@ -97,7 +96,6 @@
             border-radius: 2px;
         }
         
-        /* Header */
         .header {
             position: fixed;
             top: 0;
@@ -109,16 +107,11 @@
             padding: var(--space-md) var(--grid-margin);
             transition: all var(--transition-base);
             backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
         }
         
         .header.scrolled {
             background: rgba(250, 250, 250, 0.8);
-            box-shadow: 0 4px 24px rgba(255, 107, 43, 0.1);
-        }
-        
-        [data-theme="dark"] .header.scrolled {
-            background: rgba(26, 26, 26, 0.8);
+            box-shadow: 0 4px 24px rgba(107, 70, 255, 0.1);
         }
         
         .header::before {
@@ -128,7 +121,7 @@
             left: 0;
             right: 0;
             height: 2px;
-            background: linear-gradient(90deg, var(--color-accent) 0%, #FF8C5C 25%, #6B46FF 50%, #2BBFFF 75%, var(--color-accent) 100%);
+            background: linear-gradient(90deg, #6B46FF 0%, #8C6BFF 25%, #6B46FF 50%, #8C6BFF 75%, #6B46FF 100%);
             background-size: 200% 100%;
             opacity: 0;
             transition: opacity var(--transition-base);
@@ -180,10 +173,9 @@
             font-size: 20px;
         }
         
-        /* Case Study Hero */
         .case-hero {
             min-height: 70vh;
-            background: linear-gradient(135deg, #FF6B2B 0%, #FF8C5C 100%);
+            background: linear-gradient(135deg, #6B46FF 0%, #8C6BFF 100%);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -254,7 +246,6 @@
             border: 1px solid rgba(255, 255, 255, 0.3);
         }
         
-        /* Meta Section */
         .case-meta {
             background: var(--color-bg-secondary);
             padding: var(--space-xl) var(--grid-margin);
@@ -291,7 +282,6 @@
             color: var(--color-text-primary);
         }
         
-        /* Content Section */
         .case-content {
             max-width: 900px;
             margin: 0 auto;
@@ -319,7 +309,7 @@
             left: 0;
             width: 60px;
             height: 4px;
-            background: linear-gradient(90deg, var(--color-accent), #FF8C5C);
+            background: linear-gradient(90deg, var(--color-accent), #8C6BFF);
             border-radius: 2px;
         }
         
@@ -360,7 +350,6 @@
             color: var(--color-text-primary);
         }
         
-        /* Impact Section */
         .impact-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -384,7 +373,7 @@
             left: 0;
             width: 100%;
             height: 4px;
-            background: linear-gradient(90deg, var(--color-accent), #FF8C5C);
+            background: linear-gradient(90deg, var(--color-accent), #8C6BFF);
         }
         
         .impact-card__icon {
@@ -414,7 +403,6 @@
             line-height: 1.6;
         }
         
-        /* Quote Block */
         .quote-block {
             margin: var(--space-xl) 0;
             padding: var(--space-lg);
@@ -428,9 +416,15 @@
             font-style: italic;
             color: var(--color-text-primary);
             line-height: 1.6;
+            margin-bottom: var(--space-sm);
         }
         
-        /* Navigation Footer */
+        .quote-block__author {
+            font-size: 16px;
+            color: var(--color-text-tertiary);
+            font-weight: 600;
+        }
+        
         .case-nav {
             background: var(--color-bg-secondary);
             border-top: 1px solid var(--color-border);
@@ -466,7 +460,6 @@
             box-shadow: var(--shadow-md);
         }
         
-        /* Responsive */
         @media (max-width: 768px) {
             :root {
                 --grid-margin: 32px;
@@ -625,220 +618,237 @@
     </header>
     
     <main id="case-main">
-        <!-- Hero -->
         <section class="case-hero">
             <div class="case-hero__content">
-                <p class="case-hero__eyebrow">Case Study 01</p>
-                <h1 class="case-hero__title">Rapid7 Design System & MUI Migration</h1>
-                <p class="case-hero__subtitle">Scaling a unified, accessible UI foundation for a multi-product security platform</p>
+                <p class="case-hero__eyebrow">Case Study 02</p>
+                <h1 class="case-hero__title">Data Visualization System (DVS)</h1>
+                <p class="case-hero__subtitle">A scalable visualization framework powering insights across Rapid7's multi-product platform</p>
                 <div class="case-hero__tags">
-                    <span class="case-hero__tag">Design Systems</span>
-                    <span class="case-hero__tag">MUI</span>
-                    <span class="case-hero__tag">Accessibility</span>
-                    <span class="case-hero__tag">Platform UX</span>
+                    <span class="case-hero__tag">Data Visualization</span>
+                    <span class="case-hero__tag">Dashboard UX</span>
+                    <span class="case-hero__tag">Research</span>
+                    <span class="case-hero__tag">System Design</span>
                 </div>
             </div>
         </section>
         
-        <!-- Meta -->
         <section class="case-meta" aria-label="Project overview">
             <div class="case-meta__container">
                 <div class="meta-item">
                     <div class="meta-item__label">Role</div>
-                    <div class="meta-item__value">Principal Designer, Design Systems</div>
+                    <div class="meta-item__value">Principal Product Designer</div>
                 </div>
                 <div class="meta-item">
                     <div class="meta-item__label">Timeline</div>
-                    <div class="meta-item__value">18 Months</div>
+                    <div class="meta-item__value">12 Months</div>
                 </div>
                 <div class="meta-item">
-                    <div class="meta-item__label">Team</div>
-                    <div class="meta-item__value">Cross-functional (Design, Engineering, A11y)</div>
+                    <div class="meta-item__label">Products</div>
+                    <div class="meta-item__value">6 Enterprise Products</div>
                 </div>
                 <div class="meta-item">
                     <div class="meta-item__label">Impact</div>
-                    <div class="meta-item__value">80% Platform Coverage</div>
+                    <div class="meta-item__value">60% Design Time Reduction</div>
                 </div>
             </div>
         </section>
         
-        <!-- Content -->
         <article class="case-content">
             <section class="case-section">
                 <h2 class="case-section__title">Executive Summary</h2>
-                <p>Rapid7's multi-product platform struggled with fragmented UI patterns, divergent codebases, and inconsistent accessibility standards. I led the architectural direction, strategy, and rollout of the Rapid7 Design System (RDS) and MUI migration, partnering across design, engineering, product, and accessibility teams.</p>
-                <p>Together, we delivered a unified, scalable UI framework now powering all major products across the portfolio&mdash;improving efficiency, consistency, accessibility, and design maturity at scale.</p>
+                <p>Rapid7's platform provides analysts, security leaders, and executives with critical telemetry, yet each product team had independently built dashboards, charts, and reporting tools. This fragmentation created inconsistent experiences, duplicated engineering investment, and made insight discovery slower and more cognitively taxing for users.</p>
+                <p>I led the strategy, architecture, and design of the Data Visualization System (DVS)&mdash;a unified visualization framework enabling reusable dashboards, card components, reporting templates, and cross-product filtering. Together with engineering and design partners, we delivered a scalable system powering analytics across six enterprise security products, significantly improving usability, performance, and design/engineering efficiency.</p>
             </section>
             
             <section class="case-section">
                 <h2 class="case-section__title">The Challenge</h2>
-                <p>Rapid7's product suite evolved through acquisition and parallel development, resulting in systemic fragmentation that hurt both user experience and engineering velocity:</p>
+                <p>Rapid7's products&mdash;InsightIDR, InsightVM, AppSec, Connect, Endpoint, and Threat Command&mdash;each had their own approaches to data visualization, creating significant friction:</p>
                 <ul>
-                    <li>17+ button variants across products</li>
-                    <li>6 different DataGrid implementations</li>
-                    <li>Inconsistent spacing, typography, and theming</li>
-                    <li>Little or no code&rdquo;“design parity</li>
-                    <li>No unified component specification or governance</li>
-                    <li>Accessibility audits failing across multiple product lines</li>
-                    <li>Multiple duplicate component libraries creating engineering inefficiencies</li>
-                    <li>Divergent UI patterns for core interactions</li>
+                    <li>Different chart types and visualization paradigms</li>
+                    <li>Different reporting systems and export capabilities</li>
+                    <li>Different card styles and interaction patterns</li>
+                    <li>Different filtering logic across products</li>
+                    <li>No shared visualization language or standards</li>
+                    <li>Duplicated engineering effort (6+ implementations of dashboards & reports)</li>
+                    <li>Inconsistent charts leading to misinterpretation of trends</li>
+                    <li>Limited accessibility in charts and data views</li>
                 </ul>
+                <p>This inconsistency made it difficult for users to move between product areas, compare metrics, or build a mental model of the platform.</p>
             </section>
             
             <section class="case-section">
                 <h2 class="case-section__title">My Role</h2>
-                <p>I defined the system vision and architecture, built the governance and adoption model, and partnered closely with engineering to migrate to an enterprise-grade MUI implementation.</p>
+                <p>I led the end-to-end design and strategy for DVS, from research and architecture through to implementation and governance.</p>
                 
                 <h3>Key Responsibilities</h3>
                 <ul>
-                    <li>Design system strategy and vision</li>
-                    <li>Information architecture and component taxonomy</li>
-                    <li>Governance model and design ops processes</li>
-                    <li>Measurement frameworks and KPIs</li>
-                    <li>Stakeholder alignment and communication</li>
-                    <li>Foundations: theming, tokens, spacing, typography</li>
+                    <li>Visualization framework strategy and architecture</li>
+                    <li>Dashboard Templates, Card System & Reporting Architecture</li>
+                    <li>Filtering & drill-in interaction standards</li>
+                    <li>Component design & accessibility model</li>
+                    <li>Cross-product design alignment</li>
+                    <li>Delivery roadmap and prioritization</li>
+                    <li>Figma component library for DVS</li>
+                    <li>System documentation and governance patterns</li>
                 </ul>
                 
                 <h3>Collaborative Deliverables</h3>
                 <ul>
-                    <li>60+ fully accessible MUI components</li>
-                    <li>Platform templates and interaction patterns</li>
-                    <li>Comprehensive documentation and tooling</li>
-                    <li>Code library with engineering team</li>
-                    <li>Adoption rollout plans per product team</li>
+                    <li>Unified dashboard templates</li>
+                    <li>Consistent drill-in patterns</li>
+                    <li>Full visualization card library</li>
+                    <li>Reporting themes (print + digital)</li>
+                    <li>Filtering & query logic model</li>
+                    <li>Engineering adapters for shared charting</li>
                 </ul>
             </section>
             
             <section class="case-section">
                 <h2 class="case-section__title">Constraints</h2>
-                <p>The project needed to balance multiple technical and organizational challenges:</p>
                 <ul>
-                    <li>Six product teams with different tech stacks</li>
-                    <li>Parallel product delivery could not be disrupted</li>
-                    <li>Required full WCAG 2.2 AA compliance</li>
-                    <li>Needed to support light/dark theming</li>
-                    <li>Must unify visual language across acquisitions</li>
-                    <li>Required measurable ROI to secure future investment</li>
+                    <li>Needed to support 6 existing visualization paradigms</li>
+                    <li>Platform had multiple frontend stacks</li>
+                    <li>Security analytics = high data density, complex hierarchies</li>
+                    <li>Reporting had strict enterprise requirements (PDF, dark/light, print legibility)</li>
+                    <li>Must serve both executive and analyst personas</li>
+                    <li>Charts needed to be fast, scalable, and accessible</li>
                 </ul>
             </section>
             
             <section class="case-section">
-                <h2 class="case-section__title">Research & Discovery</h2>
-                <p>I executed a comprehensive foundational audit across all six products, analyzing components, patterns, and user workflows.</p>
+                <h2 class="case-section__title">Research & Insights</h2>
+                <p>I synthesized insights across field research, interviews, analytics usage, and cross-team workshops to understand the needs of different user personas.</p>
                 
-                <h3>Component Inventory</h3>
+                <h3>Key User Insights by Persona</h3>
+                
+                <div style="margin-top: var(--space-md); margin-bottom: var(--space-lg);">
+                    <p><strong>Analysts:</strong></p>
+                    <ul>
+                        <li>"I need to know what's happening right now&mdash;I don't have time to decode visuals."</li>
+                        <li>Value fast triage, anomalies, and drill-downs</li>
+                    </ul>
+                </div>
+                
+                <div style="margin-bottom: var(--space-lg);">
+                    <p><strong>Managers:</strong></p>
+                    <ul>
+                        <li>Want clarity on severity, coverage, and progress</li>
+                        <li>Need to communicate status to leadership quickly</li>
+                    </ul>
+                </div>
+                
+                <div style="margin-bottom: var(--space-lg);">
+                    <p><strong>Executives:</strong></p>
+                    <ul>
+                        <li>Care about trends, ROI, and posture change</li>
+                        <li>Need high-level summaries that tell a story</li>
+                    </ul>
+                </div>
+                
+                <h3>Cross-Product Synthesis</h3>
                 <ul>
-                    <li>Buttons, form fields, and navigation patterns across all states</li>
-                    <li>Tables, filters, cards, metrics, and summary views</li>
-                    <li>Data visualization interactions</li>
+                    <li>Users expect dashboards to behave the same across products</li>
+                    <li>Inconsistent filtering increases cognitive load</li>
+                    <li>Cards need to communicate insight before interaction</li>
+                    <li>Drill-in flows must support multi-step investigations</li>
+                    <li>Empty/loading states were a major source of confusion</li>
                 </ul>
                 
-                <h3>Key Findings</h3>
+                <h3>DVS North Stars</h3>
+                <p>From this research, I derived three guiding principles:</p>
                 <ul>
-                    <li>High divergence in structure and behavior across products</li>
-                    <li>Engineering teams re-implementing similar components</li>
-                    <li>Designers spending excessive time manually aligning patterns</li>
-                    <li>No shared documentation or specification model</li>
-                    <li>Accessibility issues caused by inconsistent semantic structure</li>
-                </ul>
-                
-                <h3>Business & User Insights</h3>
-                <ul>
-                    <li>Fragmentation raised onboarding time for new users</li>
-                    <li>Inconsistency made insights harder to interpret</li>
-                    <li>Teams lacked trust in shared UI patterns</li>
-                    <li>Engineers lacked clarity on what "done" looked like</li>
+                    <li><strong>Temperature Read</strong> &mdash; Show what matters most at a glance</li>
+                    <li><strong>Investigate</strong> &mdash; Support exploration with clarity and consistency</li>
+                    <li><strong>Take Action</strong> &mdash; Drive users toward next steps</li>
                 </ul>
             </section>
             
             <section class="case-section">
                 <h2 class="case-section__title">Strategy & Architecture</h2>
-                <p>I architected RDS around three scalable layers that both design and engineering could rely on:</p>
+                <p>I architected DVS around three interoperable layers:</p>
                 
-                <h3>Layer 1 &mdash; Foundations</h3>
+                <h3>Layer 1 &mdash; Templates (Dashboards & Reports)</h3>
                 <ul>
-                    <li>Design tokens (color, spacing, typography, radii, motion)</li>
-                    <li>Light/dark theming system</li>
-                    <li>Grid and layout rules</li>
-                    <li>Accessibility standards</li>
+                    <li>Overview dashboards for at-a-glance monitoring</li>
+                    <li>Custom dashboards for personalized views</li>
+                    <li>Cross-product Home experiences</li>
+                    <li>Report templates (PDF + print-optimized theme)</li>
                 </ul>
                 
-                <h3>Layer 2 &mdash; Components</h3>
+                <h3>Layer 2 &mdash; Card System (Composable Visualization Components)</h3>
+                <p>Each card type was designed to be self-contained and reusable:</p>
                 <ul>
-                    <li>60+ fully documented UI components</li>
-                    <li>MUI-based implementations with Rapid7-specific overrides</li>
-                    <li>Component spec sheets (behavior, states, accessibility, API)</li>
+                    <li>KPI cards for key metrics</li>
+                    <li>Trend cards for time-series data</li>
+                    <li>Table cards for detailed listings</li>
+                    <li>Top-N lists for rankings</li>
+                    <li>Correlation/relationship cards</li>
+                    <li>Timeline/sequence cards</li>
+                    <li>Investigation cards for drill-downs</li>
                 </ul>
                 
-                <h3>Layer 3 &mdash; Templates & Standards</h3>
+                <p>Each card defined:</p>
                 <ul>
-                    <li>Dashboard template</li>
-                    <li>Listing template</li>
-                    <li>Details template</li>
-                    <li>Form template</li>
-                    <li>UX Standards Pillars: Accessibility, Responsiveness, Usability, Governance</li>
+                    <li>Inputs and data requirements</li>
+                    <li>Visualization type and configuration</li>
+                    <li>Behavior and interaction patterns</li>
+                    <li>States (empty, loading, error)</li>
+                    <li>Drill-in model</li>
+                    <li>Accessibility rules and requirements</li>
+                </ul>
+                
+                <h3>Layer 3 &mdash; Filtering, Querying & Drill-In Logic</h3>
+                <ul>
+                    <li>Global filter model affecting all cards</li>
+                    <li>Local filters for card-specific refinement</li>
+                    <li>Query chips for transparent filter management</li>
+                    <li>Time range patterns</li>
+                    <li>Cross-product drill-in framework</li>
+                </ul>
+            </section>
+            
+            <section class="case-section">
+                <h2 class="case-section__title">Design Principles</h2>
+                <p>Five core principles guided all design decisions:</p>
+                <ul>
+                    <li><strong>Consistency Over Novelty</strong> &mdash; Every chart follows a consistent visual language</li>
+                    <li><strong>Clarity of Insight</strong> &mdash; Cards must communicate value at a glance</li>
+                    <li><strong>Accessible Visuals</strong> &mdash; High-contrast color palette, screen-reader friendly load states</li>
+                    <li><strong>Composable Components</strong> &mdash; Everything must be reusable across contexts</li>
+                    <li><strong>Performance-Oriented</strong> &mdash; Designed for enterprise-scale data volume</li>
                 </ul>
             </section>
             
             <section class="case-section">
                 <h2 class="case-section__title">Design & Implementation</h2>
                 
-                <h3>Component Design</h3>
+                <h3>Component Design & Figma Library</h3>
                 <ul>
-                    <li>Created spec-driven Figma components</li>
-                    <li>Defined semantic structure and interaction states</li>
-                    <li>Introduced unified motion principles</li>
-                    <li>Standardized keyboard navigation patterns</li>
-                    <li>Designed flexible variants supporting edge cases</li>
+                    <li>Built a full Figma card library with reusable structure</li>
+                    <li>Defined slot-based card architecture for flexibility</li>
+                    <li>Created atoms &rarr; molecules &rarr; card-level components</li>
+                    <li>Integrated DVS tokens into RDS design system</li>
                 </ul>
                 
-                <h3>Engineering Migration (MUI)</h3>
+                <h3>Engineering Collaboration</h3>
+                <p>Together with engineering, we:</p>
                 <ul>
-                    <li>Worked with engineering to define theme overrides</li>
-                    <li>Created design &rarr; code mapping model via Supernova</li>
-                    <li>Redefined component APIs to align with RDS usage</li>
-                    <li>Established release and versioning processes</li>
+                    <li>Created shared data adapters across products</li>
+                    <li>Standardized charting library configuration</li>
+                    <li>Improved performance (avoiding redundant re-renders)</li>
+                    <li>Implemented consistent drill-in flows</li>
                 </ul>
                 
-                <h3>Documentation</h3>
+                <h3>Reporting System</h3>
+                <p>I designed a comprehensive reporting framework including:</p>
                 <ul>
-                    <li>Component API documentation</li>
-                    <li>Implementation guides</li>
-                    <li>Accessibility checklists</li>
-                    <li>Theming and token documentation</li>
+                    <li>Print-optimized theme</li>
+                    <li>Layout templates for different report types</li>
+                    <li>Cover pages and branding</li>
+                    <li>Typographic hierarchy for readability</li>
+                    <li>Page-break logic for multi-page reports</li>
+                    <li>Export UX for PDF generation</li>
                 </ul>
-                
-                <h3>Governance</h3>
-                <ul>
-                    <li>Design Forum integration</li>
-                    <li>Proposal templates</li>
-                    <li>FOG-based evaluation (Facts, Opinions, Guesses)</li>
-                    <li>Quarterly audits</li>
-                </ul>
-            </section>
-            
-            <section class="case-section">
-                <h2 class="case-section__title">Measurement Framework</h2>
-                <p>I defined and implemented a comprehensive metrics framework measuring both internal and external impact:</p>
-                
-                <h3>Internal Impact Metrics</h3>
-                <ul>
-                    <li>Design velocity</li>
-                    <li>Engineering velocity</li>
-                    <li>Component adoption rate</li>
-                    <li>Accessibility compliance</li>
-                    <li>UX designer satisfaction</li>
-                </ul>
-                
-                <h3>External Impact Metrics</h3>
-                <ul>
-                    <li>Experience consistency</li>
-                    <li>Visual cohesion</li>
-                    <li>Reduced user confusion</li>
-                    <li>Improved product onboarding</li>
-                </ul>
-                
-                <p>We tracked success week-over-week using Jira, Confluence analytics, and UX sentiment surveys.</p>
             </section>
             
             <section class="case-section">
@@ -847,75 +857,92 @@
                 <div class="impact-grid">
                     <div class="impact-card">
                         <div class="impact-card__icon">&#9889;</div>
-                        <div class="impact-card__title">Engineering Speed</div>
-                        <div class="impact-card__value">40%</div>
-                        <div class="impact-card__description">Faster build time for UI implementation</div>
+                        <div class="impact-card__title">Design Efficiency</div>
+                        <div class="impact-card__value">60%</div>
+                        <div class="impact-card__description">Reduction in design time for data views</div>
                     </div>
                     
                     <div class="impact-card">
-                        <div class="impact-card__icon">&#128202;</div>
-                        <div class="impact-card__title">Platform Coverage</div>
-                        <div class="impact-card__value">80%</div>
-                        <div class="impact-card__description">Achieved in just two quarters</div>
+                        <div class="impact-card__icon">&#128200;</div>
+                        <div class="impact-card__title">Engagement</div>
+                        <div class="impact-card__value">30%</div>
+                        <div class="impact-card__description">Increase in dashboard engagement</div>
                     </div>
                     
                     <div class="impact-card">
-                        <div class="impact-card__icon">&#128522;</div>
-                        <div class="impact-card__title">Designer Satisfaction</div>
-                        <div class="impact-card__value">25%</div>
-                        <div class="impact-card__description">Increase in team satisfaction scores</div>
+                        <div class="impact-card__icon">&#128260;</div>
+                        <div class="impact-card__title">Rework Reduction</div>
+                        <div class="impact-card__value">45%</div>
+                        <div class="impact-card__description">Decrease in engineering rework</div>
                     </div>
                     
                     <div class="impact-card">
                         <div class="impact-card__icon">&#127919;</div>
-                        <div class="impact-card__title">UX Consistency</div>
-                        <div class="impact-card__value">50%</div>
-                        <div class="impact-card__description">Reduction in visual drift</div>
+                        <div class="impact-card__title">Consistency</div>
+                        <div class="impact-card__value">70%</div>
+                        <div class="impact-card__description">Improvement in dashboard consistency</div>
                     </div>
                     
                     <div class="impact-card">
-                        <div class="impact-card__icon">&#9855;</div>
-                        <div class="impact-card__title">Accessibility</div>
-                        <div class="impact-card__value">100%</div>
-                        <div class="impact-card__description">WCAG 2.2 AA compliance across all components</div>
+                        <div class="impact-card__icon">&#128269;</div>
+                        <div class="impact-card__title">Drill-In Usage</div>
+                        <div class="impact-card__value">30%</div>
+                        <div class="impact-card__description">Increase in dashboard &rarr; drill-in workflows</div>
                     </div>
                 </div>
                 
-                <h3>Qualitative Impact</h3>
+                <div class="quote-block">
+                    <p class="quote-block__text">"This is the first time I can read dashboards the same way across the platform."</p>
+                    <p class="quote-block__author">&mdash; Senior Security Analyst</p>
+                </div>
+                
+                <h3>Product Experience Impact</h3>
                 <ul>
-                    <li>Teams aligned around a shared UI language</li>
-                    <li>Easier onboarding for new designers and engineers</li>
-                    <li>Higher confidence in UI quality</li>
-                    <li>Reduced design and engineering friction</li>
+                    <li>Unified visual language across 6 products</li>
+                    <li>Predictable filtering and drill-in behavior</li>
+                    <li>Reduced cognitive load for users</li>
+                    <li>Better insight communication and comprehension</li>
+                    <li>Users understood visuals faster</li>
+                    <li>Reduced misinterpretation of severity and trends</li>
+                    <li>Improved cross-product navigation clarity</li>
                 </ul>
                 
                 <h3>Organizational Impact</h3>
                 <ul>
-                    <li>Design system became required infrastructure</li>
-                    <li>Engineering used RDS as baseline for all UI work</li>
-                    <li>Platform UX maturity significantly increased</li>
-                    <li>Established foundation for future AI and automation work</li>
+                    <li>Shared charting and dashboard architecture</li>
+                    <li>Reduced duplication across teams</li>
+                    <li>Centralized visualization governance</li>
+                    <li>Foundation for platform-wide analytics</li>
+                    <li>Framework leveraged for future AI summaries</li>
+                </ul>
+                
+                <h3>Business Impact</h3>
+                <ul>
+                    <li>Improved perception of platform cohesion</li>
+                    <li>Increased customer trust in data accuracy</li>
+                    <li>Faster onboarding for new users</li>
+                    <li>Reduced support tickets related to dashboard interpretation</li>
                 </ul>
             </section>
             
             <section class="case-section">
                 <h2 class="case-section__title">What I'd Do Next</h2>
-                <p>Building on this foundation, future enhancements would focus on:</p>
+                <p>Building on this foundation, future enhancements would include:</p>
                 <ul>
-                    <li>Expand into motion and microcopy systems</li>
-                    <li>Add automated accessibility and governance linting</li>
-                    <li>Deepen AI integrations for component recommendations</li>
-                    <li>Introduce usage analytics at the component level</li>
-                    <li>Create personalized onboarding paths based on product usage</li>
+                    <li>Personalized dashboards based on user role and behavior</li>
+                    <li>Contextual insight recommendations using AI</li>
+                    <li>Cross-product drill-in maps for complex investigations</li>
+                    <li>Advanced correlation and pattern detection cards</li>
+                    <li>Automated anomaly highlighting</li>
+                    <li>Natural language query interface for filtering</li>
                 </ul>
             </section>
         </article>
         
-        <!-- Navigation -->
         <nav class="case-nav" aria-label="Case study navigation">
             <div class="case-nav__container">
-                <a href="index.html#work" class="case-nav__link">&larr; Back to Portfolio</a>
-                <a href="case-study-dvs.html" class="case-nav__link">Next: Data Visualization System &rarr;</a>
+                <a href="case-study-rds.html" class="case-nav__link">&larr; Previous: R7 Design System</a>
+                <a href="case-study-design-forum.html" class="case-nav__link">Next: Design Forum &rarr;</a>
             </div>
         </nav>
     </main>
