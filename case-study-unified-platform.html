@@ -8,6 +8,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <script>!function(){try{var t=localStorage.getItem('theme')||'auto';var a=t==='auto'?(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'):t;document.documentElement.setAttribute('data-theme',a)}catch(e){}}();</script>
     <style>
         :root {
             --grid-columns: 12;
@@ -147,8 +149,12 @@
             color: var(--color-text-primary);
             text-decoration: none;
             letter-spacing: -0.02em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
         }
-        
+
         .back-link {
             display: inline-flex;
             align-items: center;
@@ -579,12 +585,18 @@
         [data-theme="dark"] .header__logo { color: #F5F5F5 !important; }
         [data-theme="dark"] .back-link { color: #B8B8B8 !important; }
         [data-theme="dark"] .back-link:hover { color: var(--color-accent) !important; }
+        .img-placeholder { width:100%; min-height:420px; background:linear-gradient(135deg,var(--color-accent) 0%,#6B46FF 60%,#FF2E93 100%); position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center; }
+        .img-placeholder::before { content:'Portfolio Image'; color:rgba(255,255,255,0.4); font-size:13px; font-family:var(--font-body); letter-spacing:0.15em; text-transform:uppercase; font-weight:600; border:2px dashed rgba(255,255,255,0.3); padding:32px 48px; border-radius:8px; }
+        .img-placeholder__img { position:absolute; inset:0; width:100%; height:100%; object-fit:contain; object-position:center; }
         </style>
 </head>
 <body>
     <header class="header" role="banner">
         <div class="header__container">
-            <a href="index.html" class="header__logo">Rebecca Gore</a>
+            <a href="index.html" class="header__logo">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="28" height="28" aria-hidden="true" focusable="false" style="flex-shrink:0;border-radius:6px;"><defs><linearGradient id="logo-grad-up" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FF6B2B"/><stop offset="100%" stop-color="#6B46FF"/></linearGradient></defs><rect width="32" height="32" rx="7" fill="url(#logo-grad-up)"/><text x="16" y="22" text-anchor="middle" fill="#fff" font-family="Georgia,serif" font-weight="700" font-size="14" letter-spacing="-0.5">RHG</text></svg>
+                Rebecca Havens Gore
+            </a>
             <nav class="header__nav" aria-label="Site navigation">
                 <div class="theme-controls" role="group" aria-label="Color theme">
                     <button class="theme-btn" data-theme="auto" aria-label="Use system theme" aria-pressed="false"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4C12.82 3.04 12.42 3 12 3zm0-2c6.08 0 11 4.92 11 11s-4.92 11-11 11S1 18.08 1 12 5.92 1 12 1z"/></svg> Auto</button>
@@ -643,7 +655,11 @@
                 </div>
             </div>
         </section>
-        
+
+        <div class="img-placeholder" role="img" aria-label="Unified platform experience portfolio screenshot">
+            <!-- <img src="images/unified-platform-overview.png" alt="Unified Platform Experience overview" class="img-placeholder__img"> -->
+        </div>
+
         <article class="case-content">
             <section class="case-section">
                 <h2 class="case-section__title">Executive Summary</h2>
@@ -653,7 +669,7 @@
             
             <section class="case-section">
                 <h2 class="case-section__title">Context</h2>
-                <p>Rapid7's platform includes multiple products, each with unique implementations of core interactions. These workflows represent 70&rdquo;“85% of high-frequency user actions across Rapid7 products, making cohesion critical.</p>
+                <p>Rapid7's platform includes multiple products, each with unique implementations of core interactions. These workflows represent 70&ndash;85% of high-frequency user actions across Rapid7 products, making cohesion critical.</p>
                 
                 <p>Each team designed these independently, resulting in:</p>
                 <ul>
@@ -997,7 +1013,7 @@
                 if (l) l.textContent = lbls[pref] || "Auto";
             }
             document.querySelectorAll(".theme-btn").forEach(function(b) {
-                b.addEventListener("click", function() { apply(b.dataset.theme); try { localStorage.setItem("rg-theme", b.dataset.theme); } catch(e){} });
+                b.addEventListener("click", function() { apply(b.dataset.theme); try { localStorage.setItem("theme", b.dataset.theme); } catch(e){} });
             });
             var db = document.querySelector(".theme-dropdown-button");
             var dm = document.querySelector(".theme-dropdown-menu");
@@ -1008,13 +1024,13 @@
             document.querySelectorAll(".theme-dropdown-item").forEach(function(i) {
                 i.addEventListener("click", function() {
                     apply(i.dataset.theme);
-                    try { localStorage.setItem("rg-theme", i.dataset.theme); } catch(e){}
+                    try { localStorage.setItem("theme", i.dataset.theme); } catch(e){}
                     if (dm) dm.classList.remove("open"); if (db) db.setAttribute("aria-expanded","false");
                 });
             });
             if (window.matchMedia) window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function() {
-                try { if ((localStorage.getItem("rg-theme") || "auto") === "auto") apply("auto"); } catch(e){} });
-            try { apply(localStorage.getItem("rg-theme") || "auto"); } catch(e) { apply("auto"); }
+                try { if ((localStorage.getItem("theme") || "auto") === "auto") apply("auto"); } catch(e){} });
+            try { apply(localStorage.getItem("theme") || "auto"); } catch(e) { apply("auto"); }
         })();
         var hdr = document.querySelector(".header");
         if (hdr) window.addEventListener("scroll", function() { hdr.classList.toggle("scrolled", window.pageYOffset > 0); });
