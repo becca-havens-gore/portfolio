@@ -543,14 +543,26 @@
         /* ─── Philosophy ─── */
         .philosophy-grid {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: var(--space-lg);
-            max-width: 900px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-md);
+            max-width: 1000px;
             margin: 0 auto;
+        }
+        .philosophy-grid .philosophy-principle:last-child:nth-child(odd) {
+            grid-column: 1 / -1;
+            max-width: calc(50% - var(--space-md) / 2);
+            margin: 0 auto;
+        }
+        @media (max-width: 640px) {
+            .philosophy-grid { grid-template-columns: 1fr; }
+            .philosophy-grid .philosophy-principle:last-child:nth-child(odd) {
+                grid-column: auto;
+                max-width: none;
+            }
         }
         .philosophy-principle {
             position: relative;
-            padding: var(--space-lg);
+            padding: var(--space-md);
             background: var(--color-bg-primary);
             border-left: 4px solid var(--color-accent);
             border-radius: 8px;
