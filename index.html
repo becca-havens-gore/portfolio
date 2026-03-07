@@ -671,6 +671,18 @@
         [data-theme="dark"] .case-card:hover .stat span { color: rgba(255,255,255,0.75); }
         [data-theme="high-contrast"] .case-card:hover .stat strong { color: #FFD700; }
         [data-theme="high-contrast"] .case-card:hover .stat span { color: rgba(255,255,255,0.9); }
+        .case-card:hover .case-description { color: var(--color-text-primary); }
+        .case-card:hover .case-title { color: var(--color-text-primary); }
+        .case-card:hover .case-meta-block { color: var(--color-text-secondary); }
+        .case-card:hover .case-meta-block strong { color: var(--color-text-primary); }
+        [data-theme="dark"] .case-card:hover .case-description { color: rgba(255,255,255,0.9); }
+        [data-theme="dark"] .case-card:hover .case-title { color: #fff; }
+        [data-theme="dark"] .case-card:hover .case-meta-block { color: rgba(255,255,255,0.65); }
+        [data-theme="dark"] .case-card:hover .case-meta-block strong { color: rgba(255,255,255,0.85); }
+        [data-theme="high-contrast"] .case-card:hover .case-description { color: #fff; }
+        [data-theme="high-contrast"] .case-card:hover .case-title { color: #FFD700; }
+        [data-theme="high-contrast"] .case-card:hover .case-meta-block { color: rgba(255,255,255,0.8); }
+        [data-theme="high-contrast"] .case-card:hover .case-meta-block strong { color: #fff; }
 
         /* Playing Around */
         .playing-section { margin-top: var(--space-xl); }
@@ -771,7 +783,7 @@
         .skill-category__description { color: var(--color-text-secondary); margin-bottom: var(--space-md); font-size: 16px; line-height: 1.6; }
         .skill-category__list { list-style: none; font-size: 14px; }
         .skill-category__list li { padding: 8px 0; color: var(--color-text-secondary); display: flex; align-items: start; gap: 8px; }
-        .skill-category__list li::before { content: '&#8594;'; color: var(--color-accent); font-weight: 700; }
+        .skill-category__list li::before { content: '\2192'; color: var(--color-accent); font-weight: 700; }
 
         /* Tools */
         .tools-section { margin-top: var(--space-2xl); }
@@ -836,7 +848,7 @@
         .experience-company { color: var(--color-text-secondary); font-size: 16px; font-weight: 500; margin-bottom: var(--space-sm); }
         .experience-achievements { list-style: none; margin-left: 0; }
         .experience-achievements li { padding: 8px 0; color: var(--color-text-secondary); display: flex; align-items: start; gap: 12px; font-size: 16px; line-height: 1.6; }
-        .experience-achievements li::before { content: '&#8212;'; color: var(--color-accent); font-weight: 700; flex-shrink: 0; }
+        .experience-achievements li::before { content: '\2014'; color: var(--color-accent); font-weight: 700; flex-shrink: 0; }
         .education-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-md); margin-top: var(--space-md); }
         @media (max-width: 768px) { .education-grid { grid-template-columns: 1fr; } }
         .education-item { background: var(--color-bg-primary); border: 1px solid var(--color-border); border-radius: 8px; padding: var(--space-md); }
@@ -858,9 +870,9 @@
 
         /* Accessibility Badge */
         .accessibility-badge { position: relative; display: inline-block; margin: var(--space-lg) 0 var(--space-md); }
-        .badge-content { display: flex; align-items: center; gap: var(--space-xs); padding: 10px 20px; background: rgba(255,255,255,0.9); border: 2px solid var(--color-accent); border-radius: 999px; cursor: default; font-family: var(--font-body); transition: all var(--motion-medium); }
-        [data-theme="dark"] .badge-content { background: rgba(26,26,26,0.9); }
-        [data-theme="high-contrast"] .badge-content { background: #000; }
+        .badge-content { display: flex; align-items: center; gap: var(--space-xs); padding: 10px 20px; background: rgba(255,255,255,0.9); border: 2px solid var(--color-accent); border-radius: 999px; cursor: default; font-family: var(--font-body); color: #1A1A1A; transition: all var(--motion-medium); }
+        [data-theme="dark"] .badge-content { background: rgba(26,26,26,0.9); color: #F5F5F5; }
+        [data-theme="high-contrast"] .badge-content { background: #000; color: #FFFFFF; }
         .badge-content:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(255,107,43,0.3); }
         .badge-icon { font-size: 20px; line-height: 1; }
         .badge-label { font-size: 14px; font-weight: 600; }
@@ -910,8 +922,9 @@
             <!-- Desktop Navigation -->
             <nav class="header__nav" aria-label="Site navigation">
                 <ul class="nav__links">
-                    <li><a href="#work" class="nav__link">Work</a></li>
                     <li><a href="#about" class="nav__link">About</a></li>
+                    <li><a href="#philosophy" class="nav__link">Philosophy</a></li>
+                    <li><a href="#work" class="nav__link">Work</a></li>
                     <li><a href="#skills" class="nav__link">Skills</a></li>
                     <li><a href="#resume" class="nav__link">Resume</a></li>
                     <li><a href="#contact" class="nav__link">Contact</a></li>
@@ -973,8 +986,9 @@
     <div class="nav-overlay" aria-hidden="true"></div>
     <div class="nav-menu" id="mobile-nav" role="dialog" aria-label="Navigation menu">
         <ul class="nav__links">
-            <li><a href="#work" class="nav__link">Work</a></li>
             <li><a href="#about" class="nav__link">About</a></li>
+            <li><a href="#philosophy" class="nav__link">Philosophy</a></li>
+            <li><a href="#work" class="nav__link">Work</a></li>
             <li><a href="#skills" class="nav__link">Skills</a></li>
             <li><a href="#resume" class="nav__link">Resume</a></li>
             <li><a href="#contact" class="nav__link">Contact</a></li>
@@ -1007,8 +1021,42 @@
             </div>
         </section>
 
+        <!-- About -->
+        <section id="about" class="section" style="background: var(--color-bg-secondary);" aria-labelledby="about-title">
+            <div class="container">
+                <div class="section-header">
+                    <p class="section-eyebrow">About Me</p>
+                    <h2 class="section-title" id="about-title">Designing systems that empower people</h2>
+                </div>
+                <!-- FIX #12: Two-column with decorative image -->
+                <div class="about-grid">
+                    <div class="about-text">
+                        <p>I&rsquo;m a Design Systems Lead and Principal Product Designer with over 10 years of experience creating scalable, accessible design systems and enterprise UX frameworks. I specialize in unifying multi-product experiences, accelerating engineering velocity, and mentoring teams into design maturity.</p>
+                        <p>My work spans four design systems across Rapid7, AlphaWave, and Kronologic, where I&rsquo;ve led MUI migrations, built visualization frameworks, established governance models, and pioneered AI experience standards. I believe great design systems are more than component libraries&mdash;they&rsquo;re shared languages that unite design and engineering around a common vision.</p>
+                        <p>When I&rsquo;m not architecting systems, you&rsquo;ll find me mentoring designers, experimenting with AI-powered tools, or dreaming up backyard castle forts for my kids.</p>
+                    </div>
+                    <!-- FIX #12: Decorative design-system visualization, aria-hidden -->
+                    <div class="about-image" aria-hidden="true" role="presentation">
+                        <div class="ds-node ds-node--span3 ds-node--token">Foundation Tokens</div>
+                        <div class="ds-node ds-node--token">Color</div>
+                        <div class="ds-node ds-node--token">Spacing</div>
+                        <div class="ds-node ds-node--token">Motion</div>
+                        <div class="ds-node ds-node--span3" style="background:var(--color-border-subtle);border:1px dashed var(--color-border);color:var(--color-text-tertiary);font-size:10px;display:flex;align-items:center;justify-content:center;">&#11015; Component Layer</div>
+                        <div class="ds-node ds-node--component ds-node--span2">Button</div>
+                        <div class="ds-node ds-node--component">Icon</div>
+                        <div class="ds-node ds-node--component">Input</div>
+                        <div class="ds-node ds-node--component">Table</div>
+                        <div class="ds-node ds-node--component">Badge</div>
+                        <div class="ds-node ds-node--pattern ds-node--span2">Dashboard Template</div>
+                        <div class="ds-node ds-node--pattern">Filter</div>
+                        <div class="ds-node ds-node--guide ds-node--span3">&#9679; WCAG AA/AAA &#183; Dark &#183; High Contrast &#183; Motion-Safe</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Design Systems Philosophy -->
-        <section class="section" style="background: var(--color-bg-secondary);" aria-labelledby="philosophy-title">
+        <section id="philosophy" class="section" aria-labelledby="philosophy-title">
             <div class="container" style="max-width: 1000px;">
                 <div class="section-header">
                     <p class="section-eyebrow">Philosophy</p>
@@ -1182,40 +1230,6 @@
                             <h4 class="playing-card__title">AI Magic</h4>
                             <p class="playing-card__description">Investigating how AI or other tools can help make my ideas come to life faster.</p>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- About -->
-        <section id="about" class="section" style="background: var(--color-bg-secondary);" aria-labelledby="about-title">
-            <div class="container">
-                <div class="section-header">
-                    <p class="section-eyebrow">About Me</p>
-                    <h2 class="section-title" id="about-title">Designing systems that empower people</h2>
-                </div>
-                <!-- FIX #12: Two-column with decorative image -->
-                <div class="about-grid">
-                    <div class="about-text">
-                        <p>I&rsquo;m a Design Systems Lead and Principal Product Designer with over 10 years of experience creating scalable, accessible design systems and enterprise UX frameworks. I specialize in unifying multi-product experiences, accelerating engineering velocity, and mentoring teams into design maturity.</p>
-                        <p>My work spans four design systems across Rapid7, AlphaWave, and Kronologic, where I&rsquo;ve led MUI migrations, built visualization frameworks, established governance models, and pioneered AI experience standards. I believe great design systems are more than component libraries&mdash;they&rsquo;re shared languages that unite design and engineering around a common vision.</p>
-                        <p>When I&rsquo;m not architecting systems, you&rsquo;ll find me mentoring designers, experimenting with AI-powered tools, or dreaming up backyard castle forts for my kids.</p>
-                    </div>
-                    <!-- FIX #12: Decorative design-system visualization, aria-hidden -->
-                    <div class="about-image" aria-hidden="true" role="presentation">
-                        <div class="ds-node ds-node--span3 ds-node--token">Foundation Tokens</div>
-                        <div class="ds-node ds-node--token">Color</div>
-                        <div class="ds-node ds-node--token">Spacing</div>
-                        <div class="ds-node ds-node--token">Motion</div>
-                        <div class="ds-node ds-node--span3" style="background:var(--color-border-subtle);border:1px dashed var(--color-border);color:var(--color-text-tertiary);font-size:10px;display:flex;align-items:center;justify-content:center;">&#11015; Component Layer</div>
-                        <div class="ds-node ds-node--component ds-node--span2">Button</div>
-                        <div class="ds-node ds-node--component">Icon</div>
-                        <div class="ds-node ds-node--component">Input</div>
-                        <div class="ds-node ds-node--component">Table</div>
-                        <div class="ds-node ds-node--component">Badge</div>
-                        <div class="ds-node ds-node--pattern ds-node--span2">Dashboard Template</div>
-                        <div class="ds-node ds-node--pattern">Filter</div>
-                        <div class="ds-node ds-node--guide ds-node--span3">&#9679; WCAG AA/AAA &#183; Dark &#183; High Contrast &#183; Motion-Safe</div>
                     </div>
                 </div>
             </div>
