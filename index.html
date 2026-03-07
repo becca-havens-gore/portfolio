@@ -175,16 +175,14 @@
             align-items: center;
         }
         .header__logo {
-            font-family: var(--font-display);
-            font-size: 24px;
-            font-weight: 700;
             color: var(--color-text-primary);
             text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 8px;
             white-space: nowrap;
         }
+        .header__logo svg { height: 32px; width: auto; max-width: 260px; flex-shrink: 0; }
+        [data-theme="high-contrast"] .header__logo .logo-diamond { fill: #FFD700; }
         .header__nav {
             display: flex;
             align-items: center;
@@ -611,7 +609,7 @@
         .case-card:hover::before { opacity: 1; }
         .case-header {
             height: 220px;
-            background: linear-gradient(135deg, var(--color-accent), #FF8C5C);
+            background: var(--color-bg-tertiary);
             position: relative;
             overflow: hidden;
             display: flex;
@@ -620,18 +618,35 @@
             font-family: var(--font-display);
             font-size: 48px;
             font-weight: 700;
-            color: white;
         }
         .case-header::before {
             content: "";
             position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
-            background: linear-gradient(120deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
+            background: linear-gradient(120deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0) 100%);
             transform: skewX(-20deg);
             animation: cardShimmer 4s ease-in-out infinite;
         }
-        .case-header[data-color="purple"] { background: linear-gradient(135deg, #6B46FF 0%, #8B68FF 100%); }
-        .case-header[data-color="cyan"] { background: linear-gradient(135deg, #00D4FF 0%, #33DFFF 100%); }
-        .case-header[data-color="magenta"] { background: linear-gradient(135deg, #FF006B 0%, #FF3389 100%); }
+        /* Gradient library — radial spotlight variants (light mode) */
+        .case-header[data-color="orange"]  { background: radial-gradient(ellipse 80% 60% at 20% 80%, #FFD4A3 0%, transparent 60%), radial-gradient(ellipse 70% 70% at 80% 20%, #FFEBD9 0%, transparent 60%), #FFF7F2; }
+        .case-header[data-color="purple"]  { background: radial-gradient(ellipse 90% 70% at 15% 85%, #C4AAFF 0%, transparent 55%), radial-gradient(ellipse 80% 80% at 85% 15%, #E8DCFF 0%, transparent 55%), #F8F5FF; }
+        .case-header[data-color="cyan"]    { background: radial-gradient(ellipse 85% 65% at 10% 90%, #80DFFF 0%, transparent 55%), radial-gradient(ellipse 75% 75% at 90% 10%, #B8F2FF 0%, transparent 55%), #F0FBFF; }
+        .case-header[data-color="magenta"] { background: radial-gradient(ellipse 85% 65% at 15% 85%, #FF9CD6 0%, transparent 55%), radial-gradient(ellipse 75% 75% at 85% 15%, #FFCDE9 0%, transparent 55%), #FFF5FB; }
+        .case-header[data-color="amber"]   { background: radial-gradient(ellipse 85% 65% at 15% 85%, #FFD96B 0%, transparent 55%), radial-gradient(ellipse 75% 75% at 85% 15%, #FFE9A0 0%, transparent 55%), #FFFCF0; }
+        .case-header[data-color="violet"]  { background: radial-gradient(ellipse 85% 65% at 15% 85%, #B090FF 0%, transparent 55%), radial-gradient(ellipse 75% 75% at 85% 15%, #D4C0FF 0%, transparent 55%), #F8F4FF; }
+        /* Dark mode variants */
+        [data-theme="dark"] .case-header[data-color="orange"]  { background: radial-gradient(ellipse 80% 60% at 20% 80%, rgba(255,107,43,0.25) 0%, transparent 60%), radial-gradient(ellipse 70% 70% at 80% 20%, rgba(255,140,92,0.15) 0%, transparent 60%), #100800; }
+        [data-theme="dark"] .case-header[data-color="purple"]  { background: radial-gradient(ellipse 90% 70% at 15% 85%, rgba(107,70,255,0.3) 0%, transparent 55%), radial-gradient(ellipse 80% 80% at 85% 15%, rgba(140,107,255,0.2) 0%, transparent 55%), #080410; }
+        [data-theme="dark"] .case-header[data-color="cyan"]    { background: radial-gradient(ellipse 85% 65% at 10% 90%, rgba(43,191,255,0.28) 0%, transparent 55%), radial-gradient(ellipse 75% 75% at 90% 10%, rgba(92,204,255,0.18) 0%, transparent 55%), #00090F; }
+        [data-theme="dark"] .case-header[data-color="magenta"] { background: radial-gradient(ellipse 85% 65% at 15% 85%, rgba(255,43,158,0.28) 0%, transparent 55%), radial-gradient(ellipse 75% 75% at 85% 15%, rgba(255,92,180,0.18) 0%, transparent 55%), #0E0008; }
+        [data-theme="dark"] .case-header[data-color="amber"]   { background: radial-gradient(ellipse 85% 65% at 15% 85%, rgba(255,184,43,0.28) 0%, transparent 55%), radial-gradient(ellipse 75% 75% at 85% 15%, rgba(255,200,92,0.18) 0%, transparent 55%), #0A0700; }
+        [data-theme="dark"] .case-header[data-color="violet"]  { background: radial-gradient(ellipse 85% 65% at 15% 85%, rgba(124,58,237,0.3) 0%, transparent 55%), radial-gradient(ellipse 75% 75% at 85% 15%, rgba(167,139,250,0.2) 0%, transparent 55%), #040010; }
+        /* High-contrast variants */
+        [data-theme="high-contrast"] .case-header[data-color="orange"]  { background: #000; outline: 3px solid #FF6B2B; }
+        [data-theme="high-contrast"] .case-header[data-color="purple"]  { background: #000; outline: 3px solid #6B46FF; }
+        [data-theme="high-contrast"] .case-header[data-color="cyan"]    { background: #000; outline: 3px solid #2BBFFF; }
+        [data-theme="high-contrast"] .case-header[data-color="magenta"] { background: #000; outline: 3px solid #FF2E93; }
+        [data-theme="high-contrast"] .case-header[data-color="amber"]   { background: #000; outline: 3px solid #FFD700; }
+        [data-theme="high-contrast"] .case-header[data-color="violet"]  { background: #000; outline: 3px solid #9E70FF; }
         .case-content { padding: var(--space-md); }
         .case-tag {
             display: inline-block;
@@ -918,8 +933,20 @@
     <header class="header" role="banner">
         <div class="header__container">
             <a href="#main-content" class="header__logo">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="28" height="28" aria-hidden="true" focusable="false" style="flex-shrink:0;border-radius:6px;"><defs><linearGradient id="logo-grad-idx" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FF6B2B"/><stop offset="100%" stop-color="#6B46FF"/></linearGradient></defs><rect width="32" height="32" rx="7" fill="url(#logo-grad-idx)"/><text x="16" y="22" text-anchor="middle" fill="#fff" font-family="Georgia,serif" font-weight="700" font-size="14" letter-spacing="-0.5">RHG</text></svg>
-                Rebecca Havens Gore
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 292 44" fill="none" role="img" aria-label="Rebecca Gore — Design Systems Lead" focusable="false">
+                  <rect x="4"  y="4"  width="13" height="3" fill="currentColor"/>
+                  <rect x="4"  y="4"  width="3"  height="13" fill="currentColor"/>
+                  <rect x="27" y="4"  width="13" height="3" fill="currentColor"/>
+                  <rect x="37" y="4"  width="3"  height="13" fill="currentColor"/>
+                  <rect x="4"  y="37" width="13" height="3" fill="currentColor"/>
+                  <rect x="4"  y="27" width="3"  height="13" fill="currentColor"/>
+                  <rect x="27" y="37" width="13" height="3" fill="currentColor"/>
+                  <rect x="37" y="27" width="3"  height="13" fill="currentColor"/>
+                  <rect class="logo-diamond" x="18.5" y="18.5" width="7" height="7" transform="rotate(45 22 22)" fill="#FF6B2B"/>
+                  <rect x="54" y="8" width="1" height="28" fill="currentColor" opacity="0.15"/>
+                  <text x="66" y="19" font-family="'Playfair Display', Georgia, 'Times New Roman', serif" font-size="21" font-weight="700" letter-spacing="-0.3" fill="currentColor">Rebecca Gore</text>
+                  <text x="67" y="34" font-family="'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif" font-size="8.5" font-weight="600" letter-spacing="1.6" fill="currentColor" opacity="0.45">DESIGN SYSTEMS LEAD</text>
+                </svg>
             </a>
             <!-- Desktop Navigation -->
             <nav class="header__nav" aria-label="Site navigation">
@@ -1172,7 +1199,7 @@
                         </div>
                     </a>
                     <a href="case-study-ai-experience.html" class="case-card">
-                        <div class="case-header" data-color="orange">&#129302;</div>
+                        <div class="case-header" data-color="amber">&#129302;</div>
                         <div class="case-content">
                             <span class="case-tag">AI/UX</span>
                             <h3 class="case-title">AI Experience Standard</h3>
@@ -1189,7 +1216,7 @@
                         </div>
                     </a>
                     <a href="case-study-enablement.html" class="case-card">
-                        <div class="case-header" data-color="purple">&#128640;</div>
+                        <div class="case-header" data-color="violet">&#128640;</div>
                         <div class="case-content">
                             <span class="case-tag">Enablement</span>
                             <h3 class="case-title">Designer Enablement</h3>
