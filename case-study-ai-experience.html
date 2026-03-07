@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Experience Standard &mdash; Rebecca Gore</title>
+    <title>AI Experience Standard &mdash; Rebecca Havens Gore</title>
     <meta name="description" content="Case study: Designing a responsible, explainable, and scalable AI framework for an enterprise cybersecurity platform">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -641,6 +641,54 @@
         [data-theme="high-contrast"] .case-section__title::after { background: #FFD700 !important; }
         [data-theme="high-contrast"] .impact-card__value { color: #FFD700; }
         [data-theme="high-contrast"] .quote-block { border-left-color: #FFD700; }
+        /* ─── Mini Table of Contents ─── */
+        .case-toc {
+            position: fixed;
+            top: 50%;
+            right: 24px;
+            transform: translateY(-50%);
+            z-index: 200;
+            background: var(--color-bg-secondary);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 16px 12px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.1);
+            width: 172px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 250ms ease;
+        }
+        .case-toc.visible { opacity: 1; pointer-events: auto; }
+        .case-toc__label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--color-text-tertiary);
+            font-weight: 600;
+            margin-bottom: 10px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--color-border);
+        }
+        .case-toc__list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 2px; }
+        .case-toc__link {
+            display: block;
+            font-size: 12px;
+            line-height: 1.4;
+            color: var(--color-text-tertiary);
+            text-decoration: none;
+            padding: 5px 8px;
+            border-radius: 6px;
+            border-left: 2px solid transparent;
+            transition: color 150ms ease, background 150ms ease, border-color 150ms ease;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .case-toc__link:hover { color: var(--color-text-primary); background: var(--color-bg-tertiary); }
+        .case-toc__link.toc-active { color: var(--color-accent); border-left-color: var(--color-accent); font-weight: 600; }
+        .case-toc__link[data-priority="high"] { color: var(--color-accent); font-weight: 600; }
+        .case-toc__link[data-priority="high"].toc-active { background: rgba(255,107,43,0.08); }
+        @media (max-width: 1280px) { .case-toc { display: none; } }
         [data-theme="high-contrast"] .case-nav__link { background: #FFD700; color: #000; }
         [data-theme="high-contrast"] .case-nav__link:hover { background: #FFC700; }
     
@@ -661,6 +709,8 @@
         </style>
 </head>
 <body>
+    <a href="#case-main" class="skip-link">Skip to main content</a>
+
     <header class="header" role="banner">
         <div class="header__container">
             <a href="index.html" class="header__logo">
@@ -1136,6 +1186,49 @@
         })();
         var hdr = document.querySelector(".header");
         if (hdr) window.addEventListener("scroll", function() { hdr.classList.toggle("scrolled", window.pageYOffset > 0); });
+    </script>
+    <script>
+        /* Mini Table of Contents */
+        (function() {
+            var sections = Array.prototype.slice.call(document.querySelectorAll('h2.case-section__title'));
+            if (!sections.length) return;
+            sections.forEach(function(h) {
+                if (!h.id) h.id = h.textContent.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+            });
+            var priority = ['impact', 'artifact'];
+            var toc = document.createElement('nav');
+            toc.className = 'case-toc';
+            toc.setAttribute('aria-label', 'Page sections');
+            var lbl = document.createElement('div');
+            lbl.className = 'case-toc__label';
+            lbl.textContent = 'On this page';
+            toc.appendChild(lbl);
+            var list = document.createElement('ul');
+            list.className = 'case-toc__list';
+            sections.forEach(function(h) {
+                var li = document.createElement('li');
+                var a = document.createElement('a');
+                a.href = '#' + h.id;
+                a.className = 'case-toc__link';
+                a.textContent = h.textContent.trim();
+                if (priority.some(function(p) { return h.id.indexOf(p) !== -1; })) a.setAttribute('data-priority', 'high');
+                li.appendChild(a);
+                list.appendChild(li);
+            });
+            toc.appendChild(list);
+            document.body.appendChild(toc);
+            var hero = document.querySelector('.case-hero');
+            var links = toc.querySelectorAll('.case-toc__link');
+            function updateVisibility() { toc.classList.toggle('visible', !hero || hero.getBoundingClientRect().bottom < 0); }
+            function updateActive() {
+                var scrollY = window.pageYOffset + 140;
+                var current = null;
+                sections.forEach(function(h) { if (h.offsetTop <= scrollY) current = h.id; });
+                links.forEach(function(a) { a.classList.toggle('toc-active', a.getAttribute('href') === '#' + current); });
+            }
+            window.addEventListener('scroll', function() { updateVisibility(); updateActive(); }, { passive: true });
+            updateVisibility(); updateActive();
+        })();
     </script>
 </body>
 </html>
