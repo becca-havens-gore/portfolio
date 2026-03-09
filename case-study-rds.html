@@ -525,9 +525,9 @@
         .header__container { display: flex; justify-content: space-between; align-items: center; max-width: 1440px; margin: 0 auto; }
         .theme-controls {
             display: flex; align-items: center;
-            background: rgba(0,0,0,0.05);
+            background: rgba(255,255,255,0.9);
             backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(0,0,0,0.1); border-radius: 12px; padding: 4px;
+            border: 1px solid rgba(0,0,0,0.12); border-radius: 12px; padding: 4px;
         }
         .theme-btn {
             background: transparent; border: none; padding: 7px 11px; border-radius: 8px;
@@ -710,6 +710,9 @@
             display: block;
         }
 
+        .cs-image-block--multiply picture { background: transparent; }
+        .cs-image-block--multiply img { mix-blend-mode: multiply; }
+
         .cs-image-block figcaption {
             padding: 10px 24px 14px;
             font-size: 12px;
@@ -804,9 +807,10 @@
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 4px 16px rgba(0,0,0,0.14);
-            transition: transform 300ms cubic-bezier(0.16,1,0.3,1), box-shadow 300ms ease, z-index 0s;
+            transition: transform 300ms cubic-bezier(0.16,1,0.3,1), box-shadow 300ms ease;
             position: relative;
             cursor: pointer;
+            z-index: 1;
         }
         /* Arc rotation — 8 items */
         .outcomes-arc__item:nth-child(1)  { transform: rotate(-7deg)   translateY(28px); }
@@ -1084,7 +1088,7 @@
         </article>
 
         <!-- 03: Strategy & Architecture -->
-        <figure class="cs-image-block">
+        <figure class="cs-image-block cs-image-block--multiply">
             <picture>
                 <source type="image/avif"
                     srcset="assets/images/case-studies/rds/DS-03-640w.avif 640w,
