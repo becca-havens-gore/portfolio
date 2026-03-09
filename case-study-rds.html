@@ -549,7 +549,28 @@
         [data-theme="high-contrast"] .theme-btn { color: #EEE; border: 1px solid #555; border-radius: 6px; }
         [data-theme="high-contrast"] .theme-btn:hover { border-color: #FFD700; color: #FFD700; }
         [data-theme="high-contrast"] .theme-btn.active { background: #FFD700; color: #000; border-color: #FFD700; }
-        /* Theme dropdown (medium screens) */
+        /* Improve theme switcher contrast in LIGHT theme */
+:root:not([data-theme="dark"]):not([data-theme="high-contrast"]) .theme-controls {
+  background: rgba(0, 0, 0, 0.04);           /* darker glass */
+  border-color: rgba(0, 0, 0, 0.12);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+:root:not([data-theme="dark"]):not([data-theme="high-contrast"]) .theme-btn {
+  color: var(--color-text-primary);          /* stronger label color */
+  opacity: 0.78;                              /* inactive state */
+}
+
+:root:not([data-theme="dark"]):not([data-theme="high-contrast"]) .theme-btn:hover {
+  opacity: 1;
+}
+
+:root:not([data-theme="dark"]):not([data-theme="high-contrast"]) .theme-btn.active {
+  background: rgba(0, 0, 0, 0.08);           /* visible active pill */
+  color: var(--color-text-primary);
+  opacity: 1;
+  box-shadow: none;
+}/* Theme dropdown (medium screens) */
         .theme-dropdown { display: none; position: relative; }
         .theme-dropdown-button {
             background: rgba(255,255,255,0.12); backdrop-filter: blur(20px);
@@ -587,7 +608,11 @@
         [data-theme="high-contrast"] .case-section__title::after { background: #FFD700 !important; }
         [data-theme="high-contrast"] .impact-card__value { color: #FFD700; }
         [data-theme="high-contrast"] .quote-block { border-left-color: #FFD700; }
-
+:root:not([data-theme="dark"]):not([data-theme="high-contrast"]) .theme-dropdown-button {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: rgba(0, 0, 0, 0.12);
+  color: var(--color-text-primary);
+}
         /* ─── Mini Table of Contents ─── */
         .case-toc {
             position: fixed;
