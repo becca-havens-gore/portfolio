@@ -821,11 +821,7 @@
             position: absolute;
             inset: 0;
         }
-        .about-photo__gradient {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to bottom, rgba(255,107,43,0.1) 0%, transparent 50%, rgba(107,70,255,0.18) 100%);
-            pointer-events: none;
+        .about-photo__headshot img {
             z-index: 1;
         }
         .about-photo__doodles {
@@ -1231,11 +1227,15 @@
                             </g>
                         </svg>
                         <div class="about-photo">
-                            <div class="about-photo__gradient" aria-hidden="true"></div>
-                            <picture>
-                                <source type="image/avif" srcset="assets/images/profile/image-3-640w.avif 640w, assets/images/profile/image-3-960w.avif 960w, assets/images/profile/image-3-1280w.avif 1280w" sizes="(max-width: 640px) 640px, (max-width: 960px) 960px, 1280px">
-                                <source type="image/webp" srcset="assets/images/profile/image-3-640w.webp 640w, assets/images/profile/image-3-960w.webp 960w, assets/images/profile/image-3-1280w.webp 1280w" sizes="(max-width: 640px) 640px, (max-width: 960px) 960px, 1280px">
-                                <img src="assets/images/profile/image-3-1280w.png" srcset="assets/images/profile/image-3-640w.png 640w, assets/images/profile/image-3-960w.png 960w, assets/images/profile/image-3-1280w.png 1280w" sizes="(max-width: 640px) 640px, (max-width: 960px) 960px, 1280px" alt="Becca Havens-Gore" loading="eager" fetchpriority="high">
+                            <picture aria-hidden="true">
+                                <source type="image/avif" srcset="assets/images/profile/becca-gradient-square-1024-640w.avif 640w, assets/images/profile/becca-gradient-square-1024-960w.avif 960w" sizes="640px">
+                                <source type="image/webp" srcset="assets/images/profile/becca-gradient-square-1024-640w.webp 640w, assets/images/profile/becca-gradient-square-1024-960w.webp 960w" sizes="640px">
+                                <img src="assets/images/profile/becca-gradient-square-1024-960w.png" srcset="assets/images/profile/becca-gradient-square-1024-640w.png 640w, assets/images/profile/becca-gradient-square-1024-960w.png 960w" sizes="640px" alt="">
+                            </picture>
+                            <picture class="about-photo__headshot">
+                                <source type="image/avif" srcset="assets/images/profile/becca-headshot-variant-1-grayscale-320w.avif 320w, assets/images/profile/becca-headshot-variant-1-grayscale-512w.avif 512w" sizes="(max-width: 640px) 320px, 512px">
+                                <source type="image/webp" srcset="assets/images/profile/becca-headshot-variant-1-grayscale-320w.webp 320w, assets/images/profile/becca-headshot-variant-1-grayscale-512w.webp 512w" sizes="(max-width: 640px) 320px, 512px">
+                                <img src="assets/images/profile/becca-headshot-variant-1-grayscale-512w.png" srcset="assets/images/profile/becca-headshot-variant-1-grayscale-320w.png 320w, assets/images/profile/becca-headshot-variant-1-grayscale-512w.png 512w" sizes="(max-width: 640px) 320px, 512px" alt="Becca Havens-Gore" loading="eager" fetchpriority="high">
                             </picture>
                         </div>
                     </div>
