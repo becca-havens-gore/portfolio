@@ -2,8 +2,8 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import sharp from "sharp";
 
-const INPUT_DIR = "images/source";       // put originals here
-const OUTPUT_DIR = "images/optimized";   // script writes here
+const INPUT_DIR = "images/source/new";       // put originals here
+const OUTPUT_DIR = "assets/images/";   // script writes here
 
 // Widths to generate. Tune if you want fewer files.
 const WIDTHS = [640, 960, 1280, 1600, 2000];
