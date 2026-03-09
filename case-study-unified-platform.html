@@ -635,6 +635,110 @@
         .img-placeholder { width:100%; min-height:420px; background:linear-gradient(135deg,var(--color-accent) 0%,#6B46FF 60%,#FF2E93 100%); position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center; }
         .img-placeholder::before { content:'Portfolio Image'; color:rgba(255,255,255,0.4); font-size:13px; font-family:var(--font-body); letter-spacing:0.15em; text-transform:uppercase; font-weight:600; border:2px dashed rgba(255,255,255,0.3); padding:32px 48px; border-radius:8px; }
         .img-placeholder__img { position:absolute; inset:0; width:100%; height:100%; object-fit:contain; object-position:center; }
+
+/* Outcomes Gallery */
+.outcomes-gallery {
+    padding: 80px var(--grid-margin, 120px);
+    background: var(--color-bg-secondary);
+}
+.outcomes-gallery__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin-bottom: 48px;
+}
+.outcomes-gallery__header .case-section__title {
+    margin-bottom: 0;
+}
+.outcomes-theme-switcher {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.outcomes-theme-btn {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 500;
+    padding: 6px 14px;
+    border: 1.5px solid var(--color-border);
+    border-radius: 20px;
+    background: transparent;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    transition: all 150ms ease;
+    white-space: nowrap;
+}
+.outcomes-theme-btn:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+}
+.outcomes-theme-btn.active {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: #fff;
+}
+.outcomes-arc {
+    display: flex;
+    gap: 12px;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 24px 0 64px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+.outcomes-arc[hidden] { display: none; }
+.outcomes-arc__item {
+    flex: 0 0 auto;
+    width: clamp(100px, 11vw, 180px);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.14);
+    transition: transform 300ms cubic-bezier(0.16,1,0.3,1), box-shadow 300ms ease;
+    position: relative;
+    cursor: pointer;
+}
+.outcomes-arc__item:nth-child(1)  { transform: rotate(-7deg)   translateY(28px); }
+.outcomes-arc__item:nth-child(2)  { transform: rotate(-5deg)   translateY(16px); }
+.outcomes-arc__item:nth-child(3)  { transform: rotate(-3deg)   translateY(7px);  }
+.outcomes-arc__item:nth-child(4)  { transform: rotate(-1deg)   translateY(2px);  }
+.outcomes-arc__item:nth-child(5)  { transform: rotate(1deg)    translateY(2px);  }
+.outcomes-arc__item:nth-child(6)  { transform: rotate(3deg)    translateY(7px);  }
+.outcomes-arc__item:nth-child(7)  { transform: rotate(5deg)    translateY(16px); }
+.outcomes-arc__item:nth-child(8)  { transform: rotate(7deg)    translateY(28px); }
+.outcomes-arc__item:hover {
+    transform: scale(1.55) rotate(0deg) translateY(-18px) !important;
+    z-index: 20;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.28);
+}
+.outcomes-arc__item img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+@media (max-width: 767px) {
+    .outcomes-gallery {
+        padding: 48px 24px;
+    }
+    .outcomes-gallery__header {
+        flex-direction: column;
+    }
+    .outcomes-arc {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 0;
+        gap: 16px;
+    }
+    .outcomes-arc__item {
+        width: 100% !important;
+        transform: none !important;
+    }
+    .outcomes-arc__item:hover {
+        transform: none !important;
+    }
+}
         </style>
 </head>
 <body>
@@ -705,9 +809,39 @@
             </div>
         </section>
 
-        <div class="img-placeholder" role="img" aria-label="Unified platform experience portfolio screenshot">
-            <!-- <img src="images/unified-platform-overview.png" alt="Unified Platform Experience overview" class="img-placeholder__img"> -->
-        </div>
+        <!-- 01: Hero -->
+        <figure class="cs-image-block">
+            <picture>
+                <source type="image/avif"
+                    srcset="assets/images/case-studies/platform/PL-01-640w.avif 640w,
+                            assets/images/case-studies/platform/PL-01-960w.avif 960w,
+                            assets/images/case-studies/platform/PL-01-1280w.avif 1280w,
+                            assets/images/case-studies/platform/PL-01-1600w.avif 1600w,
+                            assets/images/case-studies/platform/PL-01-2000w.avif 2000w"
+                    sizes="100vw">
+                <source type="image/webp"
+                    srcset="assets/images/case-studies/platform/PL-01-640w.webp 640w,
+                            assets/images/case-studies/platform/PL-01-960w.webp 960w,
+                            assets/images/case-studies/platform/PL-01-1280w.webp 1280w,
+                            assets/images/case-studies/platform/PL-01-1600w.webp 1600w,
+                            assets/images/case-studies/platform/PL-01-2000w.webp 2000w"
+                    sizes="100vw">
+                <img src="assets/images/case-studies/platform/PL-01-1280w.png"
+                    srcset="assets/images/case-studies/platform/PL-01-640w.png 640w,
+                            assets/images/case-studies/platform/PL-01-960w.png 960w,
+                            assets/images/case-studies/platform/PL-01-1280w.png 1280w,
+                            assets/images/case-studies/platform/PL-01-1600w.png 1600w,
+                            assets/images/case-studies/platform/PL-01-2000w.png 2000w"
+                    sizes="100vw"
+                    alt="Unified Platform Experience — hero overview of platform-wide interaction standardization"
+                    loading="eager"
+                    fetchpriority="high"
+                    decoding="async"
+                    width="1280"
+                    height="800">
+            </picture>
+            <figcaption>Unified Platform Experience — standardizing foundational interactions across Rapid7's multi-product ecosystem</figcaption>
+        </figure>
 
         <article class="case-content">
             <section class="case-section">
@@ -794,7 +928,42 @@
                     <li>High expectations from analysts who rely heavily on data browsing</li>
                 </ul>
             </section>
-            
+        </article>
+
+        <!-- 02: Research & Synthesis -->
+        <figure class="cs-image-block">
+            <picture>
+                <source type="image/avif"
+                    srcset="assets/images/case-studies/platform/PL-02-640w.avif 640w,
+                            assets/images/case-studies/platform/PL-02-960w.avif 960w,
+                            assets/images/case-studies/platform/PL-02-1280w.avif 1280w,
+                            assets/images/case-studies/platform/PL-02-1600w.avif 1600w,
+                            assets/images/case-studies/platform/PL-02-2000w.avif 2000w"
+                    sizes="100vw">
+                <source type="image/webp"
+                    srcset="assets/images/case-studies/platform/PL-02-640w.webp 640w,
+                            assets/images/case-studies/platform/PL-02-960w.webp 960w,
+                            assets/images/case-studies/platform/PL-02-1280w.webp 1280w,
+                            assets/images/case-studies/platform/PL-02-1600w.webp 1600w,
+                            assets/images/case-studies/platform/PL-02-2000w.webp 2000w"
+                    sizes="100vw">
+                <img src="assets/images/case-studies/platform/PL-02-1280w.png"
+                    srcset="assets/images/case-studies/platform/PL-02-640w.png 640w,
+                            assets/images/case-studies/platform/PL-02-960w.png 960w,
+                            assets/images/case-studies/platform/PL-02-1280w.png 1280w,
+                            assets/images/case-studies/platform/PL-02-1600w.png 1600w,
+                            assets/images/case-studies/platform/PL-02-2000w.png 2000w"
+                    sizes="100vw"
+                    alt="Research & Synthesis — multi-stream research findings for platform standardization"
+                    loading="lazy"
+                    decoding="async"
+                    width="1280"
+                    height="800">
+            </picture>
+            <figcaption>Research & Synthesis — cross-product research revealing table, filter, and workflow inconsistencies</figcaption>
+        </figure>
+
+        <article class="case-content">
             <section class="case-section">
                 <h2 class="case-section__title">Research & Synthesis</h2>
                 <p>I synthesized findings from multiple research streams to understand the full scope of the problem:</p>
@@ -833,7 +1002,42 @@
                     <li>Enable scale through systemization</li>
                 </ul>
             </section>
-            
+        </article>
+
+        <!-- 03: Strategy & Architecture -->
+        <figure class="cs-image-block">
+            <picture>
+                <source type="image/avif"
+                    srcset="assets/images/case-studies/platform/PL-03-640w.avif 640w,
+                            assets/images/case-studies/platform/PL-03-960w.avif 960w,
+                            assets/images/case-studies/platform/PL-03-1280w.avif 1280w,
+                            assets/images/case-studies/platform/PL-03-1600w.avif 1600w,
+                            assets/images/case-studies/platform/PL-03-2000w.avif 2000w"
+                    sizes="100vw">
+                <source type="image/webp"
+                    srcset="assets/images/case-studies/platform/PL-03-640w.webp 640w,
+                            assets/images/case-studies/platform/PL-03-960w.webp 960w,
+                            assets/images/case-studies/platform/PL-03-1280w.webp 1280w,
+                            assets/images/case-studies/platform/PL-03-1600w.webp 1600w,
+                            assets/images/case-studies/platform/PL-03-2000w.webp 2000w"
+                    sizes="100vw">
+                <img src="assets/images/case-studies/platform/PL-03-1280w.png"
+                    srcset="assets/images/case-studies/platform/PL-03-640w.png 640w,
+                            assets/images/case-studies/platform/PL-03-960w.png 960w,
+                            assets/images/case-studies/platform/PL-03-1280w.png 1280w,
+                            assets/images/case-studies/platform/PL-03-1600w.png 1600w,
+                            assets/images/case-studies/platform/PL-03-2000w.png 2000w"
+                    sizes="100vw"
+                    alt="Strategy & Architecture — three-pillar UPX framework for platform interaction standardization"
+                    loading="lazy"
+                    decoding="async"
+                    width="1280"
+                    height="800">
+            </picture>
+            <figcaption>Strategy & Architecture — three-pillar UPX framework: interaction frameworks, mental models, and implementation patterns</figcaption>
+        </figure>
+
+        <article class="case-content">
             <section class="case-section">
                 <h2 class="case-section__title">Strategy & Architecture</h2>
                 <p>I architected UPX around three foundational pillars:</p>
@@ -906,7 +1110,42 @@
                     <li><strong>Scalability</strong> &mdash; Patterns should support future platform features and AI</li>
                 </ul>
             </section>
-            
+        </article>
+
+        <!-- 04: Design & Implementation -->
+        <figure class="cs-image-block">
+            <picture>
+                <source type="image/avif"
+                    srcset="assets/images/case-studies/platform/PL-04-640w.avif 640w,
+                            assets/images/case-studies/platform/PL-04-960w.avif 960w,
+                            assets/images/case-studies/platform/PL-04-1280w.avif 1280w,
+                            assets/images/case-studies/platform/PL-04-1600w.avif 1600w,
+                            assets/images/case-studies/platform/PL-04-2000w.avif 2000w"
+                    sizes="100vw">
+                <source type="image/webp"
+                    srcset="assets/images/case-studies/platform/PL-04-640w.webp 640w,
+                            assets/images/case-studies/platform/PL-04-960w.webp 960w,
+                            assets/images/case-studies/platform/PL-04-1280w.webp 1280w,
+                            assets/images/case-studies/platform/PL-04-1600w.webp 1600w,
+                            assets/images/case-studies/platform/PL-04-2000w.webp 2000w"
+                    sizes="100vw">
+                <img src="assets/images/case-studies/platform/PL-04-1280w.png"
+                    srcset="assets/images/case-studies/platform/PL-04-640w.png 640w,
+                            assets/images/case-studies/platform/PL-04-960w.png 960w,
+                            assets/images/case-studies/platform/PL-04-1280w.png 1280w,
+                            assets/images/case-studies/platform/PL-04-1600w.png 1600w,
+                            assets/images/case-studies/platform/PL-04-2000w.png 2000w"
+                    sizes="100vw"
+                    alt="Design & Implementation — DataGrid specifications and interaction design deliverables"
+                    loading="lazy"
+                    decoding="async"
+                    width="1280"
+                    height="800">
+            </picture>
+            <figcaption>Design & Implementation — DataGrid specifications, filtering interaction diagrams, and batch action patterns</figcaption>
+        </figure>
+
+        <article class="case-content">
             <section class="case-section">
                 <h2 class="case-section__title">Design & Implementation</h2>
                 
@@ -943,7 +1182,75 @@
                     <li>"Ask the Platform" weekly support sessions</li>
                 </ul>
             </section>
-            
+        </article>
+
+        <!-- 05: After Design & Implementation -->
+        <figure class="cs-image-block">
+            <picture>
+                <source type="image/avif"
+                    srcset="assets/images/case-studies/platform/PL-05-640w.avif 640w,
+                            assets/images/case-studies/platform/PL-05-960w.avif 960w,
+                            assets/images/case-studies/platform/PL-05-1280w.avif 1280w,
+                            assets/images/case-studies/platform/PL-05-1600w.avif 1600w,
+                            assets/images/case-studies/platform/PL-05-2000w.avif 2000w"
+                    sizes="100vw">
+                <source type="image/webp"
+                    srcset="assets/images/case-studies/platform/PL-05-640w.webp 640w,
+                            assets/images/case-studies/platform/PL-05-960w.webp 960w,
+                            assets/images/case-studies/platform/PL-05-1280w.webp 1280w,
+                            assets/images/case-studies/platform/PL-05-1600w.webp 1600w,
+                            assets/images/case-studies/platform/PL-05-2000w.webp 2000w"
+                    sizes="100vw">
+                <img src="assets/images/case-studies/platform/PL-05-1280w.png"
+                    srcset="assets/images/case-studies/platform/PL-05-640w.png 640w,
+                            assets/images/case-studies/platform/PL-05-960w.png 960w,
+                            assets/images/case-studies/platform/PL-05-1280w.png 1280w,
+                            assets/images/case-studies/platform/PL-05-1600w.png 1600w,
+                            assets/images/case-studies/platform/PL-05-2000w.png 2000w"
+                    sizes="100vw"
+                    alt="UPX implementation — DataGrid and filtering patterns deployed across products"
+                    loading="lazy"
+                    decoding="async"
+                    width="1280"
+                    height="800">
+            </picture>
+            <figcaption>UPX implementation — standardized DataGrid and filtering patterns adopted across Rapid7 product suite</figcaption>
+        </figure>
+
+        <!-- 06: Before Validation & Measurement -->
+        <figure class="cs-image-block">
+            <picture>
+                <source type="image/avif"
+                    srcset="assets/images/case-studies/platform/PL-06-640w.avif 640w,
+                            assets/images/case-studies/platform/PL-06-960w.avif 960w,
+                            assets/images/case-studies/platform/PL-06-1280w.avif 1280w,
+                            assets/images/case-studies/platform/PL-06-1600w.avif 1600w,
+                            assets/images/case-studies/platform/PL-06-2000w.avif 2000w"
+                    sizes="100vw">
+                <source type="image/webp"
+                    srcset="assets/images/case-studies/platform/PL-06-640w.webp 640w,
+                            assets/images/case-studies/platform/PL-06-960w.webp 960w,
+                            assets/images/case-studies/platform/PL-06-1280w.webp 1280w,
+                            assets/images/case-studies/platform/PL-06-1600w.webp 1600w,
+                            assets/images/case-studies/platform/PL-06-2000w.webp 2000w"
+                    sizes="100vw">
+                <img src="assets/images/case-studies/platform/PL-06-1280w.png"
+                    srcset="assets/images/case-studies/platform/PL-06-640w.png 640w,
+                            assets/images/case-studies/platform/PL-06-960w.png 960w,
+                            assets/images/case-studies/platform/PL-06-1280w.png 1280w,
+                            assets/images/case-studies/platform/PL-06-1600w.png 1600w,
+                            assets/images/case-studies/platform/PL-06-2000w.png 2000w"
+                    sizes="100vw"
+                    alt="Validation & Measurement — user testing results and adoption metrics"
+                    loading="lazy"
+                    decoding="async"
+                    width="1280"
+                    height="800">
+            </picture>
+            <figcaption>Validation & Measurement — user testing results confirming improved task success and reduced cognitive load</figcaption>
+        </figure>
+
+        <article class="case-content">
             <section class="case-section">
                 <h2 class="case-section__title">Validation & Measurement</h2>
                 
@@ -963,7 +1270,42 @@
                     <li>Greater trust in shared patterns</li>
                 </ul>
             </section>
-            
+        </article>
+
+        <!-- 07: Before Impact -->
+        <figure class="cs-image-block">
+            <picture>
+                <source type="image/avif"
+                    srcset="assets/images/case-studies/platform/PL-07-640w.avif 640w,
+                            assets/images/case-studies/platform/PL-07-960w.avif 960w,
+                            assets/images/case-studies/platform/PL-07-1280w.avif 1280w,
+                            assets/images/case-studies/platform/PL-07-1600w.avif 1600w,
+                            assets/images/case-studies/platform/PL-07-2000w.avif 2000w"
+                    sizes="100vw">
+                <source type="image/webp"
+                    srcset="assets/images/case-studies/platform/PL-07-640w.webp 640w,
+                            assets/images/case-studies/platform/PL-07-960w.webp 960w,
+                            assets/images/case-studies/platform/PL-07-1280w.webp 1280w,
+                            assets/images/case-studies/platform/PL-07-1600w.webp 1600w,
+                            assets/images/case-studies/platform/PL-07-2000w.webp 2000w"
+                    sizes="100vw">
+                <img src="assets/images/case-studies/platform/PL-07-1280w.png"
+                    srcset="assets/images/case-studies/platform/PL-07-640w.png 640w,
+                            assets/images/case-studies/platform/PL-07-960w.png 960w,
+                            assets/images/case-studies/platform/PL-07-1280w.png 1280w,
+                            assets/images/case-studies/platform/PL-07-1600w.png 1600w,
+                            assets/images/case-studies/platform/PL-07-2000w.png 2000w"
+                    sizes="100vw"
+                    alt="Impact — measurable results from the Unified Platform Experience rollout"
+                    loading="lazy"
+                    decoding="async"
+                    width="1280"
+                    height="800">
+            </picture>
+            <figcaption>Impact — 28% task success improvement and 40% reduction in cross-product friction</figcaption>
+        </figure>
+
+        <article class="case-content">
             <section class="case-section">
                 <h2 class="case-section__title">Impact</h2>
                 
@@ -1022,7 +1364,42 @@
                     <li>Shared ownership over platform patterns</li>
                 </ul>
             </section>
-            
+        </article>
+
+        <!-- 08: Before What I'd Do Next -->
+        <figure class="cs-image-block">
+            <picture>
+                <source type="image/avif"
+                    srcset="assets/images/case-studies/platform/PL-08-640w.avif 640w,
+                            assets/images/case-studies/platform/PL-08-960w.avif 960w,
+                            assets/images/case-studies/platform/PL-08-1280w.avif 1280w,
+                            assets/images/case-studies/platform/PL-08-1600w.avif 1600w,
+                            assets/images/case-studies/platform/PL-08-2000w.avif 2000w"
+                    sizes="100vw">
+                <source type="image/webp"
+                    srcset="assets/images/case-studies/platform/PL-08-640w.webp 640w,
+                            assets/images/case-studies/platform/PL-08-960w.webp 960w,
+                            assets/images/case-studies/platform/PL-08-1280w.webp 1280w,
+                            assets/images/case-studies/platform/PL-08-1600w.webp 1600w,
+                            assets/images/case-studies/platform/PL-08-2000w.webp 2000w"
+                    sizes="100vw">
+                <img src="assets/images/case-studies/platform/PL-08-1280w.png"
+                    srcset="assets/images/case-studies/platform/PL-08-640w.png 640w,
+                            assets/images/case-studies/platform/PL-08-960w.png 960w,
+                            assets/images/case-studies/platform/PL-08-1280w.png 1280w,
+                            assets/images/case-studies/platform/PL-08-1600w.png 1600w,
+                            assets/images/case-studies/platform/PL-08-2000w.png 2000w"
+                    sizes="100vw"
+                    alt="What I'd Do Next — future vision for the Unified Platform Experience"
+                    loading="lazy"
+                    decoding="async"
+                    width="1280"
+                    height="800">
+            </picture>
+            <figcaption>What I'd Do Next — AI-powered interaction intelligence and cross-product pattern adoption expansion</figcaption>
+        </figure>
+
+        <article class="case-content">
             <section class="case-section">
                 <h2 class="case-section__title">What I'd Do Next</h2>
                 <p>Building on this foundation, future enhancements would include:</p>
@@ -1036,7 +1413,63 @@
                 </ul>
             </section>
         </article>
-        
+
+        <!-- Outcomes Gallery -->
+        <section class="outcomes-gallery" aria-label="Outcomes gallery">
+            <div class="outcomes-gallery__header">
+                <h2 class="case-section__title">Outcomes</h2>
+                <div class="outcomes-theme-switcher" role="group" aria-label="Select theme to preview">
+                    <button class="outcomes-theme-btn active" data-gallery="OL">Original Light</button>
+                    <button class="outcomes-theme-btn" data-gallery="OD">Original Dark</button>
+                    <button class="outcomes-theme-btn" data-gallery="CL">Callisto Light</button>
+                    <button class="outcomes-theme-btn" data-gallery="CD">Callisto Dark</button>
+                </div>
+            </div>
+            <!-- Original Light -->
+            <div class="outcomes-arc" data-gallery-theme="OL" role="list" aria-label="Original Light theme outcomes">
+                <div class="outcomes-arc__item" role="listitem"><picture><source type="image/avif" srcset="assets/images/case-studies/platform/Outcome-01-OL-640w.avif 640w, assets/images/case-studies/platform/Outcome-01-OL-960w.avif 960w, assets/images/case-studies/platform/Outcome-01-OL-1280w.avif 1280w" sizes="12vw"><source type="image/webp" srcset="assets/images/case-studies/platform/Outcome-01-OL-640w.webp 640w, assets/images/case-studies/platform/Outcome-01-OL-960w.webp 960w, assets/images/case-studies/platform/Outcome-01-OL-1280w.webp 1280w" sizes="12vw"><img src="assets/images/case-studies/platform/Outcome-01-OL-960w.png" alt="Outcome 01 — Original Light theme" loading="lazy" decoding="async"></picture></div>
+                <div class="outcomes-arc__item" role="listitem"><picture><source type="image/avif" srcset="assets/images/case-studies/platform/Outcome-02-OL-640w.avif 640w, assets/images/case-studies/platform/Outcome-02-OL-960w.avif 960w, assets/images/case-studies/platform/Outcome-02-OL-1280w.avif 1280w" sizes="12vw"><source type="image/webp" srcset="assets/images/case-studies/platform/Outcome-02-OL-640w.webp 640w, assets/images/case-studies/platform/Outcome-02-OL-960w.webp 960w, assets/images/case-studies/platform/Outcome-02-OL-1280w.webp 1280w" sizes="12vw"><img src="assets/images/case-studies/platform/Outcome-02-OL-960w.png" alt="Outcome 02 — Original Light theme" loading="lazy" decoding="async"></picture></div>
+                <div class="outcomes-arc__item" role="listitem"><picture><source type="image/avif" srcset="assets/images/case-studies/platform/Outcome-03-OL-640w.avif 640w, assets/images/case-studies/platform/Outcome-03-OL-960w.avif 960w, assets/images/case-studies/platform/Outcome-03-OL-1280w.avif 1280w" sizes="12vw"><source type="image/webp" srcset="assets/images/case-studies/platform/Outcome-03-OL-640w.webp 640w, assets/images/case-studies/platform/Outcome-03-OL-960w.webp 960w, assets/images/case-studies/platform/Outcome-03-OL-1280w.webp 1280w" sizes="12vw"><img src="assets/images/case-studies/platform/Outcome-03-OL-960w.png" alt="Outcome 03 — Original Light theme" loading="lazy" decoding="async"></picture></div>
+                <div class="outcomes-arc__item" role="listitem"><picture><source type="image/avif" srcset="assets/images/case-studies/platform/Outcome-04-OL-640w.avif 640w, assets/images/case-studies/platform/Outcome-04-OL-960w.avif 960w, assets/images/case-studies/platform/Outcome-04-OL-1280w.avif 1280w" sizes="12vw"><source type="image/webp" srcset="assets/images/case-studies/platform/Outcome-04-OL-640w.webp 640w, assets/images/case-studies/platform/Outcome-04-OL-960w.webp 960w, assets/images/case-studies/platform/Outcome-04-OL-1280w.webp 1280w" sizes="12vw"><img src="assets/images/case-studies/platform/Outcome-04-OL-960w.png" alt="Outcome 04 — Original Light theme" loading="lazy" decoding="async"></picture></div>
+                <div class="outcomes-arc__item" role="listitem"><picture><source type="image/avif" srcset="assets/images/case-studies/platform/Outcome-05-OL-640w.avif 640w, assets/images/case-studies/platform/Outcome-05-OL-960w.avif 960w, assets/images/case-studies/platform/Outcome-05-OL-1280w.avif 1280w" sizes="12vw"><source type="image/webp" srcset="assets/images/case-studies/platform/Outcome-05-OL-640w.webp 640w, assets/images/case-studies/platform/Outcome-05-OL-960w.webp 960w, assets/images/case-studies/platform/Outcome-05-OL-1280w.webp 1280w" sizes="12vw"><img src="assets/images/case-studies/platform/Outcome-05-OL-960w.png" alt="Outcome 05 — Original Light theme" loading="lazy" decoding="async"></picture></div>
+                <div class="outcomes-arc__item" role="listitem"><picture><source type="image/avif" srcset="assets/images/case-studies/platform/Outcome-06-OL-640w.avif 640w, assets/images/case-studies/platform/Outcome-06-OL-960w.avif 960w, assets/images/case-studies/platform/Outcome-06-OL-1280w.avif 1280w" sizes="12vw"><source type="image/webp" srcset="assets/images/case-studies/platform/Outcome-06-OL-640w.webp 640w, assets/images/case-studies/platform/Outcome-06-OL-960w.webp 960w, assets/images/case-studies/platform/Outcome-06-OL-1280w.webp 1280w" sizes="12vw"><img src="assets/images/case-studies/platform/Outcome-06-OL-960w.png" alt="Outcome 06 — Original Light theme" loading="lazy" decoding="async"></picture></div>
+                <div class="outcomes-arc__item" role="listitem"><picture><source type="image/avif" srcset="assets/images/case-studies/platform/Outcome-07-OL-640w.avif 640w, assets/images/case-studies/platform/Outcome-07-OL-960w.avif 960w, assets/images/case-studies/platform/Outcome-07-OL-1280w.avif 1280w" sizes="12vw"><source type="image/webp" srcset="assets/images/case-studies/platform/Outcome-07-OL-640w.webp 640w, assets/images/case-studies/platform/Outcome-07-OL-960w.webp 960w, assets/images/case-studies/platform/Outcome-07-OL-1280w.webp 1280w" sizes="12vw"><img src="assets/images/case-studies/platform/Outcome-07-OL-960w.png" alt="Outcome 07 — Original Light theme" loading="lazy" decoding="async"></picture></div>
+                <div class="outcomes-arc__item" role="listitem"><picture><source type="image/avif" srcset="assets/images/case-studies/platform/Outcome-08-OL-640w.avif 640w, assets/images/case-studies/platform/Outcome-08-OL-960w.avif 960w, assets/images/case-studies/platform/Outcome-08-OL-1280w.avif 1280w" sizes="12vw"><source type="image/webp" srcset="assets/images/case-studies/platform/Outcome-08-OL-640w.webp 640w, assets/images/case-studies/platform/Outcome-08-OL-960w.webp 960w, assets/images/case-studies/platform/Outcome-08-OL-1280w.webp 1280w" sizes="12vw"><img src="assets/images/case-studies/platform/Outcome-08-OL-960w.png" alt="Outcome 08 — Original Light theme" loading="lazy" decoding="async"></picture></div>
+            </div>
+            <!-- Original Dark (images 02-08 only) -->
+            <div class="outcomes-arc" data-gallery-theme="OD" hidden role="list" aria-label="Original Dark theme outcomes">
+                <div class="outcomes-arc__item" role="listitem"><picture><source type="image/avif" srcset="assets/images/case-studies/platform/Outcome-02-OD-640w.avif 640w, assets/images/case-studies/platform/Outcome-02-OD-960w.avif 960w, assets/images/case-studies/platform/Outcome-02-OD-1280w.avif 1280w" sizes="12vw"><source type="image/webp" srcset="assets/images/case-studies/platform/Outcome-02-OD-640w.webp 640w, assets/images/case-studies/platform/Outcome-02-OD-960w.webp 960w, assets/images/case-studies/platform/Outcome-02-OD-1280w.webp 1280w" sizes="12vw"><img src="assets/images/case-studies/platform/Outcome-02-OD-960w.png" alt="Outcome 02 — Original Dark theme" loading="lazy" decoding="async"></picture></div>
+                <div class="outcomes-arc__item" role="listitem"><picture><source type="image/avif" srcset="assets/images/case-studies/platform/Outcome-03-OD-640w.avif 640w, assets/images/case-studies/platform/Outcome-03-OD-960w.avif 960w, assets/images/case-studies/platform/Outcome-03-OD-1280w.avif 1280w" sizes="12vw"><source type="image/webp" srcset="assets/images/case-studies/platform/Outcome-03-OD-640w.webp 640w, assets/images/case-studies/platform/Outcome-03-OD-960w.webp 960w, assets/images/case-studies/platform/Outcome-03-OD-1280w.webp 1280w" sizes="12vw"><img src="assets/images/case-studies/platform/Outcome-03-OD-960w.png" alt="Outcome 03 — Original Dark theme" loading="lazy" decoding="async"></picture></div>
+                <div class="outcomes-arc__item" role="listitem"><picture><source type="image/avif" srcset="assets/images/case-studies/platform/Outcome-04-OD-640w.avif 640w, assets/images/case-studies/platform/Outcome-04-OD-960w.avif 960w, assets/images/case-studies/platform/Outcome-04-OD-1280w.avif 1280w" sizes="12vw"><source type="image/webp" srcset="assets/images/case-studies/platform/Outcome-04-OD-640w.webp 640w, assets/images/case-studies/platform/Outcome-04-OD-960w.webp 960w, assets/images/case-studies/platform/Outcome-04-OD-1280w.webp 1280w" sizes="12vw"><img src="assets/images/case-studies/platform/Outcome-04-OD-960w.png" alt="Outcome 04 — Original Dark theme" loading="lazy" decoding="async"></picture></div>
+                <div class="outcomes-arc__item" role="listitem"><picture><source type="image/avif" srcset="assets/images/case-studies/platform/Outcome-05-OD-640w.avif 640w, assets/images/case-studies/platform/Outcome-05-OD-960w.avif 960w, assets/images/case-studies/platform/Outcome-05-OD-1280w.avif 1280w" sizes="12vw"><source type="image/webp" srcset="assets/images/case-studies/platform/Outcome-05-OD-640w.webp 640w, assets/images/case-studies/platform/Outcome-05-OD-960w.webp 960w, assets/images/case-studies/platform/Outcome-05-OD-1280w.webp 1280w" sizes="12vw"><img src="assets/images/case-studies/platform/Outcome-05-OD-960w.png" alt="Outcome 05 — Original Dark theme" loading="lazy" decoding="async"></picture></div>
+                <div class="outcomes-arc__item" role="listitem"><picture><source type="image/avif" srcset="assets/images/case-studies/platform/Outcome-06-OD-640w.avif 640w, assets/images/case-studies/platform/Outcome-06-OD-960w.avif 960w, assets/images/case-studies/platform/Outcome-06-OD-1280w.avif 1280w" sizes="12vw"><source type="image/webp" srcset="assets/images/case-studies/platform/Outcome-06-OD-640w.webp 640w, assets/images/case-studies/platform/Outcome-06-OD-960w.webp 960w, assets/images/case-studies/platform/Outcome-06-OD-1280w.webp 1280w" sizes="12vw"><img src="assets/images/case-studies/platform/Outcome-06-OD-960w.png" alt="Outcome 06 — Original Dark theme" loading="lazy" decoding="async"></picture></div>
+                <div class="outcomes-arc__item" role="listitem"><picture><source type="image/avif" srcset="assets/images/case-studies/platform/Outcome-07-OD-640w.avif 640w, assets/images/case-studies/platform/Outcome-07-OD-960w.avif 960w, assets/images/case-studies/platform/Outcome-07-OD-1280w.avif 1280w" sizes="12vw"><source type="image/webp" srcset="assets/images/case-studies/platform/Outcome-07-OD-640w.webp 640w, assets/images/case-studies/platform/Outcome-07-OD-960w.webp 960w, assets/images/case-studies/platform/Outcome-07-OD-1280w.webp 1280w" sizes="12vw"><img src="assets/images/case-studies/platform/Outcome-07-OD-960w.png" alt="Outcome 07 — Original Dark theme" loading="lazy" decoding="async"></picture></div>
+                <div class="outcomes-arc__item" role="listitem"><picture><source type="image/avif" srcset="assets/images/case-studies/platform/Outcome-08-OD-640w.avif 640w, assets/images/case-studies/platform/Outcome-08-OD-960w.avif 960w, assets/images/case-studies/platform/Outcome-08-OD-1280w.avif 1280w" sizes="12vw"><source type="image/webp" srcset="assets/images/case-studies/platform/Outcome-08-OD-640w.webp 640w, assets/images/case-studies/platform/Outcome-08-OD-960w.webp 960w, assets/images/case-studies/platform/Outcome-08-OD-1280w.webp 1280w" sizes="12vw"><img src="assets/images/case-studies/platform/Outcome-08-OD-960w.png" alt="Outcome 08 — Original Dark theme" loading="lazy" decoding="async"></picture></div>
+            </div>
+            <!-- Callisto Light -->
+            <div class="outcomes-arc" data-gallery-theme="CL" hidden role="list" aria-label="Callisto Light theme outcomes">
+                <div class="outcomes-arc__item" role="listitem"><picture><source type="image/avif" srcset="assets/images/case-studies/platform/Outcome-01-CL-640w.avif 640w, assets/images/case-studies/platform/Outcome-01-CL-960w.avif 960w, assets/images/case-studies/platform/Outcome-01-CL-1280w.avif 1280w" sizes="12vw"><source type="image/webp" srcset="assets/images/case-studies/platform/Outcome-01-CL-640w.webp 640w, assets/images/case-studies/platform/Outcome-01-CL-960w.webp 960w, assets/images/case-studies/platform/Outcome-01-CL-1280w.webp 1280w" sizes="12vw"><img src="assets/images/case-studies/platform/Outcome-01-CL-960w.png" alt="Outcome 01 — Callisto Light theme" loading="lazy" decoding="async"></picture></div>
+                <div class="outcomes-arc__item" role="listitem"><picture><source type="image/avif" srcset="assets/images/case-studies/platform/Outcome-02-CL-640w.avif 640w, assets/images/case-studies/platform/Outcome-02-CL-960w.avif 960w, assets/images/case-studies/platform/Outcome-02-CL-1280w.avif 1280w" sizes="12vw"><source type="image/webp" srcset="assets/images/case-studies/platform/Outcome-02-CL-640w.webp 640w, assets/images/case-studies/platform/Outcome-02-CL-960w.webp 960w, assets/images/case-studies/platform/Outcome-02-CL-1280w.webp 1280w" sizes="12vw"><img src="assets/images/case-studies/platform/Outcome-02-CL-960w.png" alt="Outcome 02 — Callisto Light theme" loading="lazy" decoding="async"></picture></div>
+                <div class="outcomes-arc__item" role="listitem"><picture><source type="image/avif" srcset="assets/images/case-studies/platform/Outcome-03-CL-640w.avif 640w, assets/images/case-studies/platform/Outcome-03-CL-960w.avif 960w, assets/images/case-studies/platform/Outcome-03-CL-1280w.avif 1280w" sizes="12vw"><source type="image/webp" srcset="assets/images/case-studies/platform/Outcome-03-CL-640w.webp 640w, assets/images/case-studies/platform/Outcome-03-CL-960w.webp 960w, assets/images/case-studies/platform/Outcome-03-CL-1280w.webp 1280w" sizes="12vw"><img src="assets/images/case-studies/platform/Outcome-03-CL-960w.png" alt="Outcome 03 — Callisto Light theme" loading="lazy" decoding="async"></picture></div>
+                <div class="outcomes-arc__item" role="listitem"><picture><source type="image/avif" srcset="assets/images/case-studies/platform/Outcome-04-CL-640w.avif 640w, assets/images/case-studies/platform/Outcome-04-CL-960w.avif 960w, assets/images/case-studies/platform/Outcome-04-CL-1280w.avif 1280w" sizes="12vw"><source type="image/webp" srcset="assets/images/case-studies/platform/Outcome-04-CL-640w.webp 640w, assets/images/case-studies/platform/Outcome-04-CL-960w.webp 960w, assets/images/case-studies/platform/Outcome-04-CL-1280w.webp 1280w" sizes="12vw"><img src="assets/images/case-studies/platform/Outcome-04-CL-960w.png" alt="Outcome 04 — Callisto Light theme" loading="lazy" decoding="async"></picture></div>
+                <div class="outcomes-arc__item" role="listitem"><picture><source type="image/avif" srcset="assets/images/case-studies/platform/Outcome-05-CL-640w.avif 640w, assets/images/case-studies/platform/Outcome-05-CL-960w.avif 960w, assets/images/case-studies/platform/Outcome-05-CL-1280w.avif 1280w" sizes="12vw"><source type="image/webp" srcset="assets/images/case-studies/platform/Outcome-05-CL-640w.webp 640w, assets/images/case-studies/platform/Outcome-05-CL-960w.webp 960w, assets/images/case-studies/platform/Outcome-05-CL-1280w.webp 1280w" sizes="12vw"><img src="assets/images/case-studies/platform/Outcome-05-CL-960w.png" alt="Outcome 05 — Callisto Light theme" loading="lazy" decoding="async"></picture></div>
+                <div class="outcomes-arc__item" role="listitem"><picture><source type="image/avif" srcset="assets/images/case-studies/platform/Outcome-06-CL-640w.avif 640w, assets/images/case-studies/platform/Outcome-06-CL-960w.avif 960w, assets/images/case-studies/platform/Outcome-06-CL-1280w.avif 1280w" sizes="12vw"><source type="image/webp" srcset="assets/images/case-studies/platform/Outcome-06-CL-640w.webp 640w, assets/images/case-studies/platform/Outcome-06-CL-960w.webp 960w, assets/images/case-studies/platform/Outcome-06-CL-1280w.webp 1280w" sizes="12vw"><img src="assets/images/case-studies/platform/Outcome-06-CL-960w.png" alt="Outcome 06 — Callisto Light theme" loading="lazy" decoding="async"></picture></div>
+                <div class="outcomes-arc__item" role="listitem"><picture><source type="image/avif" srcset="assets/images/case-studies/platform/Outcome-07-CL-640w.avif 640w, assets/images/case-studies/platform/Outcome-07-CL-960w.avif 960w, assets/images/case-studies/platform/Outcome-07-CL-1280w.avif 1280w" sizes="12vw"><source type="image/webp" srcset="assets/images/case-studies/platform/Outcome-07-CL-640w.webp 640w, assets/images/case-studies/platform/Outcome-07-CL-960w.webp 960w, assets/images/case-studies/platform/Outcome-07-CL-1280w.webp 1280w" sizes="12vw"><img src="assets/images/case-studies/platform/Outcome-07-CL-960w.png" alt="Outcome 07 — Callisto Light theme" loading="lazy" decoding="async"></picture></div>
+                <div class="outcomes-arc__item" role="listitem"><picture><source type="image/avif" srcset="assets/images/case-studies/platform/Outcome-08-CL-640w.avif 640w, assets/images/case-studies/platform/Outcome-08-CL-960w.avif 960w, assets/images/case-studies/platform/Outcome-08-CL-1280w.avif 1280w" sizes="12vw"><source type="image/webp" srcset="assets/images/case-studies/platform/Outcome-08-CL-640w.webp 640w, assets/images/case-studies/platform/Outcome-08-CL-960w.webp 960w, assets/images/case-studies/platform/Outcome-08-CL-1280w.webp 1280w" sizes="12vw"><img src="assets/images/case-studies/platform/Outcome-08-CL-960w.png" alt="Outcome 08 — Callisto Light theme" loading="lazy" decoding="async"></picture></div>
+            </div>
+            <!-- Callisto Dark -->
+            <div class="outcomes-arc" data-gallery-theme="CD" hidden role="list" aria-label="Callisto Dark theme outcomes">
+                <div class="outcomes-arc__item" role="listitem"><picture><source type="image/avif" srcset="assets/images/case-studies/platform/Outcome-01-CD-640w.avif 640w, assets/images/case-studies/platform/Outcome-01-CD-960w.avif 960w, assets/images/case-studies/platform/Outcome-01-CD-1280w.avif 1280w" sizes="12vw"><source type="image/webp" srcset="assets/images/case-studies/platform/Outcome-01-CD-640w.webp 640w, assets/images/case-studies/platform/Outcome-01-CD-960w.webp 960w, assets/images/case-studies/platform/Outcome-01-CD-1280w.webp 1280w" sizes="12vw"><img src="assets/images/case-studies/platform/Outcome-01-CD-960w.png" alt="Outcome 01 — Callisto Dark theme" loading="lazy" decoding="async"></picture></div>
+                <div class="outcomes-arc__item" role="listitem"><picture><source type="image/avif" srcset="assets/images/case-studies/platform/Outcome-02-CD-640w.avif 640w, assets/images/case-studies/platform/Outcome-02-CD-960w.avif 960w, assets/images/case-studies/platform/Outcome-02-CD-1280w.avif 1280w" sizes="12vw"><source type="image/webp" srcset="assets/images/case-studies/platform/Outcome-02-CD-640w.webp 640w, assets/images/case-studies/platform/Outcome-02-CD-960w.webp 960w, assets/images/case-studies/platform/Outcome-02-CD-1280w.webp 1280w" sizes="12vw"><img src="assets/images/case-studies/platform/Outcome-02-CD-960w.png" alt="Outcome 02 — Callisto Dark theme" loading="lazy" decoding="async"></picture></div>
+                <div class="outcomes-arc__item" role="listitem"><picture><source type="image/avif" srcset="assets/images/case-studies/platform/Outcome-03-CD-640w.avif 640w, assets/images/case-studies/platform/Outcome-03-CD-960w.avif 960w, assets/images/case-studies/platform/Outcome-03-CD-1280w.avif 1280w" sizes="12vw"><source type="image/webp" srcset="assets/images/case-studies/platform/Outcome-03-CD-640w.webp 640w, assets/images/case-studies/platform/Outcome-03-CD-960w.webp 960w, assets/images/case-studies/platform/Outcome-03-CD-1280w.webp 1280w" sizes="12vw"><img src="assets/images/case-studies/platform/Outcome-03-CD-960w.png" alt="Outcome 03 — Callisto Dark theme" loading="lazy" decoding="async"></picture></div>
+                <div class="outcomes-arc__item" role="listitem"><picture><source type="image/avif" srcset="assets/images/case-studies/platform/Outcome-04-CD-640w.avif 640w, assets/images/case-studies/platform/Outcome-04-CD-960w.avif 960w, assets/images/case-studies/platform/Outcome-04-CD-1280w.avif 1280w" sizes="12vw"><source type="image/webp" srcset="assets/images/case-studies/platform/Outcome-04-CD-640w.webp 640w, assets/images/case-studies/platform/Outcome-04-CD-960w.webp 960w, assets/images/case-studies/platform/Outcome-04-CD-1280w.webp 1280w" sizes="12vw"><img src="assets/images/case-studies/platform/Outcome-04-CD-960w.png" alt="Outcome 04 — Callisto Dark theme" loading="lazy" decoding="async"></picture></div>
+                <div class="outcomes-arc__item" role="listitem"><picture><source type="image/avif" srcset="assets/images/case-studies/platform/Outcome-05-CD-640w.avif 640w, assets/images/case-studies/platform/Outcome-05-CD-960w.avif 960w, assets/images/case-studies/platform/Outcome-05-CD-1280w.avif 1280w" sizes="12vw"><source type="image/webp" srcset="assets/images/case-studies/platform/Outcome-05-CD-640w.webp 640w, assets/images/case-studies/platform/Outcome-05-CD-960w.webp 960w, assets/images/case-studies/platform/Outcome-05-CD-1280w.webp 1280w" sizes="12vw"><img src="assets/images/case-studies/platform/Outcome-05-CD-960w.png" alt="Outcome 05 — Callisto Dark theme" loading="lazy" decoding="async"></picture></div>
+                <div class="outcomes-arc__item" role="listitem"><picture><source type="image/avif" srcset="assets/images/case-studies/platform/Outcome-06-CD-640w.avif 640w, assets/images/case-studies/platform/Outcome-06-CD-960w.avif 960w, assets/images/case-studies/platform/Outcome-06-CD-1280w.avif 1280w" sizes="12vw"><source type="image/webp" srcset="assets/images/case-studies/platform/Outcome-06-CD-640w.webp 640w, assets/images/case-studies/platform/Outcome-06-CD-960w.webp 960w, assets/images/case-studies/platform/Outcome-06-CD-1280w.webp 1280w" sizes="12vw"><img src="assets/images/case-studies/platform/Outcome-06-CD-960w.png" alt="Outcome 06 — Callisto Dark theme" loading="lazy" decoding="async"></picture></div>
+                <div class="outcomes-arc__item" role="listitem"><picture><source type="image/avif" srcset="assets/images/case-studies/platform/Outcome-07-CD-640w.avif 640w, assets/images/case-studies/platform/Outcome-07-CD-960w.avif 960w, assets/images/case-studies/platform/Outcome-07-CD-1280w.avif 1280w" sizes="12vw"><source type="image/webp" srcset="assets/images/case-studies/platform/Outcome-07-CD-640w.webp 640w, assets/images/case-studies/platform/Outcome-07-CD-960w.webp 960w, assets/images/case-studies/platform/Outcome-07-CD-1280w.webp 1280w" sizes="12vw"><img src="assets/images/case-studies/platform/Outcome-07-CD-960w.png" alt="Outcome 07 — Callisto Dark theme" loading="lazy" decoding="async"></picture></div>
+                <div class="outcomes-arc__item" role="listitem"><picture><source type="image/avif" srcset="assets/images/case-studies/platform/Outcome-08-CD-640w.avif 640w, assets/images/case-studies/platform/Outcome-08-CD-960w.avif 960w, assets/images/case-studies/platform/Outcome-08-CD-1280w.avif 1280w" sizes="12vw"><source type="image/webp" srcset="assets/images/case-studies/platform/Outcome-08-CD-640w.webp 640w, assets/images/case-studies/platform/Outcome-08-CD-960w.webp 960w, assets/images/case-studies/platform/Outcome-08-CD-1280w.webp 1280w" sizes="12vw"><img src="assets/images/case-studies/platform/Outcome-08-CD-960w.png" alt="Outcome 08 — Callisto Dark theme" loading="lazy" decoding="async"></picture></div>
+            </div>
+        </section>
+
         <nav class="case-nav" aria-label="Case study navigation">
             <div class="case-nav__container">
                 <a href="case-study-design-forum.html" class="case-nav__link">&larr; Previous: Design Forum</a>
@@ -1044,7 +1477,7 @@
             </div>
         </nav>
     </main>
-    
+
     <script>
         (function() {
             var html = document.documentElement;
@@ -1083,6 +1516,28 @@
         })();
         var hdr = document.querySelector(".header");
         if (hdr) window.addEventListener("scroll", function() { hdr.classList.toggle("scrolled", window.pageYOffset > 0); });
+    </script>
+    <script>
+        /* Outcomes Gallery Theme Switcher */
+        (function() {
+            var btns = document.querySelectorAll('.outcomes-theme-btn');
+            var arcs = document.querySelectorAll('.outcomes-arc');
+            btns.forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    var theme = btn.getAttribute('data-gallery');
+                    btns.forEach(function(b) {
+                        b.classList.toggle('active', b === btn);
+                    });
+                    arcs.forEach(function(arc) {
+                        if (arc.getAttribute('data-gallery-theme') === theme) {
+                            arc.removeAttribute('hidden');
+                        } else {
+                            arc.setAttribute('hidden', '');
+                        }
+                    });
+                });
+            });
+        })();
     </script>
     <script>
         /* Mini Table of Contents */

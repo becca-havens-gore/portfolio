@@ -657,6 +657,110 @@
         .img-placeholder { width:100%; min-height:420px; background:linear-gradient(135deg,var(--color-accent) 0%,#6B46FF 60%,#FF2E93 100%); position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center; }
         .img-placeholder::before { content:'Portfolio Image'; color:rgba(255,255,255,0.4); font-size:13px; font-family:var(--font-body); letter-spacing:0.15em; text-transform:uppercase; font-weight:600; border:2px dashed rgba(255,255,255,0.3); padding:32px 48px; border-radius:8px; }
         .img-placeholder__img { position:absolute; inset:0; width:100%; height:100%; object-fit:contain; object-position:center; }
+
+/* Outcomes Gallery */
+.outcomes-gallery {
+    padding: 80px var(--grid-margin, 120px);
+    background: var(--color-bg-secondary);
+}
+.outcomes-gallery__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin-bottom: 48px;
+}
+.outcomes-gallery__header .case-section__title {
+    margin-bottom: 0;
+}
+.outcomes-theme-switcher {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.outcomes-theme-btn {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 500;
+    padding: 6px 14px;
+    border: 1.5px solid var(--color-border);
+    border-radius: 20px;
+    background: transparent;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    transition: all 150ms ease;
+    white-space: nowrap;
+}
+.outcomes-theme-btn:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+}
+.outcomes-theme-btn.active {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: #fff;
+}
+.outcomes-arc {
+    display: flex;
+    gap: 12px;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 24px 0 64px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+.outcomes-arc[hidden] { display: none; }
+.outcomes-arc__item {
+    flex: 0 0 auto;
+    width: clamp(100px, 11vw, 180px);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.14);
+    transition: transform 300ms cubic-bezier(0.16,1,0.3,1), box-shadow 300ms ease;
+    position: relative;
+    cursor: pointer;
+}
+.outcomes-arc__item:nth-child(1)  { transform: rotate(-7deg)   translateY(28px); }
+.outcomes-arc__item:nth-child(2)  { transform: rotate(-5deg)   translateY(16px); }
+.outcomes-arc__item:nth-child(3)  { transform: rotate(-3deg)   translateY(7px);  }
+.outcomes-arc__item:nth-child(4)  { transform: rotate(-1deg)   translateY(2px);  }
+.outcomes-arc__item:nth-child(5)  { transform: rotate(1deg)    translateY(2px);  }
+.outcomes-arc__item:nth-child(6)  { transform: rotate(3deg)    translateY(7px);  }
+.outcomes-arc__item:nth-child(7)  { transform: rotate(5deg)    translateY(16px); }
+.outcomes-arc__item:nth-child(8)  { transform: rotate(7deg)    translateY(28px); }
+.outcomes-arc__item:hover {
+    transform: scale(1.55) rotate(0deg) translateY(-18px) !important;
+    z-index: 20;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.28);
+}
+.outcomes-arc__item img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+@media (max-width: 767px) {
+    .outcomes-gallery {
+        padding: 48px 24px;
+    }
+    .outcomes-gallery__header {
+        flex-direction: column;
+    }
+    .outcomes-arc {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 0;
+        gap: 16px;
+    }
+    .outcomes-arc__item {
+        width: 100% !important;
+        transform: none !important;
+    }
+    .outcomes-arc__item:hover {
+        transform: none !important;
+    }
+}
         </style>
 </head>
 <body>
@@ -727,9 +831,39 @@
             </div>
         </section>
 
-        <div class="img-placeholder" role="img" aria-label="Designer enablement portfolio screenshot">
-            <!-- <img src="images/enablement-overview.png" alt="Designer Enablement program overview" class="img-placeholder__img"> -->
-        </div>
+        <!-- 01: Hero -->
+        <figure class="cs-image-block">
+            <picture>
+                <source type="image/avif"
+                    srcset="assets/images/case-studies/enablement/EN-01-640w.avif 640w,
+                            assets/images/case-studies/enablement/EN-01-960w.avif 960w,
+                            assets/images/case-studies/enablement/EN-01-1280w.avif 1280w,
+                            assets/images/case-studies/enablement/EN-01-1600w.avif 1600w,
+                            assets/images/case-studies/enablement/EN-01-2000w.avif 2000w"
+                    sizes="100vw">
+                <source type="image/webp"
+                    srcset="assets/images/case-studies/enablement/EN-01-640w.webp 640w,
+                            assets/images/case-studies/enablement/EN-01-960w.webp 960w,
+                            assets/images/case-studies/enablement/EN-01-1280w.webp 1280w,
+                            assets/images/case-studies/enablement/EN-01-1600w.webp 1600w,
+                            assets/images/case-studies/enablement/EN-01-2000w.webp 2000w"
+                    sizes="100vw">
+                <img src="assets/images/case-studies/enablement/EN-01-1280w.png"
+                    srcset="assets/images/case-studies/enablement/EN-01-640w.png 640w,
+                            assets/images/case-studies/enablement/EN-01-960w.png 960w,
+                            assets/images/case-studies/enablement/EN-01-1280w.png 1280w,
+                            assets/images/case-studies/enablement/EN-01-1600w.png 1600w,
+                            assets/images/case-studies/enablement/EN-01-2000w.png 2000w"
+                    sizes="100vw"
+                    alt="Enabling the Next Generation of Designers — hero overview of the enablement program"
+                    loading="eager"
+                    fetchpriority="high"
+                    decoding="async"
+                    width="1280"
+                    height="800">
+            </picture>
+            <figcaption>Enabling the Next Generation of Designers — mentorship, education, workshops, and AI-powered learning tools</figcaption>
+        </figure>
 
         <article class="case-content">
             <section class="case-section">
@@ -809,7 +943,42 @@
                     <li>Fast-changing platform patterns and AI capabilities</li>
                 </ul>
             </section>
-            
+        </article>
+
+        <!-- 02: Research & Discovery -->
+        <figure class="cs-image-block">
+            <picture>
+                <source type="image/avif"
+                    srcset="assets/images/case-studies/enablement/EN-02-640w.avif 640w,
+                            assets/images/case-studies/enablement/EN-02-960w.avif 960w,
+                            assets/images/case-studies/enablement/EN-02-1280w.avif 1280w,
+                            assets/images/case-studies/enablement/EN-02-1600w.avif 1600w,
+                            assets/images/case-studies/enablement/EN-02-2000w.avif 2000w"
+                    sizes="100vw">
+                <source type="image/webp"
+                    srcset="assets/images/case-studies/enablement/EN-02-640w.webp 640w,
+                            assets/images/case-studies/enablement/EN-02-960w.webp 960w,
+                            assets/images/case-studies/enablement/EN-02-1280w.webp 1280w,
+                            assets/images/case-studies/enablement/EN-02-1600w.webp 1600w,
+                            assets/images/case-studies/enablement/EN-02-2000w.webp 2000w"
+                    sizes="100vw">
+                <img src="assets/images/case-studies/enablement/EN-02-1280w.png"
+                    srcset="assets/images/case-studies/enablement/EN-02-640w.png 640w,
+                            assets/images/case-studies/enablement/EN-02-960w.png 960w,
+                            assets/images/case-studies/enablement/EN-02-1280w.png 1280w,
+                            assets/images/case-studies/enablement/EN-02-1600w.png 1600w,
+                            assets/images/case-studies/enablement/EN-02-2000w.png 2000w"
+                    sizes="100vw"
+                    alt="Research & Discovery — designer enablement needs assessment and research synthesis"
+                    loading="lazy"
+                    decoding="async"
+                    width="1280"
+                    height="800">
+            </picture>
+            <figcaption>Research & Discovery — multi-source research identifying skill gaps, mentorship needs, and learning preferences</figcaption>
+        </figure>
+
+        <article class="case-content">
             <section class="case-section">
                 <h2 class="case-section__title">Research & Discovery</h2>
                 <p>I synthesized insights from multiple sources to understand the enablement needs:</p>
@@ -841,7 +1010,42 @@
                 <p><strong>5. AI education was missing</strong></p>
                 <p>Teams were experimenting without a clear framework for responsible use.</p>
             </section>
-            
+        </article>
+
+        <!-- 03: Strategy & Enablement Architecture -->
+        <figure class="cs-image-block">
+            <picture>
+                <source type="image/avif"
+                    srcset="assets/images/case-studies/enablement/EN-03-640w.avif 640w,
+                            assets/images/case-studies/enablement/EN-03-960w.avif 960w,
+                            assets/images/case-studies/enablement/EN-03-1280w.avif 1280w,
+                            assets/images/case-studies/enablement/EN-03-1600w.avif 1600w,
+                            assets/images/case-studies/enablement/EN-03-2000w.avif 2000w"
+                    sizes="100vw">
+                <source type="image/webp"
+                    srcset="assets/images/case-studies/enablement/EN-03-640w.webp 640w,
+                            assets/images/case-studies/enablement/EN-03-960w.webp 960w,
+                            assets/images/case-studies/enablement/EN-03-1280w.webp 1280w,
+                            assets/images/case-studies/enablement/EN-03-1600w.webp 1600w,
+                            assets/images/case-studies/enablement/EN-03-2000w.webp 2000w"
+                    sizes="100vw">
+                <img src="assets/images/case-studies/enablement/EN-03-1280w.png"
+                    srcset="assets/images/case-studies/enablement/EN-03-640w.png 640w,
+                            assets/images/case-studies/enablement/EN-03-960w.png 960w,
+                            assets/images/case-studies/enablement/EN-03-1280w.png 1280w,
+                            assets/images/case-studies/enablement/EN-03-1600w.png 1600w,
+                            assets/images/case-studies/enablement/EN-03-2000w.png 2000w"
+                    sizes="100vw"
+                    alt="Strategy & Enablement Architecture — four-pillar enablement framework"
+                    loading="lazy"
+                    decoding="async"
+                    width="1280"
+                    height="800">
+            </picture>
+            <figcaption>Strategy & Enablement Architecture — four pillars: mentorship, education, workshops, and AI-powered tools</figcaption>
+        </figure>
+
+        <article class="case-content">
             <section class="case-section">
                 <h2 class="case-section__title">Strategy & Enablement Architecture</h2>
                 <p>I built a multi-layered design enablement strategy encompassing four pillars:</p>
@@ -964,7 +1168,42 @@
                     </div>
                 </div>
             </section>
-            
+        </article>
+
+        <!-- 04: Design & Implementation -->
+        <figure class="cs-image-block">
+            <picture>
+                <source type="image/avif"
+                    srcset="assets/images/case-studies/enablement/EN-04-640w.avif 640w,
+                            assets/images/case-studies/enablement/EN-04-960w.avif 960w,
+                            assets/images/case-studies/enablement/EN-04-1280w.avif 1280w,
+                            assets/images/case-studies/enablement/EN-04-1600w.avif 1600w,
+                            assets/images/case-studies/enablement/EN-04-2000w.avif 2000w"
+                    sizes="100vw">
+                <source type="image/webp"
+                    srcset="assets/images/case-studies/enablement/EN-04-640w.webp 640w,
+                            assets/images/case-studies/enablement/EN-04-960w.webp 960w,
+                            assets/images/case-studies/enablement/EN-04-1280w.webp 1280w,
+                            assets/images/case-studies/enablement/EN-04-1600w.webp 1600w,
+                            assets/images/case-studies/enablement/EN-04-2000w.webp 2000w"
+                    sizes="100vw">
+                <img src="assets/images/case-studies/enablement/EN-04-1280w.png"
+                    srcset="assets/images/case-studies/enablement/EN-04-640w.png 640w,
+                            assets/images/case-studies/enablement/EN-04-960w.png 960w,
+                            assets/images/case-studies/enablement/EN-04-1280w.png 1280w,
+                            assets/images/case-studies/enablement/EN-04-1600w.png 1600w,
+                            assets/images/case-studies/enablement/EN-04-2000w.png 2000w"
+                    sizes="100vw"
+                    alt="Design and implementation of enablement deliverables and program logistics"
+                    loading="lazy"
+                    decoding="async"
+                    width="1280"
+                    height="800">
+            </picture>
+            <figcaption>Enablement deliverables, program logistics, and AI integration work</figcaption>
+        </figure>
+
+        <article class="case-content">
             <section class="case-section">
                 <h2 class="case-section__title">Design & Implementation</h2>
                 
@@ -993,7 +1232,75 @@
                     <li>Designing conversational UX for design education workflows</li>
                 </ul>
             </section>
-            
+        </article>
+
+        <!-- 05: After Design & Implementation -->
+        <figure class="cs-image-block">
+            <picture>
+                <source type="image/avif"
+                    srcset="assets/images/case-studies/enablement/EN-05-640w.avif 640w,
+                            assets/images/case-studies/enablement/EN-05-960w.avif 960w,
+                            assets/images/case-studies/enablement/EN-05-1280w.avif 1280w,
+                            assets/images/case-studies/enablement/EN-05-1600w.avif 1600w,
+                            assets/images/case-studies/enablement/EN-05-2000w.avif 2000w"
+                    sizes="100vw">
+                <source type="image/webp"
+                    srcset="assets/images/case-studies/enablement/EN-05-640w.webp 640w,
+                            assets/images/case-studies/enablement/EN-05-960w.webp 960w,
+                            assets/images/case-studies/enablement/EN-05-1280w.webp 1280w,
+                            assets/images/case-studies/enablement/EN-05-1600w.webp 1600w,
+                            assets/images/case-studies/enablement/EN-05-2000w.webp 2000w"
+                    sizes="100vw">
+                <img src="assets/images/case-studies/enablement/EN-05-1280w.png"
+                    srcset="assets/images/case-studies/enablement/EN-05-640w.png 640w,
+                            assets/images/case-studies/enablement/EN-05-960w.png 960w,
+                            assets/images/case-studies/enablement/EN-05-1280w.png 1280w,
+                            assets/images/case-studies/enablement/EN-05-1600w.png 1600w,
+                            assets/images/case-studies/enablement/EN-05-2000w.png 2000w"
+                    sizes="100vw"
+                    alt="Enablement program outcomes and design artifacts"
+                    loading="lazy"
+                    decoding="async"
+                    width="1280"
+                    height="800">
+            </picture>
+            <figcaption>Sample enablement artifacts and program documentation</figcaption>
+        </figure>
+
+        <!-- 06: Before Validation & Measurement -->
+        <figure class="cs-image-block">
+            <picture>
+                <source type="image/avif"
+                    srcset="assets/images/case-studies/enablement/EN-06-640w.avif 640w,
+                            assets/images/case-studies/enablement/EN-06-960w.avif 960w,
+                            assets/images/case-studies/enablement/EN-06-1280w.avif 1280w,
+                            assets/images/case-studies/enablement/EN-06-1600w.avif 1600w,
+                            assets/images/case-studies/enablement/EN-06-2000w.avif 2000w"
+                    sizes="100vw">
+                <source type="image/webp"
+                    srcset="assets/images/case-studies/enablement/EN-06-640w.webp 640w,
+                            assets/images/case-studies/enablement/EN-06-960w.webp 960w,
+                            assets/images/case-studies/enablement/EN-06-1280w.webp 1280w,
+                            assets/images/case-studies/enablement/EN-06-1600w.webp 1600w,
+                            assets/images/case-studies/enablement/EN-06-2000w.webp 2000w"
+                    sizes="100vw">
+                <img src="assets/images/case-studies/enablement/EN-06-1280w.png"
+                    srcset="assets/images/case-studies/enablement/EN-06-640w.png 640w,
+                            assets/images/case-studies/enablement/EN-06-960w.png 960w,
+                            assets/images/case-studies/enablement/EN-06-1280w.png 1280w,
+                            assets/images/case-studies/enablement/EN-06-1600w.png 1600w,
+                            assets/images/case-studies/enablement/EN-06-2000w.png 2000w"
+                    sizes="100vw"
+                    alt="Validation metrics and measurement framework for enablement programs"
+                    loading="lazy"
+                    decoding="async"
+                    width="1280"
+                    height="800">
+            </picture>
+            <figcaption>Metrics framework used to validate enablement program effectiveness</figcaption>
+        </figure>
+
+        <article class="case-content">
             <section class="case-section">
                 <h2 class="case-section__title">Validation & Measurement</h2>
                 
@@ -1023,7 +1330,42 @@
                     <p class="quote-block__author">&mdash; Principal Engineer</p>
                 </div>
             </section>
-            
+        </article>
+
+        <!-- 07: Before Impact -->
+        <figure class="cs-image-block">
+            <picture>
+                <source type="image/avif"
+                    srcset="assets/images/case-studies/enablement/EN-07-640w.avif 640w,
+                            assets/images/case-studies/enablement/EN-07-960w.avif 960w,
+                            assets/images/case-studies/enablement/EN-07-1280w.avif 1280w,
+                            assets/images/case-studies/enablement/EN-07-1600w.avif 1600w,
+                            assets/images/case-studies/enablement/EN-07-2000w.avif 2000w"
+                    sizes="100vw">
+                <source type="image/webp"
+                    srcset="assets/images/case-studies/enablement/EN-07-640w.webp 640w,
+                            assets/images/case-studies/enablement/EN-07-960w.webp 960w,
+                            assets/images/case-studies/enablement/EN-07-1280w.webp 1280w,
+                            assets/images/case-studies/enablement/EN-07-1600w.webp 1600w,
+                            assets/images/case-studies/enablement/EN-07-2000w.webp 2000w"
+                    sizes="100vw">
+                <img src="assets/images/case-studies/enablement/EN-07-1280w.png"
+                    srcset="assets/images/case-studies/enablement/EN-07-640w.png 640w,
+                            assets/images/case-studies/enablement/EN-07-960w.png 960w,
+                            assets/images/case-studies/enablement/EN-07-1280w.png 1280w,
+                            assets/images/case-studies/enablement/EN-07-1600w.png 1600w,
+                            assets/images/case-studies/enablement/EN-07-2000w.png 2000w"
+                    sizes="100vw"
+                    alt="Business and team impact from the enablement program"
+                    loading="lazy"
+                    decoding="async"
+                    width="1280"
+                    height="800">
+            </picture>
+            <figcaption>Measured impact across designer onboarding, RDS adoption, and team alignment</figcaption>
+        </figure>
+
+        <article class="case-content">
             <section class="case-section">
                 <h2 class="case-section__title">Impact</h2>
                 
@@ -1089,7 +1431,42 @@
                     <li>Creates sustainable mentorship culture</li>
                 </ul>
             </section>
-            
+        </article>
+
+        <!-- 08: Before What I'd Do Next -->
+        <figure class="cs-image-block">
+            <picture>
+                <source type="image/avif"
+                    srcset="assets/images/case-studies/enablement/EN-08-640w.avif 640w,
+                            assets/images/case-studies/enablement/EN-08-960w.avif 960w,
+                            assets/images/case-studies/enablement/EN-08-1280w.avif 1280w,
+                            assets/images/case-studies/enablement/EN-08-1600w.avif 1600w,
+                            assets/images/case-studies/enablement/EN-08-2000w.avif 2000w"
+                    sizes="100vw">
+                <source type="image/webp"
+                    srcset="assets/images/case-studies/enablement/EN-08-640w.webp 640w,
+                            assets/images/case-studies/enablement/EN-08-960w.webp 960w,
+                            assets/images/case-studies/enablement/EN-08-1280w.webp 1280w,
+                            assets/images/case-studies/enablement/EN-08-1600w.webp 1600w,
+                            assets/images/case-studies/enablement/EN-08-2000w.webp 2000w"
+                    sizes="100vw">
+                <img src="assets/images/case-studies/enablement/EN-08-1280w.png"
+                    srcset="assets/images/case-studies/enablement/EN-08-640w.png 640w,
+                            assets/images/case-studies/enablement/EN-08-960w.png 960w,
+                            assets/images/case-studies/enablement/EN-08-1280w.png 1280w,
+                            assets/images/case-studies/enablement/EN-08-1600w.png 1600w,
+                            assets/images/case-studies/enablement/EN-08-2000w.png 2000w"
+                    sizes="100vw"
+                    alt="Future roadmap and next steps for the enablement program"
+                    loading="lazy"
+                    decoding="async"
+                    width="1280"
+                    height="800">
+            </picture>
+            <figcaption>Vision for future enablement initiatives and program evolution</figcaption>
+        </figure>
+
+        <article class="case-content">
             <section class="case-section">
                 <h2 class="case-section__title">What I'd Do Next</h2>
                 <p>Building on this foundation, future enhancements would include:</p>
@@ -1104,7 +1481,62 @@
                 </ul>
             </section>
         </article>
-        
+
+        <section class="outcomes-gallery" aria-label="Outcomes gallery">
+            <div class="outcomes-gallery__header">
+                <h2 class="case-section__title">Outcomes</h2>
+                <div class="outcomes-theme-switcher" role="group" aria-label="Select theme to preview">
+                    <button class="outcomes-theme-btn active" data-gallery="OL">Original Light</button>
+                    <button class="outcomes-theme-btn" data-gallery="OD">Original Dark</button>
+                    <button class="outcomes-theme-btn" data-gallery="CL">Callisto Light</button>
+                    <button class="outcomes-theme-btn" data-gallery="CD">Callisto Dark</button>
+                </div>
+            </div>
+
+            <div class="outcomes-arc" data-gallery-theme="OL" role="list" aria-label="Original Light theme outcomes">
+                <div class="outcomes-arc__item" role="listitem"><picture><source type="image/avif" srcset="assets/images/case-studies/enablement/Outcome-01-OL-640w.avif 640w, assets/images/case-studies/enablement/Outcome-01-OL-960w.avif 960w, assets/images/case-studies/enablement/Outcome-01-OL-1280w.avif 1280w" sizes="12vw"><source type="image/webp" srcset="assets/images/case-studies/enablement/Outcome-01-OL-640w.webp 640w, assets/images/case-studies/enablement/Outcome-01-OL-960w.webp 960w, assets/images/case-studies/enablement/Outcome-01-OL-1280w.webp 1280w" sizes="12vw"><img src="assets/images/case-studies/enablement/Outcome-01-OL-960w.png" alt="Outcome screen 1 – Original Light" loading="lazy" decoding="async" width="1280" height="800"></picture></div>
+                <div class="outcomes-arc__item" role="listitem"><picture><source type="image/avif" srcset="assets/images/case-studies/enablement/Outcome-02-OL-640w.avif 640w, assets/images/case-studies/enablement/Outcome-02-OL-960w.avif 960w, assets/images/case-studies/enablement/Outcome-02-OL-1280w.avif 1280w" sizes="12vw"><source type="image/webp" srcset="assets/images/case-studies/enablement/Outcome-02-OL-640w.webp 640w, assets/images/case-studies/enablement/Outcome-02-OL-960w.webp 960w, assets/images/case-studies/enablement/Outcome-02-OL-1280w.webp 1280w" sizes="12vw"><img src="assets/images/case-studies/enablement/Outcome-02-OL-960w.png" alt="Outcome screen 2 – Original Light" loading="lazy" decoding="async" width="1280" height="800"></picture></div>
+                <div class="outcomes-arc__item" role="listitem"><picture><source type="image/avif" srcset="assets/images/case-studies/enablement/Outcome-03-OL-640w.avif 640w, assets/images/case-studies/enablement/Outcome-03-OL-960w.avif 960w, assets/images/case-studies/enablement/Outcome-03-OL-1280w.avif 1280w" sizes="12vw"><source type="image/webp" srcset="assets/images/case-studies/enablement/Outcome-03-OL-640w.webp 640w, assets/images/case-studies/enablement/Outcome-03-OL-960w.webp 960w, assets/images/case-studies/enablement/Outcome-03-OL-1280w.webp 1280w" sizes="12vw"><img src="assets/images/case-studies/enablement/Outcome-03-OL-960w.png" alt="Outcome screen 3 – Original Light" loading="lazy" decoding="async" width="1280" height="800"></picture></div>
+                <div class="outcomes-arc__item" role="listitem"><picture><source type="image/avif" srcset="assets/images/case-studies/enablement/Outcome-04-OL-640w.avif 640w, assets/images/case-studies/enablement/Outcome-04-OL-960w.avif 960w, assets/images/case-studies/enablement/Outcome-04-OL-1280w.avif 1280w" sizes="12vw"><source type="image/webp" srcset="assets/images/case-studies/enablement/Outcome-04-OL-640w.webp 640w, assets/images/case-studies/enablement/Outcome-04-OL-960w.webp 960w, assets/images/case-studies/enablement/Outcome-04-OL-1280w.webp 1280w" sizes="12vw"><img src="assets/images/case-studies/enablement/Outcome-04-OL-960w.png" alt="Outcome screen 4 – Original Light" loading="lazy" decoding="async" width="1280" height="800"></picture></div>
+                <div class="outcomes-arc__item" role="listitem"><picture><source type="image/avif" srcset="assets/images/case-studies/enablement/Outcome-05-OL-640w.avif 640w, assets/images/case-studies/enablement/Outcome-05-OL-960w.avif 960w, assets/images/case-studies/enablement/Outcome-05-OL-1280w.avif 1280w" sizes="12vw"><source type="image/webp" srcset="assets/images/case-studies/enablement/Outcome-05-OL-640w.webp 640w, assets/images/case-studies/enablement/Outcome-05-OL-960w.webp 960w, assets/images/case-studies/enablement/Outcome-05-OL-1280w.webp 1280w" sizes="12vw"><img src="assets/images/case-studies/enablement/Outcome-05-OL-960w.png" alt="Outcome screen 5 – Original Light" loading="lazy" decoding="async" width="1280" height="800"></picture></div>
+                <div class="outcomes-arc__item" role="listitem"><picture><source type="image/avif" srcset="assets/images/case-studies/enablement/Outcome-06-OL-640w.avif 640w, assets/images/case-studies/enablement/Outcome-06-OL-960w.avif 960w, assets/images/case-studies/enablement/Outcome-06-OL-1280w.avif 1280w" sizes="12vw"><source type="image/webp" srcset="assets/images/case-studies/enablement/Outcome-06-OL-640w.webp 640w, assets/images/case-studies/enablement/Outcome-06-OL-960w.webp 960w, assets/images/case-studies/enablement/Outcome-06-OL-1280w.webp 1280w" sizes="12vw"><img src="assets/images/case-studies/enablement/Outcome-06-OL-960w.png" alt="Outcome screen 6 – Original Light" loading="lazy" decoding="async" width="1280" height="800"></picture></div>
+                <div class="outcomes-arc__item" role="listitem"><picture><source type="image/avif" srcset="assets/images/case-studies/enablement/Outcome-07-OL-640w.avif 640w, assets/images/case-studies/enablement/Outcome-07-OL-960w.avif 960w, assets/images/case-studies/enablement/Outcome-07-OL-1280w.avif 1280w" sizes="12vw"><source type="image/webp" srcset="assets/images/case-studies/enablement/Outcome-07-OL-640w.webp 640w, assets/images/case-studies/enablement/Outcome-07-OL-960w.webp 960w, assets/images/case-studies/enablement/Outcome-07-OL-1280w.webp 1280w" sizes="12vw"><img src="assets/images/case-studies/enablement/Outcome-07-OL-960w.png" alt="Outcome screen 7 – Original Light" loading="lazy" decoding="async" width="1280" height="800"></picture></div>
+                <div class="outcomes-arc__item" role="listitem"><picture><source type="image/avif" srcset="assets/images/case-studies/enablement/Outcome-08-OL-640w.avif 640w, assets/images/case-studies/enablement/Outcome-08-OL-960w.avif 960w, assets/images/case-studies/enablement/Outcome-08-OL-1280w.avif 1280w" sizes="12vw"><source type="image/webp" srcset="assets/images/case-studies/enablement/Outcome-08-OL-640w.webp 640w, assets/images/case-studies/enablement/Outcome-08-OL-960w.webp 960w, assets/images/case-studies/enablement/Outcome-08-OL-1280w.webp 1280w" sizes="12vw"><img src="assets/images/case-studies/enablement/Outcome-08-OL-960w.png" alt="Outcome screen 8 – Original Light" loading="lazy" decoding="async" width="1280" height="800"></picture></div>
+            </div>
+
+            <div class="outcomes-arc" data-gallery-theme="OD" hidden role="list" aria-label="Original Dark theme outcomes">
+                <div class="outcomes-arc__item" role="listitem"><picture><source type="image/avif" srcset="assets/images/case-studies/enablement/Outcome-02-OD-640w.avif 640w, assets/images/case-studies/enablement/Outcome-02-OD-960w.avif 960w, assets/images/case-studies/enablement/Outcome-02-OD-1280w.avif 1280w" sizes="12vw"><source type="image/webp" srcset="assets/images/case-studies/enablement/Outcome-02-OD-640w.webp 640w, assets/images/case-studies/enablement/Outcome-02-OD-960w.webp 960w, assets/images/case-studies/enablement/Outcome-02-OD-1280w.webp 1280w" sizes="12vw"><img src="assets/images/case-studies/enablement/Outcome-02-OD-960w.png" alt="Outcome screen 2 – Original Dark" loading="lazy" decoding="async" width="1280" height="800"></picture></div>
+                <div class="outcomes-arc__item" role="listitem"><picture><source type="image/avif" srcset="assets/images/case-studies/enablement/Outcome-03-OD-640w.avif 640w, assets/images/case-studies/enablement/Outcome-03-OD-960w.avif 960w, assets/images/case-studies/enablement/Outcome-03-OD-1280w.avif 1280w" sizes="12vw"><source type="image/webp" srcset="assets/images/case-studies/enablement/Outcome-03-OD-640w.webp 640w, assets/images/case-studies/enablement/Outcome-03-OD-960w.webp 960w, assets/images/case-studies/enablement/Outcome-03-OD-1280w.webp 1280w" sizes="12vw"><img src="assets/images/case-studies/enablement/Outcome-03-OD-960w.png" alt="Outcome screen 3 – Original Dark" loading="lazy" decoding="async" width="1280" height="800"></picture></div>
+                <div class="outcomes-arc__item" role="listitem"><picture><source type="image/avif" srcset="assets/images/case-studies/enablement/Outcome-04-OD-640w.avif 640w, assets/images/case-studies/enablement/Outcome-04-OD-960w.avif 960w, assets/images/case-studies/enablement/Outcome-04-OD-1280w.avif 1280w" sizes="12vw"><source type="image/webp" srcset="assets/images/case-studies/enablement/Outcome-04-OD-640w.webp 640w, assets/images/case-studies/enablement/Outcome-04-OD-960w.webp 960w, assets/images/case-studies/enablement/Outcome-04-OD-1280w.webp 1280w" sizes="12vw"><img src="assets/images/case-studies/enablement/Outcome-04-OD-960w.png" alt="Outcome screen 4 – Original Dark" loading="lazy" decoding="async" width="1280" height="800"></picture></div>
+                <div class="outcomes-arc__item" role="listitem"><picture><source type="image/avif" srcset="assets/images/case-studies/enablement/Outcome-05-OD-640w.avif 640w, assets/images/case-studies/enablement/Outcome-05-OD-960w.avif 960w, assets/images/case-studies/enablement/Outcome-05-OD-1280w.avif 1280w" sizes="12vw"><source type="image/webp" srcset="assets/images/case-studies/enablement/Outcome-05-OD-640w.webp 640w, assets/images/case-studies/enablement/Outcome-05-OD-960w.webp 960w, assets/images/case-studies/enablement/Outcome-05-OD-1280w.webp 1280w" sizes="12vw"><img src="assets/images/case-studies/enablement/Outcome-05-OD-960w.png" alt="Outcome screen 5 – Original Dark" loading="lazy" decoding="async" width="1280" height="800"></picture></div>
+                <div class="outcomes-arc__item" role="listitem"><picture><source type="image/avif" srcset="assets/images/case-studies/enablement/Outcome-06-OD-640w.avif 640w, assets/images/case-studies/enablement/Outcome-06-OD-960w.avif 960w, assets/images/case-studies/enablement/Outcome-06-OD-1280w.avif 1280w" sizes="12vw"><source type="image/webp" srcset="assets/images/case-studies/enablement/Outcome-06-OD-640w.webp 640w, assets/images/case-studies/enablement/Outcome-06-OD-960w.webp 960w, assets/images/case-studies/enablement/Outcome-06-OD-1280w.webp 1280w" sizes="12vw"><img src="assets/images/case-studies/enablement/Outcome-06-OD-960w.png" alt="Outcome screen 6 – Original Dark" loading="lazy" decoding="async" width="1280" height="800"></picture></div>
+                <div class="outcomes-arc__item" role="listitem"><picture><source type="image/avif" srcset="assets/images/case-studies/enablement/Outcome-07-OD-640w.avif 640w, assets/images/case-studies/enablement/Outcome-07-OD-960w.avif 960w, assets/images/case-studies/enablement/Outcome-07-OD-1280w.avif 1280w" sizes="12vw"><source type="image/webp" srcset="assets/images/case-studies/enablement/Outcome-07-OD-640w.webp 640w, assets/images/case-studies/enablement/Outcome-07-OD-960w.webp 960w, assets/images/case-studies/enablement/Outcome-07-OD-1280w.webp 1280w" sizes="12vw"><img src="assets/images/case-studies/enablement/Outcome-07-OD-960w.png" alt="Outcome screen 7 – Original Dark" loading="lazy" decoding="async" width="1280" height="800"></picture></div>
+                <div class="outcomes-arc__item" role="listitem"><picture><source type="image/avif" srcset="assets/images/case-studies/enablement/Outcome-08-OD-640w.avif 640w, assets/images/case-studies/enablement/Outcome-08-OD-960w.avif 960w, assets/images/case-studies/enablement/Outcome-08-OD-1280w.avif 1280w" sizes="12vw"><source type="image/webp" srcset="assets/images/case-studies/enablement/Outcome-08-OD-640w.webp 640w, assets/images/case-studies/enablement/Outcome-08-OD-960w.webp 960w, assets/images/case-studies/enablement/Outcome-08-OD-1280w.webp 1280w" sizes="12vw"><img src="assets/images/case-studies/enablement/Outcome-08-OD-960w.png" alt="Outcome screen 8 – Original Dark" loading="lazy" decoding="async" width="1280" height="800"></picture></div>
+            </div>
+
+            <div class="outcomes-arc" data-gallery-theme="CL" hidden role="list" aria-label="Callisto Light theme outcomes">
+                <div class="outcomes-arc__item" role="listitem"><picture><source type="image/avif" srcset="assets/images/case-studies/enablement/Outcome-01-CL-640w.avif 640w, assets/images/case-studies/enablement/Outcome-01-CL-960w.avif 960w, assets/images/case-studies/enablement/Outcome-01-CL-1280w.avif 1280w" sizes="12vw"><source type="image/webp" srcset="assets/images/case-studies/enablement/Outcome-01-CL-640w.webp 640w, assets/images/case-studies/enablement/Outcome-01-CL-960w.webp 960w, assets/images/case-studies/enablement/Outcome-01-CL-1280w.webp 1280w" sizes="12vw"><img src="assets/images/case-studies/enablement/Outcome-01-CL-960w.png" alt="Outcome screen 1 – Callisto Light" loading="lazy" decoding="async" width="1280" height="800"></picture></div>
+                <div class="outcomes-arc__item" role="listitem"><picture><source type="image/avif" srcset="assets/images/case-studies/enablement/Outcome-02-CL-640w.avif 640w, assets/images/case-studies/enablement/Outcome-02-CL-960w.avif 960w, assets/images/case-studies/enablement/Outcome-02-CL-1280w.avif 1280w" sizes="12vw"><source type="image/webp" srcset="assets/images/case-studies/enablement/Outcome-02-CL-640w.webp 640w, assets/images/case-studies/enablement/Outcome-02-CL-960w.webp 960w, assets/images/case-studies/enablement/Outcome-02-CL-1280w.webp 1280w" sizes="12vw"><img src="assets/images/case-studies/enablement/Outcome-02-CL-960w.png" alt="Outcome screen 2 – Callisto Light" loading="lazy" decoding="async" width="1280" height="800"></picture></div>
+                <div class="outcomes-arc__item" role="listitem"><picture><source type="image/avif" srcset="assets/images/case-studies/enablement/Outcome-03-CL-640w.avif 640w, assets/images/case-studies/enablement/Outcome-03-CL-960w.avif 960w, assets/images/case-studies/enablement/Outcome-03-CL-1280w.avif 1280w" sizes="12vw"><source type="image/webp" srcset="assets/images/case-studies/enablement/Outcome-03-CL-640w.webp 640w, assets/images/case-studies/enablement/Outcome-03-CL-960w.webp 960w, assets/images/case-studies/enablement/Outcome-03-CL-1280w.webp 1280w" sizes="12vw"><img src="assets/images/case-studies/enablement/Outcome-03-CL-960w.png" alt="Outcome screen 3 – Callisto Light" loading="lazy" decoding="async" width="1280" height="800"></picture></div>
+                <div class="outcomes-arc__item" role="listitem"><picture><source type="image/avif" srcset="assets/images/case-studies/enablement/Outcome-04-CL-640w.avif 640w, assets/images/case-studies/enablement/Outcome-04-CL-960w.avif 960w, assets/images/case-studies/enablement/Outcome-04-CL-1280w.avif 1280w" sizes="12vw"><source type="image/webp" srcset="assets/images/case-studies/enablement/Outcome-04-CL-640w.webp 640w, assets/images/case-studies/enablement/Outcome-04-CL-960w.webp 960w, assets/images/case-studies/enablement/Outcome-04-CL-1280w.webp 1280w" sizes="12vw"><img src="assets/images/case-studies/enablement/Outcome-04-CL-960w.png" alt="Outcome screen 4 – Callisto Light" loading="lazy" decoding="async" width="1280" height="800"></picture></div>
+                <div class="outcomes-arc__item" role="listitem"><picture><source type="image/avif" srcset="assets/images/case-studies/enablement/Outcome-05-CL-640w.avif 640w, assets/images/case-studies/enablement/Outcome-05-CL-960w.avif 960w, assets/images/case-studies/enablement/Outcome-05-CL-1280w.avif 1280w" sizes="12vw"><source type="image/webp" srcset="assets/images/case-studies/enablement/Outcome-05-CL-640w.webp 640w, assets/images/case-studies/enablement/Outcome-05-CL-960w.webp 960w, assets/images/case-studies/enablement/Outcome-05-CL-1280w.webp 1280w" sizes="12vw"><img src="assets/images/case-studies/enablement/Outcome-05-CL-960w.png" alt="Outcome screen 5 – Callisto Light" loading="lazy" decoding="async" width="1280" height="800"></picture></div>
+                <div class="outcomes-arc__item" role="listitem"><picture><source type="image/avif" srcset="assets/images/case-studies/enablement/Outcome-06-CL-640w.avif 640w, assets/images/case-studies/enablement/Outcome-06-CL-960w.avif 960w, assets/images/case-studies/enablement/Outcome-06-CL-1280w.avif 1280w" sizes="12vw"><source type="image/webp" srcset="assets/images/case-studies/enablement/Outcome-06-CL-640w.webp 640w, assets/images/case-studies/enablement/Outcome-06-CL-960w.webp 960w, assets/images/case-studies/enablement/Outcome-06-CL-1280w.webp 1280w" sizes="12vw"><img src="assets/images/case-studies/enablement/Outcome-06-CL-960w.png" alt="Outcome screen 6 – Callisto Light" loading="lazy" decoding="async" width="1280" height="800"></picture></div>
+                <div class="outcomes-arc__item" role="listitem"><picture><source type="image/avif" srcset="assets/images/case-studies/enablement/Outcome-07-CL-640w.avif 640w, assets/images/case-studies/enablement/Outcome-07-CL-960w.avif 960w, assets/images/case-studies/enablement/Outcome-07-CL-1280w.avif 1280w" sizes="12vw"><source type="image/webp" srcset="assets/images/case-studies/enablement/Outcome-07-CL-640w.webp 640w, assets/images/case-studies/enablement/Outcome-07-CL-960w.webp 960w, assets/images/case-studies/enablement/Outcome-07-CL-1280w.webp 1280w" sizes="12vw"><img src="assets/images/case-studies/enablement/Outcome-07-CL-960w.png" alt="Outcome screen 7 – Callisto Light" loading="lazy" decoding="async" width="1280" height="800"></picture></div>
+                <div class="outcomes-arc__item" role="listitem"><picture><source type="image/avif" srcset="assets/images/case-studies/enablement/Outcome-08-CL-640w.avif 640w, assets/images/case-studies/enablement/Outcome-08-CL-960w.avif 960w, assets/images/case-studies/enablement/Outcome-08-CL-1280w.avif 1280w" sizes="12vw"><source type="image/webp" srcset="assets/images/case-studies/enablement/Outcome-08-CL-640w.webp 640w, assets/images/case-studies/enablement/Outcome-08-CL-960w.webp 960w, assets/images/case-studies/enablement/Outcome-08-CL-1280w.webp 1280w" sizes="12vw"><img src="assets/images/case-studies/enablement/Outcome-08-CL-960w.png" alt="Outcome screen 8 – Callisto Light" loading="lazy" decoding="async" width="1280" height="800"></picture></div>
+            </div>
+
+            <div class="outcomes-arc" data-gallery-theme="CD" hidden role="list" aria-label="Callisto Dark theme outcomes">
+                <div class="outcomes-arc__item" role="listitem"><picture><source type="image/avif" srcset="assets/images/case-studies/enablement/Outcome-01-CD-640w.avif 640w, assets/images/case-studies/enablement/Outcome-01-CD-960w.avif 960w, assets/images/case-studies/enablement/Outcome-01-CD-1280w.avif 1280w" sizes="12vw"><source type="image/webp" srcset="assets/images/case-studies/enablement/Outcome-01-CD-640w.webp 640w, assets/images/case-studies/enablement/Outcome-01-CD-960w.webp 960w, assets/images/case-studies/enablement/Outcome-01-CD-1280w.webp 1280w" sizes="12vw"><img src="assets/images/case-studies/enablement/Outcome-01-CD-960w.png" alt="Outcome screen 1 – Callisto Dark" loading="lazy" decoding="async" width="1280" height="800"></picture></div>
+                <div class="outcomes-arc__item" role="listitem"><picture><source type="image/avif" srcset="assets/images/case-studies/enablement/Outcome-02-CD-640w.avif 640w, assets/images/case-studies/enablement/Outcome-02-CD-960w.avif 960w, assets/images/case-studies/enablement/Outcome-02-CD-1280w.avif 1280w" sizes="12vw"><source type="image/webp" srcset="assets/images/case-studies/enablement/Outcome-02-CD-640w.webp 640w, assets/images/case-studies/enablement/Outcome-02-CD-960w.webp 960w, assets/images/case-studies/enablement/Outcome-02-CD-1280w.webp 1280w" sizes="12vw"><img src="assets/images/case-studies/enablement/Outcome-02-CD-960w.png" alt="Outcome screen 2 – Callisto Dark" loading="lazy" decoding="async" width="1280" height="800"></picture></div>
+                <div class="outcomes-arc__item" role="listitem"><picture><source type="image/avif" srcset="assets/images/case-studies/enablement/Outcome-03-CD-640w.avif 640w, assets/images/case-studies/enablement/Outcome-03-CD-960w.avif 960w, assets/images/case-studies/enablement/Outcome-03-CD-1280w.avif 1280w" sizes="12vw"><source type="image/webp" srcset="assets/images/case-studies/enablement/Outcome-03-CD-640w.webp 640w, assets/images/case-studies/enablement/Outcome-03-CD-960w.webp 960w, assets/images/case-studies/enablement/Outcome-03-CD-1280w.webp 1280w" sizes="12vw"><img src="assets/images/case-studies/enablement/Outcome-03-CD-960w.png" alt="Outcome screen 3 – Callisto Dark" loading="lazy" decoding="async" width="1280" height="800"></picture></div>
+                <div class="outcomes-arc__item" role="listitem"><picture><source type="image/avif" srcset="assets/images/case-studies/enablement/Outcome-04-CD-640w.avif 640w, assets/images/case-studies/enablement/Outcome-04-CD-960w.avif 960w, assets/images/case-studies/enablement/Outcome-04-CD-1280w.avif 1280w" sizes="12vw"><source type="image/webp" srcset="assets/images/case-studies/enablement/Outcome-04-CD-640w.webp 640w, assets/images/case-studies/enablement/Outcome-04-CD-960w.webp 960w, assets/images/case-studies/enablement/Outcome-04-CD-1280w.webp 1280w" sizes="12vw"><img src="assets/images/case-studies/enablement/Outcome-04-CD-960w.png" alt="Outcome screen 4 – Callisto Dark" loading="lazy" decoding="async" width="1280" height="800"></picture></div>
+                <div class="outcomes-arc__item" role="listitem"><picture><source type="image/avif" srcset="assets/images/case-studies/enablement/Outcome-05-CD-640w.avif 640w, assets/images/case-studies/enablement/Outcome-05-CD-960w.avif 960w, assets/images/case-studies/enablement/Outcome-05-CD-1280w.avif 1280w" sizes="12vw"><source type="image/webp" srcset="assets/images/case-studies/enablement/Outcome-05-CD-640w.webp 640w, assets/images/case-studies/enablement/Outcome-05-CD-960w.webp 960w, assets/images/case-studies/enablement/Outcome-05-CD-1280w.webp 1280w" sizes="12vw"><img src="assets/images/case-studies/enablement/Outcome-05-CD-960w.png" alt="Outcome screen 5 – Callisto Dark" loading="lazy" decoding="async" width="1280" height="800"></picture></div>
+                <div class="outcomes-arc__item" role="listitem"><picture><source type="image/avif" srcset="assets/images/case-studies/enablement/Outcome-06-CD-640w.avif 640w, assets/images/case-studies/enablement/Outcome-06-CD-960w.avif 960w, assets/images/case-studies/enablement/Outcome-06-CD-1280w.avif 1280w" sizes="12vw"><source type="image/webp" srcset="assets/images/case-studies/enablement/Outcome-06-CD-640w.webp 640w, assets/images/case-studies/enablement/Outcome-06-CD-960w.webp 960w, assets/images/case-studies/enablement/Outcome-06-CD-1280w.webp 1280w" sizes="12vw"><img src="assets/images/case-studies/enablement/Outcome-06-CD-960w.png" alt="Outcome screen 6 – Callisto Dark" loading="lazy" decoding="async" width="1280" height="800"></picture></div>
+                <div class="outcomes-arc__item" role="listitem"><picture><source type="image/avif" srcset="assets/images/case-studies/enablement/Outcome-07-CD-640w.avif 640w, assets/images/case-studies/enablement/Outcome-07-CD-960w.avif 960w, assets/images/case-studies/enablement/Outcome-07-CD-1280w.avif 1280w" sizes="12vw"><source type="image/webp" srcset="assets/images/case-studies/enablement/Outcome-07-CD-640w.webp 640w, assets/images/case-studies/enablement/Outcome-07-CD-960w.webp 960w, assets/images/case-studies/enablement/Outcome-07-CD-1280w.webp 1280w" sizes="12vw"><img src="assets/images/case-studies/enablement/Outcome-07-CD-960w.png" alt="Outcome screen 7 – Callisto Dark" loading="lazy" decoding="async" width="1280" height="800"></picture></div>
+                <div class="outcomes-arc__item" role="listitem"><picture><source type="image/avif" srcset="assets/images/case-studies/enablement/Outcome-08-CD-640w.avif 640w, assets/images/case-studies/enablement/Outcome-08-CD-960w.avif 960w, assets/images/case-studies/enablement/Outcome-08-CD-1280w.avif 1280w" sizes="12vw"><source type="image/webp" srcset="assets/images/case-studies/enablement/Outcome-08-CD-640w.webp 640w, assets/images/case-studies/enablement/Outcome-08-CD-960w.webp 960w, assets/images/case-studies/enablement/Outcome-08-CD-1280w.webp 1280w" sizes="12vw"><img src="assets/images/case-studies/enablement/Outcome-08-CD-960w.png" alt="Outcome screen 8 – Callisto Dark" loading="lazy" decoding="async" width="1280" height="800"></picture></div>
+            </div>
+        </section>
+
         <nav class="case-nav" aria-label="Case study navigation">
             <div class="case-nav__container">
                 <a href="case-study-ai-experience.html" class="case-nav__link">&larr; Previous: AI Experience</a>
@@ -1151,6 +1583,28 @@
         })();
         var hdr = document.querySelector(".header");
         if (hdr) window.addEventListener("scroll", function() { hdr.classList.toggle("scrolled", window.pageYOffset > 0); });
+    </script>
+    <script>
+        /* Outcomes Gallery Theme Switcher */
+        (function() {
+            var btns = document.querySelectorAll('.outcomes-theme-btn');
+            var arcs = document.querySelectorAll('.outcomes-arc');
+            btns.forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    var theme = btn.getAttribute('data-gallery');
+                    btns.forEach(function(b) {
+                        b.classList.toggle('active', b === btn);
+                    });
+                    arcs.forEach(function(arc) {
+                        if (arc.getAttribute('data-gallery-theme') === theme) {
+                            arc.removeAttribute('hidden');
+                        } else {
+                            arc.setAttribute('hidden', '');
+                        }
+                    });
+                });
+            });
+        })();
     </script>
     <script>
         /* Mini Table of Contents */
