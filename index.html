@@ -580,42 +580,29 @@
         .philosophy-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: var(--space-md);
-            max-width: 1000px;
-            margin: 0 auto;
+            gap: var(--space-sm);
         }
-        .philosophy-grid .philosophy-principle:last-child:nth-child(odd) {
-            grid-column: 1 / -1;
-            max-width: calc(50% - var(--space-md) / 2);
-            margin: 0 auto;
-        }
-        @media (max-width: 640px) {
-            .philosophy-grid { grid-template-columns: 1fr; }
-            .philosophy-grid .philosophy-principle:last-child:nth-child(odd) {
-                grid-column: auto;
-                max-width: none;
-            }
-        }
+        @media (max-width: 640px) { .philosophy-grid { grid-template-columns: 1fr; } }
         .philosophy-principle {
             position: relative;
-            padding: var(--space-md);
+            padding: 16px 20px;
             background: var(--color-bg-primary);
-            border-left: 4px solid var(--color-accent);
+            border-left: 3px solid var(--color-accent);
             border-radius: 8px;
             transition: all var(--motion-medium);
         }
-        .philosophy-principle:hover { transform: translateX(8px); box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+        .philosophy-principle:hover { transform: translateX(6px); box-shadow: 0 6px 20px rgba(0,0,0,0.08); }
         .principle-number {
             font-family: var(--font-display);
-            font-size: 14px;
+            font-size: 11px;
             font-weight: 700;
             color: var(--color-accent);
-            opacity: 0.6;
-            margin-bottom: var(--space-xs);
-            letter-spacing: 0.1em;
+            opacity: 0.7;
+            margin-bottom: 4px;
+            letter-spacing: 0.12em;
         }
-        .principle-title { font-family: var(--font-display); font-size: 24px; font-weight: 700; margin-bottom: var(--space-sm); }
-        .principle-description { font-size: 16px; line-height: 1.7; color: var(--color-text-secondary); }
+        .principle-title { font-family: var(--font-display); font-size: 16px; font-weight: 700; margin-bottom: 4px; line-height: 1.3; }
+        .principle-description { font-size: 13px; line-height: 1.5; color: var(--color-text-secondary); }
 
         /* ─── Work Grid ─── */
         .work-grid {
@@ -801,18 +788,53 @@
             color: var(--color-text-secondary);
             margin-bottom: var(--space-md);
         }
-        /* FIX #12: Decorative about image */
-        .about-image {
+        .about-photo {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            background: linear-gradient(160deg, #FF6B2B 0%, #8B46FF 55%, #2BBFFF 100%);
+            min-height: 420px;
+            display: flex;
+            align-items: flex-end;
+        }
+        .about-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+            display: block;
+            position: absolute;
+            inset: 0;
+        }
+        .about-photo__gradient {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(255,107,43,0.3) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* ─── Philosophy with diagram ─── */
+        .philosophy-layout {
+            display: grid;
+            grid-template-columns: 1fr 340px;
+            gap: var(--space-xl);
+            align-items: start;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        @media (max-width: 900px) { .philosophy-layout { grid-template-columns: 1fr; } }
+        .philosophy-diagram {
             background: linear-gradient(135deg, rgba(255,107,43,0.08) 0%, rgba(107,70,255,0.08) 100%);
             border: 1px solid var(--color-border);
             border-radius: 20px;
-            padding: var(--space-lg);
-            min-height: 360px;
+            padding: var(--space-md);
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            grid-template-rows: repeat(4, 1fr);
-            gap: 10px;
+            gap: 8px;
         }
+        @media (max-width: 900px) { .philosophy-diagram { display: none; } }
+
         .ds-node {
             border-radius: 10px;
             display: flex;
@@ -1116,15 +1138,61 @@
                     <p class="section-eyebrow">About Me</p>
                     <h2 class="section-title" id="about-title">Designing systems that empower people</h2>
                 </div>
-                <!-- FIX #12: Two-column with decorative image -->
                 <div class="about-grid">
                     <div class="about-text">
                         <p>I&rsquo;m a Design Systems Lead and Principal Product Designer with over 10 years of experience creating scalable, accessible design systems and enterprise UX frameworks. I specialize in unifying multi-product experiences, accelerating engineering velocity, and mentoring teams into design maturity.</p>
                         <p>My work spans four design systems across Rapid7, AlphaWave, and Kronologic, where I&rsquo;ve led MUI migrations, built visualization frameworks, established governance models, and pioneered AI experience standards. I believe great design systems are more than component libraries&mdash;they&rsquo;re shared languages that unite design and engineering around a common vision.</p>
                         <p>When I&rsquo;m not architecting systems, you&rsquo;ll find me mentoring designers, experimenting with AI-powered tools, or dreaming up backyard castle forts for my kids.</p>
                     </div>
-                    <!-- FIX #12: Decorative design-system visualization, aria-hidden -->
-                    <div class="about-image" aria-hidden="true" role="presentation">
+                    <div class="about-photo">
+                        <div class="about-photo__gradient" aria-hidden="true"></div>
+                        <picture>
+                            <source type="image/avif" srcset="assets/images/image.avif">
+                            <source type="image/webp" srcset="assets/images/image.webp">
+                            <img src="assets/images/image.png" alt="Becca Havens-Gore" loading="eager" fetchpriority="high">
+                        </picture>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Design Systems Philosophy -->
+        <section id="philosophy" class="section" aria-labelledby="philosophy-title">
+            <div class="container">
+                <div class="section-header">
+                    <p class="section-eyebrow">Philosophy</p>
+                    <h2 class="section-title" id="philosophy-title">How I Build Cohesive Product Systems</h2>
+                </div>
+                <div class="philosophy-layout">
+                    <div class="philosophy-grid">
+                        <div class="philosophy-principle">
+                            <div class="principle-number">01</div>
+                            <h3 class="principle-title">Predictability over novelty</h3>
+                            <p class="principle-description">Consistent patterns reduce cognitive load and build trust.</p>
+                        </div>
+                        <div class="philosophy-principle">
+                            <div class="principle-number">02</div>
+                            <h3 class="principle-title">Accessibility as a constraint</h3>
+                            <p class="principle-description">Keyboard, screen reader, and high-contrast support benefits everyone.</p>
+                        </div>
+                        <div class="philosophy-principle">
+                            <div class="principle-number">03</div>
+                            <h3 class="principle-title">Tokens before components</h3>
+                            <p class="principle-description">Spacing, type, color, and motion primitives give components their clarity.</p>
+                        </div>
+                        <div class="philosophy-principle">
+                            <div class="principle-number">04</div>
+                            <h3 class="principle-title">Variants are earned</h3>
+                            <p class="principle-description">A new variant needs a real interaction need&mdash;not designer preference.</p>
+                        </div>
+                        <div class="philosophy-principle" style="grid-column: 1 / -1;">
+                            <div class="principle-number">05</div>
+                            <h3 class="principle-title">Debt prevented by automation</h3>
+                            <p class="principle-description">Linting, Figma tokens, and automated audits keep systems healthy at scale.</p>
+                        </div>
+                    </div>
+                    <!-- Design-system visualization moved from About -->
+                    <div class="philosophy-diagram" aria-hidden="true" role="presentation">
                         <div class="ds-node ds-node--span3 ds-node--token">Foundation Tokens</div>
                         <div class="ds-node ds-node--token">Color</div>
                         <div class="ds-node ds-node--token">Spacing</div>
@@ -1138,43 +1206,6 @@
                         <div class="ds-node ds-node--pattern ds-node--span2">Dashboard Template</div>
                         <div class="ds-node ds-node--pattern">Filter</div>
                         <div class="ds-node ds-node--guide ds-node--span3">&#9679; WCAG AA/AAA &#183; Dark &#183; High Contrast &#183; Motion-Safe</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Design Systems Philosophy -->
-        <section id="philosophy" class="section" aria-labelledby="philosophy-title">
-            <div class="container" style="max-width: 1000px;">
-                <div class="section-header">
-                    <p class="section-eyebrow">Philosophy</p>
-                    <h2 class="section-title" id="philosophy-title">How I Build Cohesive Product Systems</h2>
-                </div>
-                <div class="philosophy-grid">
-                    <div class="philosophy-principle">
-                        <div class="principle-number">01</div>
-                        <h3 class="principle-title">Predictability over novelty</h3>
-                        <p class="principle-description">Interfaces should reward user intuition&mdash;not require memorization. Consistent patterns reduce cognitive load and build trust.</p>
-                    </div>
-                    <div class="philosophy-principle">
-                        <div class="principle-number">02</div>
-                        <h3 class="principle-title">Accessibility as a constraint, not a compromise</h3>
-                        <p class="principle-description">If a component behaves beautifully with a keyboard, screen reader, and high-contrast themes&mdash;it behaves better for everyone.</p>
-                    </div>
-                    <div class="philosophy-principle">
-                        <div class="principle-number">03</div>
-                        <h3 class="principle-title">Tokens before components</h3>
-                        <p class="principle-description">Good systems emerge from consistent primitives: spacing, radii, type scale, color, and motion. Components inherit clarity from their foundations.</p>
-                    </div>
-                    <div class="philosophy-principle">
-                        <div class="principle-number">04</div>
-                        <h3 class="principle-title">Variants are earned, not accumulated</h3>
-                        <p class="principle-description">A new component variant must justify its existence through a true interaction need or semantic distinction&mdash;not designer preference.</p>
-                    </div>
-                    <div class="philosophy-principle">
-                        <div class="principle-number">05</div>
-                        <h3 class="principle-title">Design debt prevented by automation</h3>
-                        <p class="principle-description">Linting, Figma tokens, automated audits, and version control keep systems healthy at scale&mdash;not heroics.</p>
                     </div>
                 </div>
             </div>
