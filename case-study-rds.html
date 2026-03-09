@@ -743,6 +743,114 @@
 
         [data-theme="high-contrast"] .cs-img--dark  { display: block; }
         [data-theme="high-contrast"] .cs-img--light { display: none; }
+
+        /* Outcomes Gallery */
+        .outcomes-gallery {
+            padding: 80px var(--grid-margin, 120px);
+            background: var(--color-bg-secondary);
+        }
+        .outcomes-gallery__header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 24px;
+            margin-bottom: 48px;
+        }
+        .outcomes-gallery__header .case-section__title {
+            margin-bottom: 0;
+        }
+        .outcomes-theme-switcher {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .outcomes-theme-btn {
+            font-family: var(--font-body);
+            font-size: 13px;
+            font-weight: 500;
+            padding: 6px 14px;
+            border: 1.5px solid var(--color-border);
+            border-radius: 20px;
+            background: transparent;
+            color: var(--color-text-secondary);
+            cursor: pointer;
+            transition: all 150ms ease;
+            white-space: nowrap;
+        }
+        .outcomes-theme-btn:hover {
+            border-color: var(--color-accent);
+            color: var(--color-accent);
+        }
+        .outcomes-theme-btn.active {
+            background: var(--color-accent);
+            border-color: var(--color-accent);
+            color: #fff;
+        }
+        .outcomes-arc {
+            display: flex;
+            gap: 12px;
+            align-items: flex-end;
+            justify-content: center;
+            padding: 24px 0 64px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        .outcomes-arc[hidden] { display: none; }
+        .outcomes-arc__item {
+            flex: 0 0 auto;
+            width: clamp(100px, 11vw, 180px);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.14);
+            transition: transform 300ms cubic-bezier(0.16,1,0.3,1), box-shadow 300ms ease, z-index 0s;
+            position: relative;
+            cursor: pointer;
+        }
+        /* Arc rotation — 8 items */
+        .outcomes-arc__item:nth-child(1)  { transform: rotate(-7deg)   translateY(28px); }
+        .outcomes-arc__item:nth-child(2)  { transform: rotate(-5deg)   translateY(16px); }
+        .outcomes-arc__item:nth-child(3)  { transform: rotate(-3deg)   translateY(7px);  }
+        .outcomes-arc__item:nth-child(4)  { transform: rotate(-1deg)   translateY(2px);  }
+        .outcomes-arc__item:nth-child(5)  { transform: rotate(1deg)    translateY(2px);  }
+        .outcomes-arc__item:nth-child(6)  { transform: rotate(3deg)    translateY(7px);  }
+        .outcomes-arc__item:nth-child(7)  { transform: rotate(5deg)    translateY(16px); }
+        .outcomes-arc__item:nth-child(8)  { transform: rotate(7deg)    translateY(28px); }
+        /* Extra items (9th = CL-1 bonus) */
+        .outcomes-arc__item:nth-child(9)  { transform: rotate(8deg)    translateY(36px); }
+        .outcomes-arc__item:hover {
+            transform: scale(1.55) rotate(0deg) translateY(-18px) !important;
+            z-index: 20;
+            box-shadow: 0 16px 48px rgba(0,0,0,0.28);
+        }
+        .outcomes-arc__item img {
+            display: block;
+            width: 100%;
+            height: auto;
+            border-radius: 0;
+        }
+        @media (max-width: 767px) {
+            .outcomes-gallery {
+                padding: 48px 24px;
+            }
+            .outcomes-gallery__header {
+                flex-direction: column;
+            }
+            .outcomes-arc {
+                flex-direction: column;
+                align-items: stretch;
+                padding: 0;
+                gap: 16px;
+            }
+            .outcomes-arc__item {
+                width: 100% !important;
+                transform: none !important;
+            }
+            .outcomes-arc__item:hover {
+                transform: none !important;
+            }
+        }
         </style>
 </head>
 <body>
@@ -819,25 +927,25 @@
         <figure class="cs-image-block">
             <picture>
                 <source type="image/avif"
-                    srcset="images/optimized/DS-01_Hero_Before-After_System-640w.avif 640w,
-                            images/optimized/DS-01_Hero_Before-After_System-960w.avif 960w,
-                            images/optimized/DS-01_Hero_Before-After_System-1280w.avif 1280w,
-                            images/optimized/DS-01_Hero_Before-After_System-1600w.avif 1600w,
-                            images/optimized/DS-01_Hero_Before-After_System-2000w.avif 2000w"
+                    srcset="assets/images/case-studies/rds/DS-01-640w.avif 640w,
+                            assets/images/case-studies/rds/DS-01-960w.avif 960w,
+                            assets/images/case-studies/rds/DS-01-1280w.avif 1280w,
+                            assets/images/case-studies/rds/DS-01-1600w.avif 1600w,
+                            assets/images/case-studies/rds/DS-01-2000w.avif 2000w"
                     sizes="100vw">
                 <source type="image/webp"
-                    srcset="images/optimized/DS-01_Hero_Before-After_System-640w.webp 640w,
-                            images/optimized/DS-01_Hero_Before-After_System-960w.webp 960w,
-                            images/optimized/DS-01_Hero_Before-After_System-1280w.webp 1280w,
-                            images/optimized/DS-01_Hero_Before-After_System-1600w.webp 1600w,
-                            images/optimized/DS-01_Hero_Before-After_System-2000w.webp 2000w"
+                    srcset="assets/images/case-studies/rds/DS-01-640w.webp 640w,
+                            assets/images/case-studies/rds/DS-01-960w.webp 960w,
+                            assets/images/case-studies/rds/DS-01-1280w.webp 1280w,
+                            assets/images/case-studies/rds/DS-01-1600w.webp 1600w,
+                            assets/images/case-studies/rds/DS-01-2000w.webp 2000w"
                     sizes="100vw">
-                <img src="images/optimized/DS-01_Hero_Before-After_System-1280w.png"
-                    srcset="images/optimized/DS-01_Hero_Before-After_System-640w.png 640w,
-                            images/optimized/DS-01_Hero_Before-After_System-960w.png 960w,
-                            images/optimized/DS-01_Hero_Before-After_System-1280w.png 1280w,
-                            images/optimized/DS-01_Hero_Before-After_System-1600w.png 1600w,
-                            images/optimized/DS-01_Hero_Before-After_System-2000w.png 2000w"
+                <img src="assets/images/case-studies/rds/DS-01-1280w.png"
+                    srcset="assets/images/case-studies/rds/DS-01-640w.png 640w,
+                            assets/images/case-studies/rds/DS-01-960w.png 960w,
+                            assets/images/case-studies/rds/DS-01-1280w.png 1280w,
+                            assets/images/case-studies/rds/DS-01-1600w.png 1600w,
+                            assets/images/case-studies/rds/DS-01-2000w.png 2000w"
                     sizes="100vw"
                     alt="Six Rapid7 products before RDS: divergent dark interfaces with 17+ button variants and inconsistent spacing; right side shows the unified R7 Design System light interface"
                     loading="eager"
@@ -908,7 +1016,43 @@
                     <li>Required measurable ROI to secure future investment</li>
                 </ul>
             </section>
-            
+        </article>
+
+        <!-- 02: Research & Discovery -->
+        <figure class="cs-image-block">
+            <picture>
+                <source type="image/avif"
+                    srcset="assets/images/case-studies/rds/DS-02-640w.avif 640w,
+                            assets/images/case-studies/rds/DS-02-960w.avif 960w,
+                            assets/images/case-studies/rds/DS-02-1280w.avif 1280w,
+                            assets/images/case-studies/rds/DS-02-1600w.avif 1600w,
+                            assets/images/case-studies/rds/DS-02-2000w.avif 2000w"
+                    sizes="100vw">
+                <source type="image/webp"
+                    srcset="assets/images/case-studies/rds/DS-02-640w.webp 640w,
+                            assets/images/case-studies/rds/DS-02-960w.webp 960w,
+                            assets/images/case-studies/rds/DS-02-1280w.webp 1280w,
+                            assets/images/case-studies/rds/DS-02-1600w.webp 1600w,
+                            assets/images/case-studies/rds/DS-02-2000w.webp 2000w"
+                    sizes="100vw">
+                <img src="assets/images/case-studies/rds/DS-02-1280w.png"
+                    srcset="assets/images/case-studies/rds/DS-02-640w.png 640w,
+                            assets/images/case-studies/rds/DS-02-960w.png 960w,
+                            assets/images/case-studies/rds/DS-02-1280w.png 1280w,
+                            assets/images/case-studies/rds/DS-02-1600w.png 1600w,
+                            assets/images/case-studies/rds/DS-02-2000w.png 2000w"
+                    sizes="100vw"
+                    alt="Research and discovery artifacts — component audit spreadsheets, product comparison matrices, and user research synthesis from across the Rapid7 platform"
+                    loading="lazy"
+                    decoding="async"
+                    width="1280"
+                    height="800">
+            </picture>
+            <figcaption>Research &amp; discovery &mdash; Foundational audit synthesizing findings across all six product teams</figcaption>
+        </figure>
+
+        <!-- Content: Research &amp; Discovery -->
+        <article class="case-content" aria-label="Research and discovery">
             <section class="case-section">
                 <h2 class="case-section__title">Research & Discovery</h2>
                 <p>I executed a comprehensive foundational audit across all six products, analyzing components, patterns, and user workflows.</p>
@@ -939,37 +1083,37 @@
             </section>
         </article>
 
-        <!-- 03: Core Platform Flows -->
+        <!-- 03: Strategy & Architecture -->
         <figure class="cs-image-block">
             <picture>
                 <source type="image/avif"
-                    srcset="images/optimized/DS-03_Core-Platform-Flows-640w.avif 640w,
-                            images/optimized/DS-03_Core-Platform-Flows-960w.avif 960w,
-                            images/optimized/DS-03_Core-Platform-Flows-1280w.avif 1280w,
-                            images/optimized/DS-03_Core-Platform-Flows-1600w.avif 1600w,
-                            images/optimized/DS-03_Core-Platform-Flows-2000w.avif 2000w"
+                    srcset="assets/images/case-studies/rds/DS-03-640w.avif 640w,
+                            assets/images/case-studies/rds/DS-03-960w.avif 960w,
+                            assets/images/case-studies/rds/DS-03-1280w.avif 1280w,
+                            assets/images/case-studies/rds/DS-03-1600w.avif 1600w,
+                            assets/images/case-studies/rds/DS-03-2000w.avif 2000w"
                     sizes="100vw">
                 <source type="image/webp"
-                    srcset="images/optimized/DS-03_Core-Platform-Flows-640w.webp 640w,
-                            images/optimized/DS-03_Core-Platform-Flows-960w.webp 960w,
-                            images/optimized/DS-03_Core-Platform-Flows-1280w.webp 1280w,
-                            images/optimized/DS-03_Core-Platform-Flows-1600w.webp 1600w,
-                            images/optimized/DS-03_Core-Platform-Flows-2000w.webp 2000w"
+                    srcset="assets/images/case-studies/rds/DS-03-640w.webp 640w,
+                            assets/images/case-studies/rds/DS-03-960w.webp 960w,
+                            assets/images/case-studies/rds/DS-03-1280w.webp 1280w,
+                            assets/images/case-studies/rds/DS-03-1600w.webp 1600w,
+                            assets/images/case-studies/rds/DS-03-2000w.webp 2000w"
                     sizes="100vw">
-                <img src="images/optimized/DS-03_Core-Platform-Flows-1280w.png"
-                    srcset="images/optimized/DS-03_Core-Platform-Flows-640w.png 640w,
-                            images/optimized/DS-03_Core-Platform-Flows-960w.png 960w,
-                            images/optimized/DS-03_Core-Platform-Flows-1280w.png 1280w,
-                            images/optimized/DS-03_Core-Platform-Flows-1600w.png 1600w,
-                            images/optimized/DS-03_Core-Platform-Flows-2000w.png 2000w"
+                <img src="assets/images/case-studies/rds/DS-03-1280w.png"
+                    srcset="assets/images/case-studies/rds/DS-03-640w.png 640w,
+                            assets/images/case-studies/rds/DS-03-960w.png 960w,
+                            assets/images/case-studies/rds/DS-03-1280w.png 1280w,
+                            assets/images/case-studies/rds/DS-03-1600w.png 1600w,
+                            assets/images/case-studies/rds/DS-03-2000w.png 2000w"
                     sizes="100vw"
-                    alt="Flow map of five core Rapid7 user journeys — Investigation, Vulnerability Management, Cloud Security, Exposure Command, and Reporting — annotated with shared interaction breakpoints"
+                    alt="Strategy and architecture diagram — three-layer RDS framework showing Foundations, Components, and Templates with governance model"
                     loading="lazy"
                     decoding="async"
                     width="1280"
                     height="800">
             </picture>
-            <figcaption>Core platform flows &mdash; Primary user journeys across the Rapid7 product suite</figcaption>
+            <figcaption>Strategy &amp; architecture &mdash; The three-layer RDS framework and governance model</figcaption>
         </figure>
 
         <!-- Content: Strategy &amp; Architecture -->
@@ -1004,70 +1148,37 @@
             </section>
         </article>
 
-        <!-- 02: Strategy &amp; Roadmap -->
+        <!-- 04: Design & Implementation -->
         <figure class="cs-image-block">
             <picture>
                 <source type="image/avif"
-                    srcset="images/optimized/DS-02_Strategy_Roadmap-640w.avif 640w,
-                            images/optimized/DS-02_Strategy_Roadmap-960w.avif 960w,
-                            images/optimized/DS-02_Strategy_Roadmap-1280w.avif 1280w,
-                            images/optimized/DS-02_Strategy_Roadmap-1600w.avif 1600w,
-                            images/optimized/DS-02_Strategy_Roadmap-2000w.avif 2000w"
+                    srcset="assets/images/case-studies/rds/DS-04-640w.avif 640w,
+                            assets/images/case-studies/rds/DS-04-960w.avif 960w,
+                            assets/images/case-studies/rds/DS-04-1280w.avif 1280w,
+                            assets/images/case-studies/rds/DS-04-1600w.avif 1600w,
+                            assets/images/case-studies/rds/DS-04-2000w.avif 2000w"
                     sizes="100vw">
                 <source type="image/webp"
-                    srcset="images/optimized/DS-02_Strategy_Roadmap-640w.webp 640w,
-                            images/optimized/DS-02_Strategy_Roadmap-960w.webp 960w,
-                            images/optimized/DS-02_Strategy_Roadmap-1280w.webp 1280w,
-                            images/optimized/DS-02_Strategy_Roadmap-1600w.webp 1600w,
-                            images/optimized/DS-02_Strategy_Roadmap-2000w.webp 2000w"
+                    srcset="assets/images/case-studies/rds/DS-04-640w.webp 640w,
+                            assets/images/case-studies/rds/DS-04-960w.webp 960w,
+                            assets/images/case-studies/rds/DS-04-1280w.webp 1280w,
+                            assets/images/case-studies/rds/DS-04-1600w.webp 1600w,
+                            assets/images/case-studies/rds/DS-04-2000w.webp 2000w"
                     sizes="100vw">
-                <img src="images/optimized/DS-02_Strategy_Roadmap-1280w.png"
-                    srcset="images/optimized/DS-02_Strategy_Roadmap-640w.png 640w,
-                            images/optimized/DS-02_Strategy_Roadmap-960w.png 960w,
-                            images/optimized/DS-02_Strategy_Roadmap-1280w.png 1280w,
-                            images/optimized/DS-02_Strategy_Roadmap-1600w.png 1600w,
-                            images/optimized/DS-02_Strategy_Roadmap-2000w.png 2000w"
+                <img src="assets/images/case-studies/rds/DS-04-1280w.png"
+                    srcset="assets/images/case-studies/rds/DS-04-640w.png 640w,
+                            assets/images/case-studies/rds/DS-04-960w.png 960w,
+                            assets/images/case-studies/rds/DS-04-1280w.png 1280w,
+                            assets/images/case-studies/rds/DS-04-1600w.png 1600w,
+                            assets/images/case-studies/rds/DS-04-2000w.png 2000w"
                     sizes="100vw"
-                    alt="Roadmap slide: three-phase RDS migration plan showing Foundation (tokens, grid), Component Library (60+ MUI components), and Platform Templates milestones with ownership and timeline"
-                    loading="lazy"
-                    decoding="async"
-                    width="1280"
-                    height="960">
-            </picture>
-            <figcaption>Strategy &amp; roadmap &mdash; Phased migration plan and governance model for the R7 Design System</figcaption>
-        </figure>
-
-        <!-- 04: System Paradigms — Page-Type Model -->
-        <figure class="cs-image-block">
-            <picture>
-                <source type="image/avif"
-                    srcset="images/optimized/DS-04_Page-Type-Paradigm-640w.avif 640w,
-                            images/optimized/DS-04_Page-Type-Paradigm-960w.avif 960w,
-                            images/optimized/DS-04_Page-Type-Paradigm-1280w.avif 1280w,
-                            images/optimized/DS-04_Page-Type-Paradigm-1600w.avif 1600w,
-                            images/optimized/DS-04_Page-Type-Paradigm-2000w.avif 2000w"
-                    sizes="100vw">
-                <source type="image/webp"
-                    srcset="images/optimized/DS-04_Page-Type-Paradigm-640w.webp 640w,
-                            images/optimized/DS-04_Page-Type-Paradigm-960w.webp 960w,
-                            images/optimized/DS-04_Page-Type-Paradigm-1280w.webp 1280w,
-                            images/optimized/DS-04_Page-Type-Paradigm-1600w.webp 1600w,
-                            images/optimized/DS-04_Page-Type-Paradigm-2000w.webp 2000w"
-                    sizes="100vw">
-                <img src="images/optimized/DS-04_Page-Type-Paradigm-1280w.png"
-                    srcset="images/optimized/DS-04_Page-Type-Paradigm-640w.png 640w,
-                            images/optimized/DS-04_Page-Type-Paradigm-960w.png 960w,
-                            images/optimized/DS-04_Page-Type-Paradigm-1280w.png 1280w,
-                            images/optimized/DS-04_Page-Type-Paradigm-1600w.png 1600w,
-                            images/optimized/DS-04_Page-Type-Paradigm-2000w.png 2000w"
-                    sizes="100vw"
-                    alt="Reusable Page-Type Model: Dashboard, Listing, Detail, and Form templates sharing structural scaffolding—global stacks, object context, page actions, and contextual actions"
+                    alt="Design and implementation artifacts — component specifications, Figma libraries, and MUI theme overrides for the R7 Design System"
                     loading="lazy"
                     decoding="async"
                     width="1280"
                     height="800">
             </picture>
-            <figcaption>System paradigms &mdash; Every dashboard, listing, and detail page shares a unified structural template</figcaption>
+            <figcaption>Design &amp; implementation &mdash; Component spec sheets, Figma libraries, and MUI theme architecture</figcaption>
         </figure>
 
         <!-- Content: Design &amp; Implementation -->
@@ -1110,174 +1221,78 @@
             </section>
         </article>
 
-        <!-- 05: Interaction Patterns in Context -->
+        <!-- 05: Enablement -->
         <figure class="cs-image-block">
             <picture>
                 <source type="image/avif"
-                    srcset="images/optimized/DS-05_Interaction-Patterns_In-Context-640w.avif 640w,
-                            images/optimized/DS-05_Interaction-Patterns_In-Context-960w.avif 960w,
-                            images/optimized/DS-05_Interaction-Patterns_In-Context-1280w.avif 1280w,
-                            images/optimized/DS-05_Interaction-Patterns_In-Context-1600w.avif 1600w,
-                            images/optimized/DS-05_Interaction-Patterns_In-Context-2000w.avif 2000w"
+                    srcset="assets/images/case-studies/rds/DS-05-640w.avif 640w,
+                            assets/images/case-studies/rds/DS-05-960w.avif 960w,
+                            assets/images/case-studies/rds/DS-05-1280w.avif 1280w,
+                            assets/images/case-studies/rds/DS-05-1600w.avif 1600w,
+                            assets/images/case-studies/rds/DS-05-2000w.avif 2000w"
                     sizes="100vw">
                 <source type="image/webp"
-                    srcset="images/optimized/DS-05_Interaction-Patterns_In-Context-640w.webp 640w,
-                            images/optimized/DS-05_Interaction-Patterns_In-Context-960w.webp 960w,
-                            images/optimized/DS-05_Interaction-Patterns_In-Context-1280w.webp 1280w,
-                            images/optimized/DS-05_Interaction-Patterns_In-Context-1600w.webp 1600w,
-                            images/optimized/DS-05_Interaction-Patterns_In-Context-2000w.webp 2000w"
+                    srcset="assets/images/case-studies/rds/DS-05-640w.webp 640w,
+                            assets/images/case-studies/rds/DS-05-960w.webp 960w,
+                            assets/images/case-studies/rds/DS-05-1280w.webp 1280w,
+                            assets/images/case-studies/rds/DS-05-1600w.webp 1600w,
+                            assets/images/case-studies/rds/DS-05-2000w.webp 2000w"
                     sizes="100vw">
-                <img src="images/optimized/DS-05_Interaction-Patterns_In-Context-1280w.png"
-                    srcset="images/optimized/DS-05_Interaction-Patterns_In-Context-640w.png 640w,
-                            images/optimized/DS-05_Interaction-Patterns_In-Context-960w.png 960w,
-                            images/optimized/DS-05_Interaction-Patterns_In-Context-1280w.png 1280w,
-                            images/optimized/DS-05_Interaction-Patterns_In-Context-1600w.png 1600w,
-                            images/optimized/DS-05_Interaction-Patterns_In-Context-2000w.png 2000w"
+                <img src="assets/images/case-studies/rds/DS-05-1280w.png"
+                    srcset="assets/images/case-studies/rds/DS-05-640w.png 640w,
+                            assets/images/case-studies/rds/DS-05-960w.png 960w,
+                            assets/images/case-studies/rds/DS-05-1280w.png 1280w,
+                            assets/images/case-studies/rds/DS-05-1600w.png 1600w,
+                            assets/images/case-studies/rds/DS-05-2000w.png 2000w"
                     sizes="100vw"
-                    alt="Standardized in-context interaction patterns: Modal, Side Panel, and Popover components shown with annotated guidance balancing focus, flexibility, and accessibility"
+                    alt="Designer enablement materials — workshop guides, onboarding documentation, and design literacy curriculum built alongside the R7 Design System"
                     loading="lazy"
                     decoding="async"
                     width="1280"
                     height="800">
             </picture>
-            <figcaption>Interaction patterns in context &mdash; Modal, Side Panel, and Popover behaviors standardized across the platform</figcaption>
+            <figcaption>Enablement &mdash; Workshop guides, onboarding documentation, and design literacy curriculum</figcaption>
         </figure>
 
-        <!-- 06: Engineering Collaboration — Component Audit -->
+        <!-- 06: Measurement Framework -->
         <figure class="cs-image-block">
             <picture>
                 <source type="image/avif"
-                    srcset="images/optimized/DS-06_Component-Audit-640w.avif 640w,
-                            images/optimized/DS-06_Component-Audit-960w.avif 960w,
-                            images/optimized/DS-06_Component-Audit-1280w.avif 1280w,
-                            images/optimized/DS-06_Component-Audit-1600w.avif 1600w,
-                            images/optimized/DS-06_Component-Audit-2000w.avif 2000w"
+                    srcset="assets/images/case-studies/rds/DS-06-640w.avif 640w,
+                            assets/images/case-studies/rds/DS-06-960w.avif 960w,
+                            assets/images/case-studies/rds/DS-06-1280w.avif 1280w,
+                            assets/images/case-studies/rds/DS-06-1600w.avif 1600w,
+                            assets/images/case-studies/rds/DS-06-2000w.avif 2000w"
                     sizes="100vw">
                 <source type="image/webp"
-                    srcset="images/optimized/DS-06_Component-Audit-640w.webp 640w,
-                            images/optimized/DS-06_Component-Audit-960w.webp 960w,
-                            images/optimized/DS-06_Component-Audit-1280w.webp 1280w,
-                            images/optimized/DS-06_Component-Audit-1600w.webp 1600w,
-                            images/optimized/DS-06_Component-Audit-2000w.webp 2000w"
+                    srcset="assets/images/case-studies/rds/DS-06-640w.webp 640w,
+                            assets/images/case-studies/rds/DS-06-960w.webp 960w,
+                            assets/images/case-studies/rds/DS-06-1280w.webp 1280w,
+                            assets/images/case-studies/rds/DS-06-1600w.webp 1600w,
+                            assets/images/case-studies/rds/DS-06-2000w.webp 2000w"
                     sizes="100vw">
-                <img src="images/optimized/DS-06_Component-Audit-1280w.png"
-                    srcset="images/optimized/DS-06_Component-Audit-640w.png 640w,
-                            images/optimized/DS-06_Component-Audit-960w.png 960w,
-                            images/optimized/DS-06_Component-Audit-1280w.png 1280w,
-                            images/optimized/DS-06_Component-Audit-1600w.png 1600w,
-                            images/optimized/DS-06_Component-Audit-2000w.png 2000w"
+                <img src="assets/images/case-studies/rds/DS-06-1280w.png"
+                    srcset="assets/images/case-studies/rds/DS-06-640w.png 640w,
+                            assets/images/case-studies/rds/DS-06-960w.png 960w,
+                            assets/images/case-studies/rds/DS-06-1280w.png 1280w,
+                            assets/images/case-studies/rds/DS-06-1600w.png 1600w,
+                            assets/images/case-studies/rds/DS-06-2000w.png 2000w"
                     sizes="100vw"
-                    alt="Component audit spreadsheet: 80+ rows mapping Button, DataGrid, and Form components across six products — columns show current state, migration priority, and MUI equivalent"
+                    alt="Measurement framework dashboard — KPI tracking across design velocity, component adoption rate, accessibility compliance, and UX sentiment scores"
                     loading="lazy"
                     decoding="async"
                     width="1280"
                     height="800">
             </picture>
-            <figcaption>Engineering collaboration &mdash; Component audit mapping existing UI across all product lines to identify consolidation opportunities</figcaption>
+            <figcaption>Measurement framework &mdash; KPIs tracking design velocity, adoption rate, accessibility, and team satisfaction</figcaption>
         </figure>
 
-        <!-- 07 + 08: Release &amp; Iteration Process -->
-        <figure class="cs-image-block">
-            <div class="cs-image-pair">
-                <picture>
-                    <source type="image/avif"
-                        srcset="images/optimized/DS-07_Process-01-640w.avif 640w,
-                                images/optimized/DS-07_Process-01-960w.avif 960w,
-                                images/optimized/DS-07_Process-01-1280w.avif 1280w,
-                                images/optimized/DS-07_Process-01-1600w.avif 1600w,
-                                images/optimized/DS-07_Process-01-2000w.avif 2000w"
-                        sizes="(max-width: 640px) 100vw, 50vw">
-                    <source type="image/webp"
-                        srcset="images/optimized/DS-07_Process-01-640w.webp 640w,
-                                images/optimized/DS-07_Process-01-960w.webp 960w,
-                                images/optimized/DS-07_Process-01-1280w.webp 1280w,
-                                images/optimized/DS-07_Process-01-1600w.webp 1600w,
-                                images/optimized/DS-07_Process-01-2000w.webp 2000w"
-                        sizes="(max-width: 640px) 100vw, 50vw">
-                    <img src="images/optimized/DS-07_Process-01-1280w.png"
-                        srcset="images/optimized/DS-07_Process-01-640w.png 640w,
-                                images/optimized/DS-07_Process-01-960w.png 960w,
-                                images/optimized/DS-07_Process-01-1280w.png 1280w,
-                                images/optimized/DS-07_Process-01-1600w.png 1600w,
-                                images/optimized/DS-07_Process-01-2000w.png 2000w"
-                        sizes="(max-width: 640px) 100vw, 50vw"
-                        alt="Release process diagram: semantic versioning workflow (major/minor/patch) with release notes template, changelog format, and Zeroheight handoff artifact checklist"
-                        loading="lazy"
-                        decoding="async"
-                        width="1280"
-                        height="763">
-                </picture>
-                <picture>
-                    <source type="image/avif"
-                        srcset="images/optimized/DS-08_Process-02-640w.avif 640w,
-                                images/optimized/DS-08_Process-02-960w.avif 960w,
-                                images/optimized/DS-08_Process-02-1280w.avif 1280w,
-                                images/optimized/DS-08_Process-02-1600w.avif 1600w,
-                                images/optimized/DS-08_Process-02-2000w.avif 2000w"
-                        sizes="(max-width: 640px) 100vw, 50vw">
-                    <source type="image/webp"
-                        srcset="images/optimized/DS-08_Process-02-640w.webp 640w,
-                                images/optimized/DS-08_Process-02-960w.webp 960w,
-                                images/optimized/DS-08_Process-02-1280w.webp 1280w,
-                                images/optimized/DS-08_Process-02-1600w.webp 1600w,
-                                images/optimized/DS-08_Process-02-2000w.webp 2000w"
-                        sizes="(max-width: 640px) 100vw, 50vw">
-                    <img src="images/optimized/DS-08_Process-02-1280w.png"
-                        srcset="images/optimized/DS-08_Process-02-640w.png 640w,
-                                images/optimized/DS-08_Process-02-960w.png 960w,
-                                images/optimized/DS-08_Process-02-1280w.png 1280w,
-                                images/optimized/DS-08_Process-02-1600w.png 1600w,
-                                images/optimized/DS-08_Process-02-2000w.png 2000w"
-                        sizes="(max-width: 640px) 100vw, 50vw"
-                        alt="Component spec sheet template: fields for anatomy, states, spacing, keyboard behavior, accessibility requirements, and engineering API — used to align Figma and code"
-                        loading="lazy"
-                        decoding="async"
-                        width="1280"
-                        height="733">
-                </picture>
-            </div>
-            <figcaption>Release &amp; iteration process &mdash; Versioning, handoff, and continuous improvement workflows</figcaption>
-        </figure>
-
-        <!-- 09: Deliverables -->
-        <figure class="cs-image-block">
-            <picture>
-                <source type="image/avif"
-                    srcset="images/optimized/DS-09_Outcome-01-640w.avif 640w,
-                            images/optimized/DS-09_Outcome-01-960w.avif 960w,
-                            images/optimized/DS-09_Outcome-01-1280w.avif 1280w,
-                            images/optimized/DS-09_Outcome-01-1600w.avif 1600w,
-                            images/optimized/DS-09_Outcome-01-2000w.avif 2000w"
-                    sizes="100vw">
-                <source type="image/webp"
-                    srcset="images/optimized/DS-09_Outcome-01-640w.webp 640w,
-                            images/optimized/DS-09_Outcome-01-960w.webp 960w,
-                            images/optimized/DS-09_Outcome-01-1280w.webp 1280w,
-                            images/optimized/DS-09_Outcome-01-1600w.webp 1600w,
-                            images/optimized/DS-09_Outcome-01-2000w.webp 2000w"
-                    sizes="100vw">
-                <img src="images/optimized/DS-09_Outcome-01-1280w.png"
-                    srcset="images/optimized/DS-09_Outcome-01-640w.png 640w,
-                            images/optimized/DS-09_Outcome-01-960w.png 960w,
-                            images/optimized/DS-09_Outcome-01-1280w.png 1280w,
-                            images/optimized/DS-09_Outcome-01-1600w.png 1600w,
-                            images/optimized/DS-09_Outcome-01-2000w.png 2000w"
-                    sizes="100vw"
-                    alt="Zeroheight documentation portal: Button component page showing anatomy diagram, variant matrix, usage guidelines, accessibility checklist, and live code snippet"
-                    loading="lazy"
-                    decoding="async"
-                    width="1280"
-                    height="853">
-            </picture>
-            <figcaption>Deliverables &mdash; 60+ components, token documentation, accessibility guidelines, and Figma library</figcaption>
-        </figure>
-
-        <!-- Content: Measurement &amp; Impact -->
-        <article class="case-content" aria-label="Measurement and impact">
+        <!-- Content: Measurement Framework -->
+        <article class="case-content" aria-label="Measurement framework">
             <section class="case-section">
                 <h2 class="case-section__title">Measurement Framework</h2>
                 <p>I defined and implemented a comprehensive metrics framework measuring both internal and external impact:</p>
-                
+
                 <h3>Internal Impact Metrics</h3>
                 <ul>
                     <li>Design velocity</li>
@@ -1286,7 +1301,7 @@
                     <li>Accessibility compliance</li>
                     <li>UX designer satisfaction</li>
                 </ul>
-                
+
                 <h3>External Impact Metrics</h3>
                 <ul>
                     <li>Experience consistency</li>
@@ -1294,13 +1309,49 @@
                     <li>Reduced user confusion</li>
                     <li>Improved product onboarding</li>
                 </ul>
-                
+
                 <p>We tracked success week-over-week using Jira, Confluence analytics, and UX sentiment surveys.</p>
             </section>
-            
+        </article>
+
+        <!-- 07: Impact -->
+        <figure class="cs-image-block">
+            <picture>
+                <source type="image/avif"
+                    srcset="assets/images/case-studies/rds/DS-07-640w.avif 640w,
+                            assets/images/case-studies/rds/DS-07-960w.avif 960w,
+                            assets/images/case-studies/rds/DS-07-1280w.avif 1280w,
+                            assets/images/case-studies/rds/DS-07-1600w.avif 1600w,
+                            assets/images/case-studies/rds/DS-07-2000w.avif 2000w"
+                    sizes="100vw">
+                <source type="image/webp"
+                    srcset="assets/images/case-studies/rds/DS-07-640w.webp 640w,
+                            assets/images/case-studies/rds/DS-07-960w.webp 960w,
+                            assets/images/case-studies/rds/DS-07-1280w.webp 1280w,
+                            assets/images/case-studies/rds/DS-07-1600w.webp 1600w,
+                            assets/images/case-studies/rds/DS-07-2000w.webp 2000w"
+                    sizes="100vw">
+                <img src="assets/images/case-studies/rds/DS-07-1280w.png"
+                    srcset="assets/images/case-studies/rds/DS-07-640w.png 640w,
+                            assets/images/case-studies/rds/DS-07-960w.png 960w,
+                            assets/images/case-studies/rds/DS-07-1280w.png 1280w,
+                            assets/images/case-studies/rds/DS-07-1600w.png 1600w,
+                            assets/images/case-studies/rds/DS-07-2000w.png 2000w"
+                    sizes="100vw"
+                    alt="Impact summary — platform adoption metrics, engineering velocity gains, and accessibility compliance results across the Rapid7 product suite"
+                    loading="lazy"
+                    decoding="async"
+                    width="1280"
+                    height="800">
+            </picture>
+            <figcaption>Impact &mdash; 40% faster builds, 80% platform adoption, 100% WCAG 2.2 AA compliance</figcaption>
+        </figure>
+
+        <!-- Content: Impact -->
+        <article class="case-content" aria-label="Impact">
             <section class="case-section">
                 <h2 class="case-section__title">Impact</h2>
-                
+
                 <div class="impact-grid">
                     <div class="impact-card">
                         <div class="impact-card__icon">&#9889;</div>
@@ -1308,28 +1359,28 @@
                         <div class="impact-card__value">40%</div>
                         <div class="impact-card__description">Faster build time for UI implementation</div>
                     </div>
-                    
+
                     <div class="impact-card">
                         <div class="impact-card__icon">&#128202;</div>
                         <div class="impact-card__title">Platform Coverage</div>
                         <div class="impact-card__value">80%</div>
                         <div class="impact-card__description">Achieved in just two quarters</div>
                     </div>
-                    
+
                     <div class="impact-card">
                         <div class="impact-card__icon">&#128522;</div>
                         <div class="impact-card__title">Designer Satisfaction</div>
                         <div class="impact-card__value">25%</div>
                         <div class="impact-card__description">Increase in team satisfaction scores</div>
                     </div>
-                    
+
                     <div class="impact-card">
                         <div class="impact-card__icon">&#127919;</div>
                         <div class="impact-card__title">UX Consistency</div>
                         <div class="impact-card__value">50%</div>
                         <div class="impact-card__description">Reduction in visual drift</div>
                     </div>
-                    
+
                     <div class="impact-card">
                         <div class="impact-card__icon">&#9855;</div>
                         <div class="impact-card__title">Accessibility</div>
@@ -1337,7 +1388,7 @@
                         <div class="impact-card__description">WCAG 2.2 AA compliance across all components</div>
                     </div>
                 </div>
-                
+
                 <h3>Qualitative Impact</h3>
                 <ul>
                     <li>Teams aligned around a shared UI language</li>
@@ -1345,7 +1396,7 @@
                     <li>Higher confidence in UI quality</li>
                     <li>Reduced design and engineering friction</li>
                 </ul>
-                
+
                 <h3>Organizational Impact</h3>
                 <ul>
                     <li>Design system became required infrastructure</li>
@@ -1356,81 +1407,38 @@
             </section>
         </article>
 
-        <!-- Outcomes — Theme-toggle demo: one live image, light ↔ dark -->
+        <!-- 08: What I'd Do Next -->
         <figure class="cs-image-block">
-            <picture class="cs-img--light">
+            <picture>
                 <source type="image/avif"
-                    srcset="images/optimized/Outcome-01-CL-640w.avif 640w,
-                            images/optimized/Outcome-01-CL-960w.avif 960w,
-                            images/optimized/Outcome-01-CL-1280w.avif 1280w,
-                            images/optimized/Outcome-01-CL-1600w.avif 1600w,
-                            images/optimized/Outcome-01-CL-2000w.avif 2000w"
+                    srcset="assets/images/case-studies/rds/DS-08-640w.avif 640w,
+                            assets/images/case-studies/rds/DS-08-960w.avif 960w,
+                            assets/images/case-studies/rds/DS-08-1280w.avif 1280w,
+                            assets/images/case-studies/rds/DS-08-1600w.avif 1600w,
+                            assets/images/case-studies/rds/DS-08-2000w.avif 2000w"
                     sizes="100vw">
                 <source type="image/webp"
-                    srcset="images/optimized/Outcome-01-CL-640w.webp 640w,
-                            images/optimized/Outcome-01-CL-960w.webp 960w,
-                            images/optimized/Outcome-01-CL-1280w.webp 1280w,
-                            images/optimized/Outcome-01-CL-1600w.webp 1600w,
-                            images/optimized/Outcome-01-CL-2000w.webp 2000w"
+                    srcset="assets/images/case-studies/rds/DS-08-640w.webp 640w,
+                            assets/images/case-studies/rds/DS-08-960w.webp 960w,
+                            assets/images/case-studies/rds/DS-08-1280w.webp 1280w,
+                            assets/images/case-studies/rds/DS-08-1600w.webp 1600w,
+                            assets/images/case-studies/rds/DS-08-2000w.webp 2000w"
                     sizes="100vw">
-                <img src="images/optimized/Outcome-01-CL-1280w.png"
-                    srcset="images/optimized/Outcome-01-CL-640w.png 640w,
-                            images/optimized/Outcome-01-CL-960w.png 960w,
-                            images/optimized/Outcome-01-CL-1280w.png 1280w,
-                            images/optimized/Outcome-01-CL-1600w.png 1600w,
-                            images/optimized/Outcome-01-CL-2000w.png 2000w"
+                <img src="assets/images/case-studies/rds/DS-08-1280w.png"
+                    srcset="assets/images/case-studies/rds/DS-08-640w.png 640w,
+                            assets/images/case-studies/rds/DS-08-960w.png 960w,
+                            assets/images/case-studies/rds/DS-08-1280w.png 1280w,
+                            assets/images/case-studies/rds/DS-08-1600w.png 1600w,
+                            assets/images/case-studies/rds/DS-08-2000w.png 2000w"
                     sizes="100vw"
-                    alt="InsightIDR investigation workflow, light theme: unified global navigation, attack graph visualization, and entity detail panel built on R7 Design System tokens"
+                    alt="Future roadmap concepts — motion system, automated governance linting, AI-powered component recommendations, and usage analytics at the component level"
                     loading="lazy"
                     decoding="async"
                     width="1280"
-                    height="831">
+                    height="800">
             </picture>
-            <picture class="cs-img--dark">
-                <source type="image/avif"
-                    srcset="images/optimized/Outcome-01-CD-640w.avif 640w,
-                            images/optimized/Outcome-01-CD-960w.avif 960w,
-                            images/optimized/Outcome-01-CD-1280w.avif 1280w,
-                            images/optimized/Outcome-01-CD-1600w.avif 1600w,
-                            images/optimized/Outcome-01-CD-2000w.avif 2000w"
-                    sizes="100vw">
-                <source type="image/webp"
-                    srcset="images/optimized/Outcome-01-CD-640w.webp 640w,
-                            images/optimized/Outcome-01-CD-960w.webp 960w,
-                            images/optimized/Outcome-01-CD-1280w.webp 1280w,
-                            images/optimized/Outcome-01-CD-1600w.webp 1600w,
-                            images/optimized/Outcome-01-CD-2000w.webp 2000w"
-                    sizes="100vw">
-                <img src="images/optimized/Outcome-01-CD-1280w.png"
-                    srcset="images/optimized/Outcome-01-CD-640w.png 640w,
-                            images/optimized/Outcome-01-CD-960w.png 960w,
-                            images/optimized/Outcome-01-CD-1280w.png 1280w,
-                            images/optimized/Outcome-01-CD-1600w.png 1600w,
-                            images/optimized/Outcome-01-CD-2000w.png 2000w"
-                    sizes="100vw"
-                    alt="InsightIDR investigation workflow, dark theme: same unified layout with dark color tokens — optimized for SOC analysts working in low-light environments"
-                    loading="lazy"
-                    decoding="async"
-                    width="1280"
-                    height="831">
-            </picture>
-            <figcaption>Design system in production &mdash; Switch themes above to see the platform respond live across light and dark modes</figcaption>
+            <figcaption>What I&rsquo;d do next &mdash; Motion system, automated governance, AI-powered recommendations, and component analytics</figcaption>
         </figure>
-
-        <!-- Theme system explainer -->
-        <article class="case-content" aria-label="Theme system outcomes">
-            <section class="case-section">
-                <h2 class="case-section__title">Theme-Aware by Design</h2>
-                <p>RDS ships with four production-ready theme modes, each mapped to a distinct use case. The image above is live &mdash; use the theme controls in the header to see the design system adapt in real time.</p>
-                <ul>
-                    <li><strong>Light &mdash; New branding</strong>: default experience across all products, full R7 color token system and updated visual language</li>
-                    <li><strong>Dark &mdash; New branding</strong>: preferred by SOC analysts and power users in low-light environments; every token inverts automatically</li>
-                    <li><strong>Light &mdash; Legacy branding</strong>: supported during the migration window, preserving prior product identity for teams mid-transition</li>
-                    <li><strong>Dark &mdash; Legacy branding</strong>: full dark-mode support even for products still on the old token system, so no team was left behind</li>
-                </ul>
-                <p>All 60+ components honor these modes without per-component modification. Design tokens drive every color, border, shadow, and surface decision &mdash; swapping themes requires changing a single root variable.</p>
-            </section>
-        </article>
 
         <!-- Content: What I'd Do Next -->
         <article class="case-content" aria-label="What I'd do next">
@@ -1447,6 +1455,259 @@
             </section>
         </article>
         
+        <!-- Outcomes Gallery -->
+        <section class="outcomes-gallery" aria-label="Outcomes gallery">
+            <div class="outcomes-gallery__header">
+                <h2 class="case-section__title">Outcomes</h2>
+                <div class="outcomes-theme-switcher" role="group" aria-label="Select theme to preview">
+                    <button class="outcomes-theme-btn active" data-gallery="OL">Original Light</button>
+                    <button class="outcomes-theme-btn" data-gallery="OD">Original Dark</button>
+                    <button class="outcomes-theme-btn" data-gallery="CL">Callisto Light</button>
+                    <button class="outcomes-theme-btn" data-gallery="CD">Callisto Dark</button>
+                </div>
+            </div>
+
+            <!-- Original Light -->
+            <div class="outcomes-arc" data-gallery-theme="OL" role="list" aria-label="Original Light theme outcomes">
+                <div class="outcomes-arc__item" role="listitem">
+                    <picture>
+                        <source type="image/avif" srcset="assets/images/case-studies/rds/Outcome-01-OL-640w.avif 640w, assets/images/case-studies/rds/Outcome-01-OL-960w.avif 960w, assets/images/case-studies/rds/Outcome-01-OL-1280w.avif 1280w" sizes="12vw">
+                        <source type="image/webp" srcset="assets/images/case-studies/rds/Outcome-01-OL-640w.webp 640w, assets/images/case-studies/rds/Outcome-01-OL-960w.webp 960w, assets/images/case-studies/rds/Outcome-01-OL-1280w.webp 1280w" sizes="12vw">
+                        <img src="assets/images/case-studies/rds/Outcome-01-OL-960w.png" alt="Outcome 1 — Original Light theme" loading="lazy" decoding="async">
+                    </picture>
+                </div>
+                <div class="outcomes-arc__item" role="listitem">
+                    <picture>
+                        <source type="image/avif" srcset="assets/images/case-studies/rds/Outcome-02-OL-640w.avif 640w, assets/images/case-studies/rds/Outcome-02-OL-960w.avif 960w, assets/images/case-studies/rds/Outcome-02-OL-1280w.avif 1280w" sizes="12vw">
+                        <source type="image/webp" srcset="assets/images/case-studies/rds/Outcome-02-OL-640w.webp 640w, assets/images/case-studies/rds/Outcome-02-OL-960w.webp 960w, assets/images/case-studies/rds/Outcome-02-OL-1280w.webp 1280w" sizes="12vw">
+                        <img src="assets/images/case-studies/rds/Outcome-02-OL-960w.png" alt="Outcome 2 — Original Light theme" loading="lazy" decoding="async">
+                    </picture>
+                </div>
+                <div class="outcomes-arc__item" role="listitem">
+                    <picture>
+                        <source type="image/avif" srcset="assets/images/case-studies/rds/Outcome-03-OL-640w.avif 640w, assets/images/case-studies/rds/Outcome-03-OL-960w.avif 960w, assets/images/case-studies/rds/Outcome-03-OL-1280w.avif 1280w" sizes="12vw">
+                        <source type="image/webp" srcset="assets/images/case-studies/rds/Outcome-03-OL-640w.webp 640w, assets/images/case-studies/rds/Outcome-03-OL-960w.webp 960w, assets/images/case-studies/rds/Outcome-03-OL-1280w.webp 1280w" sizes="12vw">
+                        <img src="assets/images/case-studies/rds/Outcome-03-OL-960w.png" alt="Outcome 3 — Original Light theme" loading="lazy" decoding="async">
+                    </picture>
+                </div>
+                <div class="outcomes-arc__item" role="listitem">
+                    <picture>
+                        <source type="image/avif" srcset="assets/images/case-studies/rds/Outcome-04-OL-640w.avif 640w, assets/images/case-studies/rds/Outcome-04-OL-960w.avif 960w, assets/images/case-studies/rds/Outcome-04-OL-1280w.avif 1280w" sizes="12vw">
+                        <source type="image/webp" srcset="assets/images/case-studies/rds/Outcome-04-OL-640w.webp 640w, assets/images/case-studies/rds/Outcome-04-OL-960w.webp 960w, assets/images/case-studies/rds/Outcome-04-OL-1280w.webp 1280w" sizes="12vw">
+                        <img src="assets/images/case-studies/rds/Outcome-04-OL-960w.png" alt="Outcome 4 — Original Light theme" loading="lazy" decoding="async">
+                    </picture>
+                </div>
+                <div class="outcomes-arc__item" role="listitem">
+                    <picture>
+                        <source type="image/avif" srcset="assets/images/case-studies/rds/Outcome-05-OL-640w.avif 640w, assets/images/case-studies/rds/Outcome-05-OL-960w.avif 960w, assets/images/case-studies/rds/Outcome-05-OL-1280w.avif 1280w" sizes="12vw">
+                        <source type="image/webp" srcset="assets/images/case-studies/rds/Outcome-05-OL-640w.webp 640w, assets/images/case-studies/rds/Outcome-05-OL-960w.webp 960w, assets/images/case-studies/rds/Outcome-05-OL-1280w.webp 1280w" sizes="12vw">
+                        <img src="assets/images/case-studies/rds/Outcome-05-OL-960w.png" alt="Outcome 5 — Original Light theme" loading="lazy" decoding="async">
+                    </picture>
+                </div>
+                <div class="outcomes-arc__item" role="listitem">
+                    <picture>
+                        <source type="image/avif" srcset="assets/images/case-studies/rds/Outcome-06-OL-640w.avif 640w, assets/images/case-studies/rds/Outcome-06-OL-960w.avif 960w, assets/images/case-studies/rds/Outcome-06-OL-1280w.avif 1280w" sizes="12vw">
+                        <source type="image/webp" srcset="assets/images/case-studies/rds/Outcome-06-OL-640w.webp 640w, assets/images/case-studies/rds/Outcome-06-OL-960w.webp 960w, assets/images/case-studies/rds/Outcome-06-OL-1280w.webp 1280w" sizes="12vw">
+                        <img src="assets/images/case-studies/rds/Outcome-06-OL-960w.png" alt="Outcome 6 — Original Light theme" loading="lazy" decoding="async">
+                    </picture>
+                </div>
+                <div class="outcomes-arc__item" role="listitem">
+                    <picture>
+                        <source type="image/avif" srcset="assets/images/case-studies/rds/Outcome-07-OL-640w.avif 640w, assets/images/case-studies/rds/Outcome-07-OL-960w.avif 960w, assets/images/case-studies/rds/Outcome-07-OL-1280w.avif 1280w" sizes="12vw">
+                        <source type="image/webp" srcset="assets/images/case-studies/rds/Outcome-07-OL-640w.webp 640w, assets/images/case-studies/rds/Outcome-07-OL-960w.webp 960w, assets/images/case-studies/rds/Outcome-07-OL-1280w.webp 1280w" sizes="12vw">
+                        <img src="assets/images/case-studies/rds/Outcome-07-OL-960w.png" alt="Outcome 7 — Original Light theme" loading="lazy" decoding="async">
+                    </picture>
+                </div>
+                <div class="outcomes-arc__item" role="listitem">
+                    <picture>
+                        <source type="image/avif" srcset="assets/images/case-studies/rds/Outcome-08-OL-640w.avif 640w, assets/images/case-studies/rds/Outcome-08-OL-960w.avif 960w, assets/images/case-studies/rds/Outcome-08-OL-1280w.avif 1280w" sizes="12vw">
+                        <source type="image/webp" srcset="assets/images/case-studies/rds/Outcome-08-OL-640w.webp 640w, assets/images/case-studies/rds/Outcome-08-OL-960w.webp 960w, assets/images/case-studies/rds/Outcome-08-OL-1280w.webp 1280w" sizes="12vw">
+                        <img src="assets/images/case-studies/rds/Outcome-08-OL-960w.png" alt="Outcome 8 — Original Light theme" loading="lazy" decoding="async">
+                    </picture>
+                </div>
+            </div>
+
+            <!-- Original Dark -->
+            <div class="outcomes-arc" data-gallery-theme="OD" hidden role="list" aria-label="Original Dark theme outcomes">
+                <div class="outcomes-arc__item" role="listitem">
+                    <picture>
+                        <source type="image/avif" srcset="assets/images/case-studies/rds/Outcome-02-OD-640w.avif 640w, assets/images/case-studies/rds/Outcome-02-OD-960w.avif 960w, assets/images/case-studies/rds/Outcome-02-OD-1280w.avif 1280w" sizes="12vw">
+                        <source type="image/webp" srcset="assets/images/case-studies/rds/Outcome-02-OD-640w.webp 640w, assets/images/case-studies/rds/Outcome-02-OD-960w.webp 960w, assets/images/case-studies/rds/Outcome-02-OD-1280w.webp 1280w" sizes="12vw">
+                        <img src="assets/images/case-studies/rds/Outcome-02-OD-960w.png" alt="Outcome 2 — Original Dark theme" loading="lazy" decoding="async">
+                    </picture>
+                </div>
+                <div class="outcomes-arc__item" role="listitem">
+                    <picture>
+                        <source type="image/avif" srcset="assets/images/case-studies/rds/Outcome-03-OD-640w.avif 640w, assets/images/case-studies/rds/Outcome-03-OD-960w.avif 960w, assets/images/case-studies/rds/Outcome-03-OD-1280w.avif 1280w" sizes="12vw">
+                        <source type="image/webp" srcset="assets/images/case-studies/rds/Outcome-03-OD-640w.webp 640w, assets/images/case-studies/rds/Outcome-03-OD-960w.webp 960w, assets/images/case-studies/rds/Outcome-03-OD-1280w.webp 1280w" sizes="12vw">
+                        <img src="assets/images/case-studies/rds/Outcome-03-OD-960w.png" alt="Outcome 3 — Original Dark theme" loading="lazy" decoding="async">
+                    </picture>
+                </div>
+                <div class="outcomes-arc__item" role="listitem">
+                    <picture>
+                        <source type="image/avif" srcset="assets/images/case-studies/rds/Outcome-04-OD-640w.avif 640w, assets/images/case-studies/rds/Outcome-04-OD-960w.avif 960w, assets/images/case-studies/rds/Outcome-04-OD-1280w.avif 1280w" sizes="12vw">
+                        <source type="image/webp" srcset="assets/images/case-studies/rds/Outcome-04-OD-640w.webp 640w, assets/images/case-studies/rds/Outcome-04-OD-960w.webp 960w, assets/images/case-studies/rds/Outcome-04-OD-1280w.webp 1280w" sizes="12vw">
+                        <img src="assets/images/case-studies/rds/Outcome-04-OD-960w.png" alt="Outcome 4 — Original Dark theme" loading="lazy" decoding="async">
+                    </picture>
+                </div>
+                <div class="outcomes-arc__item" role="listitem">
+                    <picture>
+                        <source type="image/avif" srcset="assets/images/case-studies/rds/Outcome-05-OD-640w.avif 640w, assets/images/case-studies/rds/Outcome-05-OD-960w.avif 960w, assets/images/case-studies/rds/Outcome-05-OD-1280w.avif 1280w" sizes="12vw">
+                        <source type="image/webp" srcset="assets/images/case-studies/rds/Outcome-05-OD-640w.webp 640w, assets/images/case-studies/rds/Outcome-05-OD-960w.webp 960w, assets/images/case-studies/rds/Outcome-05-OD-1280w.webp 1280w" sizes="12vw">
+                        <img src="assets/images/case-studies/rds/Outcome-05-OD-960w.png" alt="Outcome 5 — Original Dark theme" loading="lazy" decoding="async">
+                    </picture>
+                </div>
+                <div class="outcomes-arc__item" role="listitem">
+                    <picture>
+                        <source type="image/avif" srcset="assets/images/case-studies/rds/Outcome-06-OD-640w.avif 640w, assets/images/case-studies/rds/Outcome-06-OD-960w.avif 960w, assets/images/case-studies/rds/Outcome-06-OD-1280w.avif 1280w" sizes="12vw">
+                        <source type="image/webp" srcset="assets/images/case-studies/rds/Outcome-06-OD-640w.webp 640w, assets/images/case-studies/rds/Outcome-06-OD-960w.webp 960w, assets/images/case-studies/rds/Outcome-06-OD-1280w.webp 1280w" sizes="12vw">
+                        <img src="assets/images/case-studies/rds/Outcome-06-OD-960w.png" alt="Outcome 6 — Original Dark theme" loading="lazy" decoding="async">
+                    </picture>
+                </div>
+                <div class="outcomes-arc__item" role="listitem">
+                    <picture>
+                        <source type="image/avif" srcset="assets/images/case-studies/rds/Outcome-07-OD-640w.avif 640w, assets/images/case-studies/rds/Outcome-07-OD-960w.avif 960w, assets/images/case-studies/rds/Outcome-07-OD-1280w.avif 1280w" sizes="12vw">
+                        <source type="image/webp" srcset="assets/images/case-studies/rds/Outcome-07-OD-640w.webp 640w, assets/images/case-studies/rds/Outcome-07-OD-960w.webp 960w, assets/images/case-studies/rds/Outcome-07-OD-1280w.webp 1280w" sizes="12vw">
+                        <img src="assets/images/case-studies/rds/Outcome-07-OD-960w.png" alt="Outcome 7 — Original Dark theme" loading="lazy" decoding="async">
+                    </picture>
+                </div>
+                <div class="outcomes-arc__item" role="listitem">
+                    <picture>
+                        <source type="image/avif" srcset="assets/images/case-studies/rds/Outcome-08-OD-640w.avif 640w, assets/images/case-studies/rds/Outcome-08-OD-960w.avif 960w, assets/images/case-studies/rds/Outcome-08-OD-1280w.avif 1280w" sizes="12vw">
+                        <source type="image/webp" srcset="assets/images/case-studies/rds/Outcome-08-OD-640w.webp 640w, assets/images/case-studies/rds/Outcome-08-OD-960w.webp 960w, assets/images/case-studies/rds/Outcome-08-OD-1280w.webp 1280w" sizes="12vw">
+                        <img src="assets/images/case-studies/rds/Outcome-08-OD-960w.png" alt="Outcome 8 — Original Dark theme" loading="lazy" decoding="async">
+                    </picture>
+                </div>
+            </div>
+
+            <!-- Callisto Light -->
+            <div class="outcomes-arc" data-gallery-theme="CL" hidden role="list" aria-label="Callisto Light theme outcomes">
+                <div class="outcomes-arc__item" role="listitem">
+                    <picture>
+                        <source type="image/avif" srcset="assets/images/case-studies/rds/Outcome-01-CL-1-640w.avif 640w, assets/images/case-studies/rds/Outcome-01-CL-1-960w.avif 960w, assets/images/case-studies/rds/Outcome-01-CL-1-1280w.avif 1280w" sizes="12vw">
+                        <source type="image/webp" srcset="assets/images/case-studies/rds/Outcome-01-CL-1-640w.webp 640w, assets/images/case-studies/rds/Outcome-01-CL-1-960w.webp 960w, assets/images/case-studies/rds/Outcome-01-CL-1-1280w.webp 1280w" sizes="12vw">
+                        <img src="assets/images/case-studies/rds/Outcome-01-CL-1-960w.png" alt="Outcome 1 (variant) — Callisto Light theme" loading="lazy" decoding="async">
+                    </picture>
+                </div>
+                <div class="outcomes-arc__item" role="listitem">
+                    <picture>
+                        <source type="image/avif" srcset="assets/images/case-studies/rds/Outcome-01-CL-640w.avif 640w, assets/images/case-studies/rds/Outcome-01-CL-960w.avif 960w, assets/images/case-studies/rds/Outcome-01-CL-1280w.avif 1280w" sizes="12vw">
+                        <source type="image/webp" srcset="assets/images/case-studies/rds/Outcome-01-CL-640w.webp 640w, assets/images/case-studies/rds/Outcome-01-CL-960w.webp 960w, assets/images/case-studies/rds/Outcome-01-CL-1280w.webp 1280w" sizes="12vw">
+                        <img src="assets/images/case-studies/rds/Outcome-01-CL-960w.png" alt="Outcome 1 — Callisto Light theme" loading="lazy" decoding="async">
+                    </picture>
+                </div>
+                <div class="outcomes-arc__item" role="listitem">
+                    <picture>
+                        <source type="image/avif" srcset="assets/images/case-studies/rds/Outcome-02-CL-640w.avif 640w, assets/images/case-studies/rds/Outcome-02-CL-960w.avif 960w, assets/images/case-studies/rds/Outcome-02-CL-1280w.avif 1280w" sizes="12vw">
+                        <source type="image/webp" srcset="assets/images/case-studies/rds/Outcome-02-CL-640w.webp 640w, assets/images/case-studies/rds/Outcome-02-CL-960w.webp 960w, assets/images/case-studies/rds/Outcome-02-CL-1280w.webp 1280w" sizes="12vw">
+                        <img src="assets/images/case-studies/rds/Outcome-02-CL-960w.png" alt="Outcome 2 — Callisto Light theme" loading="lazy" decoding="async">
+                    </picture>
+                </div>
+                <div class="outcomes-arc__item" role="listitem">
+                    <picture>
+                        <source type="image/avif" srcset="assets/images/case-studies/rds/Outcome-03-CL-640w.avif 640w, assets/images/case-studies/rds/Outcome-03-CL-960w.avif 960w, assets/images/case-studies/rds/Outcome-03-CL-1280w.avif 1280w" sizes="12vw">
+                        <source type="image/webp" srcset="assets/images/case-studies/rds/Outcome-03-CL-640w.webp 640w, assets/images/case-studies/rds/Outcome-03-CL-960w.webp 960w, assets/images/case-studies/rds/Outcome-03-CL-1280w.webp 1280w" sizes="12vw">
+                        <img src="assets/images/case-studies/rds/Outcome-03-CL-960w.png" alt="Outcome 3 — Callisto Light theme" loading="lazy" decoding="async">
+                    </picture>
+                </div>
+                <div class="outcomes-arc__item" role="listitem">
+                    <picture>
+                        <source type="image/avif" srcset="assets/images/case-studies/rds/Outcome-04-CL-640w.avif 640w, assets/images/case-studies/rds/Outcome-04-CL-960w.avif 960w, assets/images/case-studies/rds/Outcome-04-CL-1280w.avif 1280w" sizes="12vw">
+                        <source type="image/webp" srcset="assets/images/case-studies/rds/Outcome-04-CL-640w.webp 640w, assets/images/case-studies/rds/Outcome-04-CL-960w.webp 960w, assets/images/case-studies/rds/Outcome-04-CL-1280w.webp 1280w" sizes="12vw">
+                        <img src="assets/images/case-studies/rds/Outcome-04-CL-960w.png" alt="Outcome 4 — Callisto Light theme" loading="lazy" decoding="async">
+                    </picture>
+                </div>
+                <div class="outcomes-arc__item" role="listitem">
+                    <picture>
+                        <source type="image/avif" srcset="assets/images/case-studies/rds/Outcome-05-CL-640w.avif 640w, assets/images/case-studies/rds/Outcome-05-CL-960w.avif 960w, assets/images/case-studies/rds/Outcome-05-CL-1280w.avif 1280w" sizes="12vw">
+                        <source type="image/webp" srcset="assets/images/case-studies/rds/Outcome-05-CL-640w.webp 640w, assets/images/case-studies/rds/Outcome-05-CL-960w.webp 960w, assets/images/case-studies/rds/Outcome-05-CL-1280w.webp 1280w" sizes="12vw">
+                        <img src="assets/images/case-studies/rds/Outcome-05-CL-960w.png" alt="Outcome 5 — Callisto Light theme" loading="lazy" decoding="async">
+                    </picture>
+                </div>
+                <div class="outcomes-arc__item" role="listitem">
+                    <picture>
+                        <source type="image/avif" srcset="assets/images/case-studies/rds/Outcome-06-CL-640w.avif 640w, assets/images/case-studies/rds/Outcome-06-CL-960w.avif 960w, assets/images/case-studies/rds/Outcome-06-CL-1280w.avif 1280w" sizes="12vw">
+                        <source type="image/webp" srcset="assets/images/case-studies/rds/Outcome-06-CL-640w.webp 640w, assets/images/case-studies/rds/Outcome-06-CL-960w.webp 960w, assets/images/case-studies/rds/Outcome-06-CL-1280w.webp 1280w" sizes="12vw">
+                        <img src="assets/images/case-studies/rds/Outcome-06-CL-960w.png" alt="Outcome 6 — Callisto Light theme" loading="lazy" decoding="async">
+                    </picture>
+                </div>
+                <div class="outcomes-arc__item" role="listitem">
+                    <picture>
+                        <source type="image/avif" srcset="assets/images/case-studies/rds/Outcome-07-CL-640w.avif 640w, assets/images/case-studies/rds/Outcome-07-CL-960w.avif 960w, assets/images/case-studies/rds/Outcome-07-CL-1280w.avif 1280w" sizes="12vw">
+                        <source type="image/webp" srcset="assets/images/case-studies/rds/Outcome-07-CL-640w.webp 640w, assets/images/case-studies/rds/Outcome-07-CL-960w.webp 960w, assets/images/case-studies/rds/Outcome-07-CL-1280w.webp 1280w" sizes="12vw">
+                        <img src="assets/images/case-studies/rds/Outcome-07-CL-960w.png" alt="Outcome 7 — Callisto Light theme" loading="lazy" decoding="async">
+                    </picture>
+                </div>
+                <div class="outcomes-arc__item" role="listitem">
+                    <picture>
+                        <source type="image/avif" srcset="assets/images/case-studies/rds/Outcome-08-CL-640w.avif 640w, assets/images/case-studies/rds/Outcome-08-CL-960w.avif 960w, assets/images/case-studies/rds/Outcome-08-CL-1280w.avif 1280w" sizes="12vw">
+                        <source type="image/webp" srcset="assets/images/case-studies/rds/Outcome-08-CL-640w.webp 640w, assets/images/case-studies/rds/Outcome-08-CL-960w.webp 960w, assets/images/case-studies/rds/Outcome-08-CL-1280w.webp 1280w" sizes="12vw">
+                        <img src="assets/images/case-studies/rds/Outcome-08-CL-960w.png" alt="Outcome 8 — Callisto Light theme" loading="lazy" decoding="async">
+                    </picture>
+                </div>
+            </div>
+
+            <!-- Callisto Dark -->
+            <div class="outcomes-arc" data-gallery-theme="CD" hidden role="list" aria-label="Callisto Dark theme outcomes">
+                <div class="outcomes-arc__item" role="listitem">
+                    <picture>
+                        <source type="image/avif" srcset="assets/images/case-studies/rds/Outcome-01-CD-640w.avif 640w, assets/images/case-studies/rds/Outcome-01-CD-960w.avif 960w, assets/images/case-studies/rds/Outcome-01-CD-1280w.avif 1280w" sizes="12vw">
+                        <source type="image/webp" srcset="assets/images/case-studies/rds/Outcome-01-CD-640w.webp 640w, assets/images/case-studies/rds/Outcome-01-CD-960w.webp 960w, assets/images/case-studies/rds/Outcome-01-CD-1280w.webp 1280w" sizes="12vw">
+                        <img src="assets/images/case-studies/rds/Outcome-01-CD-960w.png" alt="Outcome 1 — Callisto Dark theme" loading="lazy" decoding="async">
+                    </picture>
+                </div>
+                <div class="outcomes-arc__item" role="listitem">
+                    <picture>
+                        <source type="image/avif" srcset="assets/images/case-studies/rds/Outcome-02-CD-640w.avif 640w, assets/images/case-studies/rds/Outcome-02-CD-960w.avif 960w, assets/images/case-studies/rds/Outcome-02-CD-1280w.avif 1280w" sizes="12vw">
+                        <source type="image/webp" srcset="assets/images/case-studies/rds/Outcome-02-CD-640w.webp 640w, assets/images/case-studies/rds/Outcome-02-CD-960w.webp 960w, assets/images/case-studies/rds/Outcome-02-CD-1280w.webp 1280w" sizes="12vw">
+                        <img src="assets/images/case-studies/rds/Outcome-02-CD-960w.png" alt="Outcome 2 — Callisto Dark theme" loading="lazy" decoding="async">
+                    </picture>
+                </div>
+                <div class="outcomes-arc__item" role="listitem">
+                    <picture>
+                        <source type="image/avif" srcset="assets/images/case-studies/rds/Outcome-03-CD-640w.avif 640w, assets/images/case-studies/rds/Outcome-03-CD-960w.avif 960w, assets/images/case-studies/rds/Outcome-03-CD-1280w.avif 1280w" sizes="12vw">
+                        <source type="image/webp" srcset="assets/images/case-studies/rds/Outcome-03-CD-640w.webp 640w, assets/images/case-studies/rds/Outcome-03-CD-960w.webp 960w, assets/images/case-studies/rds/Outcome-03-CD-1280w.webp 1280w" sizes="12vw">
+                        <img src="assets/images/case-studies/rds/Outcome-03-CD-960w.png" alt="Outcome 3 — Callisto Dark theme" loading="lazy" decoding="async">
+                    </picture>
+                </div>
+                <div class="outcomes-arc__item" role="listitem">
+                    <picture>
+                        <source type="image/avif" srcset="assets/images/case-studies/rds/Outcome-04-CD-640w.avif 640w, assets/images/case-studies/rds/Outcome-04-CD-960w.avif 960w, assets/images/case-studies/rds/Outcome-04-CD-1280w.avif 1280w" sizes="12vw">
+                        <source type="image/webp" srcset="assets/images/case-studies/rds/Outcome-04-CD-640w.webp 640w, assets/images/case-studies/rds/Outcome-04-CD-960w.webp 960w, assets/images/case-studies/rds/Outcome-04-CD-1280w.webp 1280w" sizes="12vw">
+                        <img src="assets/images/case-studies/rds/Outcome-04-CD-960w.png" alt="Outcome 4 — Callisto Dark theme" loading="lazy" decoding="async">
+                    </picture>
+                </div>
+                <div class="outcomes-arc__item" role="listitem">
+                    <picture>
+                        <source type="image/avif" srcset="assets/images/case-studies/rds/Outcome-05-CD-640w.avif 640w, assets/images/case-studies/rds/Outcome-05-CD-960w.avif 960w, assets/images/case-studies/rds/Outcome-05-CD-1280w.avif 1280w" sizes="12vw">
+                        <source type="image/webp" srcset="assets/images/case-studies/rds/Outcome-05-CD-640w.webp 640w, assets/images/case-studies/rds/Outcome-05-CD-960w.webp 960w, assets/images/case-studies/rds/Outcome-05-CD-1280w.webp 1280w" sizes="12vw">
+                        <img src="assets/images/case-studies/rds/Outcome-05-CD-960w.png" alt="Outcome 5 — Callisto Dark theme" loading="lazy" decoding="async">
+                    </picture>
+                </div>
+                <div class="outcomes-arc__item" role="listitem">
+                    <picture>
+                        <source type="image/avif" srcset="assets/images/case-studies/rds/Outcome-06-CD-640w.avif 640w, assets/images/case-studies/rds/Outcome-06-CD-960w.avif 960w, assets/images/case-studies/rds/Outcome-06-CD-1280w.avif 1280w" sizes="12vw">
+                        <source type="image/webp" srcset="assets/images/case-studies/rds/Outcome-06-CD-640w.webp 640w, assets/images/case-studies/rds/Outcome-06-CD-960w.webp 960w, assets/images/case-studies/rds/Outcome-06-CD-1280w.webp 1280w" sizes="12vw">
+                        <img src="assets/images/case-studies/rds/Outcome-06-CD-960w.png" alt="Outcome 6 — Callisto Dark theme" loading="lazy" decoding="async">
+                    </picture>
+                </div>
+                <div class="outcomes-arc__item" role="listitem">
+                    <picture>
+                        <source type="image/avif" srcset="assets/images/case-studies/rds/Outcome-07-CD-640w.avif 640w, assets/images/case-studies/rds/Outcome-07-CD-960w.avif 960w, assets/images/case-studies/rds/Outcome-07-CD-1280w.avif 1280w" sizes="12vw">
+                        <source type="image/webp" srcset="assets/images/case-studies/rds/Outcome-07-CD-640w.webp 640w, assets/images/case-studies/rds/Outcome-07-CD-960w.webp 960w, assets/images/case-studies/rds/Outcome-07-CD-1280w.webp 1280w" sizes="12vw">
+                        <img src="assets/images/case-studies/rds/Outcome-07-CD-960w.png" alt="Outcome 7 — Callisto Dark theme" loading="lazy" decoding="async">
+                    </picture>
+                </div>
+                <div class="outcomes-arc__item" role="listitem">
+                    <picture>
+                        <source type="image/avif" srcset="assets/images/case-studies/rds/Outcome-08-CD-640w.avif 640w, assets/images/case-studies/rds/Outcome-08-CD-960w.avif 960w, assets/images/case-studies/rds/Outcome-08-CD-1280w.avif 1280w" sizes="12vw">
+                        <source type="image/webp" srcset="assets/images/case-studies/rds/Outcome-08-CD-640w.webp 640w, assets/images/case-studies/rds/Outcome-08-CD-960w.webp 960w, assets/images/case-studies/rds/Outcome-08-CD-1280w.webp 1280w" sizes="12vw">
+                        <img src="assets/images/case-studies/rds/Outcome-08-CD-960w.png" alt="Outcome 8 — Callisto Dark theme" loading="lazy" decoding="async">
+                    </picture>
+                </div>
+            </div>
+        </section>
+
         <!-- Navigation -->
         <nav class="case-nav" aria-label="Case study navigation">
             <div class="case-nav__container">
@@ -1494,6 +1755,28 @@
         })();
         var hdr = document.querySelector(".header");
         if (hdr) window.addEventListener("scroll", function() { hdr.classList.toggle("scrolled", window.pageYOffset > 0); });
+    </script>
+    <script>
+        /* Outcomes Gallery Theme Switcher */
+        (function() {
+            var btns = document.querySelectorAll('.outcomes-theme-btn');
+            var arcs = document.querySelectorAll('.outcomes-arc');
+            btns.forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    var theme = btn.getAttribute('data-gallery');
+                    btns.forEach(function(b) {
+                        b.classList.toggle('active', b === btn);
+                    });
+                    arcs.forEach(function(arc) {
+                        if (arc.getAttribute('data-gallery-theme') === theme) {
+                            arc.removeAttribute('hidden');
+                        } else {
+                            arc.setAttribute('hidden', '');
+                        }
+                    });
+                });
+            });
+        })();
     </script>
     <script>
         /* Mini Table of Contents */

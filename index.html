@@ -695,6 +695,18 @@
         [data-theme="high-contrast"] .case-header[data-color="magenta"] { background: #000; outline: 3px solid #FF2E93; }
         [data-theme="high-contrast"] .case-header[data-color="amber"]   { background: #000; outline: 3px solid #FFD700; }
         [data-theme="high-contrast"] .case-header[data-color="violet"]  { background: #000; outline: 3px solid #9E70FF; }
+        /* Case card thumbnail image */
+        .case-header picture { display: contents; }
+        .case-header__thumb {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+            border-radius: 0;
+            z-index: 0;
+        }
         .case-content { padding: var(--space-md); }
         .case-tag {
             display: inline-block;
@@ -1178,7 +1190,13 @@
                 <div class="work-grid">
                     <!-- FIX #3: Relative paths -->
                     <a href="case-study-rds.html" class="case-card">
-                        <div class="case-header" data-color="orange" aria-hidden="true">&#9889;</div>
+                        <div class="case-header" data-color="orange" aria-hidden="true">
+                            <picture>
+                                <source type="image/avif" srcset="assets/images/case-studies/rds/DS-00-640w.avif 640w, assets/images/case-studies/rds/DS-00-960w.avif 960w, assets/images/case-studies/rds/DS-00-1280w.avif 1280w" sizes="(max-width: 640px) 100vw, 33vw">
+                                <source type="image/webp" srcset="assets/images/case-studies/rds/DS-00-640w.webp 640w, assets/images/case-studies/rds/DS-00-960w.webp 960w, assets/images/case-studies/rds/DS-00-1280w.webp 1280w" sizes="(max-width: 640px) 100vw, 33vw">
+                                <img class="case-header__thumb" src="assets/images/case-studies/rds/DS-00-960w.png" alt="" loading="lazy" decoding="async">
+                            </picture>
+                        </div>
                         <div class="case-content">
                             <span class="case-tag">Design Systems</span>
                             <h3 class="case-title">R7 Design System &amp; MUI Migration</h3>
