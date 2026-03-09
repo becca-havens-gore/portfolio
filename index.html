@@ -180,16 +180,17 @@
             display: flex;
             align-items: center;
             white-space: nowrap;
+            flex-shrink: 0;
         }
         .header__logo { gap: 10px; font-family: var(--font-display); font-size: 20px; font-weight: 700; letter-spacing: -0.02em; }
         .header__nav {
             display: flex;
             align-items: center;
-            gap: var(--space-lg);
+            gap: var(--space-md);
         }
         .nav__links {
             display: flex;
-            gap: var(--space-lg);
+            gap: var(--space-md);
             list-style: none;
         }
         .nav__link {
@@ -607,7 +608,7 @@
         /* ─── Work Grid ─── */
         .work-grid {
             display: grid;
-            grid-template-columns: repeat(4, minmax(0, 1fr));
+            grid-template-columns: repeat(3, minmax(0, 1fr));
             column-gap: var(--space-md);
             row-gap: var(--space-lg);
         }
@@ -788,12 +789,21 @@
             color: var(--color-text-secondary);
             margin-bottom: var(--space-md);
         }
+        .about-photo-wrap {
+            transform: rotate(3deg);
+            filter: drop-shadow(0 20px 48px rgba(107,70,255,0.35));
+            transition: transform 0.4s ease, filter 0.4s ease;
+        }
+        .about-photo-wrap:hover {
+            transform: rotate(1deg) scale(1.02);
+            filter: drop-shadow(0 28px 60px rgba(107,70,255,0.45));
+        }
         .about-photo {
             position: relative;
             border-radius: 20px;
             overflow: hidden;
             background: linear-gradient(160deg, #FF6B2B 0%, #8B46FF 55%, #2BBFFF 100%);
-            min-height: 420px;
+            min-height: 480px;
             display: flex;
             align-items: flex-end;
         }
@@ -809,7 +819,7 @@
         .about-photo__gradient {
             position: absolute;
             inset: 0;
-            background: linear-gradient(to bottom, rgba(255,107,43,0.3) 0%, transparent 50%);
+            background: linear-gradient(to bottom, rgba(255,107,43,0.25) 0%, transparent 40%, rgba(107,70,255,0.35) 100%);
             pointer-events: none;
             z-index: 1;
         }
@@ -1144,13 +1154,15 @@
                         <p>My work spans four design systems across Rapid7, AlphaWave, and Kronologic, where I&rsquo;ve led MUI migrations, built visualization frameworks, established governance models, and pioneered AI experience standards. I believe great design systems are more than component libraries&mdash;they&rsquo;re shared languages that unite design and engineering around a common vision.</p>
                         <p>When I&rsquo;m not architecting systems, you&rsquo;ll find me mentoring designers, experimenting with AI-powered tools, or dreaming up backyard castle forts for my kids.</p>
                     </div>
-                    <div class="about-photo">
-                        <div class="about-photo__gradient" aria-hidden="true"></div>
-                        <picture>
-                            <source type="image/avif" srcset="assets/images/profile/image-640w.avif 640w, assets/images/profile/image-960w.avif 960w, assets/images/profile/image-1280w.avif 1280w" sizes="(max-width: 640px) 640px, (max-width: 960px) 960px, 1280px">
-                            <source type="image/webp" srcset="assets/images/profile/image-640w.webp 640w, assets/images/profile/image-960w.webp 960w, assets/images/profile/image-1280w.webp 1280w" sizes="(max-width: 640px) 640px, (max-width: 960px) 960px, 1280px">
-                            <img src="assets/images/profile/image-1280w.png" srcset="assets/images/profile/image-640w.png 640w, assets/images/profile/image-960w.png 960w, assets/images/profile/image-1280w.png 1280w" sizes="(max-width: 640px) 640px, (max-width: 960px) 960px, 1280px" alt="Becca Havens-Gore" loading="eager" fetchpriority="high">
-                        </picture>
+                    <div class="about-photo-wrap">
+                        <div class="about-photo">
+                            <div class="about-photo__gradient" aria-hidden="true"></div>
+                            <picture>
+                                <source type="image/avif" srcset="assets/images/profile/image-640w.avif 640w, assets/images/profile/image-960w.avif 960w, assets/images/profile/image-1280w.avif 1280w" sizes="(max-width: 640px) 640px, (max-width: 960px) 960px, 1280px">
+                                <source type="image/webp" srcset="assets/images/profile/image-640w.webp 640w, assets/images/profile/image-960w.webp 960w, assets/images/profile/image-1280w.webp 1280w" sizes="(max-width: 640px) 640px, (max-width: 960px) 960px, 1280px">
+                                <img src="assets/images/profile/image-1280w.png" srcset="assets/images/profile/image-640w.png 640w, assets/images/profile/image-960w.png 960w, assets/images/profile/image-1280w.png 1280w" sizes="(max-width: 640px) 640px, (max-width: 960px) 960px, 1280px" alt="Becca Havens-Gore" loading="eager" fetchpriority="high">
+                            </picture>
+                        </div>
                     </div>
                 </div>
             </div>
