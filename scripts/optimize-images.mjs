@@ -3,10 +3,10 @@ import path from "node:path";
 import sharp from "sharp";
 
 const INPUT_DIR = "images/source/new";       // put originals here
-const OUTPUT_DIR = "assets/images/profile";   // script writes here
+const OUTPUT_DIR = "assets/images/profile/";   // script writes here
 
 // Widths to generate. Tune if you want fewer files.
-const WIDTHS = [640, 960, 1280, 1600, 2000];
+const WIDTHS = [320, 512, 640, 960, 1280, 2000];
 
 // AVIF tends to look great at lower quality than WebP.
 // (Alpha/transparency is preserved for PNG inputs.)
