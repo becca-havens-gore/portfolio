@@ -914,6 +914,28 @@
         if (hdr) window.addEventListener("scroll", function() { hdr.classList.toggle("scrolled", window.pageYOffset > 0); });
     </script>
     <script>
+        /* Outcomes Gallery Theme Switcher */
+        (function() {
+            var btns = document.querySelectorAll('.outcomes-theme-btn');
+            var arcs = document.querySelectorAll('.outcomes-arc');
+            btns.forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    var theme = btn.getAttribute('data-gallery');
+                    btns.forEach(function(b) {
+                        b.classList.toggle('active', b === btn);
+                    });
+                    arcs.forEach(function(arc) {
+                        if (arc.getAttribute('data-gallery-theme') === theme) {
+                            arc.removeAttribute('hidden');
+                        } else {
+                            arc.setAttribute('hidden', '');
+                        }
+                    });
+                });
+            });
+        })();
+    </script>
+    <script>
         /* Mini Table of Contents */
         (function() {
             var sections = Array.prototype.slice.call(document.querySelectorAll('h2.case-section__title'));
