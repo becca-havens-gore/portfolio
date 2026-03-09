@@ -527,7 +527,7 @@
             display: flex; align-items: center;
             background: rgba(255,255,255,0.12);
             backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255,255,255,0.2); border-radius: 12px; padding: 4px;
+            border: 1px solid rgba(0,0,0,0.1); border-radius: 12px; padding: 4px;
         }
         .theme-btn {
             background: transparent; border: none; padding: 7px 11px; border-radius: 8px;
@@ -701,6 +701,7 @@
         .cs-image-block picture {
             display: block;
             width: 100%;
+            background: rgba(0,0,0,0.10);
         }
 
         .cs-image-block img {
@@ -727,20 +728,6 @@
 
         @media (max-width: 640px) {
             .cs-image-pair { grid-template-columns: 1fr; }
-        }
-
-        /* Outcomes gallery — 2-column grid */
-        .cs-outcomes-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-        }
-
-        .cs-outcomes-grid picture {
-            display: block;
-        }
-
-        @media (max-width: 640px) {
-            .cs-outcomes-grid { grid-template-columns: 1fr; }
         }
 
         /*
@@ -852,12 +839,12 @@
                             images/optimized/DS-01_Hero_Before-After_System-1600w.png 1600w,
                             images/optimized/DS-01_Hero_Before-After_System-2000w.png 2000w"
                     sizes="100vw"
-                    alt="Before and after: six Rapid7 products with fragmented, inconsistent UI patterns (dark interfaces) replaced by a unified, accessible R7 Design System (light interface)"
+                    alt="Six Rapid7 products before RDS: divergent dark interfaces with 17+ button variants and inconsistent spacing; right side shows the unified R7 Design System light interface"
                     loading="eager"
                     fetchpriority="high"
                     decoding="async"
-                    width="2000"
-                    height="1050">
+                    width="1280"
+                    height="770">
             </picture>
             <figcaption>Before &amp; After &mdash; Fragmented product UIs unified under the R7 Design System</figcaption>
         </figure>
@@ -976,11 +963,11 @@
                             images/optimized/DS-03_Core-Platform-Flows-1600w.png 1600w,
                             images/optimized/DS-03_Core-Platform-Flows-2000w.png 2000w"
                     sizes="100vw"
-                    alt="Core platform flows: mapped primary user journeys across the Rapid7 product suite, identifying shared patterns and divergent interactions"
+                    alt="Flow map of five core Rapid7 user journeys — Investigation, Vulnerability Management, Cloud Security, Exposure Command, and Reporting — annotated with shared interaction breakpoints"
                     loading="lazy"
                     decoding="async"
-                    width="2000"
-                    height="1050">
+                    width="1280"
+                    height="800">
             </picture>
             <figcaption>Core platform flows &mdash; Primary user journeys across the Rapid7 product suite</figcaption>
         </figure>
@@ -1041,11 +1028,11 @@
                             images/optimized/DS-02_Strategy_Roadmap-1600w.png 1600w,
                             images/optimized/DS-02_Strategy_Roadmap-2000w.png 2000w"
                     sizes="100vw"
-                    alt="Strategy and roadmap slide titled 'Our Path to a Unified Platform' showing the phased RDS migration plan, MUI adoption timeline, and governance model"
+                    alt="Roadmap slide: three-phase RDS migration plan showing Foundation (tokens, grid), Component Library (60+ MUI components), and Platform Templates milestones with ownership and timeline"
                     loading="lazy"
                     decoding="async"
-                    width="2000"
-                    height="1050">
+                    width="1280"
+                    height="960">
             </picture>
             <figcaption>Strategy &amp; roadmap &mdash; Phased migration plan and governance model for the R7 Design System</figcaption>
         </figure>
@@ -1077,8 +1064,8 @@
                     alt="Reusable Page-Type Model: Dashboard, Listing, Detail, and Form templates sharing structural scaffolding—global stacks, object context, page actions, and contextual actions"
                     loading="lazy"
                     decoding="async"
-                    width="2000"
-                    height="1050">
+                    width="1280"
+                    height="800">
             </picture>
             <figcaption>System paradigms &mdash; Every dashboard, listing, and detail page shares a unified structural template</figcaption>
         </figure>
@@ -1150,8 +1137,8 @@
                     alt="Standardized in-context interaction patterns: Modal, Side Panel, and Popover components shown with annotated guidance balancing focus, flexibility, and accessibility"
                     loading="lazy"
                     decoding="async"
-                    width="2000"
-                    height="1050">
+                    width="1280"
+                    height="800">
             </picture>
             <figcaption>Interaction patterns in context &mdash; Modal, Side Panel, and Popover behaviors standardized across the platform</figcaption>
         </figure>
@@ -1180,11 +1167,11 @@
                             images/optimized/DS-06_Component-Audit-1600w.png 1600w,
                             images/optimized/DS-06_Component-Audit-2000w.png 2000w"
                     sizes="100vw"
-                    alt="Component audit tracker: spreadsheet mapping existing UI components across all six product lines to identify duplication, consolidation opportunities, and MUI migration status"
+                    alt="Component audit spreadsheet: 80+ rows mapping Button, DataGrid, and Form components across six products — columns show current state, migration priority, and MUI equivalent"
                     loading="lazy"
                     decoding="async"
-                    width="2000"
-                    height="1050">
+                    width="1280"
+                    height="800">
             </picture>
             <figcaption>Engineering collaboration &mdash; Component audit mapping existing UI across all product lines to identify consolidation opportunities</figcaption>
         </figure>
@@ -1214,11 +1201,11 @@
                                 images/optimized/DS-07_Process-01-1600w.png 1600w,
                                 images/optimized/DS-07_Process-01-2000w.png 2000w"
                         sizes="(max-width: 640px) 100vw, 50vw"
-                        alt="Release process documentation: design system versioning workflow, release notes template, and design-to-code handoff artifacts"
+                        alt="Release process diagram: semantic versioning workflow (major/minor/patch) with release notes template, changelog format, and Zeroheight handoff artifact checklist"
                         loading="lazy"
                         decoding="async"
-                        width="2000"
-                        height="1050">
+                        width="1280"
+                        height="763">
                 </picture>
                 <picture>
                     <source type="image/avif"
@@ -1242,11 +1229,11 @@
                                 images/optimized/DS-08_Process-02-1600w.png 1600w,
                                 images/optimized/DS-08_Process-02-2000w.png 2000w"
                         sizes="(max-width: 640px) 100vw, 50vw"
-                        alt="Iteration process: component spec sheets, Figma library updates, and engineering implementation guides supporting continuous design system improvement"
+                        alt="Component spec sheet template: fields for anatomy, states, spacing, keyboard behavior, accessibility requirements, and engineering API — used to align Figma and code"
                         loading="lazy"
                         decoding="async"
-                        width="2000"
-                        height="1050">
+                        width="1280"
+                        height="733">
                 </picture>
             </div>
             <figcaption>Release &amp; iteration process &mdash; Versioning, handoff, and continuous improvement workflows</figcaption>
@@ -1276,11 +1263,11 @@
                             images/optimized/DS-09_Outcome-01-1600w.png 1600w,
                             images/optimized/DS-09_Outcome-01-2000w.png 2000w"
                     sizes="100vw"
-                    alt="R7 Design System deliverables: component documentation pages, accessibility guidelines, design token references, and Figma component library"
+                    alt="Zeroheight documentation portal: Button component page showing anatomy diagram, variant matrix, usage guidelines, accessibility checklist, and live code snippet"
                     loading="lazy"
                     decoding="async"
-                    width="2000"
-                    height="1050">
+                    width="1280"
+                    height="853">
             </picture>
             <figcaption>Deliverables &mdash; 60+ components, token documentation, accessibility guidelines, and Figma library</figcaption>
         </figure>
@@ -1369,125 +1356,81 @@
             </section>
         </article>
 
-        <!-- Outcomes Gallery — 8 product screenshots, light &amp; dark theme variants -->
-        <figure class="cs-image-block" aria-label="Design system outcomes across the Rapid7 platform">
-            <div class="cs-outcomes-grid">
-
-                <!-- Outcome 01 -->
-                <div>
-                    <picture class="cs-img--light">
-                        <source type="image/avif" srcset="images/optimized/Outcome-01-CL-640w.avif 640w, images/optimized/Outcome-01-CL-960w.avif 960w, images/optimized/Outcome-01-CL-1280w.avif 1280w, images/optimized/Outcome-01-CL-1600w.avif 1600w, images/optimized/Outcome-01-CL-2000w.avif 2000w" sizes="(max-width: 640px) 100vw, 50vw">
-                        <source type="image/webp" srcset="images/optimized/Outcome-01-CL-640w.webp 640w, images/optimized/Outcome-01-CL-960w.webp 960w, images/optimized/Outcome-01-CL-1280w.webp 1280w, images/optimized/Outcome-01-CL-1600w.webp 1600w, images/optimized/Outcome-01-CL-2000w.webp 2000w" sizes="(max-width: 640px) 100vw, 50vw">
-                        <img src="images/optimized/Outcome-01-CL-1280w.png" srcset="images/optimized/Outcome-01-CL-640w.png 640w, images/optimized/Outcome-01-CL-960w.png 960w, images/optimized/Outcome-01-CL-1280w.png 1280w, images/optimized/Outcome-01-CL-1600w.png 1600w, images/optimized/Outcome-01-CL-2000w.png 2000w" sizes="(max-width: 640px) 100vw, 50vw" alt="InsightIDR investigation workflow in light theme: unified navigation, attack graph visualization, and entity detail panel" loading="lazy" decoding="async" width="2000" height="1250">
-                    </picture>
-                    <picture class="cs-img--dark">
-                        <source type="image/avif" srcset="images/optimized/Outcome-01-CD-640w.avif 640w, images/optimized/Outcome-01-CD-960w.avif 960w, images/optimized/Outcome-01-CD-1280w.avif 1280w, images/optimized/Outcome-01-CD-1600w.avif 1600w, images/optimized/Outcome-01-CD-2000w.avif 2000w" sizes="(max-width: 640px) 100vw, 50vw">
-                        <source type="image/webp" srcset="images/optimized/Outcome-01-CD-640w.webp 640w, images/optimized/Outcome-01-CD-960w.webp 960w, images/optimized/Outcome-01-CD-1280w.webp 1280w, images/optimized/Outcome-01-CD-1600w.webp 1600w, images/optimized/Outcome-01-CD-2000w.webp 2000w" sizes="(max-width: 640px) 100vw, 50vw">
-                        <img src="images/optimized/Outcome-01-CD-1280w.png" srcset="images/optimized/Outcome-01-CD-640w.png 640w, images/optimized/Outcome-01-CD-960w.png 960w, images/optimized/Outcome-01-CD-1280w.png 1280w, images/optimized/Outcome-01-CD-1600w.png 1600w, images/optimized/Outcome-01-CD-2000w.png 2000w" sizes="(max-width: 640px) 100vw, 50vw" alt="InsightIDR investigation workflow in dark theme: unified navigation, attack graph visualization, and entity detail panel" loading="lazy" decoding="async" width="2000" height="1250">
-                    </picture>
-                </div>
-
-                <!-- Outcome 02 -->
-                <div>
-                    <picture class="cs-img--light">
-                        <source type="image/avif" srcset="images/optimized/Outcome-02-CL-640w.avif 640w, images/optimized/Outcome-02-CL-960w.avif 960w, images/optimized/Outcome-02-CL-1280w.avif 1280w, images/optimized/Outcome-02-CL-1600w.avif 1600w, images/optimized/Outcome-02-CL-2000w.avif 2000w" sizes="(max-width: 640px) 100vw, 50vw">
-                        <source type="image/webp" srcset="images/optimized/Outcome-02-CL-640w.webp 640w, images/optimized/Outcome-02-CL-960w.webp 960w, images/optimized/Outcome-02-CL-1280w.webp 1280w, images/optimized/Outcome-02-CL-1600w.webp 1600w, images/optimized/Outcome-02-CL-2000w.webp 2000w" sizes="(max-width: 640px) 100vw, 50vw">
-                        <img src="images/optimized/Outcome-02-CL-1280w.png" srcset="images/optimized/Outcome-02-CL-640w.png 640w, images/optimized/Outcome-02-CL-960w.png 960w, images/optimized/Outcome-02-CL-1280w.png 1280w, images/optimized/Outcome-02-CL-1600w.png 1600w, images/optimized/Outcome-02-CL-2000w.png 2000w" sizes="(max-width: 640px) 100vw, 50vw" alt="Rapid7 platform screen in light theme showing unified design system applied to product interface" loading="lazy" decoding="async" width="2000" height="1250">
-                    </picture>
-                    <picture class="cs-img--dark">
-                        <source type="image/avif" srcset="images/optimized/Outcome-02-CD-640w.avif 640w, images/optimized/Outcome-02-CD-960w.avif 960w, images/optimized/Outcome-02-CD-1280w.avif 1280w, images/optimized/Outcome-02-CD-1600w.avif 1600w, images/optimized/Outcome-02-CD-2000w.avif 2000w" sizes="(max-width: 640px) 100vw, 50vw">
-                        <source type="image/webp" srcset="images/optimized/Outcome-02-CD-640w.webp 640w, images/optimized/Outcome-02-CD-960w.webp 960w, images/optimized/Outcome-02-CD-1280w.webp 1280w, images/optimized/Outcome-02-CD-1600w.webp 1600w, images/optimized/Outcome-02-CD-2000w.webp 2000w" sizes="(max-width: 640px) 100vw, 50vw">
-                        <img src="images/optimized/Outcome-02-CD-1280w.png" srcset="images/optimized/Outcome-02-CD-640w.png 640w, images/optimized/Outcome-02-CD-960w.png 960w, images/optimized/Outcome-02-CD-1280w.png 1280w, images/optimized/Outcome-02-CD-1600w.png 1600w, images/optimized/Outcome-02-CD-2000w.png 2000w" sizes="(max-width: 640px) 100vw, 50vw" alt="Rapid7 platform screen in dark theme showing unified design system applied to product interface" loading="lazy" decoding="async" width="2000" height="1250">
-                    </picture>
-                </div>
-
-                <!-- Outcome 03 -->
-                <div>
-                    <picture class="cs-img--light">
-                        <source type="image/avif" srcset="images/optimized/Outcome-03-CL-640w.avif 640w, images/optimized/Outcome-03-CL-960w.avif 960w, images/optimized/Outcome-03-CL-1280w.avif 1280w, images/optimized/Outcome-03-CL-1600w.avif 1600w, images/optimized/Outcome-03-CL-2000w.avif 2000w" sizes="(max-width: 640px) 100vw, 50vw">
-                        <source type="image/webp" srcset="images/optimized/Outcome-03-CL-640w.webp 640w, images/optimized/Outcome-03-CL-960w.webp 960w, images/optimized/Outcome-03-CL-1280w.webp 1280w, images/optimized/Outcome-03-CL-1600w.webp 1600w, images/optimized/Outcome-03-CL-2000w.webp 2000w" sizes="(max-width: 640px) 100vw, 50vw">
-                        <img src="images/optimized/Outcome-03-CL-1280w.png" srcset="images/optimized/Outcome-03-CL-640w.png 640w, images/optimized/Outcome-03-CL-960w.png 960w, images/optimized/Outcome-03-CL-1280w.png 1280w, images/optimized/Outcome-03-CL-1600w.png 1600w, images/optimized/Outcome-03-CL-2000w.png 2000w" sizes="(max-width: 640px) 100vw, 50vw" alt="Rapid7 platform screen in light theme showing consistent data visualization and table components from the design system" loading="lazy" decoding="async" width="2000" height="1250">
-                    </picture>
-                    <picture class="cs-img--dark">
-                        <source type="image/avif" srcset="images/optimized/Outcome-03-CD-640w.avif 640w, images/optimized/Outcome-03-CD-960w.avif 960w, images/optimized/Outcome-03-CD-1280w.avif 1280w, images/optimized/Outcome-03-CD-1600w.avif 1600w, images/optimized/Outcome-03-CD-2000w.avif 2000w" sizes="(max-width: 640px) 100vw, 50vw">
-                        <source type="image/webp" srcset="images/optimized/Outcome-03-CD-640w.webp 640w, images/optimized/Outcome-03-CD-960w.webp 960w, images/optimized/Outcome-03-CD-1280w.webp 1280w, images/optimized/Outcome-03-CD-1600w.webp 1600w, images/optimized/Outcome-03-CD-2000w.webp 2000w" sizes="(max-width: 640px) 100vw, 50vw">
-                        <img src="images/optimized/Outcome-03-CD-1280w.png" srcset="images/optimized/Outcome-03-CD-640w.png 640w, images/optimized/Outcome-03-CD-960w.png 960w, images/optimized/Outcome-03-CD-1280w.png 1280w, images/optimized/Outcome-03-CD-1600w.png 1600w, images/optimized/Outcome-03-CD-2000w.png 2000w" sizes="(max-width: 640px) 100vw, 50vw" alt="Rapid7 platform screen in dark theme showing consistent data visualization and table components from the design system" loading="lazy" decoding="async" width="2000" height="1250">
-                    </picture>
-                </div>
-
-                <!-- Outcome 04 -->
-                <div>
-                    <picture class="cs-img--light">
-                        <source type="image/avif" srcset="images/optimized/Outcome-04-CL-640w.avif 640w, images/optimized/Outcome-04-CL-960w.avif 960w, images/optimized/Outcome-04-CL-1280w.avif 1280w, images/optimized/Outcome-04-CL-1600w.avif 1600w, images/optimized/Outcome-04-CL-2000w.avif 2000w" sizes="(max-width: 640px) 100vw, 50vw">
-                        <source type="image/webp" srcset="images/optimized/Outcome-04-CL-640w.webp 640w, images/optimized/Outcome-04-CL-960w.webp 960w, images/optimized/Outcome-04-CL-1280w.webp 1280w, images/optimized/Outcome-04-CL-1600w.webp 1600w, images/optimized/Outcome-04-CL-2000w.webp 2000w" sizes="(max-width: 640px) 100vw, 50vw">
-                        <img src="images/optimized/Outcome-04-CL-1280w.png" srcset="images/optimized/Outcome-04-CL-640w.png 640w, images/optimized/Outcome-04-CL-960w.png 960w, images/optimized/Outcome-04-CL-1280w.png 1280w, images/optimized/Outcome-04-CL-1600w.png 1600w, images/optimized/Outcome-04-CL-2000w.png 2000w" sizes="(max-width: 640px) 100vw, 50vw" alt="Rapid7 platform screen in light theme showing coverage radar chart and event source data using unified design system components" loading="lazy" decoding="async" width="2000" height="1250">
-                    </picture>
-                    <picture class="cs-img--dark">
-                        <source type="image/avif" srcset="images/optimized/Outcome-04-CD-640w.avif 640w, images/optimized/Outcome-04-CD-960w.avif 960w, images/optimized/Outcome-04-CD-1280w.avif 1280w, images/optimized/Outcome-04-CD-1600w.avif 1600w, images/optimized/Outcome-04-CD-2000w.avif 2000w" sizes="(max-width: 640px) 100vw, 50vw">
-                        <source type="image/webp" srcset="images/optimized/Outcome-04-CD-640w.webp 640w, images/optimized/Outcome-04-CD-960w.webp 960w, images/optimized/Outcome-04-CD-1280w.webp 1280w, images/optimized/Outcome-04-CD-1600w.webp 1600w, images/optimized/Outcome-04-CD-2000w.webp 2000w" sizes="(max-width: 640px) 100vw, 50vw">
-                        <img src="images/optimized/Outcome-04-CD-1280w.png" srcset="images/optimized/Outcome-04-CD-640w.png 640w, images/optimized/Outcome-04-CD-960w.png 960w, images/optimized/Outcome-04-CD-1280w.png 1280w, images/optimized/Outcome-04-CD-1600w.png 1600w, images/optimized/Outcome-04-CD-2000w.png 2000w" sizes="(max-width: 640px) 100vw, 50vw" alt="Rapid7 platform screen in dark theme showing coverage radar chart and event source data using unified design system components" loading="lazy" decoding="async" width="2000" height="1250">
-                    </picture>
-                </div>
-
-                <!-- Outcome 05 -->
-                <div>
-                    <picture class="cs-img--light">
-                        <source type="image/avif" srcset="images/optimized/Outcome-05-CL-640w.avif 640w, images/optimized/Outcome-05-CL-960w.avif 960w, images/optimized/Outcome-05-CL-1280w.avif 1280w, images/optimized/Outcome-05-CL-1600w.avif 1600w, images/optimized/Outcome-05-CL-2000w.avif 2000w" sizes="(max-width: 640px) 100vw, 50vw">
-                        <source type="image/webp" srcset="images/optimized/Outcome-05-CL-640w.webp 640w, images/optimized/Outcome-05-CL-960w.webp 960w, images/optimized/Outcome-05-CL-1280w.webp 1280w, images/optimized/Outcome-05-CL-1600w.webp 1600w, images/optimized/Outcome-05-CL-2000w.webp 2000w" sizes="(max-width: 640px) 100vw, 50vw">
-                        <img src="images/optimized/Outcome-05-CL-1280w.png" srcset="images/optimized/Outcome-05-CL-640w.png 640w, images/optimized/Outcome-05-CL-960w.png 960w, images/optimized/Outcome-05-CL-1280w.png 1280w, images/optimized/Outcome-05-CL-1600w.png 1600w, images/optimized/Outcome-05-CL-2000w.png 2000w" sizes="(max-width: 640px) 100vw, 50vw" alt="Rapid7 platform screen in light theme demonstrating accessible form and filter components from the design system" loading="lazy" decoding="async" width="2000" height="1250">
-                    </picture>
-                    <picture class="cs-img--dark">
-                        <source type="image/avif" srcset="images/optimized/Outcome-05-CD-640w.avif 640w, images/optimized/Outcome-05-CD-960w.avif 960w, images/optimized/Outcome-05-CD-1280w.avif 1280w, images/optimized/Outcome-05-CD-1600w.avif 1600w, images/optimized/Outcome-05-CD-2000w.avif 2000w" sizes="(max-width: 640px) 100vw, 50vw">
-                        <source type="image/webp" srcset="images/optimized/Outcome-05-CD-640w.webp 640w, images/optimized/Outcome-05-CD-960w.webp 960w, images/optimized/Outcome-05-CD-1280w.webp 1280w, images/optimized/Outcome-05-CD-1600w.webp 1600w, images/optimized/Outcome-05-CD-2000w.webp 2000w" sizes="(max-width: 640px) 100vw, 50vw">
-                        <img src="images/optimized/Outcome-05-CD-1280w.png" srcset="images/optimized/Outcome-05-CD-640w.png 640w, images/optimized/Outcome-05-CD-960w.png 960w, images/optimized/Outcome-05-CD-1280w.png 1280w, images/optimized/Outcome-05-CD-1600w.png 1600w, images/optimized/Outcome-05-CD-2000w.png 2000w" sizes="(max-width: 640px) 100vw, 50vw" alt="Rapid7 platform screen in dark theme demonstrating accessible form and filter components from the design system" loading="lazy" decoding="async" width="2000" height="1250">
-                    </picture>
-                </div>
-
-                <!-- Outcome 06 -->
-                <div>
-                    <picture class="cs-img--light">
-                        <source type="image/avif" srcset="images/optimized/Ouctome-06-CL-640w.avif 640w, images/optimized/Ouctome-06-CL-960w.avif 960w, images/optimized/Ouctome-06-CL-1280w.avif 1280w, images/optimized/Ouctome-06-CL-1600w.avif 1600w, images/optimized/Ouctome-06-CL-2000w.avif 2000w" sizes="(max-width: 640px) 100vw, 50vw">
-                        <source type="image/webp" srcset="images/optimized/Ouctome-06-CL-640w.webp 640w, images/optimized/Ouctome-06-CL-960w.webp 960w, images/optimized/Ouctome-06-CL-1280w.webp 1280w, images/optimized/Ouctome-06-CL-1600w.webp 1600w, images/optimized/Ouctome-06-CL-2000w.webp 2000w" sizes="(max-width: 640px) 100vw, 50vw">
-                        <img src="images/optimized/Ouctome-06-CL-1280w.png" srcset="images/optimized/Ouctome-06-CL-640w.png 640w, images/optimized/Ouctome-06-CL-960w.png 960w, images/optimized/Ouctome-06-CL-1280w.png 1280w, images/optimized/Ouctome-06-CL-1600w.png 1600w, images/optimized/Ouctome-06-CL-2000w.png 2000w" sizes="(max-width: 640px) 100vw, 50vw" alt="Rapid7 platform screen in light theme showing navigation and list view components from the design system" loading="lazy" decoding="async" width="2000" height="1250">
-                    </picture>
-                    <picture class="cs-img--dark">
-                        <source type="image/avif" srcset="images/optimized/Ouctome-06-CD-640w.avif 640w, images/optimized/Ouctome-06-CD-960w.avif 960w, images/optimized/Ouctome-06-CD-1280w.avif 1280w, images/optimized/Ouctome-06-CD-1600w.avif 1600w, images/optimized/Ouctome-06-CD-2000w.avif 2000w" sizes="(max-width: 640px) 100vw, 50vw">
-                        <source type="image/webp" srcset="images/optimized/Ouctome-06-CD-640w.webp 640w, images/optimized/Ouctome-06-CD-960w.webp 960w, images/optimized/Ouctome-06-CD-1280w.webp 1280w, images/optimized/Ouctome-06-CD-1600w.webp 1600w, images/optimized/Ouctome-06-CD-2000w.webp 2000w" sizes="(max-width: 640px) 100vw, 50vw">
-                        <img src="images/optimized/Ouctome-06-CD-1280w.png" srcset="images/optimized/Ouctome-06-CD-640w.png 640w, images/optimized/Ouctome-06-CD-960w.png 960w, images/optimized/Ouctome-06-CD-1280w.png 1280w, images/optimized/Ouctome-06-CD-1600w.png 1600w, images/optimized/Ouctome-06-CD-2000w.png 2000w" sizes="(max-width: 640px) 100vw, 50vw" alt="Rapid7 platform screen in dark theme showing navigation and list view components from the design system" loading="lazy" decoding="async" width="2000" height="1250">
-                    </picture>
-                </div>
-
-                <!-- Outcome 07 -->
-                <div>
-                    <picture class="cs-img--light">
-                        <source type="image/avif" srcset="images/optimized/Outcome-07-CL-640w.avif 640w, images/optimized/Outcome-07-CL-960w.avif 960w, images/optimized/Outcome-07-CL-1280w.avif 1280w, images/optimized/Outcome-07-CL-1600w.avif 1600w, images/optimized/Outcome-07-CL-2000w.avif 2000w" sizes="(max-width: 640px) 100vw, 50vw">
-                        <source type="image/webp" srcset="images/optimized/Outcome-07-CL-640w.webp 640w, images/optimized/Outcome-07-CL-960w.webp 960w, images/optimized/Outcome-07-CL-1280w.webp 1280w, images/optimized/Outcome-07-CL-1600w.webp 1600w, images/optimized/Outcome-07-CL-2000w.webp 2000w" sizes="(max-width: 640px) 100vw, 50vw">
-                        <img src="images/optimized/Outcome-07-CL-1280w.png" srcset="images/optimized/Outcome-07-CL-640w.png 640w, images/optimized/Outcome-07-CL-960w.png 960w, images/optimized/Outcome-07-CL-1280w.png 1280w, images/optimized/Outcome-07-CL-1600w.png 1600w, images/optimized/Outcome-07-CL-2000w.png 2000w" sizes="(max-width: 640px) 100vw, 50vw" alt="Rapid7 platform screen in light theme showing alert and notification components from the design system" loading="lazy" decoding="async" width="2000" height="1250">
-                    </picture>
-                    <picture class="cs-img--dark">
-                        <source type="image/avif" srcset="images/optimized/Outcome-07-CD-640w.avif 640w, images/optimized/Outcome-07-CD-960w.avif 960w, images/optimized/Outcome-07-CD-1280w.avif 1280w, images/optimized/Outcome-07-CD-1600w.avif 1600w, images/optimized/Outcome-07-CD-2000w.avif 2000w" sizes="(max-width: 640px) 100vw, 50vw">
-                        <source type="image/webp" srcset="images/optimized/Outcome-07-CD-640w.webp 640w, images/optimized/Outcome-07-CD-960w.webp 960w, images/optimized/Outcome-07-CD-1280w.webp 1280w, images/optimized/Outcome-07-CD-1600w.webp 1600w, images/optimized/Outcome-07-CD-2000w.webp 2000w" sizes="(max-width: 640px) 100vw, 50vw">
-                        <img src="images/optimized/Outcome-07-CD-1280w.png" srcset="images/optimized/Outcome-07-CD-640w.png 640w, images/optimized/Outcome-07-CD-960w.png 960w, images/optimized/Outcome-07-CD-1280w.png 1280w, images/optimized/Outcome-07-CD-1600w.png 1600w, images/optimized/Outcome-07-CD-2000w.png 2000w" sizes="(max-width: 640px) 100vw, 50vw" alt="Rapid7 platform screen in dark theme showing alert and notification components from the design system" loading="lazy" decoding="async" width="2000" height="1250">
-                    </picture>
-                </div>
-
-                <!-- Outcome 08 -->
-                <div>
-                    <picture class="cs-img--light">
-                        <source type="image/avif" srcset="images/optimized/Outcome-08-CL-640w.avif 640w, images/optimized/Outcome-08-CL-960w.avif 960w, images/optimized/Outcome-08-CL-1280w.avif 1280w, images/optimized/Outcome-08-CL-1600w.avif 1600w, images/optimized/Outcome-08-CL-2000w.avif 2000w" sizes="(max-width: 640px) 100vw, 50vw">
-                        <source type="image/webp" srcset="images/optimized/Outcome-08-CL-640w.webp 640w, images/optimized/Outcome-08-CL-960w.webp 960w, images/optimized/Outcome-08-CL-1280w.webp 1280w, images/optimized/Outcome-08-CL-1600w.webp 1600w, images/optimized/Outcome-08-CL-2000w.webp 2000w" sizes="(max-width: 640px) 100vw, 50vw">
-                        <img src="images/optimized/Outcome-08-CL-1280w.png" srcset="images/optimized/Outcome-08-CL-640w.png 640w, images/optimized/Outcome-08-CL-960w.png 960w, images/optimized/Outcome-08-CL-1280w.png 1280w, images/optimized/Outcome-08-CL-1600w.png 1600w, images/optimized/Outcome-08-CL-2000w.png 2000w" sizes="(max-width: 640px) 100vw, 50vw" alt="Rapid7 platform screen in light theme showing dashboard and reporting components from the design system" loading="lazy" decoding="async" width="2000" height="1250">
-                    </picture>
-                    <picture class="cs-img--dark">
-                        <source type="image/avif" srcset="images/optimized/Outcome-08-CD-640w.avif 640w, images/optimized/Outcome-08-CD-960w.avif 960w, images/optimized/Outcome-08-CD-1280w.avif 1280w, images/optimized/Outcome-08-CD-1600w.avif 1600w, images/optimized/Outcome-08-CD-2000w.avif 2000w" sizes="(max-width: 640px) 100vw, 50vw">
-                        <source type="image/webp" srcset="images/optimized/Outcome-08-CD-640w.webp 640w, images/optimized/Outcome-08-CD-960w.webp 960w, images/optimized/Outcome-08-CD-1280w.webp 1280w, images/optimized/Outcome-08-CD-1600w.webp 1600w, images/optimized/Outcome-08-CD-2000w.webp 2000w" sizes="(max-width: 640px) 100vw, 50vw">
-                        <img src="images/optimized/Outcome-08-CD-1280w.png" srcset="images/optimized/Outcome-08-CD-640w.png 640w, images/optimized/Outcome-08-CD-960w.png 960w, images/optimized/Outcome-08-CD-1280w.png 1280w, images/optimized/Outcome-08-CD-1600w.png 1600w, images/optimized/Outcome-08-CD-2000w.png 2000w" sizes="(max-width: 640px) 100vw, 50vw" alt="Rapid7 platform screen in dark theme showing dashboard and reporting components from the design system" loading="lazy" decoding="async" width="2000" height="1250">
-                    </picture>
-                </div>
-
-            </div>
-            <figcaption>Outcomes &mdash; Design system adoption across the Rapid7 platform, shown in light and dark themes</figcaption>
+        <!-- Outcomes — Theme-toggle demo: one live image, light ↔ dark -->
+        <figure class="cs-image-block">
+            <picture class="cs-img--light">
+                <source type="image/avif"
+                    srcset="images/optimized/Outcome-01-CL-640w.avif 640w,
+                            images/optimized/Outcome-01-CL-960w.avif 960w,
+                            images/optimized/Outcome-01-CL-1280w.avif 1280w,
+                            images/optimized/Outcome-01-CL-1600w.avif 1600w,
+                            images/optimized/Outcome-01-CL-2000w.avif 2000w"
+                    sizes="100vw">
+                <source type="image/webp"
+                    srcset="images/optimized/Outcome-01-CL-640w.webp 640w,
+                            images/optimized/Outcome-01-CL-960w.webp 960w,
+                            images/optimized/Outcome-01-CL-1280w.webp 1280w,
+                            images/optimized/Outcome-01-CL-1600w.webp 1600w,
+                            images/optimized/Outcome-01-CL-2000w.webp 2000w"
+                    sizes="100vw">
+                <img src="images/optimized/Outcome-01-CL-1280w.png"
+                    srcset="images/optimized/Outcome-01-CL-640w.png 640w,
+                            images/optimized/Outcome-01-CL-960w.png 960w,
+                            images/optimized/Outcome-01-CL-1280w.png 1280w,
+                            images/optimized/Outcome-01-CL-1600w.png 1600w,
+                            images/optimized/Outcome-01-CL-2000w.png 2000w"
+                    sizes="100vw"
+                    alt="InsightIDR investigation workflow, light theme: unified global navigation, attack graph visualization, and entity detail panel built on R7 Design System tokens"
+                    loading="lazy"
+                    decoding="async"
+                    width="1280"
+                    height="831">
+            </picture>
+            <picture class="cs-img--dark">
+                <source type="image/avif"
+                    srcset="images/optimized/Outcome-01-CD-640w.avif 640w,
+                            images/optimized/Outcome-01-CD-960w.avif 960w,
+                            images/optimized/Outcome-01-CD-1280w.avif 1280w,
+                            images/optimized/Outcome-01-CD-1600w.avif 1600w,
+                            images/optimized/Outcome-01-CD-2000w.avif 2000w"
+                    sizes="100vw">
+                <source type="image/webp"
+                    srcset="images/optimized/Outcome-01-CD-640w.webp 640w,
+                            images/optimized/Outcome-01-CD-960w.webp 960w,
+                            images/optimized/Outcome-01-CD-1280w.webp 1280w,
+                            images/optimized/Outcome-01-CD-1600w.webp 1600w,
+                            images/optimized/Outcome-01-CD-2000w.webp 2000w"
+                    sizes="100vw">
+                <img src="images/optimized/Outcome-01-CD-1280w.png"
+                    srcset="images/optimized/Outcome-01-CD-640w.png 640w,
+                            images/optimized/Outcome-01-CD-960w.png 960w,
+                            images/optimized/Outcome-01-CD-1280w.png 1280w,
+                            images/optimized/Outcome-01-CD-1600w.png 1600w,
+                            images/optimized/Outcome-01-CD-2000w.png 2000w"
+                    sizes="100vw"
+                    alt="InsightIDR investigation workflow, dark theme: same unified layout with dark color tokens — optimized for SOC analysts working in low-light environments"
+                    loading="lazy"
+                    decoding="async"
+                    width="1280"
+                    height="831">
+            </picture>
+            <figcaption>Design system in production &mdash; Switch themes above to see the platform respond live across light and dark modes</figcaption>
         </figure>
+
+        <!-- Theme system explainer -->
+        <article class="case-content" aria-label="Theme system outcomes">
+            <section class="case-section">
+                <h2 class="case-section__title">Theme-Aware by Design</h2>
+                <p>RDS ships with four production-ready theme modes, each mapped to a distinct use case. The image above is live &mdash; use the theme controls in the header to see the design system adapt in real time.</p>
+                <ul>
+                    <li><strong>Light &mdash; New branding</strong>: default experience across all products, full R7 color token system and updated visual language</li>
+                    <li><strong>Dark &mdash; New branding</strong>: preferred by SOC analysts and power users in low-light environments; every token inverts automatically</li>
+                    <li><strong>Light &mdash; Legacy branding</strong>: supported during the migration window, preserving prior product identity for teams mid-transition</li>
+                    <li><strong>Dark &mdash; Legacy branding</strong>: full dark-mode support even for products still on the old token system, so no team was left behind</li>
+                </ul>
+                <p>All 60+ components honor these modes without per-component modification. Design tokens drive every color, border, shadow, and surface decision &mdash; swapping themes requires changing a single root variable.</p>
+            </section>
+        </article>
 
         <!-- Content: What I'd Do Next -->
         <article class="case-content" aria-label="What I'd do next">
