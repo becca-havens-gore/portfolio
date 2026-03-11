@@ -824,14 +824,18 @@
         }
         .about-photo__headshot {
             position: absolute;
-            inset: 0;
+            width: 75%;
+            height: 75%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             display: block;
         }
         .about-photo__headshot img {
             z-index: 1;
-            object-position: center bottom;
-            transform: scale(1.5);
-            transform-origin: center bottom;
+            object-fit: contain;
+            object-position: center center;
+            transform: none;
         }
 
         /* ─── Philosophy with diagram ─── */
