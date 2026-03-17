@@ -3,17 +3,17 @@ import path from "node:path";
 import sharp from "sharp";
 
 const INPUT_DIR = "images/source/new";       // put originals here
-const OUTPUT_DIR = "assets/images/case-studies/dvs/";   // script writes here
+const OUTPUT_DIR = "assets/images/profile/";   // script writes here
 
 // Widths to generate. Tune if you want fewer files.
-const WIDTHS = [640, 960, 1280, 1600,2000];
+const WIDTHS = [128, 256, 384, 512, 768, 1024, 1536];
 
 // AVIF tends to look great at lower quality than WebP.
 // (Alpha/transparency is preserved for PNG inputs.)
-const AVIF_QUALITY = 45;
-const WEBP_QUALITY = 70;
+const AVIF_QUALITY = 50;
+const WEBP_QUALITY = 80;
 const PNG_COMPRESSION_LEVEL = 9; // 0–9
-const JPEG_QUALITY = 78;
+const JPEG_QUALITY = 82;
 
 const IMAGE_EXTS = new Set([".png", ".jpg", ".jpeg"]);
 
@@ -49,29 +49,33 @@ async function processOne(file) {
     // AVIF
     await img
       .clone()
-      .resize({ width: w, withoutEnlargement: true })
-      .avif({ quality: AVIF_QUALITY })
+	.resize({ width: w, height: w, fit: "cover", position: "attention", withoutEnlargement: true })      
+	.avif({ quality: AVIF_QUALITY })
+	.toColourspace("srgb")
       .toFile(path.join(OUTPUT_DIR, `${outBase}.avif`));
 
     // WebP
     await img
       .clone()
-      .resize({ width: w, withoutEnlargement: true })
+      .resize({ width: w, height: w, fit: "cover", position: "attention", withoutEnlargement: true })
       .webp({ quality: WEBP_QUALITY })
+	.toColourspace("srgb")
       .toFile(path.join(OUTPUT_DIR, `${outBase}.webp`));
 
     // Fallback (PNG if transparency source, else JPEG)
     if (isPngInput) {
       await img
         .clone()
-        .resize({ width: w, withoutEnlargement: true })
+        .resize({ width: w, height: w, fit: "cover", position: "attention", withoutEnlargement: true })
         .png({ compressionLevel: PNG_COMPRESSION_LEVEL })
+	.toColourspace("srgb")
         .toFile(path.join(OUTPUT_DIR, `${outBase}.png`));
     } else {
       await img
         .clone()
-        .resize({ width: w, withoutEnlargement: true })
+        .resize({ width: w, height: w, fit: "cover", position: "attention", withoutEnlargement: true })
         .jpeg({ quality: JPEG_QUALITY, mozjpeg: true })
+	.toColourspace("srgb")
         .toFile(path.join(OUTPUT_DIR, `${outBase}.jpg`));
     }
   }
