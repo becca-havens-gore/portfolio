@@ -1,2 +1,2 @@
-# portfolio
-Rebecca Havens Gore - Principle Design Systems and Product Design Portfolio
+# portfolio-data
+Portfolio for Rebecca Havens Gore, showcasing my telemetry-adjacent skills and experience.
