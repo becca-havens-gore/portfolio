@@ -1,0 +1,46 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF4EE"/>
+      <stop offset="40%" stop-color="#FFE0CC"/>
+      <stop offset="70%" stop-color="#FFD4B3"/>
+      <stop offset="100%" stop-color="#FFF4EE"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#grad)" />
+
+  <!-- Name -->
+  <text x="600" y="260" text-anchor="middle"
+        font-family="Playfair Display, serif"
+        font-size="64"
+        fill="#2B1B17"
+        font-weight="700">
+    Rebecca Havens Gore
+  </text>
+
+  <!-- Title -->
+  <text x="600" y="330" text-anchor="middle"
+        font-family="IBM Plex Sans, sans-serif"
+        font-size="28"
+        fill="#E65A2B"
+        font-weight="600">
+    Principal Product Designer
+  </text>
+
+  <!-- Focus -->
+  <text x="600" y="390" text-anchor="middle"
+        font-family="IBM Plex Sans, sans-serif"
+        font-size="20"
+        fill="#6A5A55">
+    Developer Platforms • AI Experiences • Enterprise Workflows
+  </text>
+
+  <!-- Tagline -->
+  <text x="600" y="470" text-anchor="middle"
+        font-family="IBM Plex Sans, sans-serif"
+        font-size="18"
+        fill="#8A7A75">
+    Turning complex systems into clear, trustworthy experiences
+  </text>
+</svg>
