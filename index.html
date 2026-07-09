@@ -1199,21 +1199,12 @@
             transform-origin: 50% 50%;
             box-shadow: 0 26px 60px rgba(17, 17, 17, 0.16);
         }
-        .about-image__photo::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: rgba(152, 16, 250, 0.14);
-            mix-blend-mode: soft-light;
-            pointer-events: none;
-        }
         .about-image__photo img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             object-position: center 14%;
             display: block;
-            filter: grayscale(1) contrast(1.02) brightness(1.03);
         }
         [data-theme="dark"] .about-image__bg {
             box-shadow: 0 28px 72px rgba(0, 0, 0, 0.34);
